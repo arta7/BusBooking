@@ -13,9 +13,9 @@ import { useTheme } from '@react-navigation/native';
 const Translation = (props) => {
   const { navigation } = props;
   const { t, i18n } = useTranslation();
-  const [Language, setLanguage] = useState('en');
+  const [Language, setLanguage] = useState('ara');
   const [isFocus, setIsFocus] = useState(false);
-  const [value, setValue] = useState('en');
+  const [value, setValue] = useState('ara');
 
   const { Colors } = useTheme();
   const LanguageStyless = useMemo(() => LanguageStyles(Colors), [Colors]);
