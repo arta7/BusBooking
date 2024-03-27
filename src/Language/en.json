@@ -113,6 +113,7 @@
     "Help_sand_mail": "Send Mail",
     "Help_sand_mail_Successful": "Send Email Successful",
     "Help_paregraph": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    
     "FAQ_paregraph_One": "Mobile Ticketing App is a very user friendly ticket generating App for buying suburban tickets, which not only takes away the inconvenience of having to wait in a queue to buy ticket but also saves time & energy spent in standing in queue.",
     "FAQ_paregraph_Two": "Why should I use Mobile Ticketing App? ",
     "FAQ_paregraph_Three": "In case, if the UTS Mobile Ticketing App is already downloaded, then the existing users can update this App. ",
@@ -123,6 +124,8 @@
     "FAQ_Paregraph_Aeight": "What type of phone is required to use the App? ",
     "FAQ_Paregraph_Nine": "These simple & easy steps will allow you to book your tickets at the tip of your finger.",
     "FAQ_Paregraph_Ten": "Are there any distance restrictions for booking a ticket?",
+    
+    
     "FAQ_Paregraph_Eleven": "The facility for booking Season Tickets has been made available; however, the facility for Journey Extension Tickets is not available in the App.",
     "FAQ_One": "Can I book a ticket in closed room?",
     "FAQ_Two": "Yes, it is possible to book tickets from a closed room. However, it preferred that the tickets be booked in open spaces, where there are no obstructions as such and the GPS location can be tracked. ",
@@ -134,6 +137,7 @@
     "Please_OnDemand_Two": "Your Comments and Suggestions help us Improve the service quality better!",
     "Reviews_Enter_Your_Commenet": "Enter Your Comment",
     "Reviews_Submit": "Submit",
+    
     "Notification_Paregraph": "Exciting offers on Bus Booking Online · Save Rs.300 on APSRTC bookings · Save Rs.300 on TSRTC bookings.",
     "Notification_date": "02 Nov",
     "Notification_Paregraph_Two": "You can choose your preferred seats and pick-up points while online bus booking. Great offers, discounts and cash back on bus tickets reservation are available.",
@@ -141,6 +145,7 @@
     "Help_Text": "Help",
     "FAQ_Text": "FAQ",
     "Reviews_Screen": "Reviews",
+
     "Notification_Text": "Notification",
     "Browse_Cars": "Browse Cars",
     "Video_Qualitytext": "Quality for Downloads",
@@ -190,6 +195,7 @@
     "Creadit_Debit_ATM_Cards": "Creadit,Debit & ATM Cards",
     "UPI": "UPI",
     "Wallets": "Wallets",
+
     "Super_is_India": "Super is India's leading financial services company that offers full-stack payments financial solutions to consumers, offline merchants and online platforms.",
     "Please_Rate_Bus_Booking": "Please Rate Bus Booking",
     "Baroda_Surat": "Baroda - Surat",
@@ -226,6 +232,7 @@
     "BusFlatlistData_SeatAvl_6": "21 Seats",
     "BusFlatlistData_ratingCount_1": "15 Ratings",
     "BusFlatlistData_ratingCount_2": "21 Ratings",
+    
     "BusFlatlistData_ratingCount_3": "39 Ratings",
     "BusFlatlistData_ratingCount_4": "41 Ratings",
     "BusFlatlistData_ratingCount_5": "25 Ratings",
