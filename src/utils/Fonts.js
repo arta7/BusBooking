@@ -1,10 +1,17 @@
 const Fonts = {
-  Poppins_Regular: 'Poppins-Regular', // 400
-  Poppins_Medium: 'Poppins-Medium',  // 500
-  Poppins_Bold: 'Poppins-Bold',      // 700
-  Poppins_Italic: 'Poppins-Italic',  // 400
-  Poppins_MediumItalic: 'Poppins-MediumItalic',  // 500
-  Poppins_BoldItalic: 'Poppins-BoldItalic',  // 700
+  // Poppins_Regular: 'Poppins-Regular', // 400
+  // Poppins_Medium: 'Poppins-Medium',  // 500
+  // Poppins_Bold: 'Poppins-Bold',      // 700
+  // Poppins_Italic: 'Poppins-Italic',  // 400
+  // Poppins_MediumItalic: 'Poppins-MediumItalic',  // 500
+  // Poppins_BoldItalic: 'Poppins-BoldItalic',  // 700
+
+  Poppins_Regular: 'Iranian Sans', // 400
+  Poppins_Medium: 'Iranian Sans',  // 500
+  Poppins_Bold: 'Iranian Sans',      // 700
+  Poppins_Italic: 'Iranian Sans',  // 400
+  Poppins_MediumItalic: 'Iranian Sans',  // 500
+  Poppins_BoldItalic: 'Iranian Sans',  // 700
 };
 
 export default Fonts;

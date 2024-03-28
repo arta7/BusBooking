@@ -83,9 +83,9 @@ function HomeTabScreenStack({ navigation }) {
 
             </View>
           ),
-          headerRight: () => (
-            <ColorPicker />
-          ),
+          // headerRight: () => (
+          //   <ColorPicker />
+          // ),
         }}
       />
     </Stack.Navigator>
@@ -114,9 +114,9 @@ function BookingTabScreenStack({ navigation }) {
               <IconE style={Style.setbariconmarginright} name="navicon" color={Colors.theme_background} size={35} />
             </TouchableOpacity>
           ),
-          headerRight: () => (
-            <ColorPicker />
-          ),
+          // headerRight: () => (
+          //   <ColorPicker />
+          // ),
         }}
       />
     </Stack.Navigator>
@@ -146,9 +146,9 @@ function PaymentHistoryTabStack({ navigation }) {
               </TouchableOpacity>
             </View>
           ),
-          headerRight: () => (
-            <ColorPicker />
-          ),
+          // headerRight: () => (
+          //   <ColorPicker />
+          // ),
         }}
       />
     </Stack.Navigator>
@@ -197,7 +197,7 @@ export function HomeScsreenTabAll() {
         labelStyle: {
         },
         tabStyle: {
-          height: SH(49),
+          height: SH(36),
           backgroundColor: Colors.white_text_color,
           paddingTop: 0,
         },
@@ -210,7 +210,7 @@ export function HomeScsreenTabAll() {
           tabBarLabel: t("Home_Text"),
           tabBarIcon: ({ focused }) => (
             <Icon
-              size={SF(19)}
+              size={SF(15)}
               name="home"
               style={{ color: focused ? Colors.theme_background : Colors.gray_text_color }}
             />
@@ -224,7 +224,7 @@ export function HomeScsreenTabAll() {
           tabBarLabel: t("My_Booking"),
           tabBarIcon: ({ focused }) => (
             <View>
-              <IconG name="book-online" style={{ color: focused ? Colors.theme_background : Colors.gray_text_color }} size={SF(27)} />
+              <IconG name="book-online" style={{ color: focused ? Colors.theme_background : Colors.gray_text_color }} size={SF(17)} />
             </View>
           ),
         }}
@@ -236,7 +236,7 @@ export function HomeScsreenTabAll() {
           tabBarLabel: t("Payment_History"),
       tabBarIcon: ({focused}) => (
       <IconG
-        size={SF(23)}
+        size={SF(17)}
         name="history"
         style={{ color: focused ? Colors.theme_background : Colors.gray_text_color }}
       />
@@ -250,7 +250,7 @@ export function HomeScsreenTabAll() {
           tabBarLabel: t("Profile_Text"),
           tabBarIcon: ({ focused }) => (
             <IconF
-              size={SF(19)}
+              size={SF(12)}
               name="user-circle"
               style={{ color: focused ? Colors.theme_background : Colors.gray_text_color }}
             />

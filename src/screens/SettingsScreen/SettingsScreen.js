@@ -84,7 +84,7 @@ const SettingStylesScreen = () => {
                   <Text style={SettingStyles.DownloadFasterText}>{t("Hours_Years")}</Text>
                 </View>
               </View>
-              <Text style={LanguageStyless.Settingtext}>{t("Select_Your_Language")}</Text>
+              {/* <Text style={LanguageStyless.Settingtext}>{t("Select_Your_Language")}</Text>
               <View style={isFocus ? LanguageStyless.LeadsDropdownbox : LanguageStyless.LeadsDropdownboxOpen}>
                 <DropDown
                   data={DataofDropdown}
@@ -103,7 +103,7 @@ const SettingStylesScreen = () => {
                     <Icon color={Colors.black_text_color} name={isFocus ? 'arrowup' : 'arrowdown'} size={SF(20)} />
                   )}
                 />
-              </View>
+              </View> */}
               <Spacing space={SH(10)} />
               <View style={SettingStyles.RightiConMinview}>
                 <View style={SettingStyles.BodyTextWidth}>
