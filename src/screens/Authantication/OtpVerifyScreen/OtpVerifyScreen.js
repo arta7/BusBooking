@@ -17,7 +17,7 @@ const OtpScreenset = (props) => {
     const [alertMessage, setAlertMessage] = useState('');
     const [okbutton, Setokbutton] = useState('');
     var alertdata = {
-        'logout': t("Resand_Otp_Text_Modal"),
+        'logout': t("Resend_Otp_Text_Modal"),
         'loginSuccess': t("Login_Successfull"),
     }
     const onoknutton = () => {
