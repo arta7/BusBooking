@@ -76,7 +76,7 @@ export default HomeTabStyles = (Colors) => StyleSheet.create({
         alignItems: 'center'
     },
     SelectPersonBoxChild: {
-        width: '31%',
+        width: '49%',
         backgroundColor: Colors.white_text_color,
         shadowColor: Colors.white,
         shadowOffset: {

@@ -10,17 +10,22 @@ const AddRemove = (props) => {
         setTotal(total + 1)
     }
     const decrease = () => {
+        if(total-1 <0)
+        setTotal(0)
+    else
         setTotal(total - 1)
     }
     return (
         <View style={CommonStyle}>
-            <TouchableOpacity onPress={() => decrease()}>
-                <Icon name="minuscircleo" style={DefaultStyle} />
-            </TouchableOpacity>
-            <Text style={Textstyles}>{total}</Text>
             <TouchableOpacity onPress={() => increase()}>
                 <Icon name="pluscircleo" style={DefaultStyle} />
             </TouchableOpacity>
+            <Text style={Textstyles} >{total}</Text>
+            <TouchableOpacity onPress={() => decrease()}>
+                <Icon name="minuscircleo" style={DefaultStyle} />
+            </TouchableOpacity>
+           
+            
         </View>
     )
 }

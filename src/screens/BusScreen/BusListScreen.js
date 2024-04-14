@@ -46,30 +46,44 @@ const BusListScreen = (props) => {
 
   const BusFlatlist = (item, index) => {
     return (
-      <TouchableOpacity style={BusListScreenStyles.BusBoxWraper} onPress={() => DataAction(item)}>
-        <View style={BusListScreenStyles.BusdataTopBox}>
+      <TouchableOpacity style={[BusListScreenStyles.BusBoxWraper,{height:200,padding:15}]} onPress={() => DataAction(item)}>
+        <View style={[BusListScreenStyles.BusdataTopBox,{height:'40%'}]}>
           <View>
             <Text style={BusListScreenStyles.TravelCompanyText}>{t(item.TravelCompany)}</Text>
+            <View style={{backgroundColor:'#dbdad5',borderRadius:20,justifyContent:'center',alignItems:'center'}}>
             <Text style={BusListScreenStyles.AcNonAcText}>{t(item.AcNonAc)}</Text>
+            </View>
           </View>
-          <View style={BusListScreenStyles.TextrightSet}>
-            <Text style={BusListScreenStyles.MainPriceText}><IconFA name="rupee" color={Colors.black_text_color} size={SF(16)} /> {item.MainPrice}</Text>
-            <Text style={BusListScreenStyles.DiscountAmountText}><IconFA name="rupee" color={Colors.light_gray_text_color} size={SF(12)} /> {item.DiscountAmount}</Text>
-            <Text style={BusListScreenStyles.PercentaText}><IconMI name="brightness-percent" style={BusListScreenStyles.Percentaticon} /> {t(item.Off)}</Text>
+
+
+         
+
+
+          <View style={[BusListScreenStyles.TextrightSet,{justifyContent:'center'}]}>
+          <View style={{marginBottom:25}}>
+          <IconA name="arrowright" size={SF(15)} color={Colors.black_text_color} />
+          </View>
+          <Text style={BusListScreenStyles.AcNonAcText}>{item.TravelTime}</Text>
           </View>
         </View>
-        <View style={BusListScreenStyles.BusdataTopBox}>
-          <Text style={BusListScreenStyles.BusComonStyle}>{t(item.SeatAvl)}</Text>
+        <View style={[BusListScreenStyles.BusdataTopBox,{height:'25%',justifyContent:'center',alignItems:'center'}]}>
+        <Text style={BusListScreenStyles.AcNonAcText}>مشهد <IconA name="arrowright" size={SF(15)} color={Colors.black_text_color} /> تهران</Text>
+          {/* <Text style={BusListScreenStyles.BusComonStyle}>{t(item.SeatAvl)}</Text>
           <Text style={BusListScreenStyles.BusComonStyle}>{item.TravelTime}</Text>
-          <Text style={BusListScreenStyles.BusComonStyle}>{item.FromTme}</Text>
+          <Text style={BusListScreenStyles.BusComonStyle}>{item.FromTme}</Text> */}
         </View>
-        <View style={BusListScreenStyles.LinkBox}>
-          <View style={BusListScreenStyles.RatingBox}>
+        <View style={[BusListScreenStyles.LinkBox,{height:'35%'}]}>
+          {/* <View style={BusListScreenStyles.RatingBox}>
             <Text style={BusListScreenStyles.RatingText}>{item.rating}</Text>
-          </View>
-          <Text style={BusListScreenStyles.LinkBoxtext}>{t(item.ratingCount)}</Text>
-          <Text style={BusListScreenStyles.LinkBoxtext}>{t(item.BordandDep)}</Text>
-          <Text style={BusListScreenStyles.LinkBoxtext}>{t(item.cancelpolicy)}</Text>
+          </View> */}
+          {/* <Text style={BusListScreenStyles.LinkBoxtext}>{t(item.ratingCount)}</Text> */}
+          {/* <Text style={BusListScreenStyles.LinkBoxtext}>{t(item.BordandDep)}</Text> */}
+          <Text style={BusListScreenStyles.BusComonStyle}>{t(item.SeatAvl)} باقیمانده</Text>
+          
+          <Text style={BusListScreenStyles.MainPriceText}>
+            {/* <IconFA name="rupee" color={Colors.black_text_color} size={SF(16)} />  */}
+          
+          {item.MainPrice}  ریال</Text>
         </View>
       </TouchableOpacity>
     )

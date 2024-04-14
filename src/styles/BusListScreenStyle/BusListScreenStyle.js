@@ -30,7 +30,7 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
         fontSize: SF(20),
     },
     RchSubheadTextStyle: {
-        color: Colors.TextBlackColor,
+        color: Colors.Blue,
         fontSize: SF(15),
         lineHeight: 16,
         paddingTop: SH(5)
@@ -43,35 +43,35 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
     },
     BusBoxWraper: {
         backgroundColor: Colors.white_text_color,
-        shadowColor: Colors.gray_text_color,
-        shadowOffset: {
-            width: 0,
-            height: Platform.OS === 'ios' ? 2 : 5,
-            minHeight: '100%',
-        },
-        shadowOpacity: 1,
-        shadowRadius: Platform.OS === 'ios' ? 2 : 50,
-        elevation: Platform.OS === 'ios' ? 1 : 6,
+        // shadowColor: Colors.gray_text_color,
+        // shadowOffset: {
+        //     width: 0,
+        //     height: Platform.OS === 'ios' ? 2 : 5,
+        //     minHeight: '100%',
+        // },
+        // shadowOpacity: 1,
+        // shadowRadius: Platform.OS === 'ios' ? 2 : 50,
+        elevation: Platform.OS === 'ios' ? 1 : 2,
         borderRadius: 7,
-        padding: SH(10),
-        marginBottom: SH(10)
-    },
+        padding: SH(5),
+        marginBottom: (10),borderColor:'#b3b5b4',borderWidth:1
+    } ,
     TravelCompanyText: {
-        color: Colors.TextBlackColor,
-        fontSize: SF(18),
+        color: Colors.black_text_color,
+        fontSize: SF(16),
     },
     AcNonAcText: {
-        color: Colors.LightBlackText,
-        fontSize: SF(14),
-        paddingTop: SH(7)
+        color: Colors.black_text_color,
+        fontSize: SF(11),
+        // paddingTop: SH(7)
     },
     TextrightSet: {
         justifyContent: 'flex-end',
         alignItems: 'flex-end'
     },
     MainPriceText: {
-        color: Colors.TextBlackColor,
-        fontSize: SF(20),
+        color: Colors.Blue,
+        fontSize: SF(15),
     },
     DiscountAmountText: {
         color: Colors.LightBlackText,
@@ -96,13 +96,13 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
     },
     BusComonStyle: {
         color: Colors.LightBlackText,
-        fontSize: SF(14),
+        fontSize: SF(12),
         paddingTop: SH(8)
     },
     LinkBox: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: SH(8)
+       justifyContent:'space-between',borderTopColor:'#b3b5b4',borderTopWidth:1
     },
     RatingBox: {
         width: SW(25),

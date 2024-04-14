@@ -149,7 +149,7 @@ const HomeTab = (props) => {
                                 />
                             </View>
                         </View>
-                        <View style={HomeTabStyless.SelectPersonBoxChild}>
+                        {/* <View style={HomeTabStyless.SelectPersonBoxChild}>
                             <IconFA5 name="baby" size={SF(20)} color={Colors.black_text_color} />
                             <Text style={HomeTabStyless.Adultstext}>{t("Infants")}</Text>
                             <Text style={HomeTabStyless.AdultstextYears}>{t("02Years")}</Text>
@@ -160,7 +160,7 @@ const HomeTab = (props) => {
                                     CommonStyle={HomeTabStyless.FlexRow}
                                 />
                             </View>
-                        </View>
+                        </View> */}
                     </View>
                     <Spacing space={SH(20)} />
                     <Button title={t("Search_Buses")} onPress={() => OnBusTicket()} />
