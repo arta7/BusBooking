@@ -91,7 +91,7 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
         paddingTop: SH(3)
     },
     BusdataTopBox: {
-        flexDirection: 'row',
+         flexDirection: 'row',
         justifyContent: 'space-between'
     },
     BusComonStyle: {

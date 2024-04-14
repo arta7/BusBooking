@@ -48,9 +48,9 @@ const BusListScreen = (props) => {
     return (
       <TouchableOpacity style={[BusListScreenStyles.BusBoxWraper,{height:200,padding:15}]} onPress={() => DataAction(item)}>
         <View style={[BusListScreenStyles.BusdataTopBox,{height:'40%'}]}>
-          <View>
+          <View style={{width:'50%'}}>
             <Text style={BusListScreenStyles.TravelCompanyText}>{t(item.TravelCompany)}</Text>
-            <View style={{backgroundColor:'#dbdad5',borderRadius:20,justifyContent:'center',alignItems:'center'}}>
+            <View style={{backgroundColor:'#dbdad5',borderRadius:10,justifyContent:'center',padding:5,alignItems:'center',maxWidth:'60%'}}>
             <Text style={BusListScreenStyles.AcNonAcText}>{t(item.AcNonAc)}</Text>
             </View>
           </View>
@@ -59,31 +59,27 @@ const BusListScreen = (props) => {
          
 
 
-          <View style={[BusListScreenStyles.TextrightSet,{justifyContent:'center'}]}>
+          <View style={[BusListScreenStyles.TextrightSet,{justifyContent:'center',alignItems:'flex-end'}]}>
           <View style={{marginBottom:25}}>
           <IconA name="arrowright" size={SF(15)} color={Colors.black_text_color} />
           </View>
           <Text style={BusListScreenStyles.AcNonAcText}>{item.TravelTime}</Text>
           </View>
         </View>
-        <View style={[BusListScreenStyles.BusdataTopBox,{height:'25%',justifyContent:'center',alignItems:'center'}]}>
+        <View style={[BusListScreenStyles.BusdataTopBox,{height:'25%',justifyContent:'center',alignItems:'center',flexDirection:'column'}]}>
         <Text style={BusListScreenStyles.AcNonAcText}>مشهد <IconA name="arrowright" size={SF(15)} color={Colors.black_text_color} /> تهران</Text>
-          {/* <Text style={BusListScreenStyles.BusComonStyle}>{t(item.SeatAvl)}</Text>
-          <Text style={BusListScreenStyles.BusComonStyle}>{item.TravelTime}</Text>
-          <Text style={BusListScreenStyles.BusComonStyle}>{item.FromTme}</Text> */}
+
+        <Text style={[BusListScreenStyles.AcNonAcText,{color:'gray'}]}> پایانه تست    پایانه 2</Text>
         </View>
         <View style={[BusListScreenStyles.LinkBox,{height:'35%'}]}>
-          {/* <View style={BusListScreenStyles.RatingBox}>
-            <Text style={BusListScreenStyles.RatingText}>{item.rating}</Text>
-          </View> */}
-          {/* <Text style={BusListScreenStyles.LinkBoxtext}>{t(item.ratingCount)}</Text> */}
-          {/* <Text style={BusListScreenStyles.LinkBoxtext}>{t(item.BordandDep)}</Text> */}
           <Text style={BusListScreenStyles.BusComonStyle}>{t(item.SeatAvl)} باقیمانده</Text>
           
-          <Text style={BusListScreenStyles.MainPriceText}>
-            {/* <IconFA name="rupee" color={Colors.black_text_color} size={SF(16)} />  */}
+        <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+        <Text style={BusListScreenStyles.MainPriceText}>
           
-          {item.MainPrice}  ریال</Text>
+          {item.MainPrice}  </Text>
+          <Text style={[BusListScreenStyles.MainPriceText,{color:'gray',marginHorizontal:5}]}>ریال</Text>
+        </View>
         </View>
       </TouchableOpacity>
     )
