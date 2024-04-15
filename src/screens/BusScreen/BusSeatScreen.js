@@ -131,7 +131,7 @@ const BusSeatScreen = (props) => {
                 </View>
             </ScrollView >
             <View>
-                <View style={BusSeatScreenStyles.TabBoxTwWidththreeoMin}>
+                {/* <View style={BusSeatScreenStyles.TabBoxTwWidththreeoMin}>
                     <View style={BusSeatScreenStyles.TabBoxTwo}>
                         <TouchableOpacity onPress={() => SettabShow('1')} style={tabShow === '1' ? [BusSeatScreenStyles.TabsettextActiveBoxTwo, BusSeatScreenStyles.TableftAciveBorder] : [BusSeatScreenStyles.TabsettextBoxTwo, BusSeatScreenStyles.TableftAciveBorder]}>
                             <Text onPress={() => SettabShow('1')} style={tabShow === '1' ? BusSeatScreenStyles.TabsettextActiveTwo : BusSeatScreenStyles.TabsettextTwo}>{t("Lover")}</Text>
@@ -140,7 +140,7 @@ const BusSeatScreen = (props) => {
                             <Text onPress={() => SettabShow('2')} style={tabShow === '2' ? BusSeatScreenStyles.TabsettextActiveTwo : BusSeatScreenStyles.TabsettextTwo}>{t("Upper")}</Text>
                         </TouchableOpacity>
                     </View>
-                </View>
+                </View> */}
                 <View style={BusSeatScreenStyles.BusSratflatlistbox}>
                     <FlatList
                         data={BusSeatShowData}
