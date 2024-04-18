@@ -54,7 +54,7 @@ export default BusSeatScreenStyle = (Colors) => StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-between',
-        marginBottom: SH(10),
+        // marginBottom: SH(10),
     },
     TabBoxTwoMin: {
         justifyContent: 'center',

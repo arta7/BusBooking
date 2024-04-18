@@ -29,7 +29,7 @@ function Button(props) {
         buttonTextStyle: {
           color: Colors.White_Colour,
           fontFamily: Fonts.Poppins_Medium,
-          fontSize: SF(19),
+          fontSize: SF(14),
           fontWeight: '600',
           lineHeight: SH(24)
         },

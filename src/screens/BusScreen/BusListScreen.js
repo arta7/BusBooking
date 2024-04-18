@@ -1,6 +1,6 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { Text, View, ScrollView, TouchableOpacity, FlatList } from "react-native";
-import { Style, BusListScreenStyle } from '../../styles';
+import { Style, BusListScreenStyle, BusSeatScreenStyle } from '../../styles';
 import IconMI from "react-native-vector-icons/MaterialCommunityIcons";
 import IconA from "react-native-vector-icons/AntDesign";
 import IconFA from "react-native-vector-icons/FontAwesome";
@@ -15,11 +15,11 @@ import { useTheme } from '@react-navigation/native';
 const BusListScreen = (props) => {
   const { navigation } = props;
   const { t } = useTranslation();
-
+  const [tabShow, SettabShow] = useState('1');
   const { Colors } = useTheme();
   const BusListScreenStyles = useMemo(() => BusListScreenStyle(Colors), [Colors]);
   const Styless = useMemo(() => Style(Colors), [Colors]);
-
+  const BusSeatScreenStyles = useMemo(() => BusSeatScreenStyle(Colors), [Colors]);
   const DataAction = (data) => {
     dispatch(get_data_action(data))
     navigation.navigate(RouteName.BUS_SEAT_SCREEN)
@@ -46,40 +46,40 @@ const BusListScreen = (props) => {
 
   const BusFlatlist = (item, index) => {
     return (
-      <TouchableOpacity style={[BusListScreenStyles.BusBoxWraper,{height:200,padding:15}]} onPress={() => DataAction(item)}>
-        <View style={[BusListScreenStyles.BusdataTopBox,{height:'40%'}]}>
-          <View style={{width:'50%'}}>
+      <TouchableOpacity style={[BusListScreenStyles.BusBoxWraper, { height: 200, padding: 15 }]} onPress={() => DataAction(item)}>
+        <View style={[BusListScreenStyles.BusdataTopBox, { height: '40%' }]}>
+          <View style={{ width: '50%' }}>
             <Text style={BusListScreenStyles.TravelCompanyText}>{t(item.TravelCompany)}</Text>
-            <View style={{backgroundColor:'#dbdad5',borderRadius:10,justifyContent:'center',padding:5,alignItems:'center',maxWidth:'60%'}}>
-            <Text style={BusListScreenStyles.AcNonAcText}>{t(item.AcNonAc)}</Text>
+            <View style={{ backgroundColor: '#dbdad5', borderRadius: 10, justifyContent: 'center', padding: 5, alignItems: 'center', maxWidth: '60%' }}>
+              <Text style={BusListScreenStyles.AcNonAcText}>{t(item.AcNonAc)}</Text>
             </View>
           </View>
 
 
-         
 
 
-          <View style={[BusListScreenStyles.TextrightSet,{justifyContent:'center',alignItems:'flex-end'}]}>
-          <View style={{marginBottom:25}}>
-          <IconA name="arrowright" size={SF(15)} color={Colors.black_text_color} />
-          </View>
-          <Text style={BusListScreenStyles.AcNonAcText}>{item.TravelTime}</Text>
+
+          <View style={[BusListScreenStyles.TextrightSet, { justifyContent: 'center', alignItems: 'flex-end' }]}>
+            <View style={{ marginBottom: 25 }}>
+              <IconA name="arrowright" size={SF(15)} color={Colors.black_text_color} />
+            </View>
+            <Text style={BusListScreenStyles.AcNonAcText}>{item.TravelTime}</Text>
           </View>
         </View>
-        <View style={[BusListScreenStyles.BusdataTopBox,{height:'25%',justifyContent:'center',alignItems:'center',flexDirection:'column'}]}>
-        <Text style={BusListScreenStyles.AcNonAcText}>مشهد <IconA name="arrowright" size={SF(15)} color={Colors.black_text_color} /> تهران</Text>
+        <View style={[BusListScreenStyles.BusdataTopBox, { height: '25%', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }]}>
+          <Text style={BusListScreenStyles.AcNonAcText}>مشهد <IconA name="arrowright" size={SF(15)} color={Colors.black_text_color} /> تهران</Text>
 
-        <Text style={[BusListScreenStyles.AcNonAcText,{color:'gray'}]}> پایانه تست    پایانه 2</Text>
+          <Text style={[BusListScreenStyles.AcNonAcText, { color: 'gray' }]}> پایانه تست    پایانه 2</Text>
         </View>
-        <View style={[BusListScreenStyles.LinkBox,{height:'35%'}]}>
+        <View style={[BusListScreenStyles.LinkBox, { height: '35%' }]}>
           <Text style={BusListScreenStyles.BusComonStyle}>{t(item.SeatAvl)} باقیمانده</Text>
-          
-        <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-        <Text style={BusListScreenStyles.MainPriceText}>
-          
-          {item.MainPrice}  </Text>
-          <Text style={[BusListScreenStyles.MainPriceText,{color:'gray',marginHorizontal:5}]}>ریال</Text>
-        </View>
+
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text style={BusListScreenStyles.MainPriceText}>
+
+              {item.MainPrice}  </Text>
+            <Text style={[BusListScreenStyles.MainPriceText, { color: 'gray', marginHorizontal: 5 }]}>ریال</Text>
+          </View>
         </View>
       </TouchableOpacity>
     )
@@ -117,7 +117,43 @@ const BusListScreen = (props) => {
             </View>
           </View>
         </View>
+
+
       </ScrollView >
+      {/* <View style={[BusSeatScreenStyles.TabBoxTwWidththreeoMin, { height: 60 }]}> */}
+        <View style={[BusSeatScreenStyles.TabBoxTwo, { height: 50,borderTopColor:'gray',borderTopWidth:0.5,marginHorizontal:5 }]}>
+          <TouchableOpacity style={{ width: '25%', height: '100%',justifyContent:'center',alignItems:'center'
+          ,borderRightWidth:1,paddingTop:5,borderRightColor:'gray',flexDirection:'row'}}>
+              <IconA name="right" size={SW(10)} color='black'  style={{marginRight:5}}/>
+            <Text style={{textAlign:'center',color:'black',fontSize:SW(10)}}>
+              روز قبل  
+            </Text>
+           
+          </TouchableOpacity>
+
+
+          <View style={{ width: '50%', height: '100%',justifyContent:'center',alignItems:'center' }}>
+          <Text style={{textAlign:'center',color:'black',fontSize:SW(10)}}>
+              1403/01/29   
+            </Text>
+          </View>
+
+
+          <TouchableOpacity style={{ width: '25%', height: '100%',justifyContent:'center',alignItems:'center'
+          ,borderLeftWidth:1,paddingTop:5,borderLeftColor:'gray',flexDirection:'row' }}>
+          
+          <Text style={{textAlign:'center',color:'black',fontSize:SW(10)}}>
+              روز بعد  
+            </Text>
+
+            <IconA name="left" size={SW(10)} color='black'  style={{marginLeft:5}}/>
+          </TouchableOpacity>
+
+
+        {/* </View> */}
+
+
+      </View>
     </View >
   );
 };
