@@ -12,6 +12,7 @@ import { RouteName } from '../../../routes';
 import { useTheme } from '@react-navigation/native';
 import { FlightFrom } from '../../../utils/Imagedataset';
 
+
 const HomeTab = (props) => {
     const { navigation } = props;
     const { t } = useTranslation();
@@ -78,37 +79,52 @@ const HomeTab = (props) => {
                 <View style={HomeTabStyless.SearchBusView}>
                     <View>
                         <View style={HomeTabStyless.WithFrom}>
-                            <Spacing />
-                            <Text style={HomeTabStyless.FromText}>{t("Fromm")}</Text>
+                            {/* <Spacing /> */}
+                            {/* <Text style={HomeTabStyless.FromText}>{t("Fromm")}</Text> */}
                             <DropDown
                                 data={FlightFrom}
                                 labelField="label"
                                 valueField="value"
-                                placeholder={t("Search")}
+                                placeholder={t("مبدا")}
+                                search={true}
+                                searchPlaceholder={'مبدا'}
                                 value={t(value.From)}
                                 onChange={(From) => {
                                     setValue({ ...value, From: From.value });
                                     setIsFocus(true);
                                 }}
-                                maxHeight={300}
+                                maxHeight={250}
+                                customeStyle={{borderBottomLeftRadius:0,borderBottomRightRadius:0}}
+                                ShowIcon={true}
+                                IconName='place'
                             />
                         </View>
 
                         <View style={HomeTabStyless.WithFrom}>
-                            <Spacing space={SH(10)} />
-                            <Text style={HomeTabStyless.ToText}>{t("To")}</Text>
-                            <Spacing />
+                            {/* <Spacing space={SH(10)} /> */}
+                            {/* <Text style={HomeTabStyless.ToText}>{t("To")}</Text> */}
+                            {/* <Spacing /> */}
                             <DropDown
                                 data={FlightFrom}
                                 labelField="label"
                                 valueField="value"
-                                placeholder={t("Search")}
+                                placeholder={t("مقصد")}
+                                search={true}
+                                searchPlaceholder={'مقصد'}
                                 value={t(value.From)}
                                 onChange={(To) => {
+                                    console.log('value : ',value.From)
+                                    if(To.value == value.From)
+                                    {
+                                        setValue({ ...value, From: "" });
+                                    }
                                     setValue({ ...value, To: To.value });
                                     setIsFocus(true);
                                 }}
-                                maxHeight={300}
+                                maxHeight={250}
+                                customeStyle={{borderTopLeftRadius:0,borderTopRightRadius:0}}
+                                ShowIcon={true}
+                                IconName='place'
                             />
                         </View>
                     </View>

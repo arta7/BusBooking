@@ -3,6 +3,8 @@ import { StyleSheet, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { Colors, SF, SH, SW, Fonts } from '../../utils';
 import { useTheme } from '@react-navigation/native';
+import PlaceIcon from "react-native-vector-icons/MaterialIcons";
+
 
 function DropdownComponent({
     width,
@@ -18,15 +20,22 @@ function DropdownComponent({
     labelStyle,
     placeholderStyle,
     selectedTextStyle,
-    dropdownStyle
+    dropdownStyle,
+    customeStyle,
+    ShowIcon,
+    IconName
 }) {
     const { Colors } = useTheme();
     const styles = useMemo(
         () =>
             StyleSheet.create({
-                container: { width: width },
+                container: {
+                    width: width, borderWidth: 0.4, borderColor: 'grey'
+                    , borderRadius: SH(8)
+                    , flexDirection: 'row', justifyContent: 'space-between', height: 70
+                },
                 dropdownStyle: {
-                    borderWidth: SH(1),
+                    // borderWidth: SH(1),
                     borderColor: Colors.input_border,
                     borderRadius: SH(8),
                     fontSize: SF(14),
@@ -35,6 +44,7 @@ function DropdownComponent({
                     fontWeight: '400',
                     padding: SH(5),
                     minHeight: SH(60),
+                    width: '90%',
                     ...dropdownStyle
                 },
                 icon: {
@@ -70,13 +80,20 @@ function DropdownComponent({
     )
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, customeStyle]}>
+            <View style={{ width: '10%', justifyContent: 'center', alignItems: 'center' }}>
+                {ShowIcon &&
+                     <PlaceIcon name={IconName} size={SH(25)}/>  
+                }
+            </View>
             <Dropdown
-                style={styles.dropdownStyle}
+                style={[styles.dropdownStyle]}
                 placeholderStyle={styles.placeholderStyle}
                 selectedTextStyle={[styles.selectedTextStyle, { color: Colors.Shadow_Color }]}
                 inputSearchStyle={styles.inputSearchStyle}
-                iconStyle={styles.iconStyle}
+                // iconStyle={styles.iconStyle}
+                iconColor='transparent'
+
                 data={data}
                 search={search}
                 searchPlaceholder={searchPlaceholder}
@@ -88,6 +105,16 @@ function DropdownComponent({
                 onChange={onChange}
                 itemTextStyle={{ color: Colors.Shadow_Color }}
             />
+
+            {/* <DropDownPicker
+                open={open}
+                value={value}
+                items={items}
+                setOpen={setOpen}
+                setValue={setValue}
+                setItems={setItems}
+                placeholder={'Choose a fruit.'}
+            /> */}
         </View>
     );
 };
