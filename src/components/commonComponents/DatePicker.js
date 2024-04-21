@@ -7,9 +7,9 @@ import { SH, SF, SW, Colors } from '../../utils';
 import PersianCalendarPicker from 'react-native-persian-calendar-picker';
 
 function DatePicker(props) {
-    const { DatePlaceholder } = props;
+    const { DatePlaceholder,isDatePickerVisible,setDatePickerVisibility,onPressButton  } = props;
     const [dateselcet, setdateselcet] = useState(new Date().toDateString());
-    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+    // const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
     const showDateTimePicker = () => {
         setDatePickerVisibility(true);
@@ -23,12 +23,13 @@ function DatePicker(props) {
             setdateselcet(date);
     };
 
+
     return (
-        <View>
+        <View >
             <View>
-                <TouchableOpacity onPress={() => showDateTimePicker()}>
+                <View >
                     <Text style={DatePickerStyle.datetextstyles}>{dateselcet == null ? 'تاریخ' : dateselcet.toString()}</Text>
-                </TouchableOpacity>
+                </View>
             </View>
             {/* <DateTimePicker
                 isVisible={isDatePickerVisible}

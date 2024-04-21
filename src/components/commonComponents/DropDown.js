@@ -83,7 +83,7 @@ function DropdownComponent({
         <View style={[styles.container, customeStyle]}>
             <View style={{ width: '10%', justifyContent: 'center', alignItems: 'center' }}>
                 {ShowIcon &&
-                     <PlaceIcon name={IconName} size={SH(25)}/>  
+                     <PlaceIcon name={IconName} color={'gray'} size={SH(25)}/>  
                 }
             </View>
             <Dropdown

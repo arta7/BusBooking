@@ -11,7 +11,7 @@ import IconFA5 from "react-native-vector-icons/FontAwesome5";
 import { RouteName } from '../../../routes';
 import { useTheme } from '@react-navigation/native';
 import { FlightFrom } from '../../../utils/Imagedataset';
-
+import DateIcon from "react-native-vector-icons/MaterialIcons";
 
 const HomeTab = (props) => {
     const { navigation } = props;
@@ -25,7 +25,7 @@ const HomeTab = (props) => {
         To: "",
     }
     const [value, setValue] = useState(stateValue);
-
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
     const OnBusTicket = () => {
         navigation.navigate(RouteName.BUS_LIST_SCREEN)
@@ -94,7 +94,7 @@ const HomeTab = (props) => {
                                     setIsFocus(true);
                                 }}
                                 maxHeight={250}
-                                customeStyle={{borderBottomLeftRadius:0,borderBottomRightRadius:0}}
+                                customeStyle={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }}
                                 ShowIcon={true}
                                 IconName='place'
                             />
@@ -113,31 +113,44 @@ const HomeTab = (props) => {
                                 searchPlaceholder={'مقصد'}
                                 value={t(value.From)}
                                 onChange={(To) => {
-                                    console.log('value : ',value.From)
-                                    if(To.value == value.From)
-                                    {
+                                    console.log('value : ', t(value.From))
+                                    if (To.value == value.From) {
                                         setValue({ ...value, From: "" });
                                     }
                                     setValue({ ...value, To: To.value });
                                     setIsFocus(true);
                                 }}
                                 maxHeight={250}
-                                customeStyle={{borderTopLeftRadius:0,borderTopRightRadius:0}}
+                                customeStyle={{ borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
                                 ShowIcon={true}
                                 IconName='place'
                             />
                         </View>
                     </View>
+                    <Spacing />
+                    <View style={[{
+                        width: '100%', borderWidth: 0.4, borderColor: 'grey'
+                        , borderRadius: SH(8)
+                        , flexDirection: 'row', justifyContent: 'space-between', height: 70
+                    }]}>
+                        {/* <View style={HomeTabStyless.InputUnderLineWidth}> */}
+                        {/* <View style={HomeTabStyless.InputUnderLine}> */}
+                        <View style={{ width: '10%', justifyContent: 'center', alignItems: 'center' }}>
 
-                    <View style={HomeTabStyless.FlewRow}>
-                        <View style={HomeTabStyless.InputUnderLineWidth}>
-                            <View style={HomeTabStyless.InputUnderLine}>
-                                <DatePicker
-                                    DatePlaceholder={t("Select_Date")}
-                                />
-                            </View>
+                            <DateIcon name='date-range' color={'gray'} size={SH(25)} />
+
                         </View>
+                        <TouchableOpacity style={{ width: '85%', justifyContent: 'center', alignItems: 'flex-start' }} onPress={()=>{setDatePickerVisibility(true)}}>
+                        <DatePicker
+                            DatePlaceholder={t("Select_Date")}
+                            isDatePickerVisible={isDatePickerVisible}
+                            setDatePickerVisibility={setDatePickerVisibility}
+                            // onPressButton={()=>{setDatePickerVisibility(true)}}
+                        />
+                        </TouchableOpacity>
+                   
                     </View>
+                    <Spacing />
 
                     <View style={HomeTabStyless.SelectPersonBox}>
                         <View style={HomeTabStyless.SelectPersonBoxChild}>
