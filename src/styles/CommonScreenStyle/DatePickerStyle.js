@@ -4,6 +4,6 @@ import { Colors, Fonts, SH, SW, SF } from '../../utils';
 export default StyleSheet.create({
     customslidebarmenu: {
         paddingHorizontal: SH(20),
-        paddingTop: SH(10),
+        paddingTop: SH(10)
     },
 });

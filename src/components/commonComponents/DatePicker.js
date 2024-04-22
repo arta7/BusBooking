@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Modal } from 'react-native';
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { DatePickerStyle } from '../../styles';
-import moment from 'moment';
+// import moment from 'moment';
+var moment = require('moment-jalaali')
 import { SH, SF, SW, Colors } from '../../utils';
 import PersianCalendarPicker from 'react-native-persian-calendar-picker';
 
 function DatePicker(props) {
     const { DatePlaceholder,isDatePickerVisible,setDatePickerVisibility,onPressButton  } = props;
-    const [dateselcet, setdateselcet] = useState(new Date().toDateString());
+    const [dateselcet, setdateselcet] = useState('');
     // const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
     const showDateTimePicker = () => {
@@ -28,14 +29,12 @@ function DatePicker(props) {
         <View >
             <View>
                 <View >
-                    <Text style={DatePickerStyle.datetextstyles}>{dateselcet == null ? 'تاریخ' : dateselcet.toString()}</Text>
+                    <Text style={[DatePickerStyle.datetextstyles,{color:dateselcet == '' ? 'gray': 'black'}]} >{dateselcet == '' ? 'تاریخ' : 
+                   moment(new Date(dateselcet.toString())).format('jYYYY/jMM/jDD')
+                }
+                    </Text>
                 </View>
             </View>
-            {/* <DateTimePicker
-                isVisible={isDatePickerVisible}
-                onConfirm={handleDatePicked}
-                onCancel={hideDateTimePicker}
-            /> */}
                 <Modal visible={isDatePickerVisible}>
             <PersianCalendarPicker
             
