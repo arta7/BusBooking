@@ -12,9 +12,12 @@ import { RouteName } from '../../../routes';
 import { useTheme } from '@react-navigation/native';
 import { FlightFrom } from '../../../utils/Imagedataset';
 import DateIcon from "react-native-vector-icons/MaterialIcons";
+import UserContext from './../../../../UserContext';
+
 
 const HomeTab = (props) => {
     const { navigation } = props;
+    const { userData,setUserData } = React.useContext(UserContext);
     const { t } = useTranslation();
     const { Colors } = useTheme();
     const HomeTabStyless = useMemo(() => HomeTabStyles(Colors), [Colors]);
@@ -84,14 +87,22 @@ const HomeTab = (props) => {
                             <DropDown
                                 data={FlightFrom}
                                 labelField="label"
-                                valueField="value"
+                                // valueField="value"
                                 placeholder={t("مبدا")}
                                 search={true}
                                 searchPlaceholder={'مبدا'}
-                                value={t(value.From)}
+                                value={userData[0].StartPlace.toString()}
                                 onChange={(From) => {
-                                    setValue({ ...value, From: From.value });
-                                    setIsFocus(true);
+                                    const myNextList = [...userData];
+                                    const DatesStep = myNextList;
+                                     console.log('From',From.label.toString())
+                                    DatesStep[0].StartPlace = From.label.toString();
+                                    setUserData(myNextList)
+                                    console.log('userData[0].StartPlace.toString()',userData[0].StartPlace.toString())
+                                    // setValue({ ...value, From: From.label });
+                                   // setIsFocus(true);
+
+                                  
                                 }}
                                 maxHeight={250}
                                 customeStyle={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }}
@@ -111,13 +122,22 @@ const HomeTab = (props) => {
                                 placeholder={t("مقصد")}
                                 search={true}
                                 searchPlaceholder={'مقصد'}
-                                value={t(value.From)}
+                                value={userData[0].EndPlace.toString()}
                                 onChange={(To) => {
-                                    console.log('value : ', t(value.From))
-                                    if (To.value == value.From) {
-                                        setValue({ ...value, From: "" });
-                                    }
-                                    setValue({ ...value, To: To.value });
+                                    console.log('value End : ', To.label,"value Start :",(userData[0].StartPlace))
+                                    // if (To.label.toString() === userData[0].StartPlace.toString()) {
+                                    //     setValue({ ...value, From: "" });
+                                    //     const myNextList = [...userData];
+                                    //     const DatesStep = myNextList;
+                                    //     console.log('EndPlace',DatesStep)
+                                    //     DatesStep[0].StartPlace = '';
+                                    //     setUserData(myNextList)
+                                    // }
+                                    // // setValue({ ...value, To: To.label });
+                                    // const myNextList = [...userData];
+                                    // const DatesStep = myNextList;
+                                    // DatesStep[0].EndPlace = To.label.toString();
+                                    // setUserData(myNextList)
                                     setIsFocus(true);
                                 }}
                                 maxHeight={250}
@@ -145,6 +165,8 @@ const HomeTab = (props) => {
                             DatePlaceholder={t("Select_Date")}
                             isDatePickerVisible={isDatePickerVisible}
                             setDatePickerVisibility={setDatePickerVisibility}
+                            setDataValue ={setUserData}
+                            DateValue = {userData}
                             // onPressButton={()=>{setDatePickerVisibility(true)}}
                         />
                         </TouchableOpacity>

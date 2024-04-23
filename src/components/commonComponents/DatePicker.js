@@ -8,7 +8,7 @@ import { SH, SF, SW, Colors } from '../../utils';
 import PersianCalendarPicker from 'react-native-persian-calendar-picker';
 
 function DatePicker(props) {
-    const { DatePlaceholder,isDatePickerVisible,setDatePickerVisibility,onPressButton  } = props;
+    const { DatePlaceholder,isDatePickerVisible,setDatePickerVisibility,DateValue ,setDataValue } = props;
     const [dateselcet, setdateselcet] = useState('');
     // const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
@@ -21,7 +21,12 @@ function DatePicker(props) {
     const handleDatePicked = (date) => {
         hideDateTimePicker()
         console.log('date : ',date)
-            setdateselcet(date);
+           // setdateselcet(date);
+            const myNextList = [...DateValue];
+            const DatesStep = myNextList;
+            DatesStep[0].CurrentDate = date;
+            setDataValue(myNextList)
+        
     };
 
 
@@ -29,8 +34,8 @@ function DatePicker(props) {
         <View >
             <View>
                 <View >
-                    <Text style={[DatePickerStyle.datetextstyles,{color:dateselcet == '' ? 'gray': 'black'}]} >{dateselcet == '' ? 'تاریخ' : 
-                   moment(new Date(dateselcet.toString())).format('jYYYY/jMM/jDD')
+                    <Text style={[DatePickerStyle.datetextstyles,{color:DateValue[0].CurrentDate == '' ? 'gray': 'black'}]} >{DateValue[0].CurrentDate == '' ? 'تاریخ' : 
+                   moment(new Date(DateValue[0].CurrentDate.toString())).format('jYYYY/jMM/jDD')
                 }
                     </Text>
                 </View>
