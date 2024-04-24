@@ -11,6 +11,10 @@ import { SH, SF, SW, Colors } from "../../utils";
 import { BusFlatlistData, MobileSelectData } from '../../utils/Imagedataset';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@react-navigation/native';
+var moment = require('moment-jalaali')
+import UserContext from './../../../UserContext';
+import PersianConverter from "../../components/Class/PersianConverter";
+
 
 const BusListScreen = (props) => {
   const { navigation } = props;
@@ -20,26 +24,40 @@ const BusListScreen = (props) => {
   const BusListScreenStyles = useMemo(() => BusListScreenStyle(Colors), [Colors]);
   const Styless = useMemo(() => Style(Colors), [Colors]);
   const BusSeatScreenStyles = useMemo(() => BusSeatScreenStyle(Colors), [Colors]);
+  const { userData,setUserData } = React.useContext(UserContext);
+  let options = { year: 'numeric', month: 'long', day: 'numeric' };
+
   const DataAction = (data) => {
     dispatch(get_data_action(data))
     navigation.navigate(RouteName.BUS_SEAT_SCREEN)
+    
   }
   const dispatch = useDispatch();
 
   const MobileSelect = (item, index) => {
     return (
       <View style={BusListScreenStyles.FlightsCityBox}>
-        <View style={BusListScreenStyles.BackArrowBoxWidthSet}>
+        <View style={[BusListScreenStyles.BackArrowBoxWidthSet,{}]}>
           <TouchableOpacity onPress={() => navigation.navigate(RouteName.HOME_SCREEN)}>
-            <IconA name="arrowleft" size={SF(20)} color={Colors.theme_background} />
+            <IconA name="arrowright" size={SF(20)} color={Colors.black_text_color} />
           </TouchableOpacity>
         </View>
         <View style={BusListScreenStyles.CityMainBoxWrap}>
           <View style={BusListScreenStyles.CityMainBox}>
-            <Text style={BusListScreenStyles.CityText}>{t(item.Cityfrom)} <IconA name="arrowright" size={SF(15)} color={Colors.black_text_color} /> {t(item.Cityto)}</Text>
-            <Text style={BusListScreenStyles.RchSubheadTextStyle}>{item.CardType}</Text>
+            <Text style={BusListScreenStyles.CityText}>بلیط اتوبوس از  {userData[0].StartPlace.toString()} به {userData[0].EndPlace.toString()}</Text>
+            
           </View>
+          <View style={{justifyContent:'center',alignItems:'flex-start',paddingTop:5}}>
+          <Text style={[BusListScreenStyles.RchSubheadTextStyle,{color:'gray'}]}
+          >{
+            PersianConverter(new Date(userData[0].CurrentDate.toString()))
+            //moment(new Date(userData[0].CurrentDate.toString())).format('jMMMM jDD dddd')
+          // new Date(userData[0].CurrentDate.toString()).toLocaleDateString('fa-IR', options)
+          }</Text>
+          </View>
+     
         </View>
+       
       </View>
     )
   }
@@ -134,7 +152,7 @@ const BusListScreen = (props) => {
 
           <View style={{ width: '50%', height: '100%',justifyContent:'center',alignItems:'center' }}>
           <Text style={{textAlign:'center',color:'black',fontSize:SW(10)}}>
-              1403/01/29   
+             {  moment(new Date(userData[0].CurrentDate.toString())).format('jYYYY/jMM/jDD')}
             </Text>
           </View>
 

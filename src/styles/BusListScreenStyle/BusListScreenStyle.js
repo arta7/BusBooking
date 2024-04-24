@@ -16,22 +16,22 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
         alignItems: 'center'
     },
     CityMainBoxWrap: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '80%',
+        // flexDirection: 'row',
+        // justifyContent: 'space-between',
+        // alignItems: 'center',
+        width: '90%',
     },
     CityMainBox: {
-        width: '80%',
+        width: '100%',
         paddingLeft: SH(20)
     },
     CityText: {
-        color: Colors.theme_background,
-        fontSize: SF(20),
+        color: Colors.black_text_color,
+        fontSize: SF(14),
     },
     RchSubheadTextStyle: {
         color: Colors.Blue,
-        fontSize: SF(15),
+        fontSize: SF(10),
         lineHeight: 16,
         paddingTop: SH(5)
     },
