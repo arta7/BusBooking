@@ -143,7 +143,20 @@ const BusListScreen = (props) => {
           <TouchableOpacity style={{ width: '25%', height: '100%',justifyContent:'center',alignItems:'center'
           ,borderRightWidth:1,paddingTop:5,borderRightColor:'gray',flexDirection:'row'}}>
               <IconA name="right" size={SW(10)} color='black'  style={{marginRight:5}}/>
-            <Text style={{textAlign:'center',color:'black',fontSize:SW(10)}}>
+            <Text style={{textAlign:'center',color:'black',fontSize:SW(10)}}
+              onPress={()=>{
+                var today = new Date(userData[0].CurrentDate);
+                var tomorrow = new Date(today);
+                tomorrow.setDate(today.getDate()-1);
+                  console.log('new Date(DatesStep[0].CurrentDate)',tomorrow)
+                const myNextList = [...userData];
+                const DatesStep = myNextList;
+                DatesStep[0].CurrentDate =  tomorrow;
+                setUserData(myNextList)
+    
+    
+              }}
+            >
               روز قبل  
             </Text>
            
@@ -162,12 +175,12 @@ const BusListScreen = (props) => {
           onPress={()=>{
             var today = new Date(userData[0].CurrentDate);
             var tomorrow = new Date(today);
-            
-              console.log('new Date(DatesStep[0].CurrentDate)',new Date(new Date(userData[0].CurrentDate).getDate()+1))
-            // const myNextList = [...userData];
-            // const DatesStep = myNextList;
-            // DatesStep[0].CurrentDate =  new Date(DatesStep[0].CurrentDate).getDate()+1;
-            // setUserData(myNextList)
+            tomorrow.setDate(today.getDate()+1);
+              console.log('new Date(DatesStep[0].CurrentDate)',tomorrow)
+            const myNextList = [...userData];
+            const DatesStep = myNextList;
+            DatesStep[0].CurrentDate =  tomorrow;
+            setUserData(myNextList)
 
 
           }}
