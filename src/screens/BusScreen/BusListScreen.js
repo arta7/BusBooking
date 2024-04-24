@@ -158,7 +158,20 @@ const BusListScreen = (props) => {
 
 
           <TouchableOpacity style={{ width: '25%', height: '100%',justifyContent:'center',alignItems:'center'
-          ,borderLeftWidth:1,paddingTop:5,borderLeftColor:'gray',flexDirection:'row' }}>
+          ,borderLeftWidth:1,paddingTop:5,borderLeftColor:'gray',flexDirection:'row' }} 
+          onPress={()=>{
+            var today = new Date(userData[0].CurrentDate);
+            var tomorrow = new Date(today);
+            
+              console.log('new Date(DatesStep[0].CurrentDate)',new Date(new Date(userData[0].CurrentDate).getDate()+1))
+            // const myNextList = [...userData];
+            // const DatesStep = myNextList;
+            // DatesStep[0].CurrentDate =  new Date(DatesStep[0].CurrentDate).getDate()+1;
+            // setUserData(myNextList)
+
+
+          }}
+          >
           
           <Text style={{textAlign:'center',color:'black',fontSize:SW(10)}}>
               روز بعد  
