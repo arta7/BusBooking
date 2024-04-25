@@ -14,8 +14,8 @@ import { useTheme } from '@react-navigation/native';
 var moment = require('moment-jalaali')
 import UserContext from './../../../UserContext';
 import PersianConverter from "../../components/Class/PersianConverter";
-
-
+import PlaceholderSkeleton from "../../components/commonComponents/PlaceholderSkeleton";
+import Skeleton from "react-native-reanimated-skeleton";
 const BusListScreen = (props) => {
   const { navigation } = props;
   const { t } = useTranslation();
@@ -24,20 +24,20 @@ const BusListScreen = (props) => {
   const BusListScreenStyles = useMemo(() => BusListScreenStyle(Colors), [Colors]);
   const Styless = useMemo(() => Style(Colors), [Colors]);
   const BusSeatScreenStyles = useMemo(() => BusSeatScreenStyle(Colors), [Colors]);
-  const { userData,setUserData } = React.useContext(UserContext);
+  const { userData, setUserData } = React.useContext(UserContext);
   let options = { year: 'numeric', month: 'long', day: 'numeric' };
 
   const DataAction = (data) => {
     dispatch(get_data_action(data))
     navigation.navigate(RouteName.BUS_SEAT_SCREEN)
-    
+
   }
   const dispatch = useDispatch();
 
   const MobileSelect = (item, index) => {
     return (
       <View style={BusListScreenStyles.FlightsCityBox}>
-        <View style={[BusListScreenStyles.BackArrowBoxWidthSet,{}]}>
+        <View style={[BusListScreenStyles.BackArrowBoxWidthSet, {}]}>
           <TouchableOpacity onPress={() => navigation.navigate(RouteName.HOME_SCREEN)}>
             <IconA name="arrowright" size={SF(20)} color={Colors.black_text_color} />
           </TouchableOpacity>
@@ -45,19 +45,19 @@ const BusListScreen = (props) => {
         <View style={BusListScreenStyles.CityMainBoxWrap}>
           <View style={BusListScreenStyles.CityMainBox}>
             <Text style={BusListScreenStyles.CityText}>بلیط اتوبوس از  {userData[0].StartPlace.toString()} به {userData[0].EndPlace.toString()}</Text>
-            
+
           </View>
-          <View style={{justifyContent:'center',alignItems:'flex-start',paddingTop:5}}>
-          <Text style={[BusListScreenStyles.RchSubheadTextStyle,{color:'gray'}]}
-          >{
-            PersianConverter(new Date(userData[0].CurrentDate.toString()))
-            //moment(new Date(userData[0].CurrentDate.toString())).format('jMMMM jDD dddd')
-          // new Date(userData[0].CurrentDate.toString()).toLocaleDateString('fa-IR', options)
-          }</Text>
+          <View style={{ justifyContent: 'center', alignItems: 'flex-start', paddingTop: 5 }}>
+            <Text style={[BusListScreenStyles.RchSubheadTextStyle, { color: 'gray' }]}
+            >{
+                PersianConverter(new Date(userData[0].CurrentDate.toString()))
+                //moment(new Date(userData[0].CurrentDate.toString())).format('jMMMM jDD dddd')
+                // new Date(userData[0].CurrentDate.toString()).toLocaleDateString('fa-IR', options)
+              }</Text>
           </View>
-     
+
         </View>
-       
+
       </View>
     )
   }
@@ -124,13 +124,23 @@ const BusListScreen = (props) => {
             <View>
               <Text style={BusListScreenStyles.HeadText}>{t("Showing_buses")}</Text>
               <View>
-                <FlatList
+      
+             
+
+              { BusFlatlistData.map((item)=>
+  <PlaceholderSkeleton isLoading={true}/>
+              )
+           
+              }
+                  
+
+                {/* <FlatList
                   data={BusFlatlistData}
                   renderItem={({ item, index }) => BusFlatlist(item, index)}
                   keyExtractor={item => item.id}
                   showsHorizontalScrollIndicator={false}
                   style={BusListScreenStyles.ContentContainerStyle}
-                />
+                /> */}
               </View>
             </View>
           </View>
@@ -139,59 +149,63 @@ const BusListScreen = (props) => {
 
       </ScrollView >
       {/* <View style={[BusSeatScreenStyles.TabBoxTwWidththreeoMin, { height: 60 }]}> */}
-        <View style={[BusSeatScreenStyles.TabBoxTwo, { height: 50,borderTopColor:'gray',borderTopWidth:0.5,marginHorizontal:5 }]}>
-          <TouchableOpacity style={{ width: '25%', height: '100%',justifyContent:'center',alignItems:'center'
-          ,borderRightWidth:1,paddingTop:5,borderRightColor:'gray',flexDirection:'row'}}>
-              <IconA name="right" size={SW(10)} color='black'  style={{marginRight:5}}/>
-            <Text style={{textAlign:'center',color:'black',fontSize:SW(10)}}
-              onPress={()=>{
-                var today = new Date(userData[0].CurrentDate);
-                var tomorrow = new Date(today);
-                tomorrow.setDate(today.getDate()-1);
-                  console.log('new Date(DatesStep[0].CurrentDate)',tomorrow)
-                const myNextList = [...userData];
-                const DatesStep = myNextList;
-                DatesStep[0].CurrentDate =  tomorrow;
-                setUserData(myNextList)
-    
-    
-              }}
-            >
-              روز قبل  
-            </Text>
-           
-          </TouchableOpacity>
+      <View style={[BusSeatScreenStyles.TabBoxTwo, { height: 50, borderTopColor: 'gray', borderTopWidth: 0.5, marginHorizontal: 5 }]}>
+        <TouchableOpacity style={{
+          width: '25%', height: '100%', justifyContent: 'center', alignItems: 'center'
+          , borderRightWidth: 1, paddingTop: 5, borderRightColor: 'gray', flexDirection: 'row'
+        }}>
+          <IconA name="right" size={SW(10)} color='black' style={{ marginRight: 5 }} />
+          <Text style={{ textAlign: 'center', color: 'black', fontSize: SW(10) }}
+            onPress={() => {
+              var today = new Date(userData[0].CurrentDate);
+              var tomorrow = new Date(today);
+              tomorrow.setDate(today.getDate() - 1);
+              console.log('new Date(DatesStep[0].CurrentDate)', tomorrow)
+              const myNextList = [...userData];
+              const DatesStep = myNextList;
+              DatesStep[0].CurrentDate = tomorrow;
+              setUserData(myNextList)
 
 
-          <View style={{ width: '50%', height: '100%',justifyContent:'center',alignItems:'center' }}>
-          <Text style={{textAlign:'center',color:'black',fontSize:SW(10)}}>
-             {  moment(new Date(userData[0].CurrentDate.toString())).format('jYYYY/jMM/jDD')}
-            </Text>
-          </View>
+            }}
+          >
+            روز قبل
+          </Text>
+
+        </TouchableOpacity>
 
 
-          <TouchableOpacity style={{ width: '25%', height: '100%',justifyContent:'center',alignItems:'center'
-          ,borderLeftWidth:1,paddingTop:5,borderLeftColor:'gray',flexDirection:'row' }} 
-          onPress={()=>{
+        <View style={{ width: '50%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ textAlign: 'center', color: 'black', fontSize: SW(10) }}>
+            {moment(new Date(userData[0].CurrentDate.toString())).format('jYYYY/jMM/jDD')}
+          </Text>
+        </View>
+
+
+        <TouchableOpacity style={{
+          width: '25%', height: '100%', justifyContent: 'center', alignItems: 'center'
+          , borderLeftWidth: 1, paddingTop: 5, borderLeftColor: 'gray', flexDirection: 'row'
+        }}
+          onPress={() => {
             var today = new Date(userData[0].CurrentDate);
             var tomorrow = new Date(today);
-            tomorrow.setDate(today.getDate()+1);
-              console.log('new Date(DatesStep[0].CurrentDate)',tomorrow)
+            tomorrow.setDate(today.getDate() + 1);
+            console.log('new Date(DatesStep[0].CurrentDate)', tomorrow)
             const myNextList = [...userData];
             const DatesStep = myNextList;
-            DatesStep[0].CurrentDate =  tomorrow;
+            DatesStep[0].CurrentDate = tomorrow;
             setUserData(myNextList)
 
 
           }}
-          >
-          
-          <Text style={{textAlign:'center',color:'black',fontSize:SW(10)}}>
-              روز بعد  
-            </Text>
+        >
 
-            <IconA name="left" size={SW(10)} color='black'  style={{marginLeft:5}}/>
-          </TouchableOpacity>
+          <Text style={{ textAlign: 'center', color: 'black', fontSize: SW(10) }}>
+            روز بعد
+          </Text>
+
+          <IconA name="left" size={SW(10)} color='black' style={{ marginLeft: 5 }} />
+        </TouchableOpacity>
 
 
         {/* </View> */}
