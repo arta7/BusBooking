@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState,useEffect } from "react";
 import { Text, View, ScrollView, TouchableOpacity, FlatList } from "react-native";
 import { Style, BusListScreenStyle, BusSeatScreenStyle } from '../../styles';
 import IconMI from "react-native-vector-icons/MaterialCommunityIcons";
@@ -25,6 +25,8 @@ const BusListScreen = (props) => {
   const Styless = useMemo(() => Style(Colors), [Colors]);
   const BusSeatScreenStyles = useMemo(() => BusSeatScreenStyle(Colors), [Colors]);
   const { userData, setUserData } = React.useContext(UserContext);
+
+
   let options = { year: 'numeric', month: 'long', day: 'numeric' };
 
   const DataAction = (data) => {
@@ -32,9 +34,24 @@ const BusListScreen = (props) => {
     navigation.navigate(RouteName.BUS_SEAT_SCREEN)
 
   }
+
+
+
+  useEffect(()=>{
+    setTimeout(() => {
+      const myNextList = [...userData];
+      const DatesStep = myNextList;
+      DatesStep[0].isLoading = false;
+      setUserData(myNextList)
+    }, 5000);
+},[])
+
+
   const dispatch = useDispatch();
 
   const MobileSelect = (item, index) => {
+    
+
     return (
       <View style={BusListScreenStyles.FlightsCityBox}>
         <View style={[BusListScreenStyles.BackArrowBoxWidthSet, {}]}>
@@ -125,22 +142,24 @@ const BusListScreen = (props) => {
               <Text style={BusListScreenStyles.HeadText}>{t("Showing_buses")}</Text>
               <View>
       
-             
-
+              { userData[0].isLoading ? 
+              <>
               { BusFlatlistData.map((item)=>
   <PlaceholderSkeleton isLoading={true}/>
               )
+            }
+            </>
            
-              }
-                  
-
-                {/* <FlatList
+              
+              :
+               <FlatList
                   data={BusFlatlistData}
                   renderItem={({ item, index }) => BusFlatlist(item, index)}
                   keyExtractor={item => item.id}
                   showsHorizontalScrollIndicator={false}
                   style={BusListScreenStyles.ContentContainerStyle}
-                /> */}
+                /> 
+              }
               </View>
             </View>
           </View>

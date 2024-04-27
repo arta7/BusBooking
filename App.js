@@ -14,7 +14,8 @@ const App = () => {
       Username: AsyncStorage.getItem("Username")!=null ? AsyncStorage.getItem("Username") : '',
       CurrentDate : '',
       StartPlace:'',
-      EndPlace:''
+      EndPlace:'',
+      isLoading:true
     }]);
   return (
     <Provider store={store}>
