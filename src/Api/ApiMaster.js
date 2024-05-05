@@ -1,14 +1,14 @@
 import {Platform, StyleSheet, Text, View,FlatList,Alert,ListView,
     ScrollView,Dimensions,TouchableOpacity,TextInput,ActivityIndicator,Picker,Image} from 'react-native';
  import axios from 'axios'
-import AsyncStorage from '@react-native-community/async-storage';
+ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Address} from './Address'
 import Toast from 'react-native-simple-toast';
 
 let axisConfig={
     headers:{
-        "Accept": "application/json",
-        "Content-Type":"application/json"
+        "Accept": "text/plain",
+        "Content-Type": "multipart/form-data"
     }
 }
 let axisConfig1={
@@ -43,31 +43,36 @@ export function Registers(_email,_username,_pass,_updateIndicator,self)
 }
 
 
-export function LoginAPI(_username,_pass,_updateIndicator,self)
+export function LoginAPI(_username,self)
 {
-    let params={
-        "identifier":_username,
-        "password":_pass
-    }
-    _updateIndicator(true)
-   console.log('address',Address.URL + Address.Account.Login)
-  axios.post(Address.URL + Address.Account.Login,params,axisConfig)
+   var params =  new FormData();
+    params.append("Phone",_username)
+    // let params={
+    //     "Phone ":_username
+    // }
+    // _updateIndicator(true)
+    console.log('address',Address.URL + Address.Login.Login)
+  // axios.post(Address.URL + Address.Login.Login,params)
+  axios({
+    url:'https://tb-api.meysamjafari.ir/api/bus/cities',
+    // Address.URL + Address.Login.Login,
+    method: 'GET',
+    // data: params,
+    // headers: {
+    //   'accept': 'text/plain',
+    //   'Content-Type' : 'multipart/form-data'
+  
+    // }
+  })
   .then( (response)=> {
          
           console.log('response login Data',response.data) 
-          AsyncStorage.setItem('IsLogin','1')
-          AsyncStorage.setItem('LoginData',response.data)
-          _updateIndicator(false) 
-          self.navigation.replace('Controls')
          
-          Toast.showWithGravity("Login is Accept", Toast.LONG, Toast.CENTER);
+          // Toast.showWithGravity("Login is Accept", Toast.LONG, Toast.CENTER);
         
   })
   .catch( (error)=> {
-    _updateIndicator(false)
-    Toast.showWithGravity(error.response.data.data[0].messages[0].message
-        , Toast.LONG, Toast.CENTER);
-    console.log('errors',error.response.data.data[0].messages[0].message)  
+    console.log('errors',error)  
   })
 }
 

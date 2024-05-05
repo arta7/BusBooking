@@ -8,6 +8,7 @@ import IconG from 'react-native-vector-icons/Ionicons';
 import { useTheme } from '@react-navigation/native';
 import images from '../../../index';
 import { useTranslation } from "react-i18next";
+import { LoginAPI } from '../../../Api/ApiMaster';
 
 const LoginScreen = (props) => {
     const { navigation } = props;
@@ -26,6 +27,11 @@ const LoginScreen = (props) => {
     
     const OnRegisterPress = () => {
         navigation.navigate(RouteName.REGISTER_SCREEN);
+    }
+
+
+    const LoginPersons=()=>{
+            LoginAPI(mobileNumber,props)
     }
 
     return (
@@ -47,12 +53,12 @@ const LoginScreen = (props) => {
                                     onChangeText={(value) => setMobileNumber(value)}
                                     value={mobileNumber}
                                     inputType="numeric"
-                                    maxLength={10}
+                                    maxLength={11}
                                     placeholderTextColor={Colors.gray_text_color}
                                 />
                             </View>
                             <Spacing space={SH(20)} />
-                            <View style={Styles.FlexRowPassword}>
+                            {/* <View style={Styles.FlexRowPassword}>
                                 <TextInput
                                     style={Styles.InputPassword}
                                     name="password"
@@ -69,16 +75,21 @@ const LoginScreen = (props) => {
                                 <TouchableOpacity onPress={() => { onChangeText("TextInputPassword") }}>
                                     <IconG name={passwordVisibility ? 'eye-off' : 'eye'} size={SF(25)} />
                                 </TouchableOpacity>
-                            </View>
+                            </View> */}
                             <Spacing space={SH(10)} />
-                            <View style={Logins.ViewTextStyle}>
+                            {/* <View style={Logins.ViewTextStyle}>
                                 <Text style={Logins.TextStyle}>{t("Dont_Have_Account")} <Text style={Logins.registerTextStyle} onPress={() => OnRegisterPress()}> {t("Register_Text")}</Text></Text>
-                            </View>
+                            </View> */}
                             <Spacing space={SH(20)} />
                             <View style={Logins.LoginButton}>
                                 <Button
                                     title={t("Login_Text")}
-                                    onPress={() => navigation.navigate(RouteName.OTP_VERYFY_SCREEN)}
+                                    onPress={() => 
+                                        {
+                                            LoginPersons()
+                                        }
+                                        // navigation.navigate(RouteName.OTP_VERYFY_SCREEN)
+                                    }
                                 />
                             </View>
                             <Spacing space={SH(10)} />

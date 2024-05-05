@@ -1,8 +1,8 @@
 export const Address = 
 {
-URL:'http:\\localhost:8090/api',
+URL:'https://tb-api.meysamjafari.ir/api',
 Login:{
-     Login:'/CheckUserLogin',
+     Login:'/account/authenticate',
      Register:'/AddUsers',
      Profile:'/UpdateUsers',  
 }
