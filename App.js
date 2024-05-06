@@ -15,7 +15,8 @@ const App = () => {
       CurrentDate : '',
       StartPlace:'',
       EndPlace:'',
-      isLoading:true
+      isLoading:true,
+      Mobile:AsyncStorage.getItem("Mobile") != null ? AsyncStorage.getItem("Mobile") : ''
     }]);
   return (
     <Provider store={store}>

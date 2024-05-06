@@ -7,7 +7,9 @@ import { RouteName } from '../../../routes';
 import { Button, ConfirmationAlert } from '../../../components';
 import { useTranslation } from "react-i18next";
 import { useTheme } from '@react-navigation/native';
-
+import Toast from 'react-native-simple-toast';
+import { VerifyAPI } from "../../../Api/ApiMaster";
+import UserContext from './../../../../UserContext';
 const OtpScreenset = (props) => {
     const { navigation } = props;
     const { t } = useTranslation();
@@ -15,15 +17,28 @@ const OtpScreenset = (props) => {
     const Style = useMemo(() => Otpstyle(Colors), [Colors]);
     const [alertVisible, setAlertVisible] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
+
+    const [Code, setCode] = useState('');
     const [okbutton, Setokbutton] = useState('');
+    const { userData, setUserData } = React.useContext(UserContext);
     var alertdata = {
         'logout': t("Resend_Otp_Text_Modal"),
         'loginSuccess': t("Login_Successfull"),
     }
     const onoknutton = () => {
         if (okbutton === 1) okbutton;
-        if (okbutton === 2) navigation.navigate(RouteName.HOME_SCREEN)
+        if (okbutton === 2)
+            {
+                console.log('test')
+               // navigation.navigate(RouteName.HOME_SCREEN)
+            }
+            
     }
+
+    const verify=(_code)=>{
+        console.log('userData[0].Mobile',userData[0].Mobile._z)
+        VerifyAPI(userData[0].Mobile._z.toString(),_code,navigation)
+}
     return (
         <ImageBackground source={images.full_bg_img_hospital} resizeMode='cover'>
             <View style={Style.MinViewScreen}>
@@ -37,16 +52,20 @@ const OtpScreenset = (props) => {
                                 <Text style={Style.Paregraph}>{t("Enter_The_Otp_Title")}</Text>
                                 <OTPInputView
                                     style={Style.OtpViewStyles}
-                                    pinCount={6}
-                                    autoFocusOnLoad={false}
+                                    pinCount={5}
+                                    autoFocusOnLoad={true}
                                     codeInputFieldStyle={Style.CodeInputStyles}
                                     codeInputHighlightStyle={Style.CodeInputStyles}
+                                    onCodeChanged={(code)=>{
+                                        setCode(code)
+                                    }}
+                                    onCodeFilled = {(code => {
+                               verify(code)
+                                    })}
                                 />
                                 <View style={Style.FlexRowText}>
                                     <Text style={Style.ParegraPhotpBottom}>{t("Didnt_Recevip_Otp")}</Text>
                                     <TouchableOpacity onPress={() => {
-                                        setAlertVisible(true);
-                                        setAlertMessage(alertdata.logout);
                                         Setokbutton(1);
                                     }}>
                                         <Text style={Style.ResendTextBold}>{t("Resend")}</Text>
@@ -54,16 +73,17 @@ const OtpScreenset = (props) => {
                                 </View>
                                 <View>
                                     <Button onPress={() => {
-                                        setAlertVisible(true);
-                                        setAlertMessage(alertdata.loginSuccess);
-                                        Setokbutton(2);
+                                        // setAlertVisible(true);
+                                        // setAlertMessage(alertdata.loginSuccess);
+                                        //Setokbutton(2);
+                                        verify(Code)
                                     }} title={t("Verify_Text")} />
                                 </View>
                             </View>
                         </View>
                     </KeyboardAvoidingView>
                 </ScrollView>
-                <ConfirmationAlert
+                {/* <ConfirmationAlert
                     message={alertMessage}
                     modalVisible={alertVisible}
                     setModalVisible={setAlertVisible}
@@ -71,7 +91,7 @@ const OtpScreenset = (props) => {
                     ButtonMinView={Style.Buttonotp}
                     iconVisible={true}
                     buttonText={t("Ok")}
-                />
+                /> */}
             </View>
         </ImageBackground>
     );

@@ -3,7 +3,10 @@ export const Address =
 URL:'https://tb-api.meysamjafari.ir/api',
 Login:{
      Login:'/account/authenticate',
-     Register:'/AddUsers',
+     verify:'/account/verify',
      Profile:'/UpdateUsers',  
+},
+Bus:{
+     Cities : '/bus/cities'
 }
 }

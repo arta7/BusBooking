@@ -13,6 +13,8 @@ import { useTheme } from '@react-navigation/native';
 import { FlightFrom } from '../../../utils/Imagedataset';
 import DateIcon from "react-native-vector-icons/MaterialIcons";
 import UserContext from './../../../../UserContext';
+import { useEffect } from 'react';
+import { GetCities } from '../../../Api/ApiMaster';
 
 
 const HomeTab = (props) => {
@@ -28,11 +30,20 @@ const HomeTab = (props) => {
         To: "",
     }
     const [value, setValue] = useState(stateValue);
+
+    const [CityList, setCityList] = useState([]);
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
     const OnBusTicket = () => {
         navigation.navigate(RouteName.BUS_LIST_SCREEN)
     }
+
+        useEffect(()=>{
+
+            GetCities(setCityList,CityList,props)
+
+        },[])
+
 
     const Offerfunction = (item) => {
         return (
@@ -85,15 +96,16 @@ const HomeTab = (props) => {
                             {/* <Spacing /> */}
                             {/* <Text style={HomeTabStyless.FromText}>{t("Fromm")}</Text> */}
                             <DropDown
-                                data={FlightFrom}
-                                labelField="label"
-                                valueField="label"
+                                data={CityList}
+                                labelField="name_fa"
+                                valueField="name_fa"
                                 placeholder={t("مبدا")}
                                 search={true}
                                 searchPlaceholder={'مبدا'}
                                 value={userData[0]?.StartPlace.toString()}
                                 onChange={(From) => {
-                                    if (From.label.toString() === userData[0]?.EndPlace.toString()) {
+                                    console.log('from',From.name_fa)
+                                    if (From.name_fa.toString() === userData[0]?.EndPlace.toString()) {
 
                                         const myNextList = [...userData];
                                         const DatesStep = myNextList;
@@ -104,8 +116,8 @@ const HomeTab = (props) => {
                                     {
                                     const myNextList = [...userData];
                                     const DatesStep = myNextList;
-                                    console.log('From', From.label.toString())
-                                    DatesStep[0].StartPlace = From.label.toString();
+                                    console.log('From2', From.name_fa.toString())
+                                    DatesStep[0].StartPlace = From.name_fa.toString();
                                     setUserData(myNextList)
                                     }
                                     // setValue({ ...value, From: From.label });
@@ -125,16 +137,16 @@ const HomeTab = (props) => {
                             {/* <Text style={HomeTabStyless.ToText}>{t("To")}</Text> */}
                             {/* <Spacing /> */}
                             <DropDown
-                                data={FlightFrom}
-                                labelField="label"
-                                valueField="label"
+                                data={CityList}
+                                labelField="name_fa"
+                                valueField="name_fa"
                                 placeholder={t("مقصد")}
                                 search={true}
                                 searchPlaceholder={'مقصد'}
                                 value={userData[0]?.EndPlace.toString()}
                                 onChange={(To) => {
                                     console.log('To Address : => ', To)
-                                    if (To.label.toString() === userData[0]?.StartPlace.toString()) {
+                                    if (To.name_fa.toString() === userData[0]?.StartPlace.toString()) {
 
                                         const myNextList = [...userData];
                                         const DatesStep = myNextList;
@@ -143,7 +155,7 @@ const HomeTab = (props) => {
                                     }
                                     const myNextList = [...userData];
                                     const DatesStep = myNextList;
-                                    DatesStep[0].EndPlace = To.label.toString();
+                                    DatesStep[0].EndPlace = To.name_fa.toString();
                                     setUserData(myNextList)
                                     //setIsFocus(true);
                                 }}

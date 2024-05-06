@@ -4,7 +4,7 @@ import {Platform, StyleSheet, Text, View,FlatList,Alert,ListView,
  import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Address} from './Address'
 import Toast from 'react-native-simple-toast';
-
+import { RouteName } from '../routes';
 let axisConfig={
     headers:{
         "Accept": "text/plain",
@@ -43,32 +43,62 @@ export function Registers(_email,_username,_pass,_updateIndicator,self)
 }
 
 
-export function LoginAPI(_username,self)
+export function LoginAPI(_phone,self)
 {
    var params =  new FormData();
-    params.append("Phone",_username)
-    // let params={
-    //     "Phone ":_username
-    // }
-    // _updateIndicator(true)
-    console.log('address',Address.URL + Address.Login.Login)
-  // axios.post(Address.URL + Address.Login.Login,params)
+    params.append("Phone",_phone)
   axios({
-    url:'https://tb-api.meysamjafari.ir/api/bus/cities',
-    // Address.URL + Address.Login.Login,
-    method: 'GET',
-    // data: params,
-    // headers: {
-    //   'accept': 'text/plain',
-    //   'Content-Type' : 'multipart/form-data'
-  
-    // }
+    url: Address.URL + Address.Login.Login,
+    method: 'POST',
+     data: params,
+    headers: {
+      'accept': 'text/plain',
+      'Content-Type' : 'multipart/form-data'
+    }
   })
   .then( (response)=> {
          
-          console.log('response login Data',response.data) 
+          // console.log('response login Data',response.data.status) 
+          if(response.data.status == 1)
+            {
+              AsyncStorage.setItem('Mobile',_phone)
+           Toast.showWithGravity(response.data.message, Toast.LONG, Toast.CENTER);
+          
+           self.navigate(RouteName.OTP_VERYFY_SCREEN)
+            }
+        
+  })
+  .catch( (error)=> {
+    console.log('errors',error)  
+  })
+}
+
+
+
+export function VerifyAPI(_phone,_code,self)
+{
+    var params ={
+      "Phone":_phone,
+        "VerificationCode":_code
+    }
+    
+  axios({
+    url: Address.URL + Address.Login.verify,
+    method: 'POST',
+     data: params,
+    headers: {
+      'accept': 'text/plain',
+      'Content-Type' : 'multipart/form-data'
+    }
+  })
+  .then( (response)=> {
          
-          // Toast.showWithGravity("Login is Accept", Toast.LONG, Toast.CENTER);
+          console.log('response verify Data',response.data.status) 
+          if(response.data.status == 1)
+            {
+           Toast.showWithGravity(response.data.message, Toast.LONG, Toast.CENTER);
+             self.replace(RouteName.HOME_SCREEN)
+            }
         
   })
   .catch( (error)=> {
@@ -111,28 +141,18 @@ export function ForgetPasswords(_email,_updateIndicator,self,check)
 
 
 
-export function ResetPasswords(_code,_newpass,_newpassConfirm,_updateIndicator,self)
+export function GetCities(setData,Data,self)
 {
-    let params={
-      "code":_code,
-      "password":_newpass,
-      "passwordConfirmation":_newpassConfirm
-    }
-    _updateIndicator(true)
-   console.log('address',Address.URL + Address.Account.ResetPassword)
-  axios.post(Address.URL + Address.Account.ResetPassword,params,axisConfig)
+  axios.get(Address.URL + Address.Bus.Cities)
   .then( (response)=> {
-         
-        console.log('status reset : ',response.data)
-        self.navigate('ChangePasswordAccept')
-          _updateIndicator(false) 
+
+
+      console.log('response',response.data.data)
+      setData(response.data.data)
         
   })
   .catch( (error)=> {
-    _updateIndicator(false)
-    Toast.showWithGravity(error.response.data.data[0].messages[0].message
-        , Toast.LONG, Toast.CENTER);
-    console.log('errors',error.response.data.data[0].messages[0].message)  
+    console.log('errors',error)  
   })
 }
 

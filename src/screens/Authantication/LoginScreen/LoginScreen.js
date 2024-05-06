@@ -31,7 +31,7 @@ const LoginScreen = (props) => {
 
 
     const LoginPersons=()=>{
-            LoginAPI(mobileNumber,props)
+            LoginAPI(mobileNumber,navigation)
     }
 
     return (
@@ -93,9 +93,9 @@ const LoginScreen = (props) => {
                                 />
                             </View>
                             <Spacing space={SH(10)} />
-                            <TouchableOpacity onPress={() => navigation.navigate(RouteName.FORGOT_PASSWORD)}>
+                            {/* <TouchableOpacity onPress={() => navigation.navigate(RouteName.FORGOT_PASSWORD)}>
                                 <Text style={Logins.ForgetPasswordStyles}>{t("Forgot_Password")}</Text>
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                         </View>
                     </View>
                 </ScrollView>
