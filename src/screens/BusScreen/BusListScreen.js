@@ -16,6 +16,7 @@ import UserContext from './../../../UserContext';
 import PersianConverter from "../../components/Class/PersianConverter";
 import PlaceholderSkeleton from "../../components/commonComponents/PlaceholderSkeleton";
 import Skeleton from "react-native-reanimated-skeleton";
+import { BusSearch } from "../../Api/ApiMaster";
 const BusListScreen = (props) => {
   const { navigation } = props;
   const { t } = useTranslation();
@@ -38,12 +39,13 @@ const BusListScreen = (props) => {
 
 
   useEffect(()=>{
-    setTimeout(() => {
-      const myNextList = [...userData];
-      const DatesStep = myNextList;
-      DatesStep[0].isLoading = false;
-      setUserData(myNextList)
-    }, 5000);
+    // setTimeout(() => {
+    //   const myNextList = [...userData];
+    //   const DatesStep = myNextList;
+    //   DatesStep[0].isLoading = false;
+    //   setUserData(myNextList)
+    // }, 5000);
+    BusSearch()
 },[])
 
 

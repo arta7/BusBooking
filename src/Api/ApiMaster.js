@@ -108,36 +108,36 @@ export function VerifyAPI(_phone,_code,self)
 
 
 
-export function ForgetPasswords(_email,_updateIndicator,self,check)
-{
-    let params={
-        "email":_email
-    }
-    _updateIndicator(true)
-   console.log('address',Address.URL + Address.Account.ForgetPassword)
-  axios.post(Address.URL + Address.Account.ForgetPassword,params,axisConfig)
-  .then( (response)=> {
+// export function ForgetPasswords(_email,_updateIndicator,self,check)
+// {
+//     let params={
+//         "email":_email
+//     }
+//     _updateIndicator(true)
+//    console.log('address',Address.URL + Address.Account.ForgetPassword)
+//   axios.post(Address.URL + Address.Account.ForgetPassword,params,axisConfig)
+//   .then( (response)=> {
          
-          console.log('response forget pass :',response.data.ok) 
-          _updateIndicator(false) 
-          if(response.data.ok && check==true)
-          {
-           self.navigate('OTPAccept',{email:_email})
+//           console.log('response forget pass :',response.data.ok) 
+//           _updateIndicator(false) 
+//           if(response.data.ok && check==true)
+//           {
+//            self.navigate('OTPAccept',{email:_email})
       
-          }
-          else  if(response.data.ok && check==false)
-          {
-            Toast.showWithGravity('Token Send,Please Check Your Email'
-                , Toast.LONG, Toast.CENTER);
-          }
-  })
-  .catch( (error)=> {
-    _updateIndicator(false)
-    Toast.showWithGravity(error.response.data.data[0].messages[0].message
-        , Toast.LONG, Toast.CENTER);
-    console.log('errors',error.response.data.data[0].messages[0].message)  
-  })
-}
+//           }
+//           else  if(response.data.ok && check==false)
+//           {
+//             Toast.showWithGravity('Token Send,Please Check Your Email'
+//                 , Toast.LONG, Toast.CENTER);
+//           }
+//   })
+//   .catch( (error)=> {
+//     _updateIndicator(false)
+//     Toast.showWithGravity(error.response.data.data[0].messages[0].message
+//         , Toast.LONG, Toast.CENTER);
+//     console.log('errors',error.response.data.data[0].messages[0].message)  
+//   })
+// }
 
 
 
@@ -155,6 +155,36 @@ export function GetCities(setData,Data,self)
     console.log('errors',error)  
   })
 }
+
+export function BusSearch(_originCity,_destinationCity,_date,self)
+{
+    var params ={
+      "originCity": _originCity,
+      "destinationCity": _destinationCity,
+      "date": _date
+    }
+    
+  axios({
+    url: Address.URL + Address.Bus.search,
+    method: 'POST',
+     data: params,
+    headers: {
+      'accept': 'text/plain',
+      'Content-Type' : 'multipart/form-data'
+    }
+  })
+  .then( (response)=> {
+         
+          console.log('response verify Data',response.data) 
+         
+        
+  })
+  .catch( (error)=> {
+    console.log('errors',error)  
+  })
+}
+
+
 
 
 export function SpecialPrograms(_currentdate,_setData,_updateIndicator)

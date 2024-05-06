@@ -7,6 +7,7 @@ Login:{
      Profile:'/UpdateUsers',  
 },
 Bus:{
-     Cities : '/bus/cities'
+     Cities : '/bus/cities',
+     search:'/bus/bussearch'
 }
 }
