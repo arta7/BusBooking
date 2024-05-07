@@ -29,7 +29,11 @@ const SplashScreen = ({ navigation }) => {
                 :
                 dispatch(color_picker_set_action(Colors.theme_background))
         }
+     
     }, []);
+
+       
+
     return (
         <View style={Styles.SplashMinView}>
             <View style={Styles.MinViewStyleSplash}>

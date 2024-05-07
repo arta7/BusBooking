@@ -79,7 +79,7 @@ export function VerifyAPI(_phone,_code,self)
 {
     var params ={
       "Phone":_phone,
-        "VerificationCode":_code
+      "VerificationCode":_code
     }
     
   axios({
@@ -97,6 +97,7 @@ export function VerifyAPI(_phone,_code,self)
           if(response.data.status == 1)
             {
            Toast.showWithGravity(response.data.message, Toast.LONG, Toast.CENTER);
+           AsyncStorage.setItem('Token',response.data.data.token)
              self.replace(RouteName.HOME_SCREEN)
             }
         
@@ -156,7 +157,7 @@ export function GetCities(setData,Data,self)
   })
 }
 
-export function BusSearch(_originCity,_destinationCity,_date,self)
+export function BusSearch(_originCity,_destinationCity,_date,HeaderValue,self)
 {
     var params ={
       "originCity": _originCity,
@@ -170,7 +171,8 @@ export function BusSearch(_originCity,_destinationCity,_date,self)
      data: params,
     headers: {
       'accept': 'text/plain',
-      'Content-Type' : 'multipart/form-data'
+      'Content-Type' : 'multipart/form-data',
+      'Authorization': HeaderValue
     }
   })
   .then( (response)=> {

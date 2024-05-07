@@ -16,7 +16,8 @@ const App = () => {
       StartPlace:'',
       EndPlace:'',
       isLoading:true,
-      Mobile:AsyncStorage.getItem("Mobile") != null ? AsyncStorage.getItem("Mobile") : ''
+      Mobile:AsyncStorage.getItem("Mobile") != null ? AsyncStorage.getItem("Mobile") : '',
+      Token:AsyncStorage.getItem("Token") != null ? AsyncStorage.getItem("Token") : ''
     }]);
   return (
     <Provider store={store}>
