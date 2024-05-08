@@ -15,9 +15,11 @@ const App = () => {
       CurrentDate : '',
       StartPlace:'',
       EndPlace:'',
+      StartPlaceCode:'',
+      EndPlaceCode:'',
       isLoading:true,
       Mobile:AsyncStorage.getItem("Mobile") != null ? AsyncStorage.getItem("Mobile") : '',
-      Token:AsyncStorage.getItem("Token") != null ? AsyncStorage.getItem("Token") : ''
+      Token:AsyncStorage.getItem("Token") != null ? AsyncStorage.getItem("Token") : '',
     }]);
   return (
     <Provider store={store}>

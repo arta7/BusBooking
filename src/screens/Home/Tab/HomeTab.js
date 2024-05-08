@@ -105,11 +105,12 @@ const HomeTab = (props) => {
                                 value={userData[0]?.StartPlace.toString()}
                                 onChange={(From) => {
                                     console.log('from',From.name_fa)
-                                    if (From.name_fa.toString() === userData[0]?.EndPlace.toString()) {
+                                    if (From.code.toString() === userData[0]?.EndPlaceCode.toString()) {
 
                                         const myNextList = [...userData];
                                         const DatesStep = myNextList;
                                         DatesStep[0].EndPlace = '';
+                                        DatesStep[0].EndPlaceCode = '';
                                         setUserData(myNextList)
                                     }
                                     
@@ -118,6 +119,7 @@ const HomeTab = (props) => {
                                     const DatesStep = myNextList;
                                     console.log('From2', From.name_fa.toString())
                                     DatesStep[0].StartPlace = From.name_fa.toString();
+                                    DatesStep[0].StartPlaceCode = From.code.toString();
                                     setUserData(myNextList)
                                     }
                                     // setValue({ ...value, From: From.label });
@@ -146,16 +148,18 @@ const HomeTab = (props) => {
                                 value={userData[0]?.EndPlace.toString()}
                                 onChange={(To) => {
                                     console.log('To Address : => ', To)
-                                    if (To.name_fa.toString() === userData[0]?.StartPlace.toString()) {
+                                    if (To.code.toString() === userData[0]?.StartPlaceCode.toString()) {
 
                                         const myNextList = [...userData];
                                         const DatesStep = myNextList;
                                         DatesStep[0].StartPlace = '';
+                                        DatesStep[0].StartPlaceCode = '';
                                         setUserData(myNextList)
                                     }
                                     const myNextList = [...userData];
                                     const DatesStep = myNextList;
                                     DatesStep[0].EndPlace = To.name_fa.toString();
+                                    DatesStep[0].EndPlaceCode = To.code.toString();
                                     setUserData(myNextList)
                                     //setIsFocus(true);
                                 }}

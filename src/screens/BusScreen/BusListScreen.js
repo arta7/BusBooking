@@ -45,7 +45,7 @@ const BusListScreen = (props) => {
     //   DatesStep[0].isLoading = false;
     //   setUserData(myNextList)
     // }, 5000);
-    BusSearch(userData[0].StartPlace,userData[0].EndPlace,userData[0].CurrentDate,userData[0].Token,props)
+    BusSearch(userData[0].StartPlaceCode,userData[0].EndPlaceCode,moment(new Date(userData[0].CurrentDate.toString())).format('jYYYY/jMM/jDD'),userData[0].Token,props)
 },[])
 
 

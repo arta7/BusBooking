@@ -164,6 +164,8 @@ export function BusSearch(_originCity,_destinationCity,_date,HeaderValue,self)
       "destinationCity": _destinationCity,
       "date": _date
     }
+
+    console.log('params',params)
     
   axios({
     url: Address.URL + Address.Bus.search,
@@ -171,7 +173,7 @@ export function BusSearch(_originCity,_destinationCity,_date,HeaderValue,self)
      data: params,
     headers: {
       'accept': 'text/plain',
-      'Content-Type' : 'multipart/form-data',
+      // 'Content-Type' : 'multipart/form-data',
       'Authorization': HeaderValue
     }
   })
