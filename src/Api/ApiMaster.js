@@ -157,7 +157,7 @@ export function GetCities(setData,Data,self)
   })
 }
 
-export function BusSearch(_originCity,_destinationCity,_date,HeaderValue,self)
+export function BusSearch(_originCity,_destinationCity,_date,HeaderValue,setLoading,SetData,self)
 {
     var params ={
       "originCity": _originCity,
@@ -179,12 +179,14 @@ export function BusSearch(_originCity,_destinationCity,_date,HeaderValue,self)
   })
   .then( (response)=> {
          
-          console.log('response verify Data',response.data) 
-         
+          console.log('response verify Data',response.data.data) 
+          SetData(response.data.data)
+          setLoading(false)
         
   })
   .catch( (error)=> {
     console.log('errors',error)  
+    setLoading(false)
   })
 }
 

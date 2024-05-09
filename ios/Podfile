@@ -14,6 +14,8 @@ target 'BusBooking' do
 
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
   target 'BusBookingTests' do
     inherit! :complete
     # Pods for testing
