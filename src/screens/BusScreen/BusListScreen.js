@@ -87,7 +87,7 @@ const BusListScreen = (props) => {
 
   const BusFlatlist = (item, index) => {
     return (
-      <TouchableOpacity style={[BusListScreenStyles.BusBoxWraper, { height: 200, padding: 15 }]} onPress={() => {}}>
+      <TouchableOpacity style={[BusListScreenStyles.BusBoxWraper, { height: 200, padding: 15 }]} onPress={() => {DataAction()}}>
         <View style={[BusListScreenStyles.BusdataTopBox, { height: '40%' }]}>
           <View style={{ width: '50%' }}>
             <Text style={BusListScreenStyles.TravelCompanyText}>{item.baseCompany}</Text>

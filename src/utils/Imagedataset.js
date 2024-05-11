@@ -256,6 +256,273 @@ export const MobileSelectData = [
   },
 ]
 
+export const busSeat=[
+  {
+    "chairNumber": 1,
+    "row": 1,
+    "column": 5,
+    "status": 1
+  },
+  {
+    "chairNumber": 2,
+    "row": 1,
+    "column": 4,
+    "status": 1
+  },
+  {
+    "chairNumber": 3,
+    "row": 1,
+    "column": 2,
+    "status": 1
+  },
+  {
+    "chairNumber": 4,
+    "row": 1,
+    "column": 1,
+    "status": 1
+  },
+  {
+    "chairNumber": 5,
+    "row": 2,
+    "column": 5,
+    "status": 1
+  },
+  {
+    "chairNumber": 6,
+    "row": 2,
+    "column": 4,
+    "status": 1
+  },
+  {
+    "chairNumber": 7,
+    "row": 2,
+    "column": 2,
+    "status": 2
+  },
+  {
+    "chairNumber": 8,
+    "row": 2,
+    "column": 1,
+    "status": 2
+  },
+  {
+    "chairNumber": 9,
+    "row": 3,
+    "column": 5,
+    "status": 2
+  },
+  {
+    "chairNumber": 10,
+    "row": 3,
+    "column": 4,
+    "status": 2
+  },
+  {
+    "chairNumber": 11,
+    "row": 3,
+    "column": 2,
+    "status": 2
+  },
+  {
+    "chairNumber": 12,
+    "row": 3,
+    "column": 1,
+    "status": 2
+  },
+  {
+    "chairNumber": 13,
+    "row": 4,
+    "column": 5,
+    "status": 2
+  },
+  {
+    "chairNumber": 14,
+    "row": 4,
+    "column": 4,
+    "status": 2
+  },
+  {
+    "chairNumber": 15,
+    "row": 4,
+    "column": 2,
+    "status": 2
+  },
+  {
+    "chairNumber": 16,
+    "row": 4,
+    "column": 1,
+    "status": 2
+  },
+  {
+    "chairNumber": 17,
+    "row": 5,
+    "column": 5,
+    "status": 2
+  },
+  {
+    "chairNumber": 18,
+    "row": 5,
+    "column": 4,
+    "status": 2
+  },
+  {
+    "chairNumber": 19,
+    "row": 5,
+    "column": 2,
+    "status": 2
+  },
+  {
+    "chairNumber": 20,
+    "row": 5,
+    "column": 1,
+    "status": 2
+  },
+  {
+    "chairNumber": 21,
+    "row": 6,
+    "column": 2,
+    "status": 2
+  },
+  {
+    "chairNumber": 22,
+    "row": 6,
+    "column": 1,
+    "status": 2
+  },
+  {
+    "chairNumber": 23,
+    "row": 7,
+    "column": 2,
+    "status": 2
+  },
+  {
+    "chairNumber": 24,
+    "row": 7,
+    "column": 1,
+    "status": 2
+  },
+  {
+    "chairNumber": 25,
+    "row": 8,
+    "column": 5,
+    "status": 2
+  },
+  {
+    "chairNumber": 26,
+    "row": 8,
+    "column": 4,
+    "status": 2
+  },
+  {
+    "chairNumber": 27,
+    "row": 8,
+    "column": 2,
+    "status": 2
+  },
+  {
+    "chairNumber": 28,
+    "row": 8,
+    "column": 1,
+    "status": 2
+  },
+  {
+    "chairNumber": 29,
+    "row": 9,
+    "column": 5,
+    "status": 2
+  },
+  {
+    "chairNumber": 30,
+    "row": 9,
+    "column": 4,
+    "status": 2
+  },
+  {
+    "chairNumber": 31,
+    "row": 9,
+    "column": 2,
+    "status": 2
+  },
+  {
+    "chairNumber": 32,
+    "row": 9,
+    "column": 1,
+    "status": 2
+  },
+  {
+    "chairNumber": 33,
+    "row": 10,
+    "column": 5,
+    "status": 2
+  },
+  {
+    "chairNumber": 34,
+    "row": 10,
+    "column": 4,
+    "status": 2
+  },
+  {
+    "chairNumber": 35,
+    "row": 10,
+    "column": 2,
+    "status": 2
+  },
+  {
+    "chairNumber": 36,
+    "row": 10,
+    "column": 1,
+    "status": 2
+  },
+  {
+    "chairNumber": 37,
+    "row": 11,
+    "column": 5,
+    "status": 2
+  },
+  {
+    "chairNumber": 38,
+    "row": 11,
+    "column": 4,
+    "status": 2
+  },
+  {
+    "chairNumber": 39,
+    "row": 11,
+    "column": 2,
+    "status": 2
+  },
+  {
+    "chairNumber": 40,
+    "row": 11,
+    "column": 1,
+    "status": 2
+  },
+  {
+    "chairNumber": 41,
+    "row": 12,
+    "column": 5,
+    "status": 2
+  },
+  {
+    "chairNumber": 42,
+    "row": 12,
+    "column": 4,
+    "status": 2
+  },
+  {
+    "chairNumber": 43,
+    "row": 12,
+    "column": 2,
+    "status": 2
+  },
+  {
+    "chairNumber": 44,
+    "row": 12,
+    "column": 1,
+    "status": 2
+  }
+]
+
 export const BusSeatData = [
   {
     id: 1,
@@ -265,8 +532,8 @@ export const BusSeatData = [
   },
   {
     id: 1,
-    slepSeatName: '8',
-    slepSeatName: '9',
+    slepSeatName: '8L',
+    slepSeatName: '9L',
     slepSeatName: '10L',
   },
   {

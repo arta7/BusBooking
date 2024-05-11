@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Text, View, ScrollView, TouchableOpacity, FlatList } from "react-native";
+import { Text, View, ScrollView, TouchableOpacity, FlatList,StyleSheet } from "react-native";
 import { BusSeatScreenStyle } from '../../styles';
 import IconMI from "react-native-vector-icons/MaterialCommunityIcons";
 import IconA from "react-native-vector-icons/AntDesign";
@@ -8,7 +8,7 @@ import { RouteName } from "../../routes";
 import { useSelector } from "react-redux";
 import { Button, LikeUnlike } from "../../components";
 import { SH, SF, SW, Colors } from "../../utils";
-import { BusSeatData, MobileSelectData, BusSeatUpperData, BusSeatShowData } from '../../utils/Imagedataset';
+import { BusSeatData, MobileSelectData, BusSeatUpperData, BusSeatShowData,busSeat } from '../../utils/Imagedataset';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@react-navigation/native';
 
@@ -31,48 +31,101 @@ const BusSeatScreen = (props) => {
                 </View>
                 <View style={BusSeatScreenStyles.CityMainBoxWrap}>
                     <View style={BusSeatScreenStyles.CityMainBox}>
-                        <Text style={BusSeatScreenStyles.CityText}>{t(detailsStore.TravelCompany)}</Text>
-                        <Text style={BusSeatScreenStyles.RchSubheadTextStyle}>{t(detailsStore.AcNonAc)} | {detailsStore.FromTme}</Text>
+                        <Text style={BusSeatScreenStyles.CityText}>1</Text>
+                        <Text style={BusSeatScreenStyles.RchSubheadTextStyle}>3 | 2</Text>
                     </View>
                 </View>
             </View>
         )
     }
 
+
+    const BusSeat = ({ chair, status }) => {
+        const getStatusColor = () => {
+          switch (status) {
+            case 1:
+              return 'green'; // Available (adjust based on your preference)
+            case 2:
+              return 'red'; // Occupied (adjust based on your preference)
+            default:
+              return 'gray'; // Unknown (adjust based on your preference)
+          }
+        };
+      
+        return (
+          <View style={[styles.seat, { backgroundColor: getStatusColor() }]}>
+            <Text style={styles.seatText}>{chair}</Text>
+          </View>
+        );
+      }
+
+      const BusLayout = () => {
+        const renderItem = ({ item }) => (
+          <View style={styles.row}>
+            <BusSeat chair={item.chairNumber} status={item.status} />
+            {item.column % 2 !== 0 && <View style={styles.seatSpacer} />} {/* Add spacer for odd columns */}
+            <BusSeat chair={item.column % 2 === 0 ? busSeat[item.index + 1]?.chairNumber : null} status={item.column % 2 === 0 ? busSeat[item.index + 1]?.status : null} />
+          </View>
+        );
+    }
+
     const BusSeatDataFlatlist = (item, index) => {
         return (
+            
             <View style={BusSeatScreenStyles.FlexRowSeatBox}>
-                <View style={BusSeatScreenStyles.Width50}>
+               
+                <View style={BusSeatScreenStyles.FlexRowSeatRight}>
                     <LikeUnlike
-                        text={item.slepSeatName}
+                        text={item.chairNumber}
                         LikeColour={Colors.GreenColor}
                         UnlikeColour={Colors.TextWhiteColor}
-                        index={index}
+                        index={item.column}
+
                         DefaultStyle={BusSeatScreenStyles.BusSeatBox}
                         ViewStyle={BusSeatScreenStyles.BuscusionStyle}
                     />
+                     <View style={BusSeatScreenStyles.LastListStyle}>
+                        <LikeUnlike
+                            text={item.chairNumber}
+                            LikeColour={Colors.GreenColor}
+                            UnlikeColour={Colors.TextWhiteColor}
+                            index={item.column}
+                            DefaultStyle={BusSeatScreenStyles.BusSeatBox}
+                            ViewStyle={BusSeatScreenStyles.BuscusionStyle}
+                        />
+                    </View>
                 </View>
                 <View style={BusSeatScreenStyles.FlexRowSeatLeft}>
                     <LikeUnlike
-                        text={item.slepSeatName}
+                        text={item.chairNumber}
                         LikeColour={Colors.GreenColor}
                         UnlikeColour={Colors.TextWhiteColor}
-                        index={index}
+                        index={item.column}
                         DefaultStyle={BusSeatScreenStyles.BusSeatBox}
                         ViewStyle={BusSeatScreenStyles.BuscusionStyle}
                     />
                     <View style={BusSeatScreenStyles.LastListStyle}>
                         <LikeUnlike
-                            text={item.slepSeatName}
+                            text={item.chairNumber}
                             LikeColour={Colors.GreenColor}
                             UnlikeColour={Colors.TextWhiteColor}
-                            index={index}
+                            index={item.column}
                             DefaultStyle={BusSeatScreenStyles.BusSeatBox}
                             ViewStyle={BusSeatScreenStyles.BuscusionStyle}
                         />
                     </View>
                 </View>
             </View >
+        )
+    }
+
+    const BusSeatDataFlatlist2 = (item, index) => {
+        return (
+            <View style={styles.row}>
+            <BusSeat chair={item.chairNumber} status={item.status} />
+            {item.column % 2 !== 0 && <View style={styles.seatSpacer} />} 
+            <BusSeat chair={item.column % 2 === 0 ? busSeat[item.index + 1]?.chairNumber : null} status={item.column % 2 === 0 ? busSeat[item.index + 1]?.status : null} />
+          </View>
         )
     }
 
@@ -108,15 +161,30 @@ const BusSeatScreen = (props) => {
                         <View>
                             {tabShow == '1' ?
                                 <View>
+                                    {
+                                           busSeat.length > 0 ? busSeat.filter(a=>a.row == 1).length == 4 ?  
+                                           
+                                    // <FlatList
+                                    //     data={busSeat}
+                                    //     renderItem={({ item, index }) => BusSeatDataFlatlist(item, index)}
+                                    //     // numColumns={busSeat.filter(a=>a.row == 1).length}
+                                    //     keyExtractor={item => item.id}
+                                    //     showsHorizontalScrollIndicator={false}
+                                    //     contentContainerStyle={BusSeatScreenStyles.ContentContainerStyle}
+                                    // />
                                     <FlatList
-                                        data={BusSeatData}
-                                        renderItem={({ item, index }) => BusSeatDataFlatlist(item, index)}
-                                        keyExtractor={item => item.id}
-                                        showsHorizontalScrollIndicator={false}
-                                        contentContainerStyle={BusSeatScreenStyles.ContentContainerStyle}
-                                    />
+                                    data={busSeat}
+                                    renderItem={({ item, index }) => BusSeatDataFlatlist2(item, index)}
+                                    keyExtractor={(item) => item.chairNumber.toString()} // Unique key for each item
+                                    numColumns={2} // Set 2 columns for the bus layout
+                                  />
+                                    
+                                    :null :null
+
+                                                }
+
                                 </View> : null}
-                            {tabShow == '2' ?
+                            {/* {tabShow == '2' ?
                                 <View>
                                     <FlatList
                                         data={BusSeatUpperData}
@@ -125,7 +193,7 @@ const BusSeatScreen = (props) => {
                                         showsHorizontalScrollIndicator={false}
                                         contentContainerStyle={BusSeatScreenStyles.ContentContainerStyle}
                                     />
-                                </View> : null}
+                                </View> : null} */}
                         </View>
                     </View>
                 </View>
@@ -156,7 +224,7 @@ const BusSeatScreen = (props) => {
                     </View>
                     <View style={BusSeatScreenStyles.Widthtwo}>
                         <Text style={BusSeatScreenStyles.Selectedtext}>{t("Book_for")}</Text>
-                        <Text style={BusSeatScreenStyles.SelectedSeattext}><IconFA name="rupee" color={Colors.black_text_color} size={SF(14)} /> {detailsStore.MainPrice}</Text>
+                        <Text style={BusSeatScreenStyles.SelectedSeattext}><IconFA name="rupee" color={Colors.black_text_color} size={SF(14)} /> 1</Text>
                     </View>
                     <View style={BusSeatScreenStyles.Widththree}>
                         <Button title={t('Proceed')} ButtonStyle={BusSeatScreenStyles.ButtonStyle} onPress={() => navigation.navigate(RouteName.PAYMENT_SCREEN)} />
@@ -166,4 +234,23 @@ const BusSeatScreen = (props) => {
         </View >
     );
 };
+const styles = StyleSheet.create({
+    seat: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: 5,
+      padding: 10,
+      borderRadius: 5,
+    },
+    seatText: {
+      fontSize: 16,
+    },
+    row: {
+      flexDirection: 'row',
+    },
+    seatSpacer: {
+      flex: 0.5, // Adjust spacer width as needed
+    },
+  });
 export default BusSeatScreen;

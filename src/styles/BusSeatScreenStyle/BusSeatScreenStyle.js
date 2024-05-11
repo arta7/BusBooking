@@ -157,6 +157,12 @@ export default BusSeatScreenStyle = (Colors) => StyleSheet.create({
         alignItems: 'center',
         width: '50%',
     },
+    FlexRowSeatRight: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        width: '50%',
+    },
     LastListStyle: {
         paddingLeft:SW(10)
     },
