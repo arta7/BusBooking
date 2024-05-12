@@ -53,8 +53,15 @@ const BusSeatScreen = (props) => {
         };
       
         return (
-          <View style={[styles.seat, { backgroundColor: getStatusColor() }]}>
-            <Text style={[styles.seatText,{color:'black',textAlign:'center'}]}>{chair}</Text>
+          <View style={[styles.seat]}>
+             <LikeUnlike
+            text={chair}
+            LikeColour={getStatusColor()}
+            UnlikeColour={getStatusColor()}
+            index={status}
+            DefaultStyle={BusSeatScreenStyles.BusSeatBox}
+            ViewStyle={BusSeatScreenStyles.BuscusionStyle}
+        />
           </View>
         );
       }
@@ -123,7 +130,7 @@ const BusSeatScreen = (props) => {
         return (
             <View style={styles.row}>
             <BusSeat chair={item.chairNumber} status={item.status} />
-            {item.column % 2 !== 0 && <View style={styles.seatSpacer} />} 
+            {/* {item.column % 2 !== 0 && <View style={styles.seatSpacer} />}  */}
             {/* <BusSeat chair={item.column % 2 === 0 ? busSeat[item.index + 1]?.chairNumber : null} status={item.column % 2 === 0 ? busSeat[item.index + 1]?.status : null} /> */}
           </View>
         )
@@ -240,17 +247,18 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       margin: 5,
-      padding: 10,
-      borderRadius: 5,width:80
+      padding: 5,
+    //   width:80
     },
     seatText: {
       fontSize: 16,
     },
     row: {
-      flexDirection: 'row',justifyContent:'space-between',flexWrap:'wrap'
+      flexDirection: 'row',justifyContent:'space-between'
+      ,flexWrap:'wrap'
     },
     seatSpacer: {
-      flex: 0.5, // Adjust spacer width as needed
+     // Adjust spacer width as needed
     },
   });
 export default BusSeatScreen;
