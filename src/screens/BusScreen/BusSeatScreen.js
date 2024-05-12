@@ -54,7 +54,7 @@ const BusSeatScreen = (props) => {
       
         return (
           <View style={[styles.seat, { backgroundColor: getStatusColor() }]}>
-            <Text style={styles.seatText}>{chair}</Text>
+            <Text style={[styles.seatText,{color:'black',textAlign:'center'}]}>{chair}</Text>
           </View>
         );
       }
@@ -63,7 +63,7 @@ const BusSeatScreen = (props) => {
         const renderItem = ({ item }) => (
           <View style={styles.row}>
             <BusSeat chair={item.chairNumber} status={item.status} />
-            {item.column % 2 !== 0 && <View style={styles.seatSpacer} />} {/* Add spacer for odd columns */}
+            {/* {item.column % 2 !== 0 && <View style={styles.seatSpacer} />}  */}
             <BusSeat chair={item.column % 2 === 0 ? busSeat[item.index + 1]?.chairNumber : null} status={item.column % 2 === 0 ? busSeat[item.index + 1]?.status : null} />
           </View>
         );
@@ -124,7 +124,7 @@ const BusSeatScreen = (props) => {
             <View style={styles.row}>
             <BusSeat chair={item.chairNumber} status={item.status} />
             {item.column % 2 !== 0 && <View style={styles.seatSpacer} />} 
-            <BusSeat chair={item.column % 2 === 0 ? busSeat[item.index + 1]?.chairNumber : null} status={item.column % 2 === 0 ? busSeat[item.index + 1]?.status : null} />
+            {/* <BusSeat chair={item.column % 2 === 0 ? busSeat[item.index + 1]?.chairNumber : null} status={item.column % 2 === 0 ? busSeat[item.index + 1]?.status : null} /> */}
           </View>
         )
     }
@@ -176,7 +176,7 @@ const BusSeatScreen = (props) => {
                                     data={busSeat}
                                     renderItem={({ item, index }) => BusSeatDataFlatlist2(item, index)}
                                     keyExtractor={(item) => item.chairNumber.toString()} // Unique key for each item
-                                    numColumns={2} // Set 2 columns for the bus layout
+                                    numColumns={4} // Set 2 columns for the bus layout
                                   />
                                     
                                     :null :null
@@ -236,18 +236,18 @@ const BusSeatScreen = (props) => {
 };
 const styles = StyleSheet.create({
     seat: {
-      flex: 1,
+    //   flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
       margin: 5,
       padding: 10,
-      borderRadius: 5,
+      borderRadius: 5,width:80
     },
     seatText: {
       fontSize: 16,
     },
     row: {
-      flexDirection: 'row',
+      flexDirection: 'row',justifyContent:'space-between',flexWrap:'wrap'
     },
     seatSpacer: {
       flex: 0.5, // Adjust spacer width as needed
