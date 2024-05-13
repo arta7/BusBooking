@@ -132,7 +132,7 @@ export default BusSeatScreenStyle = (Colors) => StyleSheet.create({
         borderColor: Colors.black_text_color,
         borderRadius: 2,
         width: '100%',
-        height: SH(10),
+       
         position: 'absolute',
         bottom: 10,
         backgroundColor: Colors.White_Colour,
@@ -143,8 +143,8 @@ export default BusSeatScreenStyle = (Colors) => StyleSheet.create({
         borderRadius: 3,
         justifyContent: 'center',
         alignItems: 'center',
-        width: SW(45),
-        height: SH(90),
+        width: SW(35),
+       
         position: 'relative',
         paddingHorizontal: SH(6)
     },

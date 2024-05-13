@@ -59,8 +59,8 @@ const BusSeatScreen = (props) => {
             LikeColour={getStatusColor()}
             UnlikeColour={getStatusColor()}
             index={status}
-            DefaultStyle={BusSeatScreenStyles.BusSeatBox}
-            ViewStyle={BusSeatScreenStyles.BuscusionStyle}
+            DefaultStyle={[BusSeatScreenStyles.BusSeatBox,{ height: SH(40),}]}
+            ViewStyle={[BusSeatScreenStyles.BuscusionStyle,{ height: SH(5),}]}
         />
           </View>
         );
@@ -71,7 +71,7 @@ const BusSeatScreen = (props) => {
           <View style={styles.row}>
             <BusSeat chair={item.chairNumber} status={item.status} />
             {/* {item.column % 2 !== 0 && <View style={styles.seatSpacer} />}  */}
-            <BusSeat chair={item.column % 2 === 0 ? busSeat[item.index + 1]?.chairNumber : null} status={item.column % 2 === 0 ? busSeat[item.index + 1]?.status : null} />
+            {/* <BusSeat chair={item.column % 2 === 0 ? busSeat[item.index + 1]?.chairNumber : null} status={item.column % 2 === 0 ? busSeat[item.index + 1]?.status : null} /> */}
           </View>
         );
     }
@@ -126,15 +126,28 @@ const BusSeatScreen = (props) => {
         )
     }
 
-    const BusSeatDataFlatlist2 = (item, index) => {
+    // const BusSeatDataFlatlist2 = (item, index) => {
+    //     return (
+    //         <View style={[styles.row,{marginLeft:item.column === 2 ? '20%' : 0 }]}>
+    //         <BusSeat chair={item.chairNumber} status={item.status}  />
+    //       </View>
+    //     )
+    // }
+    const BusSeatDataFlatlist2 = ( item, index ) => {
+        const isTwoItemsRow = index % 4 === 1; // Renders 2 items every 4th row (index 2, 6, 10, etc.)
+      
         return (
-            <View style={styles.row}>
-            <BusSeat chair={item.chairNumber} status={item.status} />
-            {/* {item.column % 2 !== 0 && <View style={styles.seatSpacer} />}  */}
-            {/* <BusSeat chair={item.column % 2 === 0 ? busSeat[item.index + 1]?.chairNumber : null} status={item.column % 2 === 0 ? busSeat[item.index + 1]?.status : null} /> */}
+          <View style={[styles.row, isTwoItemsRow ? { width: '50%' } : {}]}>
+            {isTwoItemsRow ? (
+              <>
+                <BusSeat chair={item.chairNumber} status={item.status} />
+              </>
+            ) : (
+              <BusSeat chair={item.chairNumber} status={item.status} />
+            )}
           </View>
-        )
-    }
+        );
+      };
 
     const BusSeatShowFunction = (item, index) => {
         return (
@@ -170,60 +183,35 @@ const BusSeatScreen = (props) => {
                                 <View>
                                     {
                                            busSeat.length > 0 ? busSeat.filter(a=>a.row == 1).length == 4 ?  
-                                           
-                                    // <FlatList
-                                    //     data={busSeat}
-                                    //     renderItem={({ item, index }) => BusSeatDataFlatlist(item, index)}
-                                    //     // numColumns={busSeat.filter(a=>a.row == 1).length}
-                                    //     keyExtractor={item => item.id}
-                                    //     showsHorizontalScrollIndicator={false}
-                                    //     contentContainerStyle={BusSeatScreenStyles.ContentContainerStyle}
-                                    // />
                                     <FlatList
                                     data={busSeat}
                                     renderItem={({ item, index }) => BusSeatDataFlatlist2(item, index)}
-                                    keyExtractor={(item) => item.chairNumber.toString()} // Unique key for each item
-                                    numColumns={4} // Set 2 columns for the bus layout
-                                  />
-                                    
+                                    keyExtractor={(item) => item.chairNumber.toString()}
+                                     numColumns={4}
+                                    // getItemLayout={(data, index) => {
+                                    //     const isTwoItemsRow = index % 4 === 1;
+                                    //     const itemWidth = isTwoItemsRow ? styles.seatWidth * 2 : styles.seatWidth; // Adjust width based on your styles
+                                    //     return { length: styles.seatHeight, width: itemWidth, offset: index * styles.seatHeight };
+                                    //   }}
+                                  /> 
                                     :null :null
 
                                                 }
 
                                 </View> : null}
-                            {/* {tabShow == '2' ?
-                                <View>
-                                    <FlatList
-                                        data={BusSeatUpperData}
-                                        renderItem={({ item, index }) => BusSeatDataFlatlist(item, index)}
-                                        keyExtractor={item => item.id}
-                                        showsHorizontalScrollIndicator={false}
-                                        contentContainerStyle={BusSeatScreenStyles.ContentContainerStyle}
-                                    />
-                                </View> : null} */}
                         </View>
                     </View>
                 </View>
             </ScrollView >
             <View>
-                {/* <View style={BusSeatScreenStyles.TabBoxTwWidththreeoMin}>
-                    <View style={BusSeatScreenStyles.TabBoxTwo}>
-                        <TouchableOpacity onPress={() => SettabShow('1')} style={tabShow === '1' ? [BusSeatScreenStyles.TabsettextActiveBoxTwo, BusSeatScreenStyles.TableftAciveBorder] : [BusSeatScreenStyles.TabsettextBoxTwo, BusSeatScreenStyles.TableftAciveBorder]}>
-                            <Text onPress={() => SettabShow('1')} style={tabShow === '1' ? BusSeatScreenStyles.TabsettextActiveTwo : BusSeatScreenStyles.TabsettextTwo}>{t("Lover")}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => SettabShow('2')} style={tabShow === '2' ? [BusSeatScreenStyles.TabsettextActiveBoxTwo, BusSeatScreenStyles.TablrightAciveBorder] : [BusSeatScreenStyles.TabsettextBoxTwo, BusSeatScreenStyles.TablrightAciveBorder]}>
-                            <Text onPress={() => SettabShow('2')} style={tabShow === '2' ? BusSeatScreenStyles.TabsettextActiveTwo : BusSeatScreenStyles.TabsettextTwo}>{t("Upper")}</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View> */}
-                <View style={BusSeatScreenStyles.BusSratflatlistbox}>
+                {/* <View style={BusSeatScreenStyles.BusSratflatlistbox}>
                     <FlatList
                         data={BusSeatShowData}
                         renderItem={({ item, index }) => BusSeatShowFunction(item, index)}
                         keyExtractor={item => item.id}
                         horizontal
                     />
-                </View>
+                </View> */}
                 <View style={BusSeatScreenStyles.BusFinalBoookedBox}>
                     <View style={BusSeatScreenStyles.Widthone}>
                         <Text style={BusSeatScreenStyles.Selectedtext}>{t("Selected_Seat")}</Text>
@@ -247,7 +235,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       margin: 5,
-      padding: 5,
+      padding: 5,marginBottom:15
     //   width:80
     },
     seatText: {
