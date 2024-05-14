@@ -8,6 +8,7 @@ Login:{
 },
 Bus:{
      Cities : '/bus/cities',
-     search:'/bus/bussearch'
+     search:'/bus/bussearch',
+      busdetails:'/bus/bus-detail'
 }
 }

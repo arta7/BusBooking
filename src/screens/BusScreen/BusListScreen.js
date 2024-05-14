@@ -34,22 +34,18 @@ const BusListScreen = (props) => {
   let options = { year: 'numeric', month: 'long', day: 'numeric' };
 
   const DataAction = (data) => {
-    dispatch(get_data_action(data))
-    navigation.navigate(RouteName.BUS_SEAT_SCREEN)
+    console.log('data = > ',data)
+    // dispatch(get_data_action(data))
+    navigation.navigate(RouteName.BUS_SEAT_SCREEN,{data:data})
 
   }
 
 
 
   useEffect(()=>{
-    // setTimeout(() => {
-    //   const myNextList = [...userData];
-    //   const DatesStep = myNextList;
-    //   DatesStep[0].isLoading = false;
-    //   setUserData(myNextList)
-    // }, 5000);
     setLoading(true)
-    BusSearch(userData[0].StartPlaceCode,userData[0].EndPlaceCode,moment(new Date(userData[0].CurrentDate.toString())).format('jYYYY/jMM/jDD'),userData[0].Token,setLoading,setData,props)
+    BusSearch(userData[0].StartPlaceCode,userData[0].EndPlaceCode,
+      moment(new Date(userData[0].CurrentDate.toString())).format('jYYYY/jMM/jDD'),userData[0].Token,setLoading,setData,setUserData,userData,props)
 },[])
 
 
@@ -87,7 +83,7 @@ const BusListScreen = (props) => {
 
   const BusFlatlist = (item, index) => {
     return (
-      <TouchableOpacity style={[BusListScreenStyles.BusBoxWraper, { height: 200, padding: 15 }]} onPress={() => {DataAction()}}>
+      <TouchableOpacity style={[BusListScreenStyles.BusBoxWraper, { height: 200, padding: 15 }]} onPress={() => {DataAction(item)}}>
         <View style={[BusListScreenStyles.BusdataTopBox, { height: '40%' }]}>
           <View style={{ width: '50%' }}>
             <Text style={BusListScreenStyles.TravelCompanyText}>{item.baseCompany}</Text>
@@ -168,8 +164,7 @@ const BusListScreen = (props) => {
               )
             }
             </>
-           
-              
+            
               :
                <FlatList
                   data={Data?.searchItems}
@@ -205,7 +200,8 @@ const BusListScreen = (props) => {
               setUserData(myNextList)
               setLoading(true)
               setData([])
-              BusSearch(userData[0].StartPlaceCode,userData[0].EndPlaceCode,moment(new Date(tomorrow)).format('jYYYY/jMM/jDD'),userData[0].Token,setLoading,setData,props)
+              BusSearch(userData[0].StartPlaceCode,userData[0].EndPlaceCode,moment(new Date(tomorrow)).format('jYYYY/jMM/jDD'),userData[0].Token,
+              setLoading,setData,setUserData,userData,props)
 
             }}
           >
@@ -237,7 +233,7 @@ const BusListScreen = (props) => {
             setUserData(myNextList)
             setLoading(true)
             setData([])
-            BusSearch(userData[0].StartPlaceCode,userData[0].EndPlaceCode,moment(new Date(tomorrow)).format('jYYYY/jMM/jDD'),userData[0].Token,setLoading,setData,props)
+            BusSearch(userData[0].StartPlaceCode,userData[0].EndPlaceCode,moment(new Date(tomorrow)).format('jYYYY/jMM/jDD'),userData[0].Token,setLoading,setData,setUserData,userData,props)
 
           }}
         >

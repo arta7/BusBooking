@@ -16,10 +16,11 @@ const App = () => {
       StartPlace:'',
       EndPlace:'',
       StartPlaceCode:'11320000',
-      EndPlaceCode:'21310000',
+      EndPlaceCode:'93310000',
       isLoading:true,
       Mobile:AsyncStorage.getItem("Mobile") != null ? AsyncStorage.getItem("Mobile") : '',
       Token:AsyncStorage.getItem("Token") != null ? AsyncStorage.getItem("Token") : '',
+      RequestNumber:''
     }]);
   return (
     <Provider store={store}>

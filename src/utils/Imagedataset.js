@@ -377,26 +377,26 @@ export const busSeat=[
     "column": 1,
     "status": 2
   },
+  // {
+  //   "chairNumber": 21,
+  //   "row": 6,
+  //   "column": 2,
+  //   "status": 2
+  // },
   {
     "chairNumber": 21,
-    "row": 6,
-    "column": 2,
-    "status": 2
-  },
-  {
-    "chairNumber": 22,
     "row": 6,
     "column": 1,
     "status": 2
   },
   {
-    "chairNumber": 23,
+    "chairNumber": 22,
     "row": 7,
     "column": 2,
     "status": 2
   },
   {
-    "chairNumber": 24,
+    "chairNumber": 23,
     "row": 7,
     "column": 1,
     "status": 2

@@ -157,7 +157,7 @@ export function GetCities(setData,Data,self)
   })
 }
 
-export function BusSearch(_originCity,_destinationCity,_date,HeaderValue,setLoading,SetData,self)
+export function BusSearch(_originCity,_destinationCity,_date,HeaderValue,setLoading,SetData,setUserData,userData,self)
 {
     var params ={
       "originCity": _originCity,
@@ -181,11 +181,52 @@ export function BusSearch(_originCity,_destinationCity,_date,HeaderValue,setLoad
          
           console.log('response verify Data',response.data.data) 
           SetData(response.data.data)
+      
+
+          const myNextList = [...userData];
+          const DatesStep = myNextList;
+          DatesStep[0].RequestNumber = response.data.data?.requestNumber;
+          setUserData(myNextList)
           setLoading(false)
         
   })
   .catch( (error)=> {
     console.log('errors',error)  
+    setLoading(false)
+  })
+}
+
+
+
+
+export function BusDetails(_requestNumber,_sourceCode,_busCode,HeaderValue,setLoading,SetData,self)
+{
+    var params ={
+      "requestNumber": _requestNumber,
+      "sourceCode": _sourceCode,
+      "busCode": _busCode
+    }
+    setLoading(true)
+    
+  axios({
+    url: Address.URL + Address.Bus.busdetails,
+    method: 'POST',
+     data: params,
+    headers: {
+      'accept': 'text/plain',
+      // 'Content-Type' : 'multipart/form-data',
+      'Authorization': HeaderValue
+    }
+  })
+  .then( (response)=> {
+         
+          console.log('response bus details Data',response.data.data) 
+          SetData(response.data.data)
+          setLoading(false)
+        
+  })
+  .catch( (error)=> {
+    console.log('errors bus details : ',error)  
     setLoading(false)
   })
 }
