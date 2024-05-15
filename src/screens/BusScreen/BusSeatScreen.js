@@ -57,6 +57,16 @@ const BusSeatScreen = (props) => {
         )
     }
 
+    const BusSeatShowFunction = (item, index) => {
+        return (
+            <View style={BusSeatScreenStyles.SeatAvlblBox}>
+                <View style={BusSeatScreenStyles.SeatAvChildBox}>
+                    <IconMI name={item.Seaticon} color={item.SeaticonColor} size={SF(22)} />
+                    <Text style={BusSeatScreenStyles.SeatAvChildBoxText}>{t(item.text)}</Text>
+                </View>
+            </View>
+        )
+    }
 
     return (
         <View style={BusSeatScreenStyles.MinFlexView}>
@@ -90,14 +100,14 @@ const BusSeatScreen = (props) => {
                 </View>
             </ScrollView >
             <View>
-                {/* <View style={BusSeatScreenStyles.BusSratflatlistbox}>
+                <View style={BusSeatScreenStyles.BusSratflatlistbox}>
                     <FlatList
                         data={BusSeatShowData}
                         renderItem={({ item, index }) => BusSeatShowFunction(item, index)}
                         keyExtractor={item => item.id}
                         horizontal
                     />
-                </View> */}
+                </View>
                 <View style={BusSeatScreenStyles.BusFinalBoookedBox}>
                     <View style={BusSeatScreenStyles.Widthone}>
                         <Text style={BusSeatScreenStyles.Selectedtext}>{t("Selected_Seat")}</Text>

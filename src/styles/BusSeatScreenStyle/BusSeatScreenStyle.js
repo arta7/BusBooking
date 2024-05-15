@@ -112,7 +112,7 @@ export default BusSeatScreenStyle = (Colors) => StyleSheet.create({
     },
     SeatAvChildBoxText: {
         color: Colors.black_text_color,
-        fontSize: SF(10),
+        fontSize: SF(13),
         textAlign: 'center'
     },
     SeatAvChildBox: {

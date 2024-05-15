@@ -13,7 +13,7 @@ const LikeUnlke = (props) => {
             } else {
                 setLiked([...liked, index]);
             }
-        }} style={[{ backgroundColor: liked.includes(index) ? LikeColour : UnlikeColour }, DefaultStyle]}>
+        }} style={[{ backgroundColor: liked.includes(index) ? LikeColour : UnlikeColour }, DefaultStyle]} disabled={index ==1 || index ==2 ? true:false}>
             <Text>{text}</Text>
             <View style={ViewStyle}>
             </View>

@@ -605,40 +605,28 @@ export const BusSeatShowData = [
   {
     id: 1,
     Seaticon: 'seat',
-    SeaticonColor: Colors.Shadow_Color,
-    text: "BusSeatShowData_text_1"
+    SeaticonColor: '#53eff5',
+    text: "آقا"
   },
   {
     id: 1,
     Seaticon: 'seat',
-    SeaticonColor: Colors.GreenColor,
-    text: "BusSeatShowData_text_2"
-  },
-
-  {
-    id: 1,
-    Seaticon: 'seat',
-    SeaticonColor: Colors.Pink,
-    text: "BusSeatShowData_text_3"
+    SeaticonColor: 'pink',
+    text: "خانم"
   },
 
   {
     id: 1,
     Seaticon: 'seat',
-    SeaticonColor: Colors.Pink,
-    text: "BusSeatShowData_text_4"
+    SeaticonColor: '#adadad',
+    text: "رزرو نشده"
   },
+
   {
     id: 1,
     Seaticon: 'seat',
-    SeaticonColor: Colors.blue_color,
-    text: "BusSeatShowData_text_5"
-  },
-  {
-    id: 1,
-    Seaticon: 'seat',
-    SeaticonColor: Colors.Red,
-    text: "BusSeatShowData_text_6"
+    SeaticonColor: 'red',
+    text: "انتخاب شما"
   },
 ]
 

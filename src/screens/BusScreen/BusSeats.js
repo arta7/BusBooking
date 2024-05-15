@@ -11,32 +11,36 @@ const SEAT_STATUS = {
   BOOKED: 2,
 };
 
-const BusSeat = ({ chairNumber, status, onPress }) => {
-  const backgroundColor = status === SEAT_STATUS.AVAILABLE ? 'green' : 'gray';
+const BusSeat = ({ chairNumber, status,index,RowSeats, onPress }) => {
   const { Colors } = useTheme();
+    var datarow =  RowSeats;
   const BusSeatScreenStyles = useMemo(() => BusSeatScreenStyle(Colors), [Colors]);
+  
   const getStatusColor = () => {
     switch (status) {
+      case 0:
+            return '#adadad'; 
         case 1:
-            return 'green'; // Available (adjust based on your preference)
+            return '#53eff5'; // Available (adjust based on your preference)
         case 2:
-            return 'red'; // Occupied (adjust based on your preference)
+            return 'pink'; // Occupied (adjust based on your preference)
         default:
-            return 'gray'; // Unknown (adjust based on your preference)
+            return 'red'; // Unknown (adjust based on your preference)
     }
 };
   return (
     // <TouchableOpacity style={[styles.seat, { backgroundColor }]} onPress={onPress}>
     //   <Text style={styles.seatText}>{chairNumber}</Text>
     // </TouchableOpacity>
-    <View style={[styles.seat]}>
+    <View style={[styles.seat, index == datarow ? {marginLeft:'20%'}:{marginHorizontal:'2%'}]}>
     <LikeUnlike
-    text={status ==2? 'آقا'  : status ==1 ? 'خانم' : chairNumber}
+    text={status == 1 ? 'آقا' : status ==2? 'خانم' :chairNumber}
     LikeColour={getStatusColor()}
     UnlikeColour={getStatusColor()}
     index={status}
     DefaultStyle={[BusSeatScreenStyles.BusSeatBox, { height: SH(40) }]}
     ViewStyle={[BusSeatScreenStyles.BuscusionStyle, { height: SH(5), }]}
+    onPress={onPress}
 />
 </View>
   );
@@ -53,10 +57,10 @@ const BusSeats = ({ data }) => {
   const renderRow = (row) => {
     const seats = data?.filter((seat) => seat.row === row);
     const isTwoColumns = seats.length === 2;
-
+    var  RowSeats =  data?.length>0 && data?.filter(a=>a.row ==1).length == 3 ? 1 : 2
     return (
       <View style={styles.row}>
-        {seats?.map((seat) => (
+        {seats?.map((seat,index) => (
          
           <BusSeat
             key={seat.chairNumber}
@@ -64,6 +68,8 @@ const BusSeats = ({ data }) => {
             status={seat.status}
             onPress={() => handleSeatPress(seat.chairNumber)}
              style={isTwoColumns ? styles.seatTwoColumns : styles.seatFourColumns}
+             index={seat.column}
+             RowSeats ={RowSeats}
           />
         ))}
       </View>
@@ -86,7 +92,7 @@ const BusSeats = ({ data }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   row: {
     flexDirection: 'row',
