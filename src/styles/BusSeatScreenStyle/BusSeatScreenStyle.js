@@ -41,14 +41,8 @@ export default BusSeatScreenStyle = (Colors) => StyleSheet.create({
     BusSratflatlistbox: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Colors.TextWhiteColor,
+        // backgroundColor: Colors.TextWhiteColor,
         shadowRadius: 2,
-        shadowOffset: {
-            width: 0,
-            height: -3,
-        },
-        shadowColor: Colors.Shadow_Color,
-        elevation: 20,
     },
     TabBoxTwo: {
         flexDirection: 'row',
@@ -108,7 +102,7 @@ export default BusSeatScreenStyle = (Colors) => StyleSheet.create({
     },
     MinFlexView: {
         width: '100%',
-        height: '100%',
+        height: '100%'
     },
     SeatAvChildBoxText: {
         color: Colors.black_text_color,
@@ -216,7 +210,7 @@ export default BusSeatScreenStyle = (Colors) => StyleSheet.create({
         alignItems: 'flex-start',
         borderBottomColor: Colors.black_text_color,
         borderBottomWidth: 0.5,
-        paddingVertical: SH(15),
+        paddingVertical: SH(5),
         paddingLeft: SH(10),
     },
 });

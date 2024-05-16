@@ -11,65 +11,74 @@ const SEAT_STATUS = {
   BOOKED: 2,
 };
 
-const BusSeat = ({ chairNumber, status,index,RowSeats, onPress }) => {
+const BusSeat = ({ chairNumber, status, index, RowSeats, data, setData, BusPerson, setBusPerson, onPress }) => {
   const { Colors } = useTheme();
-    var datarow =  RowSeats;
+  var datarow = RowSeats;
   const BusSeatScreenStyles = useMemo(() => BusSeatScreenStyle(Colors), [Colors]);
-  
+
   const getStatusColor = () => {
     switch (status) {
       case 0:
-            return '#adadad'; 
-        case 1:
-            return '#53eff5'; // Available (adjust based on your preference)
-        case 2:
-            return 'pink'; // Occupied (adjust based on your preference)
-        default:
-            return 'red'; // Unknown (adjust based on your preference)
+        return '#adadad';
+      case 1:
+        return '#53eff5'; // Available (adjust based on your preference)
+      case 2:
+        return 'pink'; // Occupied (adjust based on your preference)
+      default:
+        return Colors.theme_background; // Unknown (adjust based on your preference)
     }
-};
+  };
   return (
     // <TouchableOpacity style={[styles.seat, { backgroundColor }]} onPress={onPress}>
     //   <Text style={styles.seatText}>{chairNumber}</Text>
     // </TouchableOpacity>
-    <View style={[styles.seat, index == datarow ? {marginLeft:'20%'}:{marginHorizontal:'2%'}]}>
-    <LikeUnlike
-    text={status == 1 ? 'آقا' : status ==2? 'خانم' :chairNumber}
-    LikeColour={getStatusColor()}
-    UnlikeColour={getStatusColor()}
-    index={status}
-    DefaultStyle={[BusSeatScreenStyles.BusSeatBox, { height: SH(40) }]}
-    ViewStyle={[BusSeatScreenStyles.BuscusionStyle, { height: SH(5), }]}
-    onPress={onPress}
-/>
-</View>
+    <View style={[styles.seat, index == datarow ? { marginLeft: '20%' } : { marginHorizontal: '2%' }]}>
+      <LikeUnlike
+        text={status == 1 ? 'آقا' : status == 2 ? 'خانم' : chairNumber}
+        LikeColour={getStatusColor()}
+        UnlikeColour={getStatusColor()}
+        index={status}
+        data={data}
+        DefaultStyle={[BusSeatScreenStyles.BusSeatBox, { height: SH(40) }]}
+        ViewStyle={[BusSeatScreenStyles.BuscusionStyle, { height: SH(5), }]}
+        onPress={onPress}
+        setData={setData}
+        BusPerson={BusPerson}
+        setBusPerson={setBusPerson}
+      />
+    </View>
   );
 };
 
-const BusSeats = ({ data }) => {
+const BusSeats = ({ data, setData, BusPerson, setBusPerson }) => {
   const [selectedSeats, setSelectedSeats] = useState([]);
 
   const handleSeatPress = (chairNumber) => {
+    console.log('chairnumber')
     const isSelected = selectedSeats.includes(chairNumber);
     setSelectedSeats(isSelected ? selectedSeats.filter(seat => seat !== chairNumber) : [...selectedSeats, chairNumber]);
   };
 
   const renderRow = (row) => {
-    const seats = data?.filter((seat) => seat.row === row);
+    const seats = data?.seates?.filter((seat) => seat.row === row);
     const isTwoColumns = seats.length === 2;
-    var  RowSeats =  data?.length>0 && data?.filter(a=>a.row ==1).length == 3 ? 1 : 2
+    var RowSeats = data?.seates?.length > 0 && data?.seates?.filter(a => a.row == 1).length == 3 ? 1 : 2
     return (
       <View style={styles.row}>
-        {seats?.map((seat,index) => (
-         
+        {seats?.map((seat, index) => (
+
           <BusSeat
             key={seat.chairNumber}
             chairNumber={seat.chairNumber}
             status={seat.status}
             onPress={() => handleSeatPress(seat.chairNumber)}
-             style={isTwoColumns ? styles.seatTwoColumns : styles.seatFourColumns}
-             index={seat.column}
-             RowSeats ={RowSeats}
+            style={isTwoColumns ? styles.seatTwoColumns : styles.seatFourColumns}
+            index={seat.column}
+            RowSeats={RowSeats}
+            data={data}
+            setData={setData}
+            BusPerson={BusPerson}
+            setBusPerson={setBusPerson}
           />
         ))}
       </View>
@@ -78,7 +87,8 @@ const BusSeats = ({ data }) => {
 
   return (
     <View style={styles.container}>
-      {data?.reduce((acc, seat) => {
+
+      {data?.seates?.reduce((acc, seat) => {
         if (!acc.currentRow || acc.currentRow !== seat.row) {
           acc.currentRow = seat.row;
           acc.rows.push(renderRow(seat.row));
@@ -93,16 +103,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column'
+    //,borderWidth:1,marginBottom:5,borderTopWidth:0,borderBottomWidth:0,borderColor:'transparent'
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    marginBottom: 10,width:'80%',marginHorizontal:'5%'
+    marginBottom: 10, width: '80%', marginHorizontal: '5%'
   },
   seat: {
     padding: 10,
     alignItems: 'center',
-    justifyContent: 'center',marginHorizontal:'2%'
+    justifyContent: 'center', marginHorizontal: '2%'
   },
   seatText: {
     fontSize: 16,

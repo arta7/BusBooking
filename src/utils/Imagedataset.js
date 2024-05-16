@@ -625,7 +625,7 @@ export const BusSeatShowData = [
   {
     id: 1,
     Seaticon: 'seat',
-    SeaticonColor: 'red',
+    SeaticonColor: Colors.theme_background,
     text: "انتخاب شما"
   },
 ]

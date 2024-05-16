@@ -2,18 +2,48 @@ import React, { useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 
 const LikeUnlke = (props) => {
-    const { text, LikeColour, UnlikeColour, DefaultStyle, ViewStyle, index } = props;
+    const { text, LikeColour, UnlikeColour, DefaultStyle, ViewStyle, index, chairNumber, data, setData, BusPerson, setBusPerson } = props;
     const [liked, setLiked] = useState([]);
 
     return (
         <TouchableOpacity onPress={() => {
-            if (liked.includes(index)) {
-                let unlike = liked.filter((elem) => elem !== index);
-                setLiked(unlike);
-            } else {
-                setLiked([...liked, index]);
+            console.log('click', liked)
+            // if (data?.includes(text)) {
+            //     let unlike = liked.filter((elem) => elem !== chairNumber);
+            //     setLiked(unlike);
+            // } else {
+            //     setLiked([...liked, chairNumber]);
+            //     console.log('click',LikeColour)
+            // }
+            {
+                // if(data?.seates?.filter(a=>a.chairNumber == text && a.status == 0))
+                {
+                    const myNextList = Object.assign({}, data);
+                    const DatesStep = myNextList;
+                    // console.log('data', DatesStep)
+                    const seatToUpdate = DatesStep.seates?.filter(a => a.chairNumber === text)[0];
+                    console.log('seatToUpdate', seatToUpdate)
+                    if (seatToUpdate.status == 0) {
+                        seatToUpdate.status = 3;
+
+                        let PersonData = { name: '', family: '', date: '', code: '', status: '', chairNumber: seatToUpdate.chairNumber }
+
+                        setBusPerson([...BusPerson, PersonData]);
+                    }
+                    else {
+                        seatToUpdate.status = 0;
+                        let PersonData = BusPerson.filter((elem) => elem.chairNumber !== text);
+                        console.log('PersonData',PersonData,BusPerson)
+                        setBusPerson(PersonData);
+                    }
+                    // DatesStep?.seates?.filter(a => a.chairNumber == text && a.status == 0)[0].status = 3;
+                    // console.log('myNextList', DatesStep.seates)
+                    setData(myNextList)
+
+
+                }
             }
-        }} style={[{ backgroundColor: liked.includes(index) ? LikeColour : UnlikeColour }, DefaultStyle]} disabled={index ==1 || index ==2 ? true:false}>
+        }} style={[{ backgroundColor: liked.includes(chairNumber) ? LikeColour : UnlikeColour }, DefaultStyle]} disabled={index == 1 || index == 2 ? true : false}>
             <Text>{text}</Text>
             <View style={ViewStyle}>
             </View>
