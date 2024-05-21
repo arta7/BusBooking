@@ -24,7 +24,7 @@ const HomeTab = (props) => {
     const { Colors } = useTheme();
     const HomeTabStyless = useMemo(() => HomeTabStyles(Colors), [Colors]);
     const [isFocus, setIsFocus] = useState(false);
-
+    
     const stateValue = {
         From: "",
         To: "",
@@ -61,7 +61,7 @@ const HomeTab = (props) => {
                 <TouchableOpacity style={HomeTabStyless.ExclusiveImgWrap} onPress={() => OnBusTicket()}>
                     <Image resizeMode="cover" style={HomeTabStyless.ExclusiveImg} source={item.image} />
                     <View style={HomeTabStyless.OffreView}>
-                        <Text style={HomeTabStyless.KnowMoreText}>{t("Know_More")}</Text>
+                        <Text style={[HomeTabStyless.KnowMoreText,{}]}>{t("Know_More")}</Text>
                         <IconA name="arrowright" style={HomeTabStyless.KnowMoreIcon} />
                     </View>
                 </TouchableOpacity>
@@ -197,7 +197,7 @@ const HomeTab = (props) => {
                     </View>
                     <Spacing />
 
-                    <View style={HomeTabStyless.SelectPersonBox}>
+                    {/* <View style={HomeTabStyless.SelectPersonBox}>
                         <View style={HomeTabStyless.SelectPersonBoxChild}>
                             <IconI name="man" size={SF(20)} color={Colors.black_text_color} />
                             <Text style={HomeTabStyless.Adultstext}>{t("Adults")}</Text>
@@ -223,19 +223,7 @@ const HomeTab = (props) => {
                                 />
                             </View>
                         </View>
-                        {/* <View style={HomeTabStyless.SelectPersonBoxChild}>
-                            <IconFA5 name="baby" size={SF(20)} color={Colors.black_text_color} />
-                            <Text style={HomeTabStyless.Adultstext}>{t("Infants")}</Text>
-                            <Text style={HomeTabStyless.AdultstextYears}>{t("02Years")}</Text>
-                            <View style={HomeTabStyless.FlexRow}>
-                                <AddRemove
-                                    Textstyles={HomeTabStyless.TotalStyle}
-                                    DefaultStyle={[HomeTabStyless.IconCommon, { color: Colors.Gray_Colour }]}
-                                    CommonStyle={HomeTabStyless.FlexRow}
-                                />
-                            </View>
-                        </View> */}
-                    </View>
+                    </View> */}
                     <Spacing space={SH(20)} />
                     <Button title={t("Search_Buses")} onPress={() => OnBusTicket()} />
                 </View>

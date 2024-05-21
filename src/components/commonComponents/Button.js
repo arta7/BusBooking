@@ -27,7 +27,7 @@ function Button(props) {
           elevation: Platform.OS === 'ios' ? 1 : 3,
         },
         buttonTextStyle: {
-          color: Colors.White_Colour,
+          color: 'black',
           fontFamily: Fonts.Poppins_Medium,
           fontSize: SF(14),
           fontWeight: '600',

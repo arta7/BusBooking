@@ -66,8 +66,8 @@ export default Login = (Colors) => StyleSheet.create({
     width: '100%'
   },
   ImageSet: {
-    width: SW(140),
-    height: SH(140),
+    width: SW(180),
+    height: SH(180),
   },
   LoginText: {
     fontSize: SF(27),

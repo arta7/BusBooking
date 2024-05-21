@@ -46,15 +46,15 @@ const BusSeatScreen = (props) => {
             <View style={BusSeatScreenStyles.FlightsCityBox}>
                 <View style={BusSeatScreenStyles.BackArrowBoxWidthSet}>
                     <TouchableOpacity onPress={() => navigation.navigate(RouteName.BUS_LIST_SCREEN)}>
-                        <IconA name="arrowleft" size={SF(20)} color={Colors.BlackText} />
+                    <IconA name="arrowright" size={SF(20)} color={Colors.black_text_color} />
                     </TouchableOpacity>
                 </View>
-                <View style={BusSeatScreenStyles.CityMainBoxWrap}>
+                {/* <View style={BusSeatScreenStyles.CityMainBoxWrap}>
                     <View style={BusSeatScreenStyles.CityMainBox}>
                         <Text style={BusSeatScreenStyles.CityText}>1</Text>
                         <Text style={BusSeatScreenStyles.RchSubheadTextStyle}>3 | 2</Text>
                     </View>
-                </View>
+                </View> */}
             </View>
         )
     }

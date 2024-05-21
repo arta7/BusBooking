@@ -1,6 +1,6 @@
 export const Address = 
 {
-URL:'https://tb-api.meysamjafari.ir/api',
+URL:'https://api.kalanholding.com/api',
 Login:{
      Login:'/account/authenticate',
      verify:'/account/verify',
