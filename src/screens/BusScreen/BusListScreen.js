@@ -19,6 +19,7 @@ import Skeleton from "react-native-reanimated-skeleton";
 import { BusSearch } from "../../Api/ApiMaster";
 import SvgUri from 'react-native-svg-uri'; // SVG Package
 import testSvg from './../../../src/images/Selector.svg'; 
+import {Loadings} from '../../Loadings'
 const BusListScreen = (props) => {
   const { navigation } = props;
   const { t } = useTranslation();
@@ -160,7 +161,8 @@ const BusListScreen = (props) => {
               { Loading ? 
               <>
               { BusFlatlistData.map((item)=>
-  <PlaceholderSkeleton isLoading={true}/>
+           <Loadings />
+  // <PlaceholderSkeleton isLoading={true}/>
               )
             }
             </>
