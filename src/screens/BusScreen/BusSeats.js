@@ -19,7 +19,7 @@ const BusSeat = ({ chairNumber, status, index, RowSeats, data, setData, BusPerso
   const getStatusColor = () => {
     switch (status) {
       case 0:
-        return '#adadad';
+        return '#c4c4c4';
       case 1:
         return '#53eff5'; // Available (adjust based on your preference)
       case 2:
@@ -40,7 +40,7 @@ const BusSeat = ({ chairNumber, status, index, RowSeats, data, setData, BusPerso
         index={status}
         data={data}
         DefaultStyle={[BusSeatScreenStyles.BusSeatBox, { height: SH(40) }]}
-        ViewStyle={[BusSeatScreenStyles.BuscusionStyle, { height: SH(5), }]}
+        ViewStyle={[BusSeatScreenStyles.BuscusionStyle, { height: SH(5) }]}
         onPress={onPress}
         setData={setData}
         BusPerson={BusPerson}

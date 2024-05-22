@@ -1,4 +1,4 @@
-import React, { useMemo, useState,useEffect } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { Text, View, ScrollView, TouchableOpacity, FlatList } from "react-native";
 import { Style, BusListScreenStyle, BusSeatScreenStyle } from '../../styles';
 import IconMI from "react-native-vector-icons/MaterialCommunityIcons";
@@ -18,8 +18,8 @@ import PlaceholderSkeleton from "../../components/commonComponents/PlaceholderSk
 import Skeleton from "react-native-reanimated-skeleton";
 import { BusSearch } from "../../Api/ApiMaster";
 import SvgUri from 'react-native-svg-uri'; // SVG Package
-import testSvg from './../../../src/images/Selector.svg'; 
-import {Loadings} from '../../Loadings'
+import testSvg from './../../../src/images/Selector.svg';
+import Loadings from '../../Loadings'
 const BusListScreen = (props) => {
   const { navigation } = props;
   const { t } = useTranslation();
@@ -30,30 +30,30 @@ const BusListScreen = (props) => {
   const Styless = useMemo(() => Style(Colors), [Colors]);
   const BusSeatScreenStyles = useMemo(() => BusSeatScreenStyle(Colors), [Colors]);
   const { userData, setUserData } = React.useContext(UserContext);
-  const[Data,setData] = useState([])
+  const [Data, setData] = useState([])
 
   let options = { year: 'numeric', month: 'long', day: 'numeric' };
 
   const DataAction = (data) => {
-    console.log('data = > ',data)
+    console.log('data = > ', data)
     // dispatch(get_data_action(data))
-    navigation.navigate(RouteName.BUS_SEAT_SCREEN,{data:data})
+    navigation.navigate(RouteName.BUS_SEAT_SCREEN, { data: data })
 
   }
 
 
 
-  useEffect(()=>{
+  useEffect(() => {
     setLoading(true)
-    BusSearch(userData[0].StartPlaceCode,userData[0].EndPlaceCode,
-      moment(new Date(userData[0].CurrentDate.toString())).format('jYYYY/jMM/jDD'),userData[0].Token,setLoading,setData,setUserData,userData,props)
-},[])
+    BusSearch(userData[0].StartPlaceCode, userData[0].EndPlaceCode,
+      moment(new Date(userData[0].CurrentDate.toString())).format('jYYYY/jMM/jDD'), userData[0].Token, setLoading, setData, setUserData, userData, props)
+  }, [])
 
 
   const dispatch = useDispatch();
 
   const MobileSelect = (item, index) => {
-    
+
 
     return (
       <View style={BusListScreenStyles.FlightsCityBox}>
@@ -84,7 +84,7 @@ const BusListScreen = (props) => {
 
   const BusFlatlist = (item, index) => {
     return (
-      <TouchableOpacity style={[BusListScreenStyles.BusBoxWraper, { height: 200, padding: 15 }]} onPress={() => {DataAction(item)}}>
+      <TouchableOpacity style={[BusListScreenStyles.BusBoxWraper, { height: 200, padding: 15 }]} onPress={() => { DataAction(item) }}>
         <View style={[BusListScreenStyles.BusdataTopBox, { height: '40%' }]}>
           <View style={{ width: '50%' }}>
             <Text style={BusListScreenStyles.TravelCompanyText}>{item.baseCompany}</Text>
@@ -101,29 +101,29 @@ const BusListScreen = (props) => {
             <View style={{ marginBottom: 25 }}>
               <IconA name="arrowright" size={SF(15)} color={Colors.black_text_color} />
             </View>
-            <Text style={[BusListScreenStyles.AcNonAcText,{  fontSize: SF(15)}]}>{item.timeMove}</Text>
+            <Text style={[BusListScreenStyles.AcNonAcText, { fontSize: SF(15) }]}>{item.timeMove}</Text>
           </View>
         </View>
         <View style={[BusListScreenStyles.BusdataTopBox, { height: '30%', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }]}>
-          <Text style={BusListScreenStyles.AcNonAcText}>{item.origin.cityName} 
-          <View style={{width:150,height:20}}>
-          <SvgUri
-    width="100%"
-    height="100%"
-    svgXmlData={require('./../../../src/images/Selector.svg')}
-  />
-  </View>
-   {item.destination.cityName}</Text>
+          <Text style={BusListScreenStyles.AcNonAcText}>{item.origin.cityName}
+            <View style={{ width: 150, height: 20 }}>
+              <SvgUri
+                width="100%"
+                height="100%"
+                svgXmlData={require('./../../../src/images/Selector.svg')}
+              />
+            </View>
+            {item.destination.cityName}</Text>
 
-          <Text style={[BusListScreenStyles.AcNonAcText, { color: 'gray' }]}> {item.origin.terminal}  <View style={{width:80,height:20}}>
-      
-  </View>   {item.destination.terminal}</Text>
+          <Text style={[BusListScreenStyles.AcNonAcText, { color: 'gray' }]}> {item.origin.terminal}  <View style={{ width: 80, height: 20 }}>
+
+          </View>   {item.destination.terminal}</Text>
         </View>
         <View style={[BusListScreenStyles.LinkBox, { height: '35%' }]}>
-          { item.countFreeChairs >0 ? 
-          <Text style={[BusListScreenStyles.BusComonStyle,{color: item.countFreeChairs >9 ? Colors.LightBlackText:'red'}]}>{item.countFreeChairs} صندلی باقی مانده</Text>
-          :
-          <Text style={[BusListScreenStyles.BusComonStyle,{color: item.countFreeChairs >9 ? Colors.LightBlackText:'red'}]}>تکمیل ظرفیت</Text>
+          {item.countFreeChairs > 0 ?
+            <Text style={[BusListScreenStyles.BusComonStyle, { color: item.countFreeChairs > 9 ? Colors.LightBlackText : 'red' }]}>{item.countFreeChairs} صندلی باقی مانده</Text>
+            :
+            <Text style={[BusListScreenStyles.BusComonStyle, { color: item.countFreeChairs > 9 ? Colors.LightBlackText : 'red' }]}>تکمیل ظرفیت</Text>
           }
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text style={BusListScreenStyles.MainPriceText}>
@@ -157,25 +157,26 @@ const BusListScreen = (props) => {
             <View>
               {/* <Text style={BusListScreenStyles.HeadText}>{t("Showing_buses")}</Text> */}
               <View>
-      
-              { Loading ? 
-              <>
-              { BusFlatlistData.map((item)=>
-           <Loadings />
-  // <PlaceholderSkeleton isLoading={true}/>
-              )
-            }
-            </>
-            
-              :
-               <FlatList
-                  data={Data?.searchItems}
-                  renderItem={({ item, index }) => BusFlatlist(item, index)}
-                  keyExtractor={item => item.id}
-                  showsHorizontalScrollIndicator={false}
-                  style={BusListScreenStyles.ContentContainerStyle}
-                /> 
-              }
+
+                {Loading ?
+                              <>
+                              { BusFlatlistData.map((item)=>
+
+                   <PlaceholderSkeleton isLoading={true}/>
+                              )
+                            }
+                            </>
+                  // <Loadings />
+
+                  :
+                  <FlatList
+                    data={Data?.searchItems}
+                    renderItem={({ item, index }) => BusFlatlist(item, index)}
+                    keyExtractor={item => item.id}
+                    showsHorizontalScrollIndicator={false}
+                    style={BusListScreenStyles.ContentContainerStyle}
+                  />
+                }
               </View>
             </View>
           </View>
@@ -202,8 +203,8 @@ const BusListScreen = (props) => {
               setUserData(myNextList)
               setLoading(true)
               setData([])
-              BusSearch(userData[0].StartPlaceCode,userData[0].EndPlaceCode,moment(new Date(tomorrow)).format('jYYYY/jMM/jDD'),userData[0].Token,
-              setLoading,setData,setUserData,userData,props)
+              BusSearch(userData[0].StartPlaceCode, userData[0].EndPlaceCode, moment(new Date(tomorrow)).format('jYYYY/jMM/jDD'), userData[0].Token,
+                setLoading, setData, setUserData, userData, props)
 
             }}
           >
@@ -235,7 +236,7 @@ const BusListScreen = (props) => {
             setUserData(myNextList)
             setLoading(true)
             setData([])
-            BusSearch(userData[0].StartPlaceCode,userData[0].EndPlaceCode,moment(new Date(tomorrow)).format('jYYYY/jMM/jDD'),userData[0].Token,setLoading,setData,setUserData,userData,props)
+            BusSearch(userData[0].StartPlaceCode, userData[0].EndPlaceCode, moment(new Date(tomorrow)).format('jYYYY/jMM/jDD'), userData[0].Token, setLoading, setData, setUserData, userData, props)
 
           }}
         >

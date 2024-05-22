@@ -15,7 +15,7 @@ import BusSeats from "./BusSeats";
 import { BusDetails } from "../../Api/ApiMaster";
 import UserContext from './../../../UserContext';
 import { width } from "react-native-bottom-tab/src/AnimatedTabBar/utils";
-
+import PlaceIcon from "react-native-vector-icons/MaterialIcons";
 
 const BusSeatScreen = (props) => {
     let CurrentRow = 0;
@@ -46,7 +46,7 @@ const BusSeatScreen = (props) => {
             <View style={BusSeatScreenStyles.FlightsCityBox}>
                 <View style={BusSeatScreenStyles.BackArrowBoxWidthSet}>
                     <TouchableOpacity onPress={() => navigation.navigate(RouteName.BUS_LIST_SCREEN)}>
-                    <IconA name="arrowright" size={SF(20)} color={Colors.black_text_color} />
+                        <IconA name="arrowright" size={SF(20)} color={Colors.black_text_color} />
                     </TouchableOpacity>
                 </View>
                 {/* <View style={BusSeatScreenStyles.CityMainBoxWrap}>
@@ -72,10 +72,10 @@ const BusSeatScreen = (props) => {
 
     const renderPerson = (item, index) => {
         return (
-            <View style={{ width: '100%', height: 'auto', padding: 10, backgroundColor: 'white',borderRadius:10, borderWidth: 0.5, marginBottom: '3%' }}>
-                    <View>
-                        <Text style={{color:'black',fontSize:SH(12)}}>مسافر صندلی {item.chairNumber}: </Text>
-                    </View>
+            <View style={{ width: '100%', height: 'auto', padding: 10, backgroundColor: 'white', borderRadius: 10, borderWidth: 0.5, marginBottom: '3%' }}>
+                <View>
+                    <Text style={{ color: 'black', fontSize: SH(12) }}>مسافر صندلی {item.chairNumber}: </Text>
+                </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 5, alignItems: 'center' }}>
                     <TextInput
                         style={{ width: '40%', height: 50, color: 'black', borderWidth: 1, borderRadius: 10, marginRight: '2%' }}
@@ -154,9 +154,49 @@ const BusSeatScreen = (props) => {
                 style={BusSeatScreenStyles.ContentContainerStyle}
             >
 
-                <View style={{ width: '100%', height: (100) }}>
+            <View style={{ width: '100%', borderWidth: 1, height: 200, borderRadius: 10, borderColor: 'gray',
+             marginBottom: 10,flexDirection:'row',justifyContent:'space-between' }}>
 
+
+                <View style={{width:'63%',}}>
+                    <View style={{width:'100%',height:'60%'}}>
+
+                    </View>
+                    <View style={{width:'90%',marginLeft:'10%',height:'40%',alignItems:'flex-start'}}>
+                    <Text style={{textAlign:'center',color:'black',fontWeight:'bold',fontSize:SH(13)}}>{route.params?.data.baseCompany}</Text>
+                    <Text style={{textAlign:'center',color:'gray'}}>{route.params?.data.carType}</Text>
+                    </View>
+              
                 </View>
+
+                <View style={{height:'100%',borderWidth:1,backgroundColor:'black',borderColor:'gray'}}>
+                    
+                </View>
+
+                <View style={{width:'35%',alignItems:'flex-start'}}>
+                    <View style={{flexDirection:'row',alignItems:'center',height:'25%'}}>  
+                        <PlaceIcon name={'directions-bus'} color={'gray'} size={SH(22)}/> 
+                        <Text style={{textAlign:'center',color:'black',fontWeight:'bold'}}>{route.params?.data.origin?.terminal}</Text>
+                     </View>
+
+
+                        <View style={{height:'25%'}}>
+                        <Text style={{textAlign:'center',color:'gray'}}>ساعت حرکت</Text>
+                        <Text style={{textAlign:'center',color:'black',fontWeight:'bold'}}>{route.params?.data.timeMove}</Text>
+                        </View>
+
+                        <View style={{height:'25%'}}>
+                        <Text style={{textAlign:'center',color:'gray'}}>تاریخ حرکت</Text>
+                        <Text style={{textAlign:'center',color:'black',fontWeight:'bold'}}>{route.params?.data.dateMove}</Text>
+                        </View>
+
+                        <View style={{flexDirection:'row',alignItems:'center',height:'25%'}}>  
+                        <PlaceIcon name={'place'} color={'gray'} size={SH(22)}/> 
+                        <Text style={{textAlign:'center',color:'black',fontWeight:'bold'}}>{route.params?.data.destination?.terminal}</Text>
+                     </View>
+                </View>
+
+         </View>
 
 
 
@@ -184,7 +224,7 @@ const BusSeatScreen = (props) => {
                         <View >
                             {
 
-                                <BusSeats data={Data} setData={setData}  BusPerson={BusPerson} setBusPerson={setBusPerson} />
+                                <BusSeats data={Data} setData={setData} BusPerson={BusPerson} setBusPerson={setBusPerson} />
                             }
 
                         </View>
@@ -216,15 +256,16 @@ const BusSeatScreen = (props) => {
 
                 <View style={BusSeatScreenStyles.BusFinalBoookedBox}>
                     <View style={BusSeatScreenStyles.Widthone}>
-                        <Text style={BusSeatScreenStyles.Selectedtext}>{t("Selected_Seat")}</Text>
-                        <Text style={BusSeatScreenStyles.SelectedSeattext}>17U</Text>
+                        <Text style={[BusSeatScreenStyles.Selectedtext,{color:'black'}]}>جمع کل قیمت</Text>
+                        <Text style={[BusSeatScreenStyles.SelectedSeattext,{color:''}]}>{route.params?.data.price * BusPerson.length} تومان</Text>
                     </View>
-                    <View style={BusSeatScreenStyles.Widthtwo}>
+                    {/* <View style={BusSeatScreenStyles.Widthtwo}>
                         <Text style={BusSeatScreenStyles.Selectedtext}>{t("Book_for")}</Text>
                         <Text style={BusSeatScreenStyles.SelectedSeattext}><IconFA name="rupee" color={Colors.black_text_color} size={SF(14)} /> 1</Text>
-                    </View>
+                    </View> */}
                     <View style={BusSeatScreenStyles.Widththree}>
-                        <Button title={t('Proceed')} ButtonStyle={[BusSeatScreenStyles.ButtonStyle, { backgroundColor: 'red' }]} onPress={() => navigation.navigate(RouteName.PAYMENT_SCREEN)} />
+                        <Button title={t('Proceed')} ButtonStyle={[BusSeatScreenStyles.ButtonStyle, { backgroundColor: 'red' }]} 
+                        onPress={() => navigation.navigate(RouteName.PAYMENT_SCREEN)} />
                     </View>
                 </View>
             </View>

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Text, View,StyleSheet} from "react-native";
 import { Lottie} from '../src/components';
 import images from './index';
-const   Loadings = (props) => {
+const   Loadings = () => {
         return (
             <View style={styles.container}>
                    <Lottie source={images.kalanAnimation} />

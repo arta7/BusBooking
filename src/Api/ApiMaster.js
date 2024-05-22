@@ -232,6 +232,46 @@ export function BusDetails(_requestNumber,_sourceCode,_busCode,HeaderValue,setLo
 }
 
 
+export function busReserves(_requestNumber,_sourceCode,_busCode,HeaderValue,_passengers,_price,_telephone,_contact
+  ,_clientUserTelephone,_clientUserEmail,setLoading,SetData,self)
+{
+    var params ={
+    "requestNumber": _requestNumber,
+  "busCode": _busCode,
+  "sourceCode": _sourceCode,
+  "passengers": _passengers,
+  "price": _price,
+  "telephone": _telephone,
+  "contact": _contact,
+  "clientUserTelephone": _clientUserTelephone,
+  "clientUserEmail": _clientUserEmail
+    }
+    setLoading(true)
+    
+  axios({
+    url: Address.URL + Address.Bus.busReserves,
+    method: 'POST',
+     data: params,
+    headers: {
+      'accept': 'text/plain',
+      // 'Content-Type' : 'multipart/form-data',
+      'Authorization': HeaderValue
+    }
+  })
+  .then( (response)=> {
+         
+          console.log('response bus details Data',response.data.data) 
+          SetData(response.data.data)
+          setLoading(false)
+        
+  })
+  .catch( (error)=> {
+    console.log('errors bus details : ',error)  
+    setLoading(false)
+  })
+}
+
+
 
 
 export function SpecialPrograms(_currentdate,_setData,_updateIndicator)

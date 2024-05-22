@@ -618,7 +618,7 @@ export const BusSeatShowData = [
   {
     id: 1,
     Seaticon: 'seat',
-    SeaticonColor: '#adadad',
+    SeaticonColor: '#c4c4c4',
     text: "رزرو نشده"
   },
 
