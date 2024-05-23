@@ -232,8 +232,8 @@ export function BusDetails(_requestNumber,_sourceCode,_busCode,HeaderValue,setLo
 }
 
 
-export function busReserves(_requestNumber,_sourceCode,_busCode,HeaderValue,_passengers,_price,_telephone,_contact
-  ,_clientUserTelephone,_clientUserEmail,setLoading,SetData,self)
+export function busPreReserves(_requestNumber,_sourceCode,_busCode,HeaderValue,_passengers,_price,_telephone,_contact
+  ,_clientUserTelephone,_clientUserEmail,setLoading,self)
 {
     var params ={
     "requestNumber": _requestNumber,
@@ -246,6 +246,7 @@ export function busReserves(_requestNumber,_sourceCode,_busCode,HeaderValue,_pas
   "clientUserTelephone": _clientUserTelephone,
   "clientUserEmail": _clientUserEmail
     }
+    console.log('params =>',params)
     setLoading(true)
     
   axios({
@@ -261,7 +262,8 @@ export function busReserves(_requestNumber,_sourceCode,_busCode,HeaderValue,_pas
   .then( (response)=> {
          
           console.log('response bus details Data',response.data.data) 
-          SetData(response.data.data)
+          Toast.showWithGravity(response.data.data.reserveRequestId, Toast.LONG, Toast.CENTER);
+         // SetData(response.data.data)
           setLoading(false)
         
   })

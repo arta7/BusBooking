@@ -8,15 +8,8 @@ const LikeUnlke = (props) => {
     return (
         <TouchableOpacity onPress={() => {
             console.log('click', liked)
-            // if (data?.includes(text)) {
-            //     let unlike = liked.filter((elem) => elem !== chairNumber);
-            //     setLiked(unlike);
-            // } else {
-            //     setLiked([...liked, chairNumber]);
-            //     console.log('click',LikeColour)
-            // }
             {
-                // if(data?.seates?.filter(a=>a.chairNumber == text && a.status == 0))
+          
                 {
                     const myNextList = Object.assign({}, data);
                     const DatesStep = myNextList;
@@ -26,14 +19,14 @@ const LikeUnlke = (props) => {
                     if (seatToUpdate.status == 0) {
                         seatToUpdate.status = 3;
 
-                        let PersonData = { name: '', family: '', date: '', code: '', status: '', chairNumber: seatToUpdate.chairNumber }
+                        let PersonData = { name: '', family: '', date: '',mobile:'', code: '',gender:'1', status: '', chairNumber: seatToUpdate.chairNumber }
 
                         setBusPerson([...BusPerson, PersonData]);
                     }
                     else {
                         seatToUpdate.status = 0;
                         let PersonData = BusPerson.filter((elem) => elem.chairNumber !== text);
-                        console.log('PersonData',PersonData,BusPerson)
+                        // console.log('PersonData',PersonData,BusPerson)
                         setBusPerson(PersonData);
                     }
                     // DatesStep?.seates?.filter(a => a.chairNumber == text && a.status == 0)[0].status = 3;

@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { Text, View, ScrollView, TouchableOpacity, FlatList, TextInput, StyleSheet } from "react-native";
+import { Text, View, ScrollView, TouchableOpacity, FlatList, StyleSheet } from "react-native";
 import { BusSeatScreenStyle } from '../../styles';
+import { Picker } from '@react-native-picker/picker';
 import IconMI from "react-native-vector-icons/MaterialCommunityIcons";
 import IconA from "react-native-vector-icons/AntDesign";
 import IconFA from "react-native-vector-icons/FontAwesome";
@@ -12,11 +13,14 @@ import { BusSeatData, MobileSelectData, BusSeatUpperData, BusSeatShowData, busSe
 import { useTranslation } from 'react-i18next';
 import { useTheme, useRoute } from '@react-navigation/native';
 import BusSeats from "./BusSeats";
-import { BusDetails } from "../../Api/ApiMaster";
+import { BusDetails, busPreReserves } from "../../Api/ApiMaster";
 import UserContext from './../../../UserContext';
-import { width } from "react-native-bottom-tab/src/AnimatedTabBar/utils";
+import { height, width } from "react-native-bottom-tab/src/AnimatedTabBar/utils";
 import PlaceIcon from "react-native-vector-icons/MaterialIcons";
-
+import PersianDatePicker from 'react-native-persian-date-picker2';
+import { TextInput } from 'react-native-paper';
+import Toast from 'react-native-simple-toast';
+import Loadings from '../../Loadings'
 const BusSeatScreen = (props) => {
     let CurrentRow = 0;
     const { navigation } = props;
@@ -32,13 +36,16 @@ const BusSeatScreen = (props) => {
     const [Loading, setLoading] = useState(true);
     const [Data, setData] = useState([])
     const [BusPerson, setBusPerson] = useState([])
+    const [datePickerVisibility, setDatePickerVisibility] = React.useState({ status: false, id: 0 });
 
     useEffect(() => {
         console.log('navigation', route)
         BusDetails(userData[0].RequestNumber, route.params?.data.sourceCode, route.params?.data.busCode, userData[0].Token, setLoading, setData, props)
     }, [])
 
-
+    function numberShow(n){
+        return n > 9 ? "" + n: "0" + n;
+    }
 
 
     const MobileSelect = (item, index) => {
@@ -69,66 +76,141 @@ const BusSeatScreen = (props) => {
             </View>
         )
     }
+    const onBirthDatePickerConfirm = (objVal,id) => {
+        let dataString = objVal.value[0] + '-' + numberShow(objVal.value[1]) + '-' + numberShow(objVal.value[2]);
+
+        const myNextList = [...BusPerson];
+        const DatesStep = myNextList;
+        console.log('DatesStep', DatesStep)
+        const seatToUpdate = DatesStep.filter(a => a.chairNumber == id)
+        seatToUpdate[0].date = dataString;
+        setBusPerson(myNextList)
+
+        setDatePickerVisibility({ status: false, id: id });
+        return true;
+    }
 
     const renderPerson = (item, index) => {
         return (
             <View style={{ width: '100%', height: 'auto', padding: 10, backgroundColor: 'white', borderRadius: 10, borderWidth: 0.5, marginBottom: '3%' }}>
                 <View>
-                    <Text style={{ color: 'black', fontSize: SH(12) }}>مسافر صندلی {item.chairNumber}: </Text>
+                    <Text style={{ color: 'black', fontSize: SH(12) }}>مسافر صندلی  {item.chairNumber} :  </Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 5, alignItems: 'center' }}>
                     <TextInput
-                        style={{ width: '40%', height: 50, color: 'black', borderWidth: 1, borderRadius: 10, marginRight: '2%' }}
-                        onChangeText={(text) => { }}
-                        value={''}
-                        placeholder={'نام '}
+                        style={{ width: '40%', height: 50, color: 'black', borderRadius: 10, marginRight: '2%',textAlign:'right' }}
+                        onChangeText={(text) => {
+
+                            const myNextList = [...BusPerson];
+                            const DatesStep = myNextList;
+                            console.log('DatesStep', DatesStep)
+                            const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
+                            seatToUpdate[0].name = text;
+                            setBusPerson(myNextList)
+                            console.log('BusPerson', BusPerson)
+                        }}
+                        value={item.name}
+                        mode='outlined'
+                        label={'نام '}
                         placeholderTextColor={'black'}
                     />
 
                     <TextInput
-                        style={{ width: '55%', height: 50, color: 'black', borderWidth: 1, borderRadius: 10 }}
-                        onChangeText={(text) => { }}
-                        value={''}
-                        placeholder={'نام خانوادگی '}
+                        style={{ width: '55%', height: 50, color: 'black', borderRadius: 10,textAlign:'right' }}
+                        onChangeText={(text) => {
+                            const myNextList = [...BusPerson];
+                            const DatesStep = myNextList;
+                            console.log('DatesStep', DatesStep)
+                            const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
+                            seatToUpdate[0].family = text;
+                            setBusPerson(myNextList)
+                            console.log('BusPerson', BusPerson)
+
+                        }}
+                        value={item.family}
+                        mode='outlined'
+                        label={'نام خانوادگی '}
                         placeholderTextColor={'black'}
                     />
                 </View>
                 <View style={{ padding: 5, justifyContent: 'center', alignItems: 'center' }}>
                     <TextInput
-                        style={{ width: '97%', height: 50, color: 'black', borderWidth: 1, borderRadius: 10 }}
-                        onChangeText={(text) => { }}
-                        value={''}
-                        placeholder={'شماره موبایل'}
+                        style={{ width: '97%', height: 50, color: 'black', borderRadius: 10,textAlign:'right' }}
+                        onChangeText={(text) => {
+                            const myNextList = [...BusPerson];
+                            const DatesStep = myNextList;
+                            console.log('DatesStep', DatesStep)
+                            const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
+                            seatToUpdate[0].mobile = text;
+                            setBusPerson(myNextList)
+                            console.log('BusPerson', BusPerson)
+
+                        }}
+                        mode='outlined'
+                        value={item.mobile}
+                        label={'شماره موبایل'}
                         placeholderTextColor={'black'}
                     />
                 </View>
 
-                <View style={{ padding: 5, justifyContent: 'center', alignItems: 'center' }}>
+                <TouchableOpacity style={{ padding: 5, justifyContent: 'center', alignItems: 'center' }}
+                    onPress={() => { setDatePickerVisibility({ status: true, id: item.chairNumber }) }}>
                     <TextInput
-                        style={{ width: '97%', height: 50, color: 'black', borderWidth: 1, borderRadius: 10 }}
+                        style={{ width: '97%', height: 50, color: 'black', borderRadius: 10,textAlign:'center' }}
                         onChangeText={(text) => { }}
-                        value={''}
-                        placeholder={'تاریخ تولد'}
+                        value={item.date}
+                        editable={false}
+                        label={'تاریخ تولد'}
+                        mode='outlined'
                         placeholderTextColor={'black'}
                     />
-                </View>
+                </TouchableOpacity>
+
+
 
                 <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 5, alignItems: 'center' }}>
                     <TextInput
-                        style={{ width: '65%', height: 50, color: 'black', borderWidth: 1, borderRadius: 10, marginRight: '2%' }}
-                        onChangeText={(text) => { }}
-                        value={''}
-                        placeholder={'کد ملی'}
+                        style={{ width: '65%', height: 50, color: 'black', borderRadius: 10, marginRight: '2%',textAlign:'right' }}
+                        onChangeText={(text) => {
+                            const myNextList = [...BusPerson];
+                            const DatesStep = myNextList;
+                            console.log('DatesStep', DatesStep)
+                            const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
+                            seatToUpdate[0].code = text;
+                            setBusPerson(myNextList)
+                            console.log('BusPerson', BusPerson)
+                        }}
+                        value={item.code}
+                        mode='outlined'
+                        label={'کد ملی'}
                         placeholderTextColor={'black'}
+                        keyboardType="numeric"
                     />
 
-                    <TextInput
+                    {/* <TextInput
                         style={{ width: '30%', height: 50, color: 'black', borderWidth: 1, borderRadius: 10 }}
                         onChangeText={(text) => { }}
-                        value={''}
+                        value={item.gender}
                         placeholder={'جنسیت'}
                         placeholderTextColor={'black'}
-                    />
+                    /> */}
+                    <View style={{ width: '30%', height: 50, borderWidth: 1, borderColor: 'gray', borderRadius: 10 }}>
+                        <Picker
+                            selectedValue={item.gender}
+                            mode="dropdown"
+                            style={{ width: '100%', height: '100%' }}
+                            onValueChange={(itemValue, itemIndex) => {
+                                const myNextList = [...BusPerson];
+                                const DatesStep = myNextList;
+                                const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
+                                seatToUpdate[0].gender = itemValue;
+                                setBusPerson(myNextList)
+                            }
+                            }>
+                            <Picker.Item label="آقا" value="1" />
+                            <Picker.Item label="خانم" value="2" />
+                        </Picker>
+                    </View>
                 </View>
 
 
@@ -139,6 +221,11 @@ const BusSeatScreen = (props) => {
 
     return (
         <View style={BusSeatScreenStyles.MinFlexView}>
+            {
+                Loading ? 
+                <Loadings />
+            :
+                <>
             <View >
                 <View>
                     <FlatList
@@ -154,53 +241,55 @@ const BusSeatScreen = (props) => {
                 style={BusSeatScreenStyles.ContentContainerStyle}
             >
 
-            <View style={{ width: '100%', borderWidth: 1, height: 200, borderRadius: 10, borderColor: 'gray',
-             marginBottom: 10,flexDirection:'row',justifyContent:'space-between' }}>
+                <View style={{
+                    width: '100%', borderWidth: 1, height: 200, borderRadius: 10, borderColor: 'gray',
+                    marginBottom: 10, flexDirection: 'row', justifyContent: 'space-between'
+                }}>
 
 
-                <View style={{width:'63%',}}>
-                    <View style={{width:'100%',height:'60%'}}>
+                    <View style={{ width: '63%', }}>
+                        <View style={{ width: '100%', height: '60%' }}>
 
-                    </View>
-                    <View style={{width:'90%',marginLeft:'10%',height:'40%',alignItems:'flex-start'}}>
-                    <Text style={{textAlign:'center',color:'black',fontWeight:'bold',fontSize:SH(13)}}>{route.params?.data.baseCompany}</Text>
-                    <Text style={{textAlign:'center',color:'gray'}}>{route.params?.data.carType}</Text>
-                    </View>
-              
-                </View>
-
-                <View style={{height:'100%',borderWidth:1,backgroundColor:'black',borderColor:'gray'}}>
-                    
-                </View>
-
-                <View style={{width:'35%',alignItems:'flex-start'}}>
-                    <View style={{flexDirection:'row',alignItems:'center',height:'25%'}}>  
-                        <PlaceIcon name={'directions-bus'} color={'gray'} size={SH(22)}/> 
-                        <Text style={{textAlign:'center',color:'black',fontWeight:'bold'}}>{route.params?.data.origin?.terminal}</Text>
-                     </View>
-
-
-                        <View style={{height:'25%'}}>
-                        <Text style={{textAlign:'center',color:'gray'}}>ساعت حرکت</Text>
-                        <Text style={{textAlign:'center',color:'black',fontWeight:'bold'}}>{route.params?.data.timeMove}</Text>
+                        </View>
+                        <View style={{ width: '90%', marginLeft: '10%', height: '40%', alignItems: 'flex-start' }}>
+                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontSize: SH(13) }}>{route.params?.data.baseCompany}</Text>
+                            <Text style={{ textAlign: 'center', color: 'gray' }}>{route.params?.data.carType}</Text>
                         </View>
 
-                        <View style={{height:'25%'}}>
-                        <Text style={{textAlign:'center',color:'gray'}}>تاریخ حرکت</Text>
-                        <Text style={{textAlign:'center',color:'black',fontWeight:'bold'}}>{route.params?.data.dateMove}</Text>
+                    </View>
+
+                    <View style={{ height: '100%', borderWidth: 1, backgroundColor: 'black', borderColor: 'gray' }}>
+
+                    </View>
+
+                    <View style={{ width: '35%', alignItems: 'flex-start' }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', height: '25%' }}>
+                            <PlaceIcon name={'directions-bus'} color={'gray'} size={SH(22)} />
+                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold' }}>{route.params?.data.origin?.terminal}</Text>
                         </View>
 
-                        <View style={{flexDirection:'row',alignItems:'center',height:'25%'}}>  
-                        <PlaceIcon name={'place'} color={'gray'} size={SH(22)}/> 
-                        <Text style={{textAlign:'center',color:'black',fontWeight:'bold'}}>{route.params?.data.destination?.terminal}</Text>
-                     </View>
+
+                        <View style={{ height: '25%' }}>
+                            <Text style={{ textAlign: 'center', color: 'gray' }}>ساعت حرکت</Text>
+                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold' }}>{route.params?.data.timeMove}</Text>
+                        </View>
+
+                        <View style={{ height: '25%' }}>
+                            <Text style={{ textAlign: 'center', color: 'gray' }}>تاریخ حرکت</Text>
+                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold' }}>{route.params?.data.dateMove}</Text>
+                        </View>
+
+                        <View style={{ flexDirection: 'row', alignItems: 'center', height: '25%' }}>
+                            <PlaceIcon name={'place'} color={'gray'} size={SH(22)} />
+                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold' }}>{route.params?.data.destination?.terminal}</Text>
+                        </View>
+                    </View>
+
                 </View>
 
-         </View>
 
 
-
-                <View style={[{ marginBottom: '2%', borderWidth: 1, paddingBottom: '5%', paddingTop: '5%', borderRadius: 10, borderColor: 'gray' }]}>
+                <View style={[{ marginBottom: '3%', borderWidth: 1, paddingBottom: '5%', paddingTop: '5%', borderRadius: 10, borderColor: 'gray' }]}>
                     <View style={[BusSeatScreenStyles.BusSratflatlistbox, {
                         elevation: 1, borderRadius: 10, width: '90%', marginHorizontal: '5%'
                     }]}>
@@ -226,6 +315,7 @@ const BusSeatScreen = (props) => {
 
                                 <BusSeats data={Data} setData={setData} BusPerson={BusPerson} setBusPerson={setBusPerson} />
                             }
+
 
                         </View>
                     </View>
@@ -256,19 +346,65 @@ const BusSeatScreen = (props) => {
 
                 <View style={BusSeatScreenStyles.BusFinalBoookedBox}>
                     <View style={BusSeatScreenStyles.Widthone}>
-                        <Text style={[BusSeatScreenStyles.Selectedtext,{color:'black'}]}>جمع کل قیمت</Text>
-                        <Text style={[BusSeatScreenStyles.SelectedSeattext,{color:''}]}>{route.params?.data.price * BusPerson.length} تومان</Text>
+                        <Text style={[BusSeatScreenStyles.Selectedtext, { color: 'black' }]}>جمع کل قیمت</Text>
+                        <Text style={[BusSeatScreenStyles.SelectedSeattext, { color: '' }]}>{route.params?.data.price * BusPerson.length} تومان</Text>
                     </View>
                     {/* <View style={BusSeatScreenStyles.Widthtwo}>
                         <Text style={BusSeatScreenStyles.Selectedtext}>{t("Book_for")}</Text>
                         <Text style={BusSeatScreenStyles.SelectedSeattext}><IconFA name="rupee" color={Colors.black_text_color} size={SF(14)} /> 1</Text>
                     </View> */}
                     <View style={BusSeatScreenStyles.Widththree}>
-                        <Button title={t('Proceed')} ButtonStyle={[BusSeatScreenStyles.ButtonStyle, { backgroundColor: 'red' }]} 
-                        onPress={() => navigation.navigate(RouteName.PAYMENT_SCREEN)} />
+                        <Button title={t('Proceed')} ButtonStyle={[BusSeatScreenStyles.ButtonStyle, {  }]}
+                            onPress={() => {
+                                if(BusPerson.length == 0)
+                                    {
+                                        Toast.showWithGravity('لطفا حداقل یک صندلی را انتخاب کنید', Toast.LONG, Toast.CENTER);
+                                    }
+                                    else
+                                    {
+                                        var passengers=[]
+                                        for(let i=0;i<BusPerson.length;i++)
+                                            {
+                                                passengers.push({"firstName": BusPerson[i].name,
+                                                "lastName": BusPerson[i].family,
+                                                "nationalIdentification": BusPerson[i].code,
+                                                "seatNumber": BusPerson[i].chairNumber,
+                                                "birthDate": BusPerson[i].date,
+                                                "gender": BusPerson[i].gender })
+                                                
+                                            }
+                                            console.log('passengers',passengers)
+                                           var  telephone = {"phoneNumber": BusPerson[0].mobile };
+                                           var  contact= {"name": "","email": "" };
+                                           var clientUserTelephone =  {"phoneNumber": BusPerson[0].mobile }
+                                           var clientUserEmail ="";
+
+                                            busPreReserves(userData[0].RequestNumber,route.params?.data.sourceCode,route.params?.data.busCode,userData[0].Token,
+                                            passengers,route.params?.data.price * BusPerson.length,telephone,
+                                            contact,clientUserTelephone,clientUserEmail,setLoading,props)
+
+
+                                    }
+
+
+                            }} />
                     </View>
                 </View>
             </View>
+            <PersianDatePicker
+                visible={datePickerVisibility.status}
+                onConfirm={(obc)=>onBirthDatePickerConfirm(obc,datePickerVisibility.id)}
+                startYear={1280}
+                endYear={1403}
+                containerStyle={{ marginHorizontal: 5 }}
+                pickercontainerStyle={{}}
+                pickerWrapperStyle={{ borderWidth: 1, borderRadius: 10, borderColor: 'gray', marginHorizontal: 3 }}
+                pickerItemStyle={{}}
+                submitTextStyle={{}}
+                defaultValue={[1370, 7, 5]}
+            />
+            </>
+                        }
         </View >
     );
 };
