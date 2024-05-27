@@ -5,7 +5,7 @@ import images from './index';
 const   Loadings = () => {
         return (
             <View style={styles.container}>
-                   <Lottie source={images.kalanAnimation} />
+                   <Lottie source={images.Three_Swiper} />
                 
             </View>
         )

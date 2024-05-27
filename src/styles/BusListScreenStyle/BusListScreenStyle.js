@@ -28,18 +28,21 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
     CityText: {
         color: Colors.black_text_color,
         fontSize: SF(14),
+        fontFamily:Fonts.Poppins_Medium
     },
     RchSubheadTextStyle: {
         color: Colors.Blue,
         fontSize: SF(10),
         lineHeight: 16,
-        paddingTop: SH(5)
+        paddingTop: SH(5),
+        fontFamily:Fonts.Poppins_Medium
     },
     HeadText: {
         color: Colors.BorderBox,
         fontSize: SF(16),
         paddingVertical: SH(20),
-        paddingHorizontal: SH(15)
+        paddingHorizontal: SH(15),
+        fontFamily:Fonts.Poppins_Medium
     },
     BusBoxWraper: {
         backgroundColor: Colors.white_text_color,
@@ -59,10 +62,12 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
     TravelCompanyText: {
         color: Colors.black_text_color,
         fontSize: SF(16),
+        fontFamily:Fonts.Poppins_Medium
     },
     AcNonAcText: {
         color: Colors.black_text_color,
         fontSize: SF(11),
+        fontFamily:Fonts.Poppins_Medium
         // paddingTop: SH(7)
     },
     TextrightSet: {
@@ -72,6 +77,7 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
     MainPriceText: {
         color: Colors.Blue,
         fontSize: SF(15),
+        fontFamily:Fonts.Poppins_Medium
     },
     DiscountAmountText: {
         color: Colors.LightBlackText,
@@ -97,7 +103,8 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
     BusComonStyle: {
         color: Colors.LightBlackText,
         fontSize: SF(12),
-        paddingTop: SH(8)
+        paddingTop: SH(8),
+        fontFamily:Fonts.Poppins_Medium
     },
     LinkBox: {
         flexDirection: 'row',

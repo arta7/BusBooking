@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
-
+import { SH, SF, SW, Colors,Fonts } from "../../utils";
 const LikeUnlke = (props) => {
     const { text, LikeColour, UnlikeColour, DefaultStyle, ViewStyle, index, chairNumber, data, setData, BusPerson, setBusPerson } = props;
     const [liked, setLiked] = useState([]);
@@ -26,18 +26,15 @@ const LikeUnlke = (props) => {
                     else {
                         seatToUpdate.status = 0;
                         let PersonData = BusPerson.filter((elem) => elem.chairNumber !== text);
-                        // console.log('PersonData',PersonData,BusPerson)
                         setBusPerson(PersonData);
                     }
-                    // DatesStep?.seates?.filter(a => a.chairNumber == text && a.status == 0)[0].status = 3;
-                    // console.log('myNextList', DatesStep.seates)
                     setData(myNextList)
 
 
                 }
             }
         }} style={[{ backgroundColor: liked.includes(chairNumber) ? LikeColour : UnlikeColour }, DefaultStyle]} disabled={index == 1 || index == 2 ? true : false}>
-            <Text>{text}</Text>
+            <Text style={{fontSize:12, fontFamily:Fonts.Poppins_Medium}}>{text}</Text>
             <View style={ViewStyle}>
             </View>
         </TouchableOpacity>

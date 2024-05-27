@@ -15,8 +15,8 @@ import DateIcon from "react-native-vector-icons/MaterialIcons";
 import UserContext from './../../../../UserContext';
 import { useEffect } from 'react';
 import { GetCities } from '../../../Api/ApiMaster';
-
-
+import Loadings from '../../../Loadings'
+import Toast from 'react-native-simple-toast';
 const HomeTab = (props) => {
     const { navigation } = props;
     const { userData, setUserData } = React.useContext(UserContext);
@@ -24,7 +24,7 @@ const HomeTab = (props) => {
     const { Colors } = useTheme();
     const HomeTabStyless = useMemo(() => HomeTabStyles(Colors), [Colors]);
     const [isFocus, setIsFocus] = useState(false);
-    
+    const [Loading, setLoading] = useState(false);
     const stateValue = {
         From: "",
         To: "",
@@ -38,11 +38,16 @@ const HomeTab = (props) => {
         navigation.navigate(RouteName.BUS_LIST_SCREEN)
     }
 
-        useEffect(()=>{
+    useEffect(() => {
+        const myNextList = [...userData];
+        const DatesStep = myNextList;
+        DatesStep[0].CurrentDate = new Date().toLocaleDateString();
+        setUserData(myNextList)
 
-            GetCities(setCityList,CityList,props)
+        setLoading(true)
+        GetCities(setCityList, CityList, props,setLoading)
 
-        },[])
+    }, [])
 
 
     const Offerfunction = (item) => {
@@ -61,7 +66,7 @@ const HomeTab = (props) => {
                 <TouchableOpacity style={HomeTabStyless.ExclusiveImgWrap} onPress={() => OnBusTicket()}>
                     <Image resizeMode="cover" style={HomeTabStyless.ExclusiveImg} source={item.image} />
                     <View style={HomeTabStyless.OffreView}>
-                        <Text style={[HomeTabStyless.KnowMoreText,{}]}>{t("Know_More")}</Text>
+                        <Text style={[HomeTabStyless.KnowMoreText, {}]}>{t("Know_More")}</Text>
                         <IconA name="arrowright" style={HomeTabStyless.KnowMoreIcon} />
                     </View>
                 </TouchableOpacity>
@@ -88,190 +93,172 @@ const HomeTab = (props) => {
 
     return (
         <ScrollView style={HomeTabStyless.ScrollviewHight}>
-            <View style={HomeTabStyless.MainVieBackground}>
-                <Spacing />
-                <View style={HomeTabStyless.SearchBusView}>
-                    <View>
-                        <View style={HomeTabStyless.WithFrom}>
-                            {/* <Spacing /> */}
-                            {/* <Text style={HomeTabStyless.FromText}>{t("Fromm")}</Text> */}
-                            <DropDown
-                                data={CityList}
-                                labelField="name_fa"
-                                valueField="name_fa"
-                                placeholder={t("مبدا")}
-                                search={true}
-                                searchPlaceholder={'مبدا'}
-                                value={userData[0]?.StartPlace.toString()}
-                                onChange={(From) => {
-                                    console.log('from',From.name_fa)
-                                    if (From.code.toString() === userData[0]?.EndPlaceCode.toString()) {
+            {
+                Loading ? <Loadings /> :
 
-                                        const myNextList = [...userData];
-                                        const DatesStep = myNextList;
-                                        DatesStep[0].EndPlace = '';
-                                        DatesStep[0].EndPlaceCode = '';
-                                        setUserData(myNextList)
-                                    }
-                                    
-                                    {
-                                    const myNextList = [...userData];
-                                    const DatesStep = myNextList;
-                                    console.log('From2', From.name_fa.toString())
-                                    DatesStep[0].StartPlace = From.name_fa.toString();
-                                    DatesStep[0].StartPlaceCode = From.code.toString();
-                                    setUserData(myNextList)
-                                    }
-                                    // setValue({ ...value, From: From.label });
-                                    // setIsFocus(true);
+                    <View style={HomeTabStyless.MainVieBackground}>
+                        <Spacing />
+                        <View style={HomeTabStyless.SearchBusView}>
+                            <View>
+                                <View style={HomeTabStyless.WithFrom}>
+                                    {/* <Spacing /> */}
+                                    {/* <Text style={HomeTabStyless.FromText}>{t("Fromm")}</Text> */}
+                                    <DropDown
+                                        data={CityList}
+                                        labelField="name_fa"
+                                        valueField="name_fa"
+                                        placeholder={t("مبدا")}
+                                        search={true}
+                                        searchPlaceholder={'مبدا'}
+                                        value={userData[0]?.StartPlace.toString()}
+                                        onChange={(From) => {
+                                            console.log('from', From.name_fa)
+                                            if (From.code.toString() === userData[0]?.EndPlaceCode.toString()) {
+
+                                                const myNextList = [...userData];
+                                                const DatesStep = myNextList;
+                                                DatesStep[0].EndPlace = '';
+                                                DatesStep[0].EndPlaceCode = '';
+                                                setUserData(myNextList)
+                                            }
+
+                                            {
+                                                const myNextList = [...userData];
+                                                const DatesStep = myNextList;
+                                                console.log('From2', From.name_fa.toString())
+                                                DatesStep[0].StartPlace = From.name_fa.toString();
+                                                DatesStep[0].StartPlaceCode = From.code.toString();
+                                                setUserData(myNextList)
+                                            }
+                                            // setValue({ ...value, From: From.label });
+                                            // setIsFocus(true);
 
 
-                                }}
-                                maxHeight={250}
-                                customeStyle={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }}
-                                ShowIcon={true}
-                                IconName='place'
-                            />
-                        </View>
+                                        }}
+                                        maxHeight={250}
+                                        customeStyle={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }}
+                                        ShowIcon={true}
+                                        IconName='place'
+                                    />
+                                </View>
 
-                        <View style={HomeTabStyless.WithFrom}>
-                            {/* <Spacing space={SH(10)} /> */}
-                            {/* <Text style={HomeTabStyless.ToText}>{t("To")}</Text> */}
-                            {/* <Spacing /> */}
-                            <DropDown
-                                data={CityList}
-                                labelField="name_fa"
-                                valueField="name_fa"
-                                placeholder={t("مقصد")}
-                                search={true}
-                                searchPlaceholder={'مقصد'}
-                                value={userData[0]?.EndPlace.toString()}
-                                onChange={(To) => {
-                                    console.log('To Address : => ', To)
-                                    if (To.code.toString() === userData[0]?.StartPlaceCode.toString()) {
+                                <View style={HomeTabStyless.WithFrom}>
+                                    {/* <Spacing space={SH(10)} /> */}
+                                    {/* <Text style={HomeTabStyless.ToText}>{t("To")}</Text> */}
+                                    {/* <Spacing /> */}
+                                    <DropDown
+                                        data={CityList}
+                                        labelField="name_fa"
+                                        valueField="name_fa"
+                                        placeholder={t("مقصد")}
+                                        search={true}
+                                        searchPlaceholder={'مقصد'}
+                                        value={userData[0]?.EndPlace.toString()}
+                                        onChange={(To) => {
+                                            console.log('To Address : => ', To)
+                                            if (To.code.toString() === userData[0]?.StartPlaceCode.toString()) {
 
-                                        const myNextList = [...userData];
-                                        const DatesStep = myNextList;
-                                        DatesStep[0].StartPlace = '';
-                                        DatesStep[0].StartPlaceCode = '';
-                                        setUserData(myNextList)
-                                    }
-                                    const myNextList = [...userData];
-                                    const DatesStep = myNextList;
-                                    DatesStep[0].EndPlace = To.name_fa.toString();
-                                    DatesStep[0].EndPlaceCode = To.code.toString();
-                                    setUserData(myNextList)
-                                    //setIsFocus(true);
-                                }}
-                                maxHeight={250}
-                                customeStyle={{ borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
-                                ShowIcon={true}
-                                IconName='place'
-                            />
-                        </View>
-                    </View>
-                    <Spacing />
-                    <View style={[{
-                        width: '100%', borderWidth: 0.4, borderColor: 'grey'
-                        , borderRadius: SH(8)
-                        , flexDirection: 'row', justifyContent: 'space-between', height: 70
-                    }]}>
-                        {/* <View style={HomeTabStyless.InputUnderLineWidth}> */}
-                        {/* <View style={HomeTabStyless.InputUnderLine}> */}
-                        <View style={{ width: '10%', justifyContent: 'center', alignItems: 'center' }}>
-
-                            <DateIcon name='date-range' color={'gray'} size={SH(25)} />
-
-                        </View>
-                        <TouchableOpacity style={{ width: '85%', justifyContent: 'center', alignItems: 'flex-start' }} onPress={() => { setDatePickerVisibility(true) }}>
-                            <DatePicker
-                                DatePlaceholder={t("Select_Date")}
-                                isDatePickerVisible={isDatePickerVisible}
-                                setDatePickerVisibility={setDatePickerVisibility}
-                                setDataValue={setUserData}
-                                DateValue={userData}
-                            // onPressButton={()=>{setDatePickerVisibility(true)}}
-                            />
-                        </TouchableOpacity>
-
-                    </View>
-                    <Spacing />
-
-                    {/* <View style={HomeTabStyless.SelectPersonBox}>
-                        <View style={HomeTabStyless.SelectPersonBoxChild}>
-                            <IconI name="man" size={SF(20)} color={Colors.black_text_color} />
-                            <Text style={HomeTabStyless.Adultstext}>{t("Adults")}</Text>
-                            <Text style={HomeTabStyless.AdultstextYears}>{t("12_Years")}</Text>
-                            <View style={HomeTabStyless.FlexRow}>
-                                <AddRemove
-                                    Textstyles={HomeTabStyless.TotalStyle}
-                                    DefaultStyle={[HomeTabStyless.IconCommon, { color: Colors.Gray_Colour }]}
-                                    CommonStyle={HomeTabStyless.FlexRow}
-                                />
+                                                const myNextList = [...userData];
+                                                const DatesStep = myNextList;
+                                                DatesStep[0].StartPlace = '';
+                                                DatesStep[0].StartPlaceCode = '';
+                                                setUserData(myNextList)
+                                            }
+                                            const myNextList = [...userData];
+                                            const DatesStep = myNextList;
+                                            DatesStep[0].EndPlace = To.name_fa.toString();
+                                            DatesStep[0].EndPlaceCode = To.code.toString();
+                                            setUserData(myNextList)
+                                            //setIsFocus(true);
+                                        }}
+                                        maxHeight={250}
+                                        customeStyle={{ borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
+                                        ShowIcon={true}
+                                        IconName='place'
+                                    />
+                                </View>
                             </View>
-                        </View>
+                            <Spacing />
+                            <View style={[{
+                                width: '100%', borderWidth: 0.4, borderColor: 'grey'
+                                , borderRadius: SH(8)
+                                , flexDirection: 'row', justifyContent: 'space-between', height: 70
+                            }]}>
+                                <View style={{ width: '10%', justifyContent: 'center', alignItems: 'center' }}>
 
-                        <View style={HomeTabStyless.SelectPersonBoxChild}>
-                            <IconFA name="child" size={SF(20)} color={Colors.black_text_color} />
-                            <Text style={HomeTabStyless.Adultstext}>{t("Children")}</Text>
-                            <Text style={HomeTabStyless.AdultstextYears}>{t("212years")}</Text>
-                            <View style={HomeTabStyless.FlexRow}>
-                                <AddRemove
-                                    Textstyles={HomeTabStyless.TotalStyle}
-                                    DefaultStyle={[HomeTabStyless.IconCommon, { color: Colors.Gray_Colour }]}
-                                    CommonStyle={HomeTabStyless.FlexRow}
-                                />
+                                    <DateIcon name='date-range' color={'gray'} size={SH(25)} />
+
+                                </View>
+                                <TouchableOpacity style={{ width: '85%', justifyContent: 'center', alignItems: 'flex-start' }} onPress={() => { setDatePickerVisibility(true) }}>
+                                    <DatePicker
+                                        DatePlaceholder={t("Select_Date")}
+                                        isDatePickerVisible={isDatePickerVisible}
+                                        setDatePickerVisibility={setDatePickerVisibility}
+                                        setDataValue={setUserData}
+                                        DateValue={userData}
+                                    // onPressButton={()=>{setDatePickerVisibility(true)}}
+                                    />
+                                </TouchableOpacity>
+
                             </View>
+                            <Spacing />
+                            <Spacing space={SH(20)} />
+                            <Button title={t("Search_Buses")} onPress={() => {
+                                if(userData[0].StartPlace != "" && userData[0].EndPlace !="")
+                                OnBusTicket()
+                            else 
+                            {
+                                Toast.showWithGravity('لطفا کلیه گزینه ها را انتخاب کنید', Toast.LONG, Toast.CENTER);
+                            }
+                            
+                            }} />
                         </View>
-                    </View> */}
-                    <Spacing space={SH(20)} />
-                    <Button title={t("Search_Buses")} onPress={() => OnBusTicket()} />
-                </View>
-                <Spacing space={SH(30)} />
-                <Text style={HomeTabStyless.OffersText}>{t("OFFERS")}</Text>
-                <Spacing space={SH(12)} />
-                <FlatList
-                    data={Offersdata}
-                    renderItem={({ item, index }) => Offerfunction(item, index)}
-                    keyExtractor={item => item.id}
-                    showsHorizontalScrollIndicator={false}
-                    horizontal
-                />
-                <Spacing space={SH(30)} />
-                <View style={HomeTabStyless.BorderView}>
-                </View>
-                <Spacing space={SH(20)} />
-                <View>
-                    <Text style={HomeTabStyless.OffersText}>{t("WHATS_NEW")}</Text>
-                    <Text>{t("Discover_new")}</Text>
-                </View>
-                <Spacing space={SH(12)} />
-                <FlatList
-                    data={ExclusiveData}
-                    renderItem={({ item, index }) => Exclusivefunction(item, index)}
-                    keyExtractor={item => item.id}
-                    showsHorizontalScrollIndicator={false}
-                    horizontal
-                />
-                <Spacing space={SH(30)} />
-                <View style={HomeTabStyless.BorderView}>
-                </View>
-                <Spacing space={SH(20)} />
-                <View>
-                    <Text style={HomeTabStyless.MainText}>{t("PREFER_TO_TRAVEL")}</Text>
-                    <Spacing space={SH(6)} />
-                    <Text style={HomeTabStyless.SmallText}>{t("Book_your_bus_on")}</Text>
-                </View>
-                <Spacing space={SH(8)} />
-                <FlatList
-                    data={Lastlistdata}
-                    renderItem={({ item, index }) => Lastlist(item, index)}
-                    keyExtractor={item => item.id}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    style={HomeTabStyless.SetFlex}
-                />
-            </View>
+                        <Spacing space={SH(30)} />
+                        <Text style={HomeTabStyless.OffersText}>{t("OFFERS")}</Text>
+                        <Spacing space={SH(12)} />
+                        <FlatList
+                            data={Offersdata}
+                            renderItem={({ item, index }) => Offerfunction(item, index)}
+                            keyExtractor={item => item.id}
+                            showsHorizontalScrollIndicator={false}
+                            horizontal
+                        />
+                        <Spacing space={SH(30)} />
+                        <View style={HomeTabStyless.BorderView}>
+                        </View>
+                        <Spacing space={SH(20)} />
+                        <View>
+                            <Text style={HomeTabStyless.OffersText}>{t("WHATS_NEW")}</Text>
+                            <Text>{t("Discover_new")}</Text>
+                        </View>
+                        <Spacing space={SH(12)} />
+                        <FlatList
+                            data={ExclusiveData}
+                            renderItem={({ item, index }) => Exclusivefunction(item, index)}
+                            keyExtractor={item => item.id}
+                            showsHorizontalScrollIndicator={false}
+                            horizontal
+                        />
+                        <Spacing space={SH(30)} />
+                        <View style={HomeTabStyless.BorderView}>
+                        </View>
+                        <Spacing space={SH(20)} />
+                        <View>
+                            <Text style={HomeTabStyless.MainText}>{t("PREFER_TO_TRAVEL")}</Text>
+                            <Spacing space={SH(6)} />
+                            <Text style={HomeTabStyless.SmallText}>{t("Book_your_bus_on")}</Text>
+                        </View>
+                        <Spacing space={SH(8)} />
+                        <FlatList
+                            data={Lastlistdata}
+                            renderItem={({ item, index }) => Lastlist(item, index)}
+                            keyExtractor={item => item.id}
+                            horizontal
+                            showsHorizontalScrollIndicator={false}
+                            style={HomeTabStyless.SetFlex}
+                        />
+                    </View>
+            }
         </ScrollView>
     );
 };

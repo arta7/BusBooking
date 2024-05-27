@@ -9,6 +9,8 @@ import { useTheme } from '@react-navigation/native';
 import images from '../../../index';
 import { useTranslation } from "react-i18next";
 import { LoginAPI } from '../../../Api/ApiMaster';
+import UserContext from './../../../../UserContext';
+import Loadings from '../../../Loadings'
 
 const LoginScreen = (props) => {
     const { navigation } = props;
@@ -20,18 +22,21 @@ const LoginScreen = (props) => {
     const [mobileNumber, setMobileNumber] = useState('');
     const [passwordVisibility, setpasswordVisibility] = useState(true);
     const [TextInputPassword, setTextInputPassword] = useState('');
+    const { userData, setUserData } = React.useContext(UserContext);
+    const [Loading, setLoading] = useState(false);
 
     const onChangeText = (text) => {
         if (text === 'TextInputPassword') setpasswordVisibility(!passwordVisibility);
     };
-    
+
     const OnRegisterPress = () => {
         navigation.navigate(RouteName.REGISTER_SCREEN);
     }
 
 
-    const LoginPersons=()=>{
-            LoginAPI(mobileNumber,navigation)
+    const LoginPersons = () => {
+        setLoading(true)
+        LoginAPI(mobileNumber, navigation, userData, setUserData, setLoading)
     }
 
     return (
@@ -81,17 +86,20 @@ const LoginScreen = (props) => {
                                 <Text style={Logins.TextStyle}>{t("Dont_Have_Account")} <Text style={Logins.registerTextStyle} onPress={() => OnRegisterPress()}> {t("Register_Text")}</Text></Text>
                             </View> */}
                             <Spacing space={SH(20)} />
-                            <View style={Logins.LoginButton}>
-                                <Button
-                                    title={t("Login_Text")}
-                                    onPress={() => 
-                                        {
+                            {Loading ? <Loadings /> :
+                                <View style={Logins.LoginButton}>
+
+                                    <Button
+                                        title={t("Login_Text")}
+                                        onPress={() => {
                                             LoginPersons()
                                         }
-                                        // navigation.navigate(RouteName.OTP_VERYFY_SCREEN)
-                                    }
-                                />
-                            </View>
+                                            // navigation.navigate(RouteName.OTP_VERYFY_SCREEN)
+                                        }
+                                    />
+
+                                </View>
+                            }
                             <Spacing space={SH(10)} />
                             {/* <TouchableOpacity onPress={() => navigation.navigate(RouteName.FORGOT_PASSWORD)}>
                                 <Text style={Logins.ForgetPasswordStyles}>{t("Forgot_Password")}</Text>

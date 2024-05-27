@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './src/redux/store';
@@ -7,6 +7,57 @@ import UserContext from './UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const App = () => {
+
+
+
+      let GetAsyncMobile=async()=>{
+        var Mobile =await AsyncStorage.getItem("Mobile")
+        // console.log('Mobile',Mobile)
+          if(Mobile != null )
+           {
+            const myNextList = [...userData];
+            const DatesStep = myNextList;
+            DatesStep[0].Mobile = Mobile;
+            setUserData(myNextList)
+           }
+           else
+           {
+            const myNextList = [...userData];
+            const DatesStep = myNextList;
+            DatesStep[0].Mobile = '';
+            setUserData(myNextList)
+           }
+      }
+
+      let GetAsyncToken=async()=>{
+        var Token =await AsyncStorage.getItem("Token")
+        // console.log('Mobile',Mobile)
+          if(Token != null )
+         {
+          const myNextList = [...userData];
+          const DatesStep = myNextList;
+          DatesStep[0].Token = Token;
+          setUserData(myNextList)
+         }
+         else
+         {
+          const myNextList = [...userData];
+          const DatesStep = myNextList;
+          DatesStep[0].Token = '';
+          setUserData(myNextList)
+         }
+      }
+
+
+    useEffect(()=>{
+      GetAsyncMobile()
+      GetAsyncToken()
+          // if(Mobile != null)
+          // { 
+           
+          // }
+    },[])
+
   const [userData, setUserData] = useState([
     {
 
@@ -18,8 +69,8 @@ const App = () => {
       StartPlaceCode:'11320000',
       EndPlaceCode:'93310000',
       isLoading:true,
-      Mobile:AsyncStorage.getItem("Mobile") != null ? AsyncStorage.getItem("Mobile") : '',
-      Token:AsyncStorage.getItem("Token") != null ? AsyncStorage.getItem("Token") : '',
+      Mobile:'',
+      Token:'',
       RequestNumber:''
     }]);
   return (

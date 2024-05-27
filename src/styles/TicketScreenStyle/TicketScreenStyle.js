@@ -1,6 +1,6 @@
 
 import { StyleSheet, Platform, Switch } from 'react-native';
-import { SF, SH, SW, Colors } from '../../utils';
+import { SF, SH, SW, Colors,Fonts } from '../../utils';
 
 export default TicketScreenStyle = (Colors) => StyleSheet.create({
   minstyleviewphotograpgy: {
@@ -24,7 +24,8 @@ export default TicketScreenStyle = (Colors) => StyleSheet.create({
   },
   Addcoverimagetext: {
     fontSize: SF(20),
-    fontWeight: '700'
+    fontWeight: '700',
+    fontFamily: Fonts.Poppins_Medium,
   },
   profilepicsize: {
     height: SH(200),
@@ -42,6 +43,7 @@ export default TicketScreenStyle = (Colors) => StyleSheet.create({
     fontSize: SF(20),
     fontWeight: '700',
     color: Colors.theme_background,
+    fontFamily: Fonts.Poppins_Medium,
   },
   Boxviewsamplw: {
     width: '100%',
@@ -110,6 +112,7 @@ export default TicketScreenStyle = (Colors) => StyleSheet.create({
     fontSize: SF(20),
     fontWeight: '600',
     color: Colors.black_text_color,
+    fontFamily: Fonts.Poppins_Medium,
   },
   Inputstylewidth: {
     borderWidth: 1,
@@ -135,6 +138,7 @@ export default TicketScreenStyle = (Colors) => StyleSheet.create({
   },
   selectedTextStyleLead: {
     fontSize: SF(18),
+    fontFamily: Fonts.Poppins_Medium,
   },
   Datebox: {
     borderWidth: 1,
@@ -149,6 +153,7 @@ export default TicketScreenStyle = (Colors) => StyleSheet.create({
   datetextstyles: {
     fontSize: SF(17),
     color: Colors.theme_background,
+    fontFamily: Fonts.Poppins_Medium,
   },
   qrcodescanner: {
     width: '100%',
@@ -170,21 +175,25 @@ export default TicketScreenStyle = (Colors) => StyleSheet.create({
     fontSize: SF(20),
     color: Colors.black_text_color,
     position: 'relative',
-    top: 20
+    top: 20,
+    fontFamily: Fonts.Poppins_Medium,
   },
   ticketqrnumber: {
     textAlign: 'center',
     fontSize: SF(13),
     position: 'relative',
-    bottom: 45
+    bottom: 45,
+    fontFamily: Fonts.Poppins_Medium,
   },
   nametextstyles: {
     fontSize: SF(16),
     color: Colors.gray_text_color,
+    fontFamily: Fonts.Poppins_Medium,
   },
   nametextstylestwo: {
     fontSize: SF(18),
     color: Colors.black_text_color,
+    fontFamily: Fonts.Poppins_Medium,
   },
   Flexviewnametitle: {
     flexDirection: 'row',
@@ -212,6 +221,7 @@ export default TicketScreenStyle = (Colors) => StyleSheet.create({
   Addcoverphototextstyle: {
     color: Colors.black_text_color,
     fontSize: SF(18),
+    fontFamily: Fonts.Poppins_Medium,
   },
   MainViewTicketScreen:{
     width: '100%',

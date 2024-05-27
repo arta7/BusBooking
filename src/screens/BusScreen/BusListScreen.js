@@ -7,7 +7,7 @@ import IconFA from "react-native-vector-icons/FontAwesome";
 import { RouteName } from "../../routes";
 import { useDispatch } from "react-redux";
 import { get_data_action } from '../../redux/action';
-import { SH, SF, SW, Colors } from "../../utils";
+import { SH, SF, SW, Colors, Fonts } from "../../utils";
 import { BusFlatlistData, MobileSelectData } from '../../utils/Imagedataset';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@react-navigation/native';
@@ -47,7 +47,8 @@ const BusListScreen = (props) => {
     setLoading(true)
     BusSearch(userData[0].StartPlaceCode, userData[0].EndPlaceCode,
       moment(new Date(userData[0].CurrentDate.toString())).format('jYYYY/jMM/jDD'), userData[0].Token, setLoading, setData, setUserData, userData, props)
-  }, [])
+ 
+    }, [])
 
 
   const dispatch = useDispatch();
@@ -84,7 +85,9 @@ const BusListScreen = (props) => {
 
   const BusFlatlist = (item, index) => {
     return (
-      <TouchableOpacity style={[BusListScreenStyles.BusBoxWraper, { height: 200, padding: 15 }]} onPress={() => { DataAction(item) }}>
+      <TouchableOpacity style={[BusListScreenStyles.BusBoxWraper, { height: 200, padding: 15 }]} onPress={() => { DataAction(item) }}
+      disabled={item.countFreeChairs > 0 ? false : true}
+      >
         <View style={[BusListScreenStyles.BusdataTopBox, { height: '40%' }]}>
           <View style={{ width: '50%' }}>
             <Text style={BusListScreenStyles.TravelCompanyText}>{item.baseCompany}</Text>
@@ -99,7 +102,7 @@ const BusListScreen = (props) => {
 
           <View style={[BusListScreenStyles.TextrightSet, { justifyContent: 'center', alignItems: 'flex-end' }]}>
             <View style={{ marginBottom: 25 }}>
-              <IconA name="arrowright" size={SF(15)} color={Colors.black_text_color} />
+              {/* <IconA name="arrowright" size={SF(15)} color={Colors.black_text_color} /> */}
             </View>
             <Text style={[BusListScreenStyles.AcNonAcText, { fontSize: SF(15) }]}>{item.timeMove}</Text>
           </View>
@@ -110,14 +113,14 @@ const BusListScreen = (props) => {
               <SvgUri
                 width="100%"
                 height="100%"
-                svgXmlData={require('./../../../src/images/Selector.svg')}
+                svgXmlData={testSvg}
               />
             </View>
             {item.destination.cityName}</Text>
 
           <Text style={[BusListScreenStyles.AcNonAcText, { color: 'gray' }]}> {item.origin.terminal}  <View style={{ width: 80, height: 20 }}>
 
-          </View>   {item.destination.terminal}</Text>
+          </View>{item.destination.terminal}</Text>
         </View>
         <View style={[BusListScreenStyles.LinkBox, { height: '35%' }]}>
           {item.countFreeChairs > 0 ?
@@ -191,7 +194,7 @@ const BusListScreen = (props) => {
           , borderRightWidth: 1, paddingTop: 5, borderRightColor: 'gray', flexDirection: 'row'
         }}>
           <IconA name="right" size={SW(10)} color='black' style={{ marginRight: 5 }} />
-          <Text style={{ textAlign: 'center', color: 'black', fontSize: SW(10) }}
+          <Text style={{ textAlign: 'center', color: 'black', fontSize: SW(10), fontFamily:Fonts.Poppins_Medium }}
             onPress={() => {
               var today = new Date(userData[0].CurrentDate);
               var tomorrow = new Date(today);
@@ -215,7 +218,7 @@ const BusListScreen = (props) => {
 
 
         <View style={{ width: '50%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={{ textAlign: 'center', color: 'black', fontSize: SW(10) }}>
+          <Text style={{ textAlign: 'center', color: 'black', fontSize: SW(10),  fontFamily:Fonts.Poppins_Medium }}>
             {moment(new Date(userData[0].CurrentDate.toString())).format('jYYYY/jMM/jDD')}
           </Text>
         </View>
@@ -241,7 +244,7 @@ const BusListScreen = (props) => {
           }}
         >
 
-          <Text style={{ textAlign: 'center', color: 'black', fontSize: SW(10) }}>
+          <Text style={{ textAlign: 'center', color: 'black', fontSize: SW(10), fontFamily:Fonts.Poppins_Medium }}>
             روز بعد
           </Text>
 

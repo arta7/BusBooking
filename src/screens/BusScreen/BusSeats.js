@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Button, LikeUnlike } from "../../components";
 import { BusSeatScreenStyle } from '../../styles';
 import { useTheme } from '@react-navigation/native';
-import { SH, SF, SW, Colors } from "../../utils";
+import { SH, SF, SW, Colors,Fonts } from "../../utils";
 import { BusSeatData, MobileSelectData, BusSeatUpperData, BusSeatShowData, busSeat } from '../../utils/Imagedataset';
 import { useTranslation } from 'react-i18next';
 const SEAT_STATUS = {
@@ -39,8 +39,8 @@ const BusSeat = ({ chairNumber, status, index, RowSeats, data, setData, BusPerso
         UnlikeColour={getStatusColor()}
         index={status}
         data={data}
-        DefaultStyle={[BusSeatScreenStyles.BusSeatBox, { height: SH(40) }]}
-        ViewStyle={[BusSeatScreenStyles.BuscusionStyle, { height: SH(5) }]}
+        DefaultStyle={[BusSeatScreenStyles.BusSeatBox, { height: SH(50),  width: SW(35), }]}
+        ViewStyle={[BusSeatScreenStyles.BuscusionStyle, { height: SH(3) }]}
         onPress={onPress}
         setData={setData}
         BusPerson={BusPerson}
@@ -108,16 +108,18 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    marginBottom: 10, width: '80%', marginHorizontal: '5%'
+    marginBottom: 10, width: '98%',marginHorizontal:'1%'
   },
   seat: {
     padding: 10,
     alignItems: 'center',
-    justifyContent: 'center', marginHorizontal: '2%'
+    justifyContent: 'center'
+    //, marginHorizontal: '2%'
   },
   seatText: {
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily:Fonts.Poppins_Medium
   },
   seatTwoColumns: {
     flex: 0.5,

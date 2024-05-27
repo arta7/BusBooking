@@ -43,7 +43,7 @@ export function Registers(_email,_username,_pass,_updateIndicator,self)
 }
 
 
-export function LoginAPI(_phone,self)
+export function LoginAPI(_phone,self,userData,setUserData,setLoading)
 {
    var params =  new FormData();
     params.append("Phone",_phone)
@@ -62,20 +62,27 @@ export function LoginAPI(_phone,self)
           if(response.data.status == 1)
             {
               AsyncStorage.setItem('Mobile',_phone)
+              const myNextList = [...userData];
+              const DatesStep = myNextList;
+              DatesStep[0].Mobile = _phone;
+              setUserData(myNextList)
+             
            Toast.showWithGravity(response.data.message, Toast.LONG, Toast.CENTER);
           
            self.navigate(RouteName.OTP_VERYFY_SCREEN)
             }
+            setLoading(false)
         
   })
   .catch( (error)=> {
     console.log('errors',error)  
+    setLoading(false)
   })
 }
 
 
 
-export function VerifyAPI(_phone,_code,self)
+export function VerifyAPI(_phone,_code,self,setLoading)
 {
     var params ={
       "Phone":_phone,
@@ -98,11 +105,14 @@ export function VerifyAPI(_phone,_code,self)
             {
            Toast.showWithGravity(response.data.message, Toast.LONG, Toast.CENTER);
            AsyncStorage.setItem('Token',response.data.data.token)
+        
              self.replace(RouteName.HOME_SCREEN)
             }
+            setLoading(false)
         
   })
   .catch( (error)=> {
+    setLoading(false)
     console.log('errors',error)  
   })
 }
@@ -142,7 +152,7 @@ export function VerifyAPI(_phone,_code,self)
 
 
 
-export function GetCities(setData,Data,self)
+export function GetCities(setData,Data,self,setLoading)
 {
   axios.get(Address.URL + Address.Bus.Cities)
   .then( (response)=> {
@@ -150,10 +160,12 @@ export function GetCities(setData,Data,self)
 
       console.log('response',response.data.data)
       setData(response.data.data)
+      setLoading(false)
         
   })
   .catch( (error)=> {
     console.log('errors',error)  
+    setLoading(false)
   })
 }
 
@@ -199,7 +211,7 @@ export function BusSearch(_originCity,_destinationCity,_date,HeaderValue,setLoad
 
 
 
-export function BusDetails(_requestNumber,_sourceCode,_busCode,HeaderValue,setLoading,SetData,self)
+export function BusDetails(_requestNumber,_sourceCode,_busCode,HeaderValue,setLoading,SetData,self,setReturnData)
 {
     var params ={
       "requestNumber": _requestNumber,
@@ -223,11 +235,13 @@ export function BusDetails(_requestNumber,_sourceCode,_busCode,HeaderValue,setLo
           console.log('response bus details Data',response.data.data) 
           SetData(response.data.data)
           setLoading(false)
+          setReturnData(true)
         
   })
   .catch( (error)=> {
     console.log('errors bus details : ',error)  
     setLoading(false)
+    setReturnData(false)
   })
 }
 

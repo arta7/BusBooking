@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { SH, SW, SF, Colors } from '../../utils';
+import { SH, SW, SF, Colors, Fonts } from '../../utils';
 
 export default ColorpickerStyle = (Colors) => StyleSheet.create({
   CenteredView: {
@@ -57,6 +57,7 @@ export default ColorpickerStyle = (Colors) => StyleSheet.create({
     paddingTop: SH(15),
     paddingLeft: SH(15),
     fontSize: SF(20),
+    fontFamily:Fonts.Poppins_Medium
   },
   colorpickerpickerimagwidth: {
     width: SW(30),

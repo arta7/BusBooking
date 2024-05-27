@@ -4,7 +4,7 @@ import DateTimePicker from "react-native-modal-datetime-picker";
 import { DatePickerStyle } from '../../styles';
 // import moment from 'moment';
 var moment = require('moment-jalaali')
-import { SH, SF, SW, Colors } from '../../utils';
+import { SH, SF, SW, Colors, Fonts } from '../../utils';
 import PersianCalendarPicker from 'react-native-persian-calendar-picker';
 
 function DatePicker(props) {
@@ -34,7 +34,8 @@ function DatePicker(props) {
         <View >
             <View>
                 <View >
-                    <Text style={[DatePickerStyle.datetextstyles,{color:DateValue[0].CurrentDate == '' ? 'gray': 'black',fontSize:SH(15)}]} >{DateValue[0].CurrentDate == '' ? 'تاریخ' : 
+                    <Text style={[DatePickerStyle.datetextstyles,{color:DateValue[0].CurrentDate == '' ? 'gray': 'black'
+                    ,fontFamily:Fonts.Poppins_Medium,fontSize:SH(15)}]} >{DateValue[0].CurrentDate == '' ? 'تاریخ' : 
                    moment(new Date(DateValue[0].CurrentDate.toString())).format('jYYYY/jMM/jDD')
                 }
                     </Text>

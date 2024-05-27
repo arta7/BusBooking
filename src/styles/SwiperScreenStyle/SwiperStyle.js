@@ -15,7 +15,7 @@ export default SwiperStyle = (Colors) => StyleSheet.create({
     justifyContent: 'center'
   },
   TitleStyles: {
-    color: Colors.theme_background,
+    color: 'black',
     fontSize: SF(25),
     fontFamily: Fonts.Poppins_Medium,
     textAlign: 'center',
@@ -26,7 +26,7 @@ export default SwiperStyle = (Colors) => StyleSheet.create({
   },
   Textstyle: {
     paddingHorizontal: SH(10),
-    color: Colors.theme_background,
+    color: 'black',
     fontFamily: Fonts.Poppins_Medium,
     textAlign: 'center',
     fontSize: SF(16),
@@ -43,7 +43,7 @@ export default SwiperStyle = (Colors) => StyleSheet.create({
   NextTextStyle: {
     fontFamily: Fonts.Poppins_Medium,
     fontSize: SF(19),
-    color: Colors.theme_background,
+    color: 'black',
   },
   ActiveDotStyles: {
     width: SW(14),

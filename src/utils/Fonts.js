@@ -6,12 +6,12 @@ const Fonts = {
   // Poppins_MediumItalic: 'Poppins-MediumItalic',  // 500
   // Poppins_BoldItalic: 'Poppins-BoldItalic',  // 700
 
-  Poppins_Regular: 'Iranian Sans', // 400
-  Poppins_Medium: 'Iranian Sans',  // 500
-  Poppins_Bold: 'Iranian Sans',      // 700
-  Poppins_Italic: 'Iranian Sans',  // 400
-  Poppins_MediumItalic: 'Iranian Sans',  // 500
-  Poppins_BoldItalic: 'Iranian Sans',  // 700
+  Poppins_Regular: 'SGKara-Light', // 400
+  Poppins_Medium: 'SGKara-SemiBold',  // 500
+  Poppins_Bold: 'SGKara-SemiBold',      // 700
+  Poppins_Italic: 'SGKara-Light',  // 400
+  Poppins_MediumItalic: 'SGKara-Light',  // 500
+  Poppins_BoldItalic: 'SGKara-SemiBold',  // 700
 };
 
 export default Fonts;

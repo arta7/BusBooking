@@ -62,9 +62,9 @@ const App = ({ navigation }) => {
               () => {
                 GetToken().then((value)=>{
                   if(value == false)
-                  navigation.navigate(RouteName.LOGIN_SCREEN)
+                  navigation.replace(RouteName.LOGIN_SCREEN)
                   else
-                  navigation.navigate(RouteName.HOME_SCREEN)
+                  navigation.replace(RouteName.HOME_SCREEN)
                 })
               }
             }
@@ -88,9 +88,9 @@ const App = ({ navigation }) => {
         <TouchableOpacity onPress={() => {
           GetToken().then((value)=>{
             if(value == false)
-            navigation.navigate(RouteName.LOGIN_SCREEN)
+            navigation.replace(RouteName.LOGIN_SCREEN)
             else
-            navigation.navigate(RouteName.HOME_SCREEN)
+            navigation.replace(RouteName.HOME_SCREEN)
           })
             
 

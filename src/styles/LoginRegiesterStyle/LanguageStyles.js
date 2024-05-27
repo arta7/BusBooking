@@ -20,7 +20,8 @@ export default LanguageStyles = (Colors) => StyleSheet.create({
     fontSize: SF(25),
     paddingBottom: SH(15),
     color: Colors.black_text_color,
-    fontWeight: '500'
+    fontWeight: '500',
+    fontFamily:Fonts.Poppins_Medium
   },
   TranslationDropdown: {
     width: '100%',

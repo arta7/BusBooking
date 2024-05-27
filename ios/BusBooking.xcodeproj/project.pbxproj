@@ -20,6 +20,9 @@
 		3730FB70643D490AB25E7FD7 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2274720B685F4A86BFAC532F /* Poppins-MediumItalic.ttf */; };
 		B3CCB2AC021F47FBB55B71C5 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E6A544C15EB4DB09FE74033 /* Poppins-Regular.ttf */; };
 		9D20B603114849908B9EBE17 /* Iranian Sans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F42CE5A6AA9446AC904CE6E7 /* Iranian Sans.ttf */; };
+		36C46BF8067D4CFFB0D0379A /* SGKara-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C90CF3D391442C9B2464847 /* SGKara-Light.ttf */; };
+		F7E4EA1052BD472DA680B2CF /* SGKara-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D16AE87A0866440A8D05E5D3 /* SGKara-Regular.ttf */; };
+		1D89CA3FEF4944AE967B7A7F /* SGKara-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7285A8D6671D43B0A55DB7AE /* SGKara-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,9 @@
 		2274720B685F4A86BFAC532F /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; name = "Poppins-MediumItalic.ttf"; path = "../assets/fonts/Poppins-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		8E6A544C15EB4DB09FE74033 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; name = "Poppins-Regular.ttf"; path = "../assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F42CE5A6AA9446AC904CE6E7 /* Iranian Sans.ttf */ = {isa = PBXFileReference; name = "Iranian Sans.ttf"; path = "../assets/fonts/Iranian Sans.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3C90CF3D391442C9B2464847 /* SGKara-Light.ttf */ = {isa = PBXFileReference; name = "SGKara-Light.ttf"; path = "../assets/fonts/SGKara-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D16AE87A0866440A8D05E5D3 /* SGKara-Regular.ttf */ = {isa = PBXFileReference; name = "SGKara-Regular.ttf"; path = "../assets/fonts/SGKara-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7285A8D6671D43B0A55DB7AE /* SGKara-SemiBold.ttf */ = {isa = PBXFileReference; name = "SGKara-SemiBold.ttf"; path = "../assets/fonts/SGKara-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +158,9 @@
 				2274720B685F4A86BFAC532F /* Poppins-MediumItalic.ttf */,
 				8E6A544C15EB4DB09FE74033 /* Poppins-Regular.ttf */,
 				F42CE5A6AA9446AC904CE6E7 /* Iranian Sans.ttf */,
+				3C90CF3D391442C9B2464847 /* SGKara-Light.ttf */,
+				D16AE87A0866440A8D05E5D3 /* SGKara-Regular.ttf */,
+				7285A8D6671D43B0A55DB7AE /* SGKara-SemiBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -255,6 +264,9 @@
 				3730FB70643D490AB25E7FD7 /* Poppins-MediumItalic.ttf in Resources */,
 				B3CCB2AC021F47FBB55B71C5 /* Poppins-Regular.ttf in Resources */,
 				9D20B603114849908B9EBE17 /* Iranian Sans.ttf in Resources */,
+				36C46BF8067D4CFFB0D0379A /* SGKara-Light.ttf in Resources */,
+				F7E4EA1052BD472DA680B2CF /* SGKara-Regular.ttf in Resources */,
+				1D89CA3FEF4944AE967B7A7F /* SGKara-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

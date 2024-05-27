@@ -8,7 +8,7 @@ import IconFA from "react-native-vector-icons/FontAwesome";
 import { RouteName } from "../../routes";
 import { useSelector } from "react-redux";
 import { Button, LikeUnlike } from "../../components";
-import { SH, SF, SW, Colors } from "../../utils";
+import { SH, SF, SW, Colors, Fonts } from "../../utils";
 import { BusSeatData, MobileSelectData, BusSeatUpperData, BusSeatShowData, busSeat } from '../../utils/Imagedataset';
 import { useTranslation } from 'react-i18next';
 import { useTheme, useRoute } from '@react-navigation/native';
@@ -34,17 +34,19 @@ const BusSeatScreen = (props) => {
     const BusSeatScreenStyles = useMemo(() => BusSeatScreenStyle(Colors), [Colors]);
     const { userData, setUserData } = React.useContext(UserContext);
     const [Loading, setLoading] = useState(true);
+    const [ReturnData, setReturnData] = useState(true);
     const [Data, setData] = useState([])
     const [BusPerson, setBusPerson] = useState([])
     const [datePickerVisibility, setDatePickerVisibility] = React.useState({ status: false, id: 0 });
 
     useEffect(() => {
-        console.log('navigation', route)
-        BusDetails(userData[0].RequestNumber, route.params?.data.sourceCode, route.params?.data.busCode, userData[0].Token, setLoading, setData, props)
+        // console.log('navigation', userData[0])
+        setReturnData(false)
+        BusDetails(userData[0].RequestNumber, route.params?.data.sourceCode, route.params?.data.busCode, userData[0].Token, setLoading, setData, props, setReturnData)
     }, [])
 
-    function numberShow(n){
-        return n > 9 ? "" + n: "0" + n;
+    function numberShow(n) {
+        return n > 9 ? "" + n : "0" + n;
     }
 
 
@@ -76,7 +78,7 @@ const BusSeatScreen = (props) => {
             </View>
         )
     }
-    const onBirthDatePickerConfirm = (objVal,id) => {
+    const onBirthDatePickerConfirm = (objVal, id) => {
         let dataString = objVal.value[0] + '-' + numberShow(objVal.value[1]) + '-' + numberShow(objVal.value[2]);
 
         const myNextList = [...BusPerson];
@@ -94,11 +96,11 @@ const BusSeatScreen = (props) => {
         return (
             <View style={{ width: '100%', height: 'auto', padding: 10, backgroundColor: 'white', borderRadius: 10, borderWidth: 0.5, marginBottom: '3%' }}>
                 <View>
-                    <Text style={{ color: 'black', fontSize: SH(12) }}>مسافر صندلی  {item.chairNumber} :  </Text>
+                    <Text style={{ color: 'black', fontSize: SH(12),  fontFamily:Fonts.Poppins_Medium }}>مسافر صندلی  {item.chairNumber} :  </Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 5, alignItems: 'center' }}>
                     <TextInput
-                        style={{ width: '40%', height: 50, color: 'black', borderRadius: 10, marginRight: '2%',textAlign:'right' }}
+                        style={{ width: '40%', height: 50, color: 'black', borderRadius: 10, marginRight: '2%', textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
                         onChangeText={(text) => {
 
                             const myNextList = [...BusPerson];
@@ -116,7 +118,7 @@ const BusSeatScreen = (props) => {
                     />
 
                     <TextInput
-                        style={{ width: '55%', height: 50, color: 'black', borderRadius: 10,textAlign:'right' }}
+                        style={{ width: '55%', height: 50, color: 'black', borderRadius: 10, textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
                         onChangeText={(text) => {
                             const myNextList = [...BusPerson];
                             const DatesStep = myNextList;
@@ -135,7 +137,7 @@ const BusSeatScreen = (props) => {
                 </View>
                 <View style={{ padding: 5, justifyContent: 'center', alignItems: 'center' }}>
                     <TextInput
-                        style={{ width: '97%', height: 50, color: 'black', borderRadius: 10,textAlign:'right' }}
+                        style={{ width: '97%', height: 50, color: 'black', borderRadius: 10, textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
                         onChangeText={(text) => {
                             const myNextList = [...BusPerson];
                             const DatesStep = myNextList;
@@ -156,7 +158,7 @@ const BusSeatScreen = (props) => {
                 <TouchableOpacity style={{ padding: 5, justifyContent: 'center', alignItems: 'center' }}
                     onPress={() => { setDatePickerVisibility({ status: true, id: item.chairNumber }) }}>
                     <TextInput
-                        style={{ width: '97%', height: 50, color: 'black', borderRadius: 10,textAlign:'center' }}
+                        style={{ width: '97%', height: 50, color: 'black', borderRadius: 10, textAlign: 'center', fontFamily:Fonts.Poppins_Medium }}
                         onChangeText={(text) => { }}
                         value={item.date}
                         editable={false}
@@ -170,7 +172,7 @@ const BusSeatScreen = (props) => {
 
                 <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 5, alignItems: 'center' }}>
                     <TextInput
-                        style={{ width: '65%', height: 50, color: 'black', borderRadius: 10, marginRight: '2%',textAlign:'right' }}
+                        style={{ width: '65%', height: 50, color: 'black', borderRadius: 10, marginRight: '2%', textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
                         onChangeText={(text) => {
                             const myNextList = [...BusPerson];
                             const DatesStep = myNextList;
@@ -222,189 +224,202 @@ const BusSeatScreen = (props) => {
     return (
         <View style={BusSeatScreenStyles.MinFlexView}>
             {
-                Loading ? 
-                <Loadings />
-            :
-                <>
-            <View >
-                <View>
-                    <FlatList
-                        data={MobileSelectData}
-                        renderItem={({ item, index }) => MobileSelect(item, index)}
-                        keyExtractor={item => item.id}
-                        showsHorizontalScrollIndicator={false}
-                    />
-                </View>
-            </View>
-            <ScrollView
-                keyboardShouldPersistTaps="handled"
-                style={BusSeatScreenStyles.ContentContainerStyle}
-            >
-
-                <View style={{
-                    width: '100%', borderWidth: 1, height: 200, borderRadius: 10, borderColor: 'gray',
-                    marginBottom: 10, flexDirection: 'row', justifyContent: 'space-between'
-                }}>
-
-
-                    <View style={{ width: '63%', }}>
-                        <View style={{ width: '100%', height: '60%' }}>
-
-                        </View>
-                        <View style={{ width: '90%', marginLeft: '10%', height: '40%', alignItems: 'flex-start' }}>
-                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontSize: SH(13) }}>{route.params?.data.baseCompany}</Text>
-                            <Text style={{ textAlign: 'center', color: 'gray' }}>{route.params?.data.carType}</Text>
-                        </View>
-
-                    </View>
-
-                    <View style={{ height: '100%', borderWidth: 1, backgroundColor: 'black', borderColor: 'gray' }}>
-
-                    </View>
-
-                    <View style={{ width: '35%', alignItems: 'flex-start' }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', height: '25%' }}>
-                            <PlaceIcon name={'directions-bus'} color={'gray'} size={SH(22)} />
-                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold' }}>{route.params?.data.origin?.terminal}</Text>
-                        </View>
-
-
-                        <View style={{ height: '25%' }}>
-                            <Text style={{ textAlign: 'center', color: 'gray' }}>ساعت حرکت</Text>
-                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold' }}>{route.params?.data.timeMove}</Text>
-                        </View>
-
-                        <View style={{ height: '25%' }}>
-                            <Text style={{ textAlign: 'center', color: 'gray' }}>تاریخ حرکت</Text>
-                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold' }}>{route.params?.data.dateMove}</Text>
-                        </View>
-
-                        <View style={{ flexDirection: 'row', alignItems: 'center', height: '25%' }}>
-                            <PlaceIcon name={'place'} color={'gray'} size={SH(22)} />
-                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold' }}>{route.params?.data.destination?.terminal}</Text>
-                        </View>
-                    </View>
-
-                </View>
-
-
-
-                <View style={[{ marginBottom: '3%', borderWidth: 1, paddingBottom: '5%', paddingTop: '5%', borderRadius: 10, borderColor: 'gray' }]}>
-                    <View style={[BusSeatScreenStyles.BusSratflatlistbox, {
-                        elevation: 1, borderRadius: 10, width: '90%', marginHorizontal: '5%'
-                    }]}>
-                        <FlatList
-                            data={BusSeatShowData}
-                            renderItem={({ item, index }) => BusSeatShowFunction(item, index)}
-                            keyExtractor={item => item.id}
-                            horizontal
-                        />
-                    </View>
-                    <View style={{ elevation: 2, borderRadius: 10, marginTop: 5, borderRadius: 10, width: '90%', marginHorizontal: '5%' }}>
-                        <View style={{ width: '100%', height: 50, justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={{ color: 'black', fontWeight: 'bold', fontSize: SH(15) }} >
-                                جلوی اتوبوس
-                            </Text>
-                            <View style={{ width: '40%', height: 1, backgroundColor: 'black', marginVertical: 5 }}>
-
-                            </View>
-
-                        </View>
+                Loading ?
+                    <Loadings />
+                    :
+                    <>
                         <View >
-                            {
-
-                                <BusSeats data={Data} setData={setData} BusPerson={BusPerson} setBusPerson={setBusPerson} />
-                            }
-
-
+                            <View>
+                                <FlatList
+                                    data={MobileSelectData}
+                                    renderItem={({ item, index }) => MobileSelect(item, index)}
+                                    keyExtractor={item => item.id}
+                                    showsHorizontalScrollIndicator={false}
+                                />
+                            </View>
                         </View>
-                    </View>
-                </View>
+
+
+                        <ScrollView
+                            keyboardShouldPersistTaps="handled"
+                            style={BusSeatScreenStyles.ContentContainerStyle}
+                        >
+                            {ReturnData ?
+                            <>
+                                <View style={{
+                                    width: '100%', borderWidth: 1, height: 200, borderRadius: 10, borderColor: 'gray',
+                                    marginBottom: 10, flexDirection: 'row', justifyContent: 'space-between'
+                                }}>
+
+
+                                    <View style={{ width: '60%', }}>
+                                        <View style={{ width: '100%', height: '60%' }}>
+
+                                        </View>
+                                        <View style={{ width: '90%', marginLeft: '10%', height: '40%', alignItems: 'flex-start' }}>
+                                            <Text style={{ textAlign: 'center', color: 'black',  fontFamily:Fonts.Poppins_Medium, fontWeight: 'bold', fontSize: SH(13) }}>{route.params?.data.baseCompany}</Text>
+                                            <Text style={{ textAlign: 'center', color: 'gray', fontFamily:Fonts.Poppins_Medium }}>{route.params?.data.carType}</Text>
+                                        </View>
+
+                                    </View>
+
+                                    <View style={{ height: '100%', borderWidth: 1, backgroundColor: 'black', borderColor: 'gray' }}>
+
+                                    </View>
+
+                                    <View style={{ width: '38%', alignItems: 'flex-start' }}>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center', height: '25%' }}>
+                                            <PlaceIcon name={'directions-bus'} color={'gray'} size={SH(22)} />
+                                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily:Fonts.Poppins_Medium }}>{route.params?.data.origin?.terminal != '' ?
+                                                route.params?.data.origin?.terminal : route.params?.data.origin?.cityName}</Text>
+                                        </View>
+
+
+                                        <View style={{ height: '25%' }}>
+                                            <Text style={{ textAlign: 'center', color: 'gray', fontFamily:Fonts.Poppins_Medium }}>ساعت حرکت</Text>
+                                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily:Fonts.Poppins_Medium }}>{route.params?.data.timeMove}</Text>
+                                        </View>
+
+                                        <View style={{ height: '25%' }}>
+                                            <Text style={{ textAlign: 'center', color: 'gray', fontFamily:Fonts.Poppins_Medium }}>تاریخ حرکت</Text>
+                                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily:Fonts.Poppins_Medium }}>{route.params?.data.dateMove}</Text>
+                                        </View>
+
+                                        <View style={{ flexDirection: 'row', alignItems: 'center', height: '25%' }}>
+                                            <PlaceIcon name={'place'} color={'gray'} size={SH(22)} />
+                                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily:Fonts.Poppins_Medium }}>{route.params?.data.destination?.terminal != ''
+                                                ? route.params?.data.destination?.terminal : route.params?.data.destination?.cityName}</Text>
+                                        </View>
+                                    </View>
+
+                                </View>
 
 
 
-                {
-                    <View >
-                        {
+                                <View style={[{ marginBottom: '3%', borderWidth: 1, paddingBottom: '5%', paddingTop: '5%', borderRadius: 10, borderColor: 'gray' }]}>
+                                    <View style={[BusSeatScreenStyles.BusSratflatlistbox, {
+                                        borderRadius: 10, width: '90%', marginHorizontal: '5%', borderWidth: 0.5, borderColor: 'gray'
+                                    }]}>
+                                        <FlatList
+                                            data={BusSeatShowData}
+                                            renderItem={({ item, index }) => BusSeatShowFunction(item, index)}
+                                            keyExtractor={item => item.id}
+                                            horizontal
+                                        />
+                                    </View>
+                                    <View style={{ borderRadius: 10, marginTop: 5, borderRadius: 10, width: '90%', marginHorizontal: '5%' }}>
+                                        <View style={{ width: '100%', height: 50, justifyContent: 'center', alignItems: 'center' }}>
+                                            <Text style={{ color: 'black', fontWeight: 'bold', fontSize: SH(15), fontFamily:Fonts.Poppins_Medium }} >
+                                                جلوی اتوبوس
+                                            </Text>
+                                            <View style={{ width: '40%', height: 1, backgroundColor: 'black', marginVertical: 5, fontFamily:Fonts.Poppins_Medium }}>
 
-                            <FlatList
-                                data={BusPerson}
-                                renderItem={({ item, index }) => renderPerson(item, index)}
-                                keyExtractor={item => item.id}
-                            />
+                                            </View>
+
+                                        </View>
+                                        <View >
+                                            {
+
+                                                <BusSeats data={Data} setData={setData} BusPerson={BusPerson} setBusPerson={setBusPerson} />
+                                            }
+
+
+                                        </View>
+                                    </View>
+                                </View>
+
+
+
+                                
+                                <View >
+                                    {
+
+                                        <FlatList
+                                            data={BusPerson}
+                                            renderItem={({ item, index }) => renderPerson(item, index)}
+                                            keyExtractor={item => item.id}
+                                        />
+                                    }
+
+                                </View>
+
+                            
+ </>
+                            :
+                            <View style={{ justifyContent: 'center', alignItems: 'center', marginHorizontal: '10%', width: '80%',marginTop:'50%' }}>
+                                <Text style={{ textAlign: 'center', fontSize: 20, color: 'black', fontFamily:Fonts.Poppins_Medium }}>دریافت اطلاعات از سمت سرور مرکزی برای این اتوبوس دچار مشکل شده است.</Text>
+                            </View>
+                           
                         }
 
-                    </View>
-
-                }
 
 
 
+                        </ScrollView >
 
-            </ScrollView >
-            <View style={{ marginTop: '5%' }}>
 
-                <View style={BusSeatScreenStyles.BusFinalBoookedBox}>
-                    <View style={BusSeatScreenStyles.Widthone}>
-                        <Text style={[BusSeatScreenStyles.Selectedtext, { color: 'black' }]}>جمع کل قیمت</Text>
-                        <Text style={[BusSeatScreenStyles.SelectedSeattext, { color: '' }]}>{route.params?.data.price * BusPerson.length} تومان</Text>
-                    </View>
-                    {/* <View style={BusSeatScreenStyles.Widthtwo}>
+                        <View style={{ marginTop: '5%' }}>
+
+                            <View style={BusSeatScreenStyles.BusFinalBoookedBox}>
+                                <View style={BusSeatScreenStyles.Widthone}>
+                                    <Text style={[BusSeatScreenStyles.Selectedtext, { color: 'black' }]}>جمع کل قیمت</Text>
+                                    <Text style={[BusSeatScreenStyles.SelectedSeattext, { color: '' }]}>{route.params?.data.price * BusPerson.length} تومان</Text>
+                                </View>
+                                {/* <View style={BusSeatScreenStyles.Widthtwo}>
                         <Text style={BusSeatScreenStyles.Selectedtext}>{t("Book_for")}</Text>
                         <Text style={BusSeatScreenStyles.SelectedSeattext}><IconFA name="rupee" color={Colors.black_text_color} size={SF(14)} /> 1</Text>
                     </View> */}
-                    <View style={BusSeatScreenStyles.Widththree}>
-                        <Button title={t('Proceed')} ButtonStyle={[BusSeatScreenStyles.ButtonStyle, {  }]}
-                            onPress={() => {
-                                if(BusPerson.length == 0)
-                                    {
-                                        Toast.showWithGravity('لطفا حداقل یک صندلی را انتخاب کنید', Toast.LONG, Toast.CENTER);
-                                    }
-                                    else
-                                    {
-                                        var passengers=[]
-                                        for(let i=0;i<BusPerson.length;i++)
-                                            {
-                                                passengers.push({"firstName": BusPerson[i].name,
-                                                "lastName": BusPerson[i].family,
-                                                "nationalIdentification": BusPerson[i].code,
-                                                "seatNumber": BusPerson[i].chairNumber,
-                                                "birthDate": BusPerson[i].date,
-                                                "gender": BusPerson[i].gender })
-                                                
+                                <View style={BusSeatScreenStyles.Widththree}>
+                                    <Button title={t('Proceed')} ButtonStyle={[BusSeatScreenStyles.ButtonStyle, {}]}
+                                        onPress={() => {
+                                            if (BusPerson.length == 0) {
+                                                Toast.showWithGravity('لطفا حداقل یک صندلی را انتخاب کنید', Toast.LONG, Toast.CENTER);
                                             }
-                                            console.log('passengers',passengers)
-                                           var  telephone = {"phoneNumber": BusPerson[0].mobile };
-                                           var  contact= {"name": "","email": "" };
-                                           var clientUserTelephone =  {"phoneNumber": BusPerson[0].mobile }
-                                           var clientUserEmail ="";
+                                            else {
+                                                var passengers = []
+                                                for (let i = 0; i < BusPerson.length; i++) {
+                                                    passengers.push({
+                                                        "firstName": BusPerson[i].name,
+                                                        "lastName": BusPerson[i].family,
+                                                        "nationalIdentification": BusPerson[i].code,
+                                                        "seatNumber": BusPerson[i].chairNumber,
+                                                        "birthDate": BusPerson[i].date,
+                                                        "gender": BusPerson[i].gender
+                                                    })
 
-                                            busPreReserves(userData[0].RequestNumber,route.params?.data.sourceCode,route.params?.data.busCode,userData[0].Token,
-                                            passengers,route.params?.data.price * BusPerson.length,telephone,
-                                            contact,clientUserTelephone,clientUserEmail,setLoading,props)
+                                                }
+                                                console.log('passengers', passengers)
+                                                var telephone = { "phoneNumber": BusPerson[0].mobile };
+                                                var contact = { "name": "", "email": "" };
+                                                var clientUserTelephone = { "phoneNumber": BusPerson[0].mobile }
+                                                var clientUserEmail = "";
+
+                                                busPreReserves(userData[0].RequestNumber, route.params?.data.sourceCode, route.params?.data.busCode, userData[0].Token,
+                                                    passengers, route.params?.data.price * BusPerson.length, telephone,
+                                                    contact, clientUserTelephone, clientUserEmail, setLoading, props)
 
 
-                                    }
+                                            }
 
 
-                            }} />
-                    </View>
-                </View>
-            </View>
-            <PersianDatePicker
-                visible={datePickerVisibility.status}
-                onConfirm={(obc)=>onBirthDatePickerConfirm(obc,datePickerVisibility.id)}
-                startYear={1280}
-                endYear={1403}
-                containerStyle={{ marginHorizontal: 5 }}
-                pickercontainerStyle={{}}
-                pickerWrapperStyle={{ borderWidth: 1, borderRadius: 10, borderColor: 'gray', marginHorizontal: 3 }}
-                pickerItemStyle={{}}
-                submitTextStyle={{}}
-                defaultValue={[1370, 7, 5]}
-            />
-            </>
-                        }
+                                        }} />
+                                </View>
+                            </View>
+                        </View>
+                        <PersianDatePicker
+                            visible={datePickerVisibility.status}
+                            onConfirm={(obc) => onBirthDatePickerConfirm(obc, datePickerVisibility.id)}
+                            startYear={1280}
+                            endYear={1403}
+                            containerStyle={{ marginHorizontal: 5 }}
+                            pickercontainerStyle={{}}
+                            pickerWrapperStyle={{ borderWidth: 1, borderRadius: 10, borderColor: 'gray', marginHorizontal: 3 }}
+                            pickerItemStyle={{}}
+                            submitTextStyle={{}}
+                            defaultValue={[1370, 7, 5]}
+                        />
+                    </>
+            }
         </View >
     );
 };

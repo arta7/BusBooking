@@ -61,6 +61,9 @@
 		<string>Poppins-MediumItalic.ttf</string>
 		<string>Poppins-Regular.ttf</string>
 		<string>Iranian Sans.ttf</string>
+		<string>SGKara-Light.ttf</string>
+		<string>SGKara-Regular.ttf</string>
+		<string>SGKara-SemiBold.ttf</string>
 	</array>
 </dict>
 </plist>

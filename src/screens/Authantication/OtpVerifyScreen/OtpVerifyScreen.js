@@ -10,6 +10,8 @@ import { useTheme } from '@react-navigation/native';
 import Toast from 'react-native-simple-toast';
 import { VerifyAPI } from "../../../Api/ApiMaster";
 import UserContext from './../../../../UserContext';
+import Loadings from '../../../Loadings'
+
 const OtpScreenset = (props) => {
     const { navigation } = props;
     const { t } = useTranslation();
@@ -17,7 +19,7 @@ const OtpScreenset = (props) => {
     const Style = useMemo(() => Otpstyle(Colors), [Colors]);
     const [alertVisible, setAlertVisible] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
-
+    const [Loading, setLoading] = useState(false);
     const [Code, setCode] = useState('');
     const [okbutton, Setokbutton] = useState('');
     const { userData, setUserData } = React.useContext(UserContext);
@@ -27,18 +29,18 @@ const OtpScreenset = (props) => {
     }
     const onoknutton = () => {
         if (okbutton === 1) okbutton;
-        if (okbutton === 2)
-            {
-                console.log('test')
-               // navigation.navigate(RouteName.HOME_SCREEN)
-            }
-            
+        if (okbutton === 2) {
+            console.log('test')
+            // navigation.navigate(RouteName.HOME_SCREEN)
+        }
+
     }
 
-    const verify=(_code)=>{
-        console.log('userData[0].Mobile',userData[0].Mobile._z)
-        VerifyAPI(userData[0].Mobile._z.toString(),_code,navigation)
-}
+    const verify = (_code) => {
+        // console.log('userData[0].Mobile', userData[0].Mobile)
+        setLoading(true)
+        VerifyAPI(userData[0].Mobile.toString(), _code, navigation,setLoading)
+    }
     return (
         <ImageBackground source={images.full_bg_img_hospital} resizeMode='cover'>
             <View style={Style.MinViewScreen}>
@@ -53,15 +55,16 @@ const OtpScreenset = (props) => {
                                 <OTPInputView
                                     style={Style.OtpViewStyles}
                                     pinCount={5}
-                                    autoFocusOnLoad={true}
+                                    autoFocusOnLoad={false}
                                     codeInputFieldStyle={Style.CodeInputStyles}
                                     codeInputHighlightStyle={Style.CodeInputStyles}
-                                    onCodeChanged={(code)=>{
+                                    onCodeChanged={(code) => {
                                         setCode(code)
                                     }}
-                                    onCodeFilled = {(code => {
-                               verify(code)
+                                    onCodeFilled={(code => {
+                                        verify(code)
                                     })}
+
                                 />
                                 <View style={Style.FlexRowText}>
                                     <Text style={Style.ParegraPhotpBottom}>{t("Didnt_Recevip_Otp")}</Text>
@@ -71,14 +74,13 @@ const OtpScreenset = (props) => {
                                         <Text style={Style.ResendTextBold}>{t("Resend")}</Text>
                                     </TouchableOpacity>
                                 </View>
-                                <View>
-                                    <Button onPress={() => {
-                                        // setAlertVisible(true);
-                                        // setAlertMessage(alertdata.loginSuccess);
-                                        //Setokbutton(2);
-                                        verify(Code)
-                                    }} title={t("Verify_Text")} />
-                                </View>
+                                {Loading ? <Loadings /> :
+                                    <View>
+                                        <Button onPress={() => {
+                                            verify(Code)
+                                        }} title={t("Verify_Text")} />
+                                    </View>
+                                }
                             </View>
                         </View>
                     </KeyboardAvoidingView>
