@@ -31,9 +31,7 @@ const BusSeat = ({ chairNumber, status, index, RowSeats, data, setData, BusPerso
     }
   };
   return (
-    // <TouchableOpacity style={[styles.seat, { backgroundColor }]} onPress={onPress}>
-    //   <Text style={styles.seatText}>{chairNumber}</Text>
-    // </TouchableOpacity>
+
     <View style={[styles.seat, index == datarow ? { marginLeft: '20%' } : { marginHorizontal: '2%' }]}>
       <LikeUnlike
         text={status == 1 ? 'آقا' : status == 2 ? 'خانم' : chairNumber}

@@ -169,8 +169,6 @@ const BusListScreen = (props) => {
                               )
                             }
                             </>
-                  // <Loadings />
-
                   :
                   <FlatList
                     data={Data?.searchItems}

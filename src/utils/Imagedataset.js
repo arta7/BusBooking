@@ -628,6 +628,12 @@ export const BusSeatShowData = [
     SeaticonColor: Colors.theme_background,
     text: "انتخاب شما"
   },
+  {
+    id: 1,
+    Seaticon: 'seat',
+    SeaticonColor: 'yellow',
+    text: "غیر قابل رزرو"
+  },
 ]
 
 export const BusFlatlistDataBook = [
