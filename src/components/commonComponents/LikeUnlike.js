@@ -17,7 +17,7 @@ const LikeUnlke = (props) => {
                     const seatToUpdate = DatesStep.seates?.filter(a => a.chairNumber === text)[0];
                     console.log('seatToUpdate', seatToUpdate)
                     if (seatToUpdate.status == 0) {
-                        seatToUpdate.status = 3;
+                        seatToUpdate.status = 6;
 
                         let PersonData = { name: '', family: '', date: '',mobile:'', code: '',gender:'1', status: '', chairNumber: seatToUpdate.chairNumber }
 
@@ -33,7 +33,7 @@ const LikeUnlke = (props) => {
 
                 }
             }
-        }} style={[{ backgroundColor: liked.includes(chairNumber) ? LikeColour : UnlikeColour }, DefaultStyle]} disabled={index == 1 || index == 2 ? true : false}>
+        }} style={[{ backgroundColor: liked.includes(chairNumber) ? LikeColour : UnlikeColour }, DefaultStyle]} disabled={index == 1 || index == 2  || index == 3 ? true : false}>
             <Text style={{fontSize:12, fontFamily:Fonts.Poppins_Medium}}>{text}</Text>
             <View style={ViewStyle}>
             </View>

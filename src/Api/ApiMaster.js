@@ -5,18 +5,26 @@ import {Platform, StyleSheet, Text, View,FlatList,Alert,ListView,
 import {Address} from './Address'
 import Toast from 'react-native-simple-toast';
 import { RouteName } from '../routes';
+// import UserContext from './../../UserContext';
+// import React from 'react';
+
+// const { userData, setUserData } = React.useContext(UserContext);
+
+
+
 let axisConfig={
     headers:{
         "Accept": "text/plain",
         "Content-Type": "multipart/form-data"
     }
 }
-let axisConfig1={
-    headers:{
-        "Access-Control-Allow-Origin": "*",
-        // 'Authorization' : LoginData.type + ' ' + LoginData.token
-    }
-}
+// let axisConfigToken={
+//     headers:{
+//       'accept': 'text/plain',
+//         "Access-Control-Allow-Origin": "*",
+//          'Authorization' :  userData[0].Token
+//     }
+// }
 
 export function Registers(_email,_username,_pass,_updateIndicator,self)
 {
@@ -152,9 +160,9 @@ export function VerifyAPI(_phone,_code,self,setLoading)
 
 
 
-export function GetCities(setData,Data,self,setLoading)
+export function GetCities(setData,Data,self,setLoading,axisConfigToken)
 {
-  axios.get(Address.URL + Address.Bus.Cities)
+  axios.get(Address.URL + Address.Bus.Cities,axisConfigToken)
   .then( (response)=> {
 
 

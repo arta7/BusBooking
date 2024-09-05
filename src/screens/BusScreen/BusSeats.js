@@ -24,7 +24,9 @@ const BusSeat = ({ chairNumber, status, index, RowSeats, data, setData, BusPerso
         return '#53eff5'; // Available (adjust based on your preference)
       case 2:
         return 'pink'; // Occupied (adjust based on your preference)
-      default:
+        case 3:
+          return 'yellow';
+        default:
         return Colors.theme_background; // Unknown (adjust based on your preference)
     }
   };
@@ -60,13 +62,12 @@ const BusSeats = ({ data, setData, BusPerson, setBusPerson }) => {
   };
 
   const renderRow = (row) => {
-    const seats = data?.seates?.filter((seat) => seat.row === row);
+    const seats = data?.seates?.filter((seat) => seat.row === row).filter(s=>s.chairNumber !=-1);
     const isTwoColumns = seats.length === 2;
     var RowSeats = data?.seates?.length > 0 && data?.seates?.filter(a => a.row == 1).length == 3 ? 1 : 2
     return (
       <View style={styles.row}>
         {seats?.map((seat, index) => (
-
           <BusSeat
             key={seat.chairNumber}
             chairNumber={seat.chairNumber}
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    marginBottom: 10, width: '98%',marginHorizontal:'1%'
+    marginBottom: 10, width: '80%',marginHorizontal:'1%'
   },
   seat: {
     padding: 10,

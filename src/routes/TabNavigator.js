@@ -11,7 +11,7 @@ import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigatio
 import { Style } from '../styles';
 import { ColorPicker, CustomSidebarMenu } from '../components';
 import RouteName from '../routes/RouteName';
-import { Colors, SH, SF } from '../utils';
+import { Colors, SH, SF, Fonts } from '../utils';
 import { useTranslation } from "react-i18next";
 
 const Tab = createBottomTabNavigator();
@@ -66,9 +66,10 @@ function HomeTabScreenStack({ navigation }) {
         options={{
           title: t("Home_Text"), headerShown: true,
           headerTitleStyle: {
-            fontWeight: "700",
+            // fontWeight: "700",
             fontSize: SF(20),
-            color: Colors.theme_background,
+            color: 'black',
+            fontFamily:Fonts.Poppins_Medium
           },
           headerStyle: {
             backgroundColor: Colors.white_text_color,
@@ -102,9 +103,10 @@ function BookingTabScreenStack({ navigation }) {
           title: t('My_Booking'), headerShown: true,
           headerShadowVisible: false,
           headerTitleStyle: {
-            fontWeight: "700",
+            // fontWeight: "700",
             fontSize: SF(20),
-            color: Colors.theme_background,
+            color: 'black',
+            fontFamily:Fonts.Poppins_Medium
           },
           headerStyle: {
             backgroundColor: Colors.white_text_color,
@@ -133,8 +135,9 @@ function PaymentHistoryTabStack({ navigation }) {
           title: t('Payment_History'), headerShown: true,
           headerShadowVisible: false,
           headerTitleStyle: {
-            color: Colors.theme_background,
-            fontWeight: '700',
+            color: 'black',
+            fontFamily:Fonts.Poppins_Medium,
+            // fontWeight: '700',
           },
           headerStyle: {
             backgroundColor: Colors.white_text_color,
@@ -167,7 +170,8 @@ function ProfileScreenStack({ navigation }) {
           headerTitleStyle: {
             fontWeight: "700",
             fontSize: SF(20),
-            color: Colors.theme_background,
+            color: 'black',
+            fontFamily:Fonts.Poppins_Medium
           },
           headerStyle: {
             backgroundColor: Colors.white_text_color,
@@ -210,11 +214,12 @@ export function HomeScsreenTabAll() {
           tabBarLabel: t("Home_Text"),
           tabBarIcon: ({ focused }) => (
             <Icon
-              size={SF(15)}
+              size={SF(20)}
               name="home"
-              style={{ color: focused ? Colors.theme_background : Colors.gray_text_color }}
+              style={{ color: focused ? Colors.theme_background : Colors.gray_text_color}}
             />
           ),
+          // labelStyle:{fontFamily:Fonts.Poppins_Medium,fontSize:SF(15) }
         }}
       />
       <Tab.Screen

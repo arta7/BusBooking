@@ -45,7 +45,13 @@ const HomeTab = (props) => {
         setUserData(myNextList)
 
         setLoading(true)
-        GetCities(setCityList, CityList, props,setLoading)
+        GetCities(setCityList, CityList, props,setLoading,{
+            headers:{
+              'accept': 'text/plain',
+                "Access-Control-Allow-Origin": "*",
+                 'Authorization' :  userData[0]?.Token
+            }
+        })
 
     }, [])
 
