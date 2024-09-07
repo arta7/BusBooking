@@ -203,8 +203,8 @@ const BusSeatScreen = (props) => {
                                 setBusPerson(myNextList)
                             }
                             }>
-                            <Picker.Item label="آقا" value="1" />
-                            <Picker.Item label="خانم" value="2" />
+                            <Picker.Item label="آقا" value="2" />
+                            <Picker.Item label="خانم" value="3" />
                         </Picker>
                     </View>
                 </View>

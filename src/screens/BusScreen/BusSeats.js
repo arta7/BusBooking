@@ -20,11 +20,11 @@ const BusSeat = ({ chairNumber, status, index, RowSeats, data, setData, BusPerso
     switch (status) {
       case 0:
         return '#c4c4c4';
-      case 1:
-        return '#53eff5'; // Available (adjust based on your preference)
       case 2:
+        return '#53eff5'; // Available (adjust based on your preference)
+      case 3:
         return 'pink'; // Occupied (adjust based on your preference)
-        case 3:
+        case 1:
           return 'yellow';
         default:
         return Colors.theme_background; // Unknown (adjust based on your preference)
@@ -34,7 +34,7 @@ const BusSeat = ({ chairNumber, status, index, RowSeats, data, setData, BusPerso
 
     <View style={[styles.seat, index == datarow ? { marginLeft: '20%' } : { marginHorizontal: '2%' }]}>
       <LikeUnlike
-        text={status == 1 ? 'آقا' : status == 2 ? 'خانم' : chairNumber}
+        text={status == 2 ? 'آقا' : status == 3 ? 'خانم' : chairNumber}
         LikeColour={getStatusColor()}
         UnlikeColour={getStatusColor()}
         index={status}
