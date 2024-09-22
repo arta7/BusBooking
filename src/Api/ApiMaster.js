@@ -5,17 +5,18 @@ import {Platform, StyleSheet, Text, View,FlatList,Alert,ListView,
 import {Address} from './Address'
 import Toast from 'react-native-simple-toast';
 import { RouteName } from '../routes';
-// import UserContext from './../../UserContext';
-// import React from 'react';
+ import UserContext from './../../UserContext';
+ import React from 'react';
 
-// const { userData, setUserData } = React.useContext(UserContext);
+ const { userData, setUserData } = React.useContext(UserContext);
 
 
 
 let axisConfig={
     headers:{
-        "Accept": "text/plain",
-        "Content-Type": "multipart/form-data"
+      'accept': 'text/plain',
+      "Access-Control-Allow-Origin": "*",
+       'Authorization' :  userData[0]?.Token
     }
 }
 // let axisConfigToken={
@@ -284,13 +285,35 @@ export function busPreReserves(_requestNumber,_sourceCode,_busCode,HeaderValue,_
   .then( (response)=> {
          
           console.log('response bus details Data',response.data.data) 
+          ChargeAccount(_price,setLoading,self)
+         // Toast.showWithGravity(response.data.data.reserveRequestId, Toast.LONG, Toast.CENTER);
+         // SetData(response.data.data)
+          //setLoading(false)
+        
+  })
+  .catch( (error)=> {
+    console.log('errors bus details : ',error)  
+    setLoading(false)
+  })
+}
+
+
+export function ChargeAccount(_amount,setLoading,self)
+{
+    console.log('params =>',params)
+    setLoading(true)
+    
+    axios.get(Address.URL + Address.ChargeAccount.Charge + _amount,axisConfig)
+  .then( (response)=> {
+         
+          console.log('response bus charge account : ',response.data.data) 
           Toast.showWithGravity(response.data.data.reserveRequestId, Toast.LONG, Toast.CENTER);
          // SetData(response.data.data)
           setLoading(false)
         
   })
   .catch( (error)=> {
-    console.log('errors bus details : ',error)  
+    console.log('errors bus charge account  : ',error)  
     setLoading(false)
   })
 }

@@ -10,6 +10,9 @@ Bus:{
      Cities : '/bus/cities',
      search:'/bus/bussearch',
       busdetails:'/bus/bus-detail',
-      busReserves:'/bus/bus-pre-reserve'
+      busReserves:'/bus/bus-pre-reserve',
+},
+ChargeAccount:{
+     Charge:'/billing/charge?amount='
 }
 }
