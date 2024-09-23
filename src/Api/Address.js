@@ -13,6 +13,7 @@ Bus:{
       busReserves:'/bus/bus-pre-reserve',
 },
 ChargeAccount:{
-     Charge:'/billing/charge?amount='
+     Charge:'/billing/charge?amount=',
+     BillingFactor:'/billing/factor/'
 }
 }

@@ -8,17 +8,18 @@ import { RouteName } from '../routes';
  import UserContext from './../../UserContext';
  import React from 'react';
 
- const { userData, setUserData } = React.useContext(UserContext);
+ 
+//  const { userData, setUserData } = React.useContext(UserContext);
 
 
 
-let axisConfig={
-    headers:{
-      'accept': 'text/plain',
-      "Access-Control-Allow-Origin": "*",
-       'Authorization' :  userData[0]?.Token
-    }
-}
+// let axisConfig={
+//     headers:{
+//       'accept': 'text/plain',
+//       "Access-Control-Allow-Origin": "*",
+//        'Authorization' :  userData[0]?.Token
+//     }
+// }
 // let axisConfigToken={
 //     headers:{
 //       'accept': 'text/plain',
@@ -256,7 +257,7 @@ export function BusDetails(_requestNumber,_sourceCode,_busCode,HeaderValue,setLo
 
 
 export function busPreReserves(_requestNumber,_sourceCode,_busCode,HeaderValue,_passengers,_price,_telephone,_contact
-  ,_clientUserTelephone,_clientUserEmail,setLoading,self)
+  ,_clientUserTelephone,_clientUserEmail,setLoading,axisConfigToken,self)
 {
     var params ={
     "requestNumber": _requestNumber,
@@ -284,26 +285,26 @@ export function busPreReserves(_requestNumber,_sourceCode,_busCode,HeaderValue,_
   })
   .then( (response)=> {
          
-          console.log('response bus details Data',response.data.data) 
-          ChargeAccount(_price,setLoading,self)
+          console.log('response bus busPreReserves : ',response.data.data) 
+          ChargeAccount(_price,setLoading,axisConfigToken,self)
          // Toast.showWithGravity(response.data.data.reserveRequestId, Toast.LONG, Toast.CENTER);
          // SetData(response.data.data)
           //setLoading(false)
         
   })
   .catch( (error)=> {
-    console.log('errors bus details : ',error)  
+    console.log('errors busPreReserves : ',error)  
     setLoading(false)
   })
 }
 
 
-export function ChargeAccount(_amount,setLoading,self)
+export function ChargeAccount(_amount,setLoading,axisConfigToken,self)
 {
-    console.log('params =>',params)
+   // console.log('params =>',params)
     setLoading(true)
     
-    axios.get(Address.URL + Address.ChargeAccount.Charge + _amount,axisConfig)
+    axios.get(Address.URL + Address.ChargeAccount.Charge + _amount,axisConfigToken)
   .then( (response)=> {
          
           console.log('response bus charge account : ',response.data.data) 

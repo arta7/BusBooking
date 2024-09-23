@@ -390,7 +390,13 @@ const BusSeatScreen = (props) => {
 
                                                 busPreReserves(userData[0].RequestNumber, route.params?.data.sourceCode, route.params?.data.busCode, userData[0].Token,
                                                     passengers, route.params?.data.price * BusPerson.length, telephone,
-                                                    contact, clientUserTelephone, clientUserEmail, setLoading, props)
+                                                    contact, clientUserTelephone, clientUserEmail, setLoading,{
+                                                        headers:{
+                                                          'accept': 'text/plain',
+                                                            "Access-Control-Allow-Origin": "*",
+                                                             'Authorization' :  userData[0]?.Token
+                                                        }
+                                                    }, props)
 
 
                                             }
