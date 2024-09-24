@@ -308,7 +308,27 @@ export function ChargeAccount(_amount,setLoading,axisConfigToken,self)
   .then( (response)=> {
          
           console.log('response bus charge account : ',response.data.data) 
-          Toast.showWithGravity(response.data.data.reserveRequestId, Toast.LONG, Toast.CENTER);
+         // Toast.showWithGravity(response.data.data, Toast.LONG, Toast.CENTER);
+         // SetData(response.data.data)
+         BillingFactor(response.data.data.id,setLoading,axisConfigToken,self)
+         // setLoading(false)
+        
+  })
+  .catch( (error)=> {
+    console.log('errors bus charge account  : ',error)  
+    setLoading(false)
+  })
+}
+
+export function BillingFactor(_factorId,setLoading,axisConfigToken,self)
+{
+    setLoading(true)
+    
+    axios.get(Address.URL + Address.ChargeAccount.BillingFactor + _factorId,axisConfigToken)
+  .then( (response)=> {
+         
+          console.log('response bus BillingFactor : ',response.data.data) 
+         // Toast.showWithGravity(response.data.data, Toast.LONG, Toast.CENTER);
          // SetData(response.data.data)
           setLoading(false)
         
