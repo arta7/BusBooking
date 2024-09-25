@@ -1,5 +1,6 @@
 import {Platform, StyleSheet, Text, View,FlatList,Alert,ListView,
-    ScrollView,Dimensions,TouchableOpacity,TextInput,ActivityIndicator,Picker,Image} from 'react-native';
+    ScrollView,Dimensions,TouchableOpacity,TextInput,ActivityIndicator,Picker,Image,
+    Linking} from 'react-native';
  import axios from 'axios'
  import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Address} from './Address'
@@ -257,7 +258,7 @@ export function BusDetails(_requestNumber,_sourceCode,_busCode,HeaderValue,setLo
 
 
 export function busPreReserves(_requestNumber,_sourceCode,_busCode,HeaderValue,_passengers,_price,_telephone,_contact
-  ,_clientUserTelephone,_clientUserEmail,setLoading,axisConfigToken,self)
+  ,_clientUserTelephone,_clientUserEmail,setLoading,axisConfigToken,_setReturnValue,self)
 {
     var params ={
     "requestNumber": _requestNumber,
@@ -286,7 +287,7 @@ export function busPreReserves(_requestNumber,_sourceCode,_busCode,HeaderValue,_
   .then( (response)=> {
          
           console.log('response bus busPreReserves : ',response.data.data) 
-          ChargeAccount(_price,setLoading,axisConfigToken,self)
+          ChargeAccount(_price,setLoading,axisConfigToken,_setReturnValue,self)
          // Toast.showWithGravity(response.data.data.reserveRequestId, Toast.LONG, Toast.CENTER);
          // SetData(response.data.data)
           //setLoading(false)
@@ -299,7 +300,7 @@ export function busPreReserves(_requestNumber,_sourceCode,_busCode,HeaderValue,_
 }
 
 
-export function ChargeAccount(_amount,setLoading,axisConfigToken,self)
+export function ChargeAccount(_amount,setLoading,axisConfigToken,_setReturnValue,self)
 {
    // console.log('params =>',params)
     setLoading(true)
@@ -310,7 +311,7 @@ export function ChargeAccount(_amount,setLoading,axisConfigToken,self)
           console.log('response bus charge account : ',response.data.data) 
          // Toast.showWithGravity(response.data.data, Toast.LONG, Toast.CENTER);
          // SetData(response.data.data)
-         BillingFactor(response.data.data.id,setLoading,axisConfigToken,self)
+         BillingFactor(response.data.data.id,setLoading,axisConfigToken,_setReturnValue,self)
          // setLoading(false)
         
   })
@@ -320,17 +321,20 @@ export function ChargeAccount(_amount,setLoading,axisConfigToken,self)
   })
 }
 
-export function BillingFactor(_factorId,setLoading,axisConfigToken,self)
+export function BillingFactor(_factorId,setLoading,axisConfigToken,_setReturnValue,self)
 {
     setLoading(true)
     
     axios.get(Address.URL + Address.ChargeAccount.BillingFactor + _factorId,axisConfigToken)
   .then( (response)=> {
          
-          console.log('response bus BillingFactor : ',response.data.data) 
+          
          // Toast.showWithGravity(response.data.data, Toast.LONG, Toast.CENTER);
          // SetData(response.data.data)
+         _setReturnValue(response.data.data)
           setLoading(false)
+          console.log('response bus BillingFactor : ',response.data.data) 
+          Linking.openURL(response.data.data)
         
   })
   .catch( (error)=> {

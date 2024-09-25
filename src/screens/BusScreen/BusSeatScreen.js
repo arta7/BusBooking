@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { Text, View, ScrollView, TouchableOpacity, FlatList, StyleSheet } from "react-native";
+import { Text, View, ScrollView, TouchableOpacity, FlatList, StyleSheet, Linking } from "react-native";
 import { BusSeatScreenStyle } from '../../styles';
 import { Picker } from '@react-native-picker/picker';
 import IconMI from "react-native-vector-icons/MaterialCommunityIcons";
@@ -39,10 +39,32 @@ const BusSeatScreen = (props) => {
     const [BusPerson, setBusPerson] = useState([])
     const [datePickerVisibility, setDatePickerVisibility] = React.useState({ status: false, id: 0 });
 
+    const [ ReturnLinking,setReturnLinking] = useState('')
+
+
+    _handleOpenURL =(event)=> {
+        console.log('event url => ',event.url);
+      }
     useEffect(() => {
         // console.log('navigation', userData[0])
         setReturnData(false)
         BusDetails(userData[0].RequestNumber, route.params?.data.sourceCode, route.params?.data.busCode, userData[0].Token, setLoading, setData, props, setReturnData)
+        
+
+       // console.log('ReturnLinking = > ',ReturnLinking)
+
+
+        Linking.getInitialURL().then((ev) => {
+            console.log('ev url => ',ev);
+            if (ev) {
+              _handleOpenURL(ev);
+            }
+          }).catch(err => {
+              console.warn('An error occurred', err);
+          });
+          Linking.addEventListener('url', _handleOpenURL);
+   
+   
     }, [])
 
     function numberShow(n) {
@@ -396,7 +418,7 @@ const BusSeatScreen = (props) => {
                                                             "Access-Control-Allow-Origin": "*",
                                                              'Authorization' :  userData[0]?.Token
                                                         }
-                                                    }, props)
+                                                    },setReturnLinking, props)
 
 
                                             }
