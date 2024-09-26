@@ -162,7 +162,6 @@ const BusSeatScreen = (props) => {
                             seatToUpdate[0].mobile = text;
                             setBusPerson(myNextList)
                             console.log('BusPerson', BusPerson)
-
                         }}
                         mode='outlined'
                         value={item.mobile}
