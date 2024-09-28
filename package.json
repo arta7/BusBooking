@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@react-native-async-storage/async-storage": "1.17.7",
     "@react-native-community/checkbox": "^0.5.14",
     "@react-native-community/clipboard": "1.5.1",
@@ -29,6 +30,7 @@
     "moment": "^2.29.4",
     "moment-jalaali": "^0.10.0",
     "react": "17.0.2",
+    "react-hook-form": "^7.53.0",
     "react-i18next": "^12.1.5",
     "react-native": "0.67.2",
     "react-native-animated-skeleton": "^0.1.0",
@@ -61,7 +63,8 @@
     "reanimated-bottom-sheet": "^1.0.0-alpha.22",
     "redux-persist": "6.0.0",
     "redux-thunk": "2.4.1",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

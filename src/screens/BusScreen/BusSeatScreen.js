@@ -21,6 +21,11 @@ import PersianDatePicker from 'react-native-persian-date-picker2';
 import { TextInput } from 'react-native-paper';
 import Toast from 'react-native-simple-toast';
 import Loadings from '../../Loadings'
+import * as yup from 'yup';
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+
 const BusSeatScreen = (props) => {
     let CurrentRow = 0;
     const { navigation } = props;
@@ -42,7 +47,57 @@ const BusSeatScreen = (props) => {
     const [ ReturnLinking,setReturnLinking] = useState('')
 
 
-    _handleOpenURL =(event)=> {
+
+
+    const schema = yup.object().shape({
+          name: yup
+          .string()
+          .required('نام را وارد کنید'),
+          family: yup
+          .string()
+          .required('نام خانوادگی را وارد کنید'),
+          mobile: yup
+          .string()
+          .required('شماره موبایل را وارد کنید')
+          .min(11, 'شماره موبایل باید 11 عدد باشد'),
+          birthDate: yup
+          .string()
+          .required('تاریخ تولد را انتخاب کنید'),
+          codemelli:yup
+          .string()
+          .required('کد ملی را وارد کنید')
+          .min(10, 'کد ملی باید 10 کاراکتر باشد'),
+          gender:yup
+          .string()
+          .required('جنسیت را انتخاب کنید')
+      });
+      
+   
+        const {
+          control,
+          handleSubmit,
+          formState: { errors },
+        } = useForm({
+          resolver: yupResolver(schema),
+          defaultValues: {
+            name: '',
+            family: '',
+            // mobile: '',
+            // birthDate: '',
+            // codemelli:'',
+            // gender:''
+          },
+        });
+      
+        const onPressSend = (formData) => {
+            console.log('formdata',formData)
+          // Perform actions with the validated form data
+        };
+
+
+
+
+    let _handleOpenURL =(event)=> {
         console.log('event url => ',event.url);
       }
     useEffect(() => {
@@ -115,60 +170,92 @@ const BusSeatScreen = (props) => {
                     <Text style={{ color: 'black', fontSize: SH(12),  fontFamily:Fonts.Poppins_Medium }}>مسافر صندلی  {item.chairNumber} :  </Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 5, alignItems: 'center' }}>
-                    <TextInput
-                        style={{ width: '40%', height: 50, color: 'black', borderRadius: 10, marginRight: '2%', textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
-                        onChangeText={(text) => {
+                <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+            style={{ width: '40%', height: 50, color: 'black', borderRadius: 10, marginRight: '2%', textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
+            onChangeText={(text) => {
 
-                            const myNextList = [...BusPerson];
-                            const DatesStep = myNextList;
-                            console.log('DatesStep', DatesStep)
-                            const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
-                            seatToUpdate[0].name = text;
-                            setBusPerson(myNextList)
-                            console.log('BusPerson', BusPerson)
-                        }}
-                        value={item.name}
-                        mode='outlined'
-                        label={'نام '}
-                        placeholderTextColor={'black'}
-                    />
+                const myNextList = [...BusPerson];
+                const DatesStep = myNextList;
+                console.log('DatesStep', DatesStep)
+                const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
+                seatToUpdate[0].name = text;
+                setBusPerson(myNextList)
+                console.log('BusPerson', BusPerson)
+            }}
+            value={item.name}
+            mode='outlined'
+            label={'نام '}
+            placeholderTextColor={'black'}
+        />
+          )}
+          name="name"
+        />
+                 {/* {errors.name && <Text>{errors.name.message}</Text>} */}
+                 <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+            style={{ width: '55%', height: 50, color: 'black', borderRadius: 10, textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
+            onChangeText={(text) => {
+                const myNextList = [...BusPerson];
+                const DatesStep = myNextList;
+                console.log('DatesStep', DatesStep)
+                const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
+                seatToUpdate[0].family = text;
+                setBusPerson(myNextList)
+                console.log('BusPerson', BusPerson)
 
-                    <TextInput
-                        style={{ width: '55%', height: 50, color: 'black', borderRadius: 10, textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
-                        onChangeText={(text) => {
-                            const myNextList = [...BusPerson];
-                            const DatesStep = myNextList;
-                            console.log('DatesStep', DatesStep)
-                            const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
-                            seatToUpdate[0].family = text;
-                            setBusPerson(myNextList)
-                            console.log('BusPerson', BusPerson)
-
-                        }}
-                        value={item.family}
-                        mode='outlined'
-                        label={'نام خانوادگی '}
-                        placeholderTextColor={'black'}
-                    />
+            }}
+            value={item.family}
+            mode='outlined'
+            label={'نام خانوادگی '}
+            placeholderTextColor={'black'}
+        />
+          )}
+          name="family"
+        />      
                 </View>
+                {errors.family && <Text>{errors.family.message}</Text>}
                 <View style={{ padding: 5, justifyContent: 'center', alignItems: 'center' }}>
-                    <TextInput
-                        style={{ width: '97%', height: 50, color: 'black', borderRadius: 10, textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
-                        onChangeText={(text) => {
-                            const myNextList = [...BusPerson];
-                            const DatesStep = myNextList;
-                            console.log('DatesStep', DatesStep)
-                            const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
-                            seatToUpdate[0].mobile = text;
-                            setBusPerson(myNextList)
-                            console.log('BusPerson', BusPerson)
-                        }}
-                        mode='outlined'
-                        value={item.mobile}
-                        label={'شماره موبایل'}
-                        placeholderTextColor={'black'}
-                    />
+                  
+
+<Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+            style={{ width: '97%', height: 50, color: 'black', borderRadius: 10, textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
+            onChangeText={(text) => {
+                const myNextList = [...BusPerson];
+                const DatesStep = myNextList;
+                console.log('DatesStep', DatesStep)
+                const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
+                seatToUpdate[0].mobile = text;
+                setBusPerson(myNextList)
+                console.log('BusPerson', BusPerson)
+            }}
+            mode='outlined'
+            value={item.mobile}
+            label={'شماره موبایل'}
+            placeholderTextColor={'black'}
+        />
+          )}
+          name="mobile"
+        /> 
+
                 </View>
+                {errors.mobile && <Text>{errors.mobile.message}</Text>}
 
                 <TouchableOpacity style={{ padding: 5, justifyContent: 'center', alignItems: 'center' }}
                     onPress={() => { setDatePickerVisibility({ status: true, id: item.chairNumber }) }}>
@@ -204,13 +291,6 @@ const BusSeatScreen = (props) => {
                         keyboardType="numeric"
                     />
 
-                    {/* <TextInput
-                        style={{ width: '30%', height: 50, color: 'black', borderWidth: 1, borderRadius: 10 }}
-                        onChangeText={(text) => { }}
-                        value={item.gender}
-                        placeholder={'جنسیت'}
-                        placeholderTextColor={'black'}
-                    /> */}
                     <View style={{ width: '30%', height: 50, borderWidth: 1, borderColor: 'gray', borderRadius: 10 }}>
                         <Picker
                             selectedValue={item.gender}
@@ -229,7 +309,6 @@ const BusSeatScreen = (props) => {
                         </Picker>
                     </View>
                 </View>
-
 
 
             </View>
@@ -386,44 +465,49 @@ const BusSeatScreen = (props) => {
                     </View> */}
                                 <View style={BusSeatScreenStyles.Widththree}>
                                     <Button title={t('Proceed')} ButtonStyle={[BusSeatScreenStyles.ButtonStyle, {}]}
-                                        onPress={() => {
-                                            if (BusPerson.length == 0) {
-                                                Toast.showWithGravity('لطفا حداقل یک صندلی را انتخاب کنید', Toast.LONG, Toast.CENTER);
-                                            }
-                                            else {
-                                                var passengers = []
-                                                for (let i = 0; i < BusPerson.length; i++) {
-                                                    passengers.push({
-                                                        "firstName": BusPerson[i].name,
-                                                        "lastName": BusPerson[i].family,
-                                                        "nationalIdentification": BusPerson[i].code,
-                                                        "seatNumber": BusPerson[i].chairNumber,
-                                                        "birthDate": BusPerson[i].date,
-                                                        "gender": BusPerson[i].gender
-                                                    })
+                                        // onPress={() => {
+                                        //     if (BusPerson.length == 0) {
+                                        //         Toast.showWithGravity('لطفا حداقل یک صندلی را انتخاب کنید', Toast.LONG, Toast.CENTER);
+                                        //     }
+                                        //     else {
+                                        //         // var passengers = []
+                                        //         // for (let i = 0; i < BusPerson.length; i++) {
+                                        //         //     passengers.push({
+                                        //         //         "firstName": BusPerson[i].name,
+                                        //         //         "lastName": BusPerson[i].family,
+                                        //         //         "nationalIdentification": BusPerson[i].code,
+                                        //         //         "seatNumber": BusPerson[i].chairNumber,
+                                        //         //         "birthDate": BusPerson[i].date,
+                                        //         //         "gender": BusPerson[i].gender
+                                        //         //     })
 
-                                                }
-                                                console.log('passengers', passengers)
-                                                var telephone = { "phoneNumber": BusPerson[0].mobile };
-                                                var contact = { "name": "", "email": "" };
-                                                var clientUserTelephone = { "phoneNumber": BusPerson[0].mobile }
-                                                var clientUserEmail = "";
+                                        //         // }
+                                        //         // console.log('passengers', passengers)
+                                        //         // var telephone = { "phoneNumber": BusPerson[0].mobile };
+                                        //         // var contact = { "name": "", "email": "" };
+                                        //         // var clientUserTelephone = { "phoneNumber": BusPerson[0].mobile }
+                                        //         // var clientUserEmail = "";
 
-                                                busPreReserves(userData[0].RequestNumber, route.params?.data.sourceCode, route.params?.data.busCode, userData[0].Token,
-                                                    passengers, route.params?.data.price * BusPerson.length, telephone,
-                                                    contact, clientUserTelephone, clientUserEmail, setLoading,{
-                                                        headers:{
-                                                          'accept': 'text/plain',
-                                                            "Access-Control-Allow-Origin": "*",
-                                                             'Authorization' :  userData[0]?.Token
-                                                        }
-                                                    },setReturnLinking, props)
+                                        //         // busPreReserves(userData[0].RequestNumber, route.params?.data.sourceCode, route.params?.data.busCode, userData[0].Token,
+                                        //         //     passengers, route.params?.data.price * BusPerson.length, telephone,
+                                        //         //     contact, clientUserTelephone, clientUserEmail, setLoading,{
+                                        //         //         headers:{
+                                        //         //           'accept': 'text/plain',
+                                        //         //             "Access-Control-Allow-Origin": "*",
+                                        //         //              'Authorization' :  userData[0]?.Token
+                                        //         //         }
+                                        //         //     },setReturnLinking, props)
+                                        //         console.log('data')
+                                        //         handleSubmit(onPressSend)
+
+                                        //     }
 
 
-                                            }
+                                        // }}
 
-
-                                        }} />
+                                        onPress={handleSubmit(onPressSend)}
+                                        
+                                        />
                                 </View>
                             </View>
                         </View>
