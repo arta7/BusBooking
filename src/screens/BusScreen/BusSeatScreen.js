@@ -26,6 +26,28 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 
+const schema = yup.object().shape({
+    name: yup
+    .string()
+    .required('نام را وارد کنید'),
+    family: yup
+    .string()
+    .required('نام خانوادگی را وارد کنید'),
+    mobile: yup
+    .string()
+    .required('شماره موبایل را وارد کنید')
+    .min(11, 'شماره موبایل باید 11 عدد باشد')
+    ,
+    birthDate: yup
+    .string()
+    .required('تاریخ تولد را انتخاب کنید'),
+    codemelli:yup
+    .string()
+    .required('کد ملی را وارد کنید')
+    .min(10, 'کد ملی باید 10 کاراکتر باشد')
+});
+
+
 const BusSeatScreen = (props) => {
     let CurrentRow = 0;
     const { navigation } = props;
@@ -49,45 +71,18 @@ const BusSeatScreen = (props) => {
 
 
 
-    const schema = yup.object().shape({
-          name: yup
-          .string()
-          .required('نام را وارد کنید'),
-          family: yup
-          .string()
-          .required('نام خانوادگی را وارد کنید'),
-          mobile: yup
-          .string()
-          .required('شماره موبایل را وارد کنید')
-          .min(11, 'شماره موبایل باید 11 عدد باشد'),
-          birthDate: yup
-          .string()
-          .required('تاریخ تولد را انتخاب کنید'),
-          codemelli:yup
-          .string()
-          .required('کد ملی را وارد کنید')
-          .min(10, 'کد ملی باید 10 کاراکتر باشد'),
-          gender:yup
-          .string()
-          .required('جنسیت را انتخاب کنید')
-      });
-      
    
-        const {
-          control,
-          handleSubmit,
-          formState: { errors },
-        } = useForm({
-          resolver: yupResolver(schema),
-          defaultValues: {
-            name: '',
-            family: '',
-            // mobile: '',
-            // birthDate: '',
-            // codemelli:'',
-            // gender:''
-          },
-        });
+      
+    const { control, handleSubmit, formState: { errors }, register } = useForm({
+        resolver: yupResolver(schema),
+        initialValues: {
+          // Initial values for the array
+          items: [
+            { name: '', family: '', mobile: '', birthDate: '', codemelli: '' },
+            // ... other initial items
+          ]
+        }
+      });
       
         const onPressSend = (formData) => {
             console.log('formdata',formData)
@@ -187,16 +182,18 @@ const BusSeatScreen = (props) => {
                 seatToUpdate[0].name = text;
                 setBusPerson(myNextList)
                 console.log('BusPerson', BusPerson)
+                onChange(text)
             }}
             value={item.name}
+            // onChangeText={onChange}
             mode='outlined'
             label={'نام '}
             placeholderTextColor={'black'}
         />
           )}
-          name="name"
+          name={`items.${index}.name`}
         />
-                 {/* {errors.name && <Text>{errors.name.message}</Text>} */}
+       
                  <Controller
           control={control}
           rules={{
@@ -213,6 +210,7 @@ const BusSeatScreen = (props) => {
                 seatToUpdate[0].family = text;
                 setBusPerson(myNextList)
                 console.log('BusPerson', BusPerson)
+                onChange(text)
 
             }}
             value={item.family}
@@ -224,7 +222,9 @@ const BusSeatScreen = (props) => {
           name="family"
         />      
                 </View>
-                {errors.family && <Text>{errors.family.message}</Text>}
+                
+                {errors[index].name && <Text>{errors[index].name.message}</Text>}
+                {/* {errors.family && <Text>{errors.family.message}</Text>} */}
                 <View style={{ padding: 5, justifyContent: 'center', alignItems: 'center' }}>
                   
 
@@ -244,6 +244,7 @@ const BusSeatScreen = (props) => {
                 seatToUpdate[0].mobile = text;
                 setBusPerson(myNextList)
                 console.log('BusPerson', BusPerson)
+                onChange(text)
             }}
             mode='outlined'
             value={item.mobile}
@@ -257,39 +258,64 @@ const BusSeatScreen = (props) => {
                 </View>
                 {errors.mobile && <Text>{errors.mobile.message}</Text>}
 
-                <TouchableOpacity style={{ padding: 5, justifyContent: 'center', alignItems: 'center' }}
-                    onPress={() => { setDatePickerVisibility({ status: true, id: item.chairNumber }) }}>
-                    <TextInput
-                        style={{ width: '97%', height: 50, color: 'black', borderRadius: 10, textAlign: 'center', fontFamily:Fonts.Poppins_Medium }}
-                        onChangeText={(text) => { }}
-                        value={item.date}
-                        editable={false}
-                        label={'تاریخ تولد'}
-                        mode='outlined'
-                        placeholderTextColor={'black'}
-                    />
-                </TouchableOpacity>
+
+
+                <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, value } }) => (
+            <TouchableOpacity style={{ padding: 5, justifyContent: 'center', alignItems: 'center' }}
+            onPress={() => { setDatePickerVisibility({ status: true, id: item.chairNumber }) }}>
+            <TextInput
+                style={{ width: '97%', height: 50, color: 'black', borderRadius: 10, textAlign: 'center', fontFamily:Fonts.Poppins_Medium }}
+                onChangeText={onChange}
+                value={item.date}
+                editable={false}
+                label={'تاریخ تولد'}
+                mode='outlined'
+                placeholderTextColor={'black'}
+            />
+        </TouchableOpacity>
+          )}
+          name="birthDate"
+        /> 
+
+             
 
 
 
                 <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 5, alignItems: 'center' }}>
-                    <TextInput
-                        style={{ width: '65%', height: 50, color: 'black', borderRadius: 10, marginRight: '2%', textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
-                        onChangeText={(text) => {
-                            const myNextList = [...BusPerson];
-                            const DatesStep = myNextList;
-                            console.log('DatesStep', DatesStep)
-                            const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
-                            seatToUpdate[0].code = text;
-                            setBusPerson(myNextList)
-                            console.log('BusPerson', BusPerson)
-                        }}
-                        value={item.code}
-                        mode='outlined'
-                        label={'کد ملی'}
-                        placeholderTextColor={'black'}
-                        keyboardType="numeric"
-                    />
+                   
+
+<Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+            style={{ width: '65%', height: 50, color: 'black', borderRadius: 10, marginRight: '2%', textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
+            onChangeText={(text) => {
+                const myNextList = [...BusPerson];
+                const DatesStep = myNextList;
+                console.log('DatesStep', DatesStep)
+                const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
+                seatToUpdate[0].code = text;
+                setBusPerson(myNextList)
+                console.log('BusPerson', BusPerson)
+                onChange(text)
+            }}
+            value={item.code}
+            mode='outlined'
+            label={'کد ملی'}
+            placeholderTextColor={'black'}
+            keyboardType="numeric"
+        />
+          )}
+          name="codemelli"
+        /> 
 
                     <View style={{ width: '30%', height: 50, borderWidth: 1, borderColor: 'gray', borderRadius: 10 }}>
                         <Picker
