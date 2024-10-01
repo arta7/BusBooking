@@ -160,7 +160,7 @@ const BusSeatScreen = (props) => {
 
     const renderPerson = (item, index) => {
         return (
-            <View style={{ width: '100%', height: 'auto', padding: 10, backgroundColor: 'white', borderRadius: 10, borderWidth: 0.5, marginBottom: '3%' }}>
+            <View style={{ width: '100%', height: 'auto', padding: 10, backgroundColor: 'white', borderRadius: 10, borderWidth: 0.5, marginBottom: '3%' }} key={index}>
                 <View>
                     <Text style={{ color: 'black', fontSize: SH(12),  fontFamily:Fonts.Poppins_Medium }}>مسافر صندلی  {item.chairNumber} :  </Text>
                 </View>
@@ -170,7 +170,12 @@ const BusSeatScreen = (props) => {
           rules={{
             required: true,
           }}
+          
+          name={`name${index}`}
+           
+        //   error={error}
           render={({ field: { onChange, value } }) => (
+            <>
             <TextInput
             style={{ width: '40%', height: 50, color: 'black', borderRadius: 10, marginRight: '2%', textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
             onChangeText={(text) => {
@@ -190,8 +195,18 @@ const BusSeatScreen = (props) => {
             label={'نام '}
             placeholderTextColor={'black'}
         />
+       {
+        console.log('name${index}',control)
+       }
+       {errors && (
+                            <Text style={{ color: 'red' }}>لطفا نام را برای مسافر {item.chairNumber} وارد کنید</Text>
+                        )}
+
+        </>
+        
           )}
-          name={`items.${index}.name`}
+        
+        
         />
        
                  <Controller
@@ -223,7 +238,7 @@ const BusSeatScreen = (props) => {
         />      
                 </View>
                 
-                {errors[index].name && <Text>{errors[index].name.message}</Text>}
+              
                 {/* {errors.family && <Text>{errors.family.message}</Text>} */}
                 <View style={{ padding: 5, justifyContent: 'center', alignItems: 'center' }}>
                   
@@ -256,7 +271,7 @@ const BusSeatScreen = (props) => {
         /> 
 
                 </View>
-                {errors.mobile && <Text>{errors.mobile.message}</Text>}
+                {errors?.[`items.${index}.mobile`] && <Text key={index}>{errors.mobile.message}</Text>}
 
 
 
@@ -294,6 +309,7 @@ const BusSeatScreen = (props) => {
           rules={{
             required: true,
           }}
+
           render={({ field: { onChange, value } }) => (
             <TextInput
             style={{ width: '65%', height: 50, color: 'black', borderRadius: 10, marginRight: '2%', textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
