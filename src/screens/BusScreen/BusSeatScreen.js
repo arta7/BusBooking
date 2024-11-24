@@ -26,26 +26,56 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 
+
+
+
 const schema = yup.object().shape({
-    name: yup
-    .string()
-    .required('نام را وارد کنید'),
-    family: yup
-    .string()
-    .required('نام خانوادگی را وارد کنید'),
-    mobile: yup
-    .string()
-    .required('شماره موبایل را وارد کنید')
-    .min(11, 'شماره موبایل باید 11 عدد باشد')
-    ,
-    birthDate: yup
-    .string()
-    .required('تاریخ تولد را انتخاب کنید'),
-    codemelli:yup
-    .string()
-    .required('کد ملی را وارد کنید')
-    .min(10, 'کد ملی باید 10 کاراکتر باشد')
-});
+    items: yup.array().of(
+        yup.object().shape({
+            name: yup
+                .string()
+                .required('نام را وارد کنید'),
+            family: yup
+                .string()
+                .required('نام خانوادگی را وارد کنید'),
+            mobile: yup
+                .string().min(11, 'شماره موبایل باید 11 عدد باشد')
+                .required('شماره موبایل را وارد کنید')
+
+            ,
+            birthDate: yup
+                .string()
+                .required('تاریخ تولد را انتخاب کنید'),
+            code: yup
+                .string().min(10, 'کد ملی باید 10 کاراکتر باشد')
+                .required('کد ملی را وارد کنید')
+
+        })
+    )
+})
+
+
+
+// const schema = yup.object().shape({
+//     name: yup
+//     .string()
+//     .required('نام را وارد کنید'),
+//     family: yup
+//     .string()
+//     .required('نام خانوادگی را وارد کنید'),
+//     mobile: yup
+//     .string()
+//     .required('شماره موبایل را وارد کنید')
+//     .min(11, 'شماره موبایل باید 11 عدد باشد')
+//     ,
+//     birthDate: yup
+//     .string()
+//     .required('تاریخ تولد را انتخاب کنید'),
+//     codemelli:yup
+//     .string()
+//     .required('کد ملی را وارد کنید')
+//     .min(10, 'کد ملی باید 10 کاراکتر باشد')
+// });
 
 
 const BusSeatScreen = (props) => {
@@ -66,55 +96,84 @@ const BusSeatScreen = (props) => {
     const [BusPerson, setBusPerson] = useState([])
     const [datePickerVisibility, setDatePickerVisibility] = React.useState({ status: false, id: 0 });
 
-    const [ ReturnLinking,setReturnLinking] = useState('')
+    const [ReturnLinking, setReturnLinking] = useState('')
 
 
 
-
-   
-      
-    const { control, handleSubmit, formState: { errors }, register } = useForm({
+    const { control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
         initialValues: {
-          // Initial values for the array
-          items: [
-            { name: '', family: '', mobile: '', birthDate: '', codemelli: '' },
+            // Initial values for the array
+            items: BusPerson
+            //   name: '', family: '', mobile: '', birthDate: '', codemelli: ''
             // ... other initial items
-          ]
-        }
-      });
-      
-        const onPressSend = (formData) => {
-            console.log('formdata',formData)
-          // Perform actions with the validated form data
-        };
+
+        },
+        
+    });
+
+    const onPressSend = (formdata) => {
+         console.log('formdata',formdata)
+    
+            var passengers = []
+            for (let i = 0; i < BusPerson.length; i++) {
+                passengers.push({
+                    "firstName": BusPerson[i].name,
+                    "lastName": BusPerson[i].family,
+                    "nationalIdentification": BusPerson[i].code,
+                    "seatNumber": BusPerson[i].chairNumber,
+                    "birthDate": BusPerson[i].date,
+                    "gender": BusPerson[i].gender
+                })
+
+            }
+            console.log('passengers', passengers)
+            var telephone = { "phoneNumber": BusPerson[0].mobile };
+            var contact = { "name": "", "email": "" };
+            var clientUserTelephone = { "phoneNumber": BusPerson[0].mobile }
+            var clientUserEmail = "";
+
+            busPreReserves(userData[0].RequestNumber, route.params?.data.sourceCode, route.params?.data.busCode, userData[0].Token,
+                passengers, route.params?.data.price * BusPerson.length, telephone,
+                contact, clientUserTelephone, clientUserEmail, setLoading,{
+                    headers:{
+                      'accept': 'text/plain',
+                        "Access-Control-Allow-Origin": "*",
+                         'Authorization' :  userData[0]?.Token
+                    }
+                },setReturnLinking, props)
+
+        
+
+    };
 
 
 
 
-    let _handleOpenURL =(event)=> {
-        console.log('event url => ',event.url);
-      }
+    let _handleOpenURL = (event) => {
+        console.log('event url => ', event.url);
+    }
     useEffect(() => {
         // console.log('navigation', userData[0])
         setReturnData(false)
-        BusDetails(userData[0].RequestNumber, route.params?.data.sourceCode, route.params?.data.busCode, userData[0].Token, setLoading, setData, props, setReturnData)
-        
+        BusDetails(userData[0].RequestNumber, route.params?.data.sourceCode, route.params?.data.busCode,
+             userData[0].Token, setLoading, setData, props, setReturnData)
 
-       // console.log('ReturnLinking = > ',ReturnLinking)
+
+        // console.log('ReturnLinking = > ',ReturnLinking)
 
 
         Linking.getInitialURL().then((ev) => {
-            console.log('ev url => ',ev);
+            console.log('ev url => ', ev);
             if (ev) {
-              _handleOpenURL(ev);
+                _handleOpenURL(ev);
             }
-          }).catch(err => {
-              console.warn('An error occurred', err);
-          });
-          Linking.addEventListener('url', _handleOpenURL);
-   
-   
+        }).catch(err => {
+            console.warn('An error occurred', err);
+        });
+        Linking.addEventListener('url', _handleOpenURL);
+
+
     }, [])
 
     function numberShow(n) {
@@ -159,179 +218,216 @@ const BusSeatScreen = (props) => {
     }
 
     const renderPerson = (item, index) => {
+        const itemErrors = errors.items?.[index];
+        // const { errors } = control;
         return (
-            <View style={{ width: '100%', height: 'auto', padding: 10, backgroundColor: 'white', borderRadius: 10, borderWidth: 0.5, marginBottom: '3%' }} key={index}>
+            <View key={index} style={{ width: '100%', height: 'auto', padding: 10, backgroundColor: 'white', borderRadius: 10, borderWidth: 0.5, marginBottom: '3%' }}
+            >
                 <View>
-                    <Text style={{ color: 'black', fontSize: SH(12),  fontFamily:Fonts.Poppins_Medium }}>مسافر صندلی  {item.chairNumber} :  </Text>
+                    <Text style={{ color: 'black', fontSize: SH(12), fontFamily: Fonts.Poppins_Medium }}>مسافر صندلی  {item.chairNumber} :  </Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 5, alignItems: 'center' }}>
-                <Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
-          
-          name={`name${index}`}
-           
-        //   error={error}
-          render={({ field: { onChange, value } }) => (
-            <>
-            <TextInput
-            style={{ width: '40%', height: 50, color: 'black', borderRadius: 10, marginRight: '2%', textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
-            onChangeText={(text) => {
+                    <View style={{
+                        width: '40%', height: 70, color: 'black',
+                        marginRight: '2%',
+                    }}>
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
 
-                const myNextList = [...BusPerson];
-                const DatesStep = myNextList;
-                console.log('DatesStep', DatesStep)
-                const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
-                seatToUpdate[0].name = text;
-                setBusPerson(myNextList)
-                console.log('BusPerson', BusPerson)
-                onChange(text)
-            }}
-            value={item.name}
-            // onChangeText={onChange}
-            mode='outlined'
-            label={'نام '}
-            placeholderTextColor={'black'}
-        />
-       {
-        console.log('name${index}',control)
-       }
-       {errors && (
-                            <Text style={{ color: 'red' }}>لطفا نام را برای مسافر {item.chairNumber} وارد کنید</Text>
-                        )}
+                            name={`items.${index}.name`}
+                            // name={`items.${index}.name`}
 
-        </>
-        
-          )}
-        
-        
-        />
-       
-                 <Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-            style={{ width: '55%', height: 50, color: 'black', borderRadius: 10, textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
-            onChangeText={(text) => {
-                const myNextList = [...BusPerson];
-                const DatesStep = myNextList;
-                console.log('DatesStep', DatesStep)
-                const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
-                seatToUpdate[0].family = text;
-                setBusPerson(myNextList)
-                console.log('BusPerson', BusPerson)
-                onChange(text)
+                            //   error={error}
+                            render={({ field: { onChange, value } }) => (
+                                <>
+                                    <TextInput
+                                        style={{ height: 50, borderRadius: 10, textAlign: 'right', fontFamily: Fonts.Poppins_Medium }}
+                                        onChangeText={(text) => {
 
-            }}
-            value={item.family}
-            mode='outlined'
-            label={'نام خانوادگی '}
-            placeholderTextColor={'black'}
-        />
-          )}
-          name="family"
-        />      
+                                            const myNextList = [...BusPerson];
+                                            const DatesStep = myNextList;
+                                            console.log('DatesStep', DatesStep)
+                                            const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
+                                            seatToUpdate[0].name = text;
+                                            setBusPerson(myNextList)
+                                            console.log('BusPerson', BusPerson)
+                                            onChange(text)
+                                        }}
+                                        value={value}
+                                        // onChangeText={onChange}
+                                        mode='outlined'
+                                        label={'نام '}
+                                        placeholderTextColor={'black'}
+                                    />
+
+
+                                </>
+
+                            )}
+
+
+                        />
+                        {itemErrors?.name && <Text style={{ color: 'red' }}>* {itemErrors.name.message}</Text>}
+                    </View>
+                    <View style={{
+                        width: '55%', height: 70, color: 'black',
+                    }}>
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
+                            name={`items.${index}.family`}
+                            render={({ field: { onChange, value } }) => (
+
+                                <TextInput
+                                    style={{ height: 50, color: 'black', borderRadius: 10, textAlign: 'right', fontFamily: Fonts.Poppins_Medium }}
+                                    onChangeText={(text) => {
+                                        const myNextList = [...BusPerson];
+                                        const DatesStep = myNextList;
+                                        console.log('DatesStep', DatesStep)
+                                        const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
+                                        seatToUpdate[0].family = text;
+                                        setBusPerson(myNextList)
+                                        console.log('BusPerson', BusPerson)
+                                        onChange(text)
+
+                                    }}
+                                    value={item.family}
+                                    mode='outlined'
+                                    label={'نام خانوادگی '}
+                                    placeholderTextColor={'black'}
+                                />
+
+                            )}
+
+                        />
+
+                        {itemErrors?.family && <Text style={{ color: 'red' }}>* {itemErrors.family.message}</Text>}
+                    </View>
+
+
                 </View>
-                
-              
-                {/* {errors.family && <Text>{errors.family.message}</Text>} */}
+
+
+
                 <View style={{ padding: 5, justifyContent: 'center', alignItems: 'center' }}>
-                  
 
-<Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-            style={{ width: '97%', height: 50, color: 'black', borderRadius: 10, textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
-            onChangeText={(text) => {
-                const myNextList = [...BusPerson];
-                const DatesStep = myNextList;
-                console.log('DatesStep', DatesStep)
-                const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
-                seatToUpdate[0].mobile = text;
-                setBusPerson(myNextList)
-                console.log('BusPerson', BusPerson)
-                onChange(text)
-            }}
-            mode='outlined'
-            value={item.mobile}
-            label={'شماره موبایل'}
-            placeholderTextColor={'black'}
-        />
-          )}
-          name="mobile"
-        /> 
+
+                    <Controller
+                        control={control}
+                        rules={{
+                            required: true,
+                        }}
+                        render={({ field: { onChange, value } }) => (
+                            <TextInput
+                                style={{ width: '97%', height: 50, color: 'black', borderRadius: 10, textAlign: 'right', fontFamily: Fonts.Poppins_Medium }}
+                                onChangeText={(text) => {
+                                    const myNextList = [...BusPerson];
+                                    const DatesStep = myNextList;
+                                    console.log('DatesStep', DatesStep)
+                                    const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
+                                    seatToUpdate[0].mobile = text;
+                                    setBusPerson(myNextList)
+                                    console.log('BusPerson', BusPerson)
+                                    onChange(text)
+                                }}
+                                mode='outlined'
+                                value={item.mobile}
+                                label={'شماره موبایل'}
+                                placeholderTextColor={'black'}
+                                maxLength={11}
+                            />
+                        )}
+                        name={`items.${index}.mobile`}
+                    />
+
+
+                    {itemErrors?.mobile && <Text style={{ color: 'red', textAlign: 'right' }}>* {itemErrors?.mobile.message}</Text>}
+
 
                 </View>
-                {errors?.[`items.${index}.mobile`] && <Text key={index}>{errors.mobile.message}</Text>}
 
 
 
-                <Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({ field: { onChange, value } }) => (
-            <TouchableOpacity style={{ padding: 5, justifyContent: 'center', alignItems: 'center' }}
-            onPress={() => { setDatePickerVisibility({ status: true, id: item.chairNumber }) }}>
-            <TextInput
-                style={{ width: '97%', height: 50, color: 'black', borderRadius: 10, textAlign: 'center', fontFamily:Fonts.Poppins_Medium }}
-                onChangeText={onChange}
-                value={item.date}
-                editable={false}
-                label={'تاریخ تولد'}
-                mode='outlined'
-                placeholderTextColor={'black'}
-            />
-        </TouchableOpacity>
-          )}
-          name="birthDate"
-        /> 
+                <>
 
-             
+                    <Controller
+                        control={control}
+                        rules={{
+                            required: true,
+                        }}
+                        render={({ field: { onChange, value } }) => (
+                            <TouchableOpacity style={{ padding: 5, justifyContent: 'center', alignItems: 'center' }}
+                                onPress={() => { setDatePickerVisibility({ status: true, id: item.chairNumber }) }}>
+                                <TextInput
+                                    style={{ width: '97%', height: 50, color: 'black', borderRadius: 10, textAlign: 'center', fontFamily: Fonts.Poppins_Medium }}
+                                    onChangeText={onChange}
+                                    value={item.date}
+                                    editable={false}
+                                    label={'تاریخ تولد'}
+                                    mode='outlined'
+                                    placeholderTextColor={'black'}
+                                />
+                            </TouchableOpacity>
+                        )}
+                   
+                        name={`items.${index}.birthDate`}
+                    />
+                    {
+                        itemErrors?.birthDate && (
+                            <Text style={{ color: 'red', textAlign: 'right' }}>* {itemErrors.birthDate.message}</Text>
+                        )
+                    }
+                </>
+
 
 
 
                 <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 5, alignItems: 'center' }}>
-                   
 
-<Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
+                    <View style={{width: '65%', height: 70,marginRight: '2%',}}>
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
 
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-            style={{ width: '65%', height: 50, color: 'black', borderRadius: 10, marginRight: '2%', textAlign: 'right', fontFamily:Fonts.Poppins_Medium }}
-            onChangeText={(text) => {
-                const myNextList = [...BusPerson];
-                const DatesStep = myNextList;
-                console.log('DatesStep', DatesStep)
-                const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
-                seatToUpdate[0].code = text;
-                setBusPerson(myNextList)
-                console.log('BusPerson', BusPerson)
-                onChange(text)
-            }}
-            value={item.code}
-            mode='outlined'
-            label={'کد ملی'}
-            placeholderTextColor={'black'}
-            keyboardType="numeric"
-        />
-          )}
-          name="codemelli"
-        /> 
+                            render={({ field: { onChange, value } }) => (
+                                <TextInput
+                                    style={{  height: 50, color: 'black', borderRadius: 10,  textAlign: 'right', fontFamily: Fonts.Poppins_Medium }}
+                                    onChangeText={(text) => {
+                                        const myNextList = [...BusPerson];
+                                        const DatesStep = myNextList;
+                                        console.log('DatesStep', DatesStep)
+                                        const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
+                                        seatToUpdate[0].code = text;
+                                        setBusPerson(myNextList)
+                                        console.log('BusPerson', BusPerson)
+                                        onChange(text)
+                                    }}
+                                    value={item.code}
+                                    mode='outlined'
+                                    label={'کد ملی'}
+                                    placeholderTextColor={'black'}
+                                    keyboardType="numeric"
+                                    maxLength={11}
+                                />
+                            )}
+                          
+                            name={`items.${index}.code`}
+                        />
+
+                        {
+                            itemErrors?.code && (
+                                <Text style={{ color: 'red', textAlign: 'right' }}>* {itemErrors.code.message}</Text>
+                            )
+                        }
+
+                    </View>
 
                     <View style={{ width: '30%', height: 50, borderWidth: 1, borderColor: 'gray', borderRadius: 10 }}>
                         <Picker
@@ -381,112 +477,112 @@ const BusSeatScreen = (props) => {
                             style={BusSeatScreenStyles.ContentContainerStyle}
                         >
                             {ReturnData ?
-                            <>
-                                <View style={{
-                                    width: '100%', borderWidth: 1, height: 200, borderRadius: 10, borderColor: 'gray',
-                                    marginBottom: 10, flexDirection: 'row', justifyContent: 'space-between'
-                                }}>
+                                <>
+                                    <View style={{
+                                        width: '100%', borderWidth: 1, height: 200, borderRadius: 10, borderColor: 'gray',
+                                        marginBottom: 10, flexDirection: 'row', justifyContent: 'space-between'
+                                    }}>
 
 
-                                    <View style={{ width: '60%', }}>
-                                        <View style={{ width: '100%', height: '60%' }}>
+                                        <View style={{ width: '60%', }}>
+                                            <View style={{ width: '100%', height: '60%' }}>
 
-                                        </View>
-                                        <View style={{ width: '90%', marginLeft: '10%', height: '40%', alignItems: 'flex-start' }}>
-                                            <Text style={{ textAlign: 'center', color: 'black',  fontFamily:Fonts.Poppins_Medium, fontWeight: 'bold', fontSize: SH(13) }}>{route.params?.data.baseCompany}</Text>
-                                            <Text style={{ textAlign: 'center', color: 'gray', fontFamily:Fonts.Poppins_Medium }}>{route.params?.data.carType}</Text>
-                                        </View>
-
-                                    </View>
-
-                                    <View style={{ height: '100%', borderWidth: 1, backgroundColor: 'black', borderColor: 'gray' }}>
-
-                                    </View>
-
-                                    <View style={{ width: '38%', alignItems: 'flex-start' }}>
-                                        <View style={{ flexDirection: 'row', alignItems: 'center', height: '25%' }}>
-                                            <PlaceIcon name={'directions-bus'} color={'gray'} size={SH(22)} />
-                                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily:Fonts.Poppins_Medium }}>{route.params?.data.origin?.terminal != '' ?
-                                                route.params?.data.origin?.terminal : route.params?.data.origin?.cityName}</Text>
-                                        </View>
-
-
-                                        <View style={{ height: '25%' }}>
-                                            <Text style={{ textAlign: 'center', color: 'gray', fontFamily:Fonts.Poppins_Medium }}>ساعت حرکت</Text>
-                                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily:Fonts.Poppins_Medium }}>{route.params?.data.timeMove}</Text>
-                                        </View>
-
-                                        <View style={{ height: '25%' }}>
-                                            <Text style={{ textAlign: 'center', color: 'gray', fontFamily:Fonts.Poppins_Medium }}>تاریخ حرکت</Text>
-                                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily:Fonts.Poppins_Medium }}>{route.params?.data.dateMove}</Text>
-                                        </View>
-
-                                        <View style={{ flexDirection: 'row', alignItems: 'center', height: '25%' }}>
-                                            <PlaceIcon name={'place'} color={'gray'} size={SH(22)} />
-                                            <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily:Fonts.Poppins_Medium }}>{route.params?.data.destination?.terminal != ''
-                                                ? route.params?.data.destination?.terminal : route.params?.data.destination?.cityName}</Text>
-                                        </View>
-                                    </View>
-
-                                </View>
-
-
-
-                                <View style={[{ marginBottom: '3%', borderWidth: 1, paddingBottom: '5%', paddingTop: '5%', borderRadius: 10, borderColor: 'gray' }]}>
-                                    <View style={[BusSeatScreenStyles.BusSratflatlistbox, {
-                                        borderRadius: 10, width: '90%', marginHorizontal: '5%', borderWidth: 0.5, borderColor: 'gray'
-                                    }]}>
-                                        <FlatList
-                                            data={BusSeatShowData}
-                                            renderItem={({ item, index }) => BusSeatShowFunction(item, index)}
-                                            keyExtractor={item => item.id}
-                                            horizontal
-                                        />
-                                    </View>
-                                    <View style={{ borderRadius: 10, marginTop: 5, borderRadius: 10, width: '90%', marginHorizontal: '5%' }}>
-                                        <View style={{ width: '100%', height: 50, justifyContent: 'center', alignItems: 'center' }}>
-                                            <Text style={{ color: 'black', fontWeight: 'bold', fontSize: SH(15), fontFamily:Fonts.Poppins_Medium }} >
-                                                جلوی اتوبوس
-                                            </Text>
-                                            <View style={{ width: '40%', height: 1, backgroundColor: 'black', marginVertical: 5, fontFamily:Fonts.Poppins_Medium }}>
-
+                                            </View>
+                                            <View style={{ width: '90%', marginLeft: '10%', height: '40%', alignItems: 'flex-start' }}>
+                                                <Text style={{ textAlign: 'center', color: 'black', fontFamily: Fonts.Poppins_Medium, fontWeight: 'bold', fontSize: SH(13) }}>{route.params?.data.baseCompany}</Text>
+                                                <Text style={{ textAlign: 'center', color: 'gray', fontFamily: Fonts.Poppins_Medium }}>{route.params?.data.carType}</Text>
                                             </View>
 
                                         </View>
-                                        <View >
-                                            {
 
-                                                <BusSeats data={Data} setData={setData} BusPerson={BusPerson} setBusPerson={setBusPerson} />
-                                            }
-
+                                        <View style={{ height: '100%', borderWidth: 1, backgroundColor: 'black', borderColor: 'gray' }}>
 
                                         </View>
+
+                                        <View style={{ width: '38%', alignItems: 'flex-start' }}>
+                                            <View style={{ flexDirection: 'row', alignItems: 'center', height: '25%' }}>
+                                                <PlaceIcon name={'directions-bus'} color={'gray'} size={SH(22)} />
+                                                <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily: Fonts.Poppins_Medium }}>{route.params?.data.origin?.terminal != '' ?
+                                                    route.params?.data.origin?.terminal : route.params?.data.origin?.cityName}</Text>
+                                            </View>
+
+
+                                            <View style={{ height: '25%' }}>
+                                                <Text style={{ textAlign: 'center', color: 'gray', fontFamily: Fonts.Poppins_Medium }}>ساعت حرکت</Text>
+                                                <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily: Fonts.Poppins_Medium }}>{route.params?.data.timeMove}</Text>
+                                            </View>
+
+                                            <View style={{ height: '25%' }}>
+                                                <Text style={{ textAlign: 'center', color: 'gray', fontFamily: Fonts.Poppins_Medium }}>تاریخ حرکت</Text>
+                                                <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily: Fonts.Poppins_Medium }}>{route.params?.data.dateMove}</Text>
+                                            </View>
+
+                                            <View style={{ flexDirection: 'row', alignItems: 'center', height: '25%' }}>
+                                                <PlaceIcon name={'place'} color={'gray'} size={SH(22)} />
+                                                <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily: Fonts.Poppins_Medium }}>{route.params?.data.destination?.terminal != ''
+                                                    ? route.params?.data.destination?.terminal : route.params?.data.destination?.cityName}</Text>
+                                            </View>
+                                        </View>
+
                                     </View>
+
+
+
+                                    <View style={[{ marginBottom: '3%', borderWidth: 1, paddingBottom: '5%', paddingTop: '5%', borderRadius: 10, borderColor: 'gray' }]}>
+                                        <View style={[BusSeatScreenStyles.BusSratflatlistbox, {
+                                            borderRadius: 10, width: '90%', marginHorizontal: '5%', borderWidth: 0.5, borderColor: 'gray'
+                                        }]}>
+                                            <FlatList
+                                                data={BusSeatShowData}
+                                                renderItem={({ item, index }) => BusSeatShowFunction(item, index)}
+                                                keyExtractor={item => item.id}
+                                                horizontal
+                                            />
+                                        </View>
+                                        <View style={{ borderRadius: 10, marginTop: 5, borderRadius: 10, width: '90%', marginHorizontal: '5%' }}>
+                                            <View style={{ width: '100%', height: 50, justifyContent: 'center', alignItems: 'center' }}>
+                                                <Text style={{ color: 'black', fontWeight: 'bold', fontSize: SH(15), fontFamily: Fonts.Poppins_Medium }} >
+                                                    جلوی اتوبوس
+                                                </Text>
+                                                <View style={{ width: '40%', height: 1, backgroundColor: 'black', marginVertical: 5, fontFamily: Fonts.Poppins_Medium }}>
+
+                                                </View>
+
+                                            </View>
+                                            <View >
+                                                {
+
+                                                    <BusSeats data={Data} setData={setData} BusPerson={BusPerson} setBusPerson={setBusPerson} />
+                                                }
+
+
+                                            </View>
+                                        </View>
+                                    </View>
+
+
+
+
+                                    <View >
+                                        {
+
+                                            <FlatList
+                                                data={BusPerson}
+                                                renderItem={({ item, index }) => renderPerson(item, index)}
+                                                keyExtractor={item => item.id}
+                                            />
+                                        }
+
+                                    </View>
+
+
+                                </>
+                                :
+                                <View style={{ justifyContent: 'center', alignItems: 'center', marginHorizontal: '10%', width: '80%', marginTop: '50%' }}>
+                                    <Text style={{ textAlign: 'center', fontSize: 20, color: 'black', fontFamily: Fonts.Poppins_Medium }}>دریافت اطلاعات از سمت سرور مرکزی برای این اتوبوس دچار مشکل شده است.</Text>
                                 </View>
 
-
-
-                                
-                                <View >
-                                    {
-
-                                        <FlatList
-                                            data={BusPerson}
-                                            renderItem={({ item, index }) => renderPerson(item, index)}
-                                            keyExtractor={item => item.id}
-                                        />
-                                    }
-
-                                </View>
-
-                            
- </>
-                            :
-                            <View style={{ justifyContent: 'center', alignItems: 'center', marginHorizontal: '10%', width: '80%',marginTop:'50%' }}>
-                                <Text style={{ textAlign: 'center', fontSize: 20, color: 'black', fontFamily:Fonts.Poppins_Medium }}>دریافت اطلاعات از سمت سرور مرکزی برای این اتوبوس دچار مشکل شده است.</Text>
-                            </View>
-                           
-                        }
+                            }
 
 
 
@@ -508,48 +604,23 @@ const BusSeatScreen = (props) => {
                                 <View style={BusSeatScreenStyles.Widththree}>
                                     <Button title={t('Proceed')} ButtonStyle={[BusSeatScreenStyles.ButtonStyle, {}]}
                                         // onPress={() => {
-                                        //     if (BusPerson.length == 0) {
-                                        //         Toast.showWithGravity('لطفا حداقل یک صندلی را انتخاب کنید', Toast.LONG, Toast.CENTER);
-                                        //     }
-                                        //     else {
-                                        //         // var passengers = []
-                                        //         // for (let i = 0; i < BusPerson.length; i++) {
-                                        //         //     passengers.push({
-                                        //         //         "firstName": BusPerson[i].name,
-                                        //         //         "lastName": BusPerson[i].family,
-                                        //         //         "nationalIdentification": BusPerson[i].code,
-                                        //         //         "seatNumber": BusPerson[i].chairNumber,
-                                        //         //         "birthDate": BusPerson[i].date,
-                                        //         //         "gender": BusPerson[i].gender
-                                        //         //     })
-
-                                        //         // }
-                                        //         // console.log('passengers', passengers)
-                                        //         // var telephone = { "phoneNumber": BusPerson[0].mobile };
-                                        //         // var contact = { "name": "", "email": "" };
-                                        //         // var clientUserTelephone = { "phoneNumber": BusPerson[0].mobile }
-                                        //         // var clientUserEmail = "";
-
-                                        //         // busPreReserves(userData[0].RequestNumber, route.params?.data.sourceCode, route.params?.data.busCode, userData[0].Token,
-                                        //         //     passengers, route.params?.data.price * BusPerson.length, telephone,
-                                        //         //     contact, clientUserTelephone, clientUserEmail, setLoading,{
-                                        //         //         headers:{
-                                        //         //           'accept': 'text/plain',
-                                        //         //             "Access-Control-Allow-Origin": "*",
-                                        //         //              'Authorization' :  userData[0]?.Token
-                                        //         //         }
-                                        //         //     },setReturnLinking, props)
-                                        //         console.log('data')
-                                        //         handleSubmit(onPressSend)
-
-                                        //     }
+                                           
 
 
                                         // }}
 
-                                        onPress={handleSubmit(onPressSend)}
+                                        onPress={()=>{
+                                            if (BusPerson.length == 0) {
+                                                Toast.showWithGravity('لطفا حداقل یک صندلی را انتخاب کنید', Toast.LONG, Toast.CENTER);
+                                            }
+                                            else {
+                                            
+                                            handleSubmit(onPressSend)
                                         
-                                        />
+                                            }}
+                                        }
+
+                                    />
                                 </View>
                             </View>
                         </View>
