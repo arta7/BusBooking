@@ -4,7 +4,7 @@ import { HomeTabStyles } from '../../../styles';
 import { useTranslation } from "react-i18next";
 import { SH, SF, SW, Colors, ExclusiveData, Offersdata, Lastlistdata } from '../../../utils';
 import { DropDown, Button, Spacing, Lottie, DatePicker, AddRemove } from '../../../components';
-import IconI from "react-native-vector-icons/Ionicons";
+import IconI from "react-native-vector-icons/Octicons";
 import IconA from "react-native-vector-icons/AntDesign";
 import IconFA from "react-native-vector-icons/FontAwesome";
 import IconFA5 from "react-native-vector-icons/FontAwesome5";
@@ -17,6 +17,8 @@ import { useEffect } from 'react';
 import { GetCities } from '../../../Api/ApiMaster';
 import Loadings from '../../../Loadings'
 import Toast from 'react-native-simple-toast';
+
+
 const HomeTab = (props) => {
     const { navigation } = props;
     const { userData, setUserData } = React.useContext(UserContext);
@@ -184,6 +186,7 @@ const HomeTab = (props) => {
                                     />
                                 </View>
                             </View>
+                            
                             <Spacing />
                             <View style={[{
                                 width: '100%', borderWidth: 0.4, borderColor: 'grey'
@@ -195,7 +198,8 @@ const HomeTab = (props) => {
                                     <DateIcon name='date-range' color={'gray'} size={SH(25)} />
 
                                 </View>
-                                <TouchableOpacity style={{ width: '85%', justifyContent: 'center', alignItems: 'flex-start' }} onPress={() => { setDatePickerVisibility(true) }}>
+                                <TouchableOpacity style={{ width: '85%', justifyContent: 'center', alignItems: 'flex-start' }} 
+                                onPress={() => { setDatePickerVisibility(true) }}>
                                     <DatePicker
                                         DatePlaceholder={t("Select_Date")}
                                         isDatePickerVisible={isDatePickerVisible}
@@ -207,6 +211,30 @@ const HomeTab = (props) => {
                                 </TouchableOpacity>
 
                             </View>
+                            <TouchableOpacity style={{width:50,height:50,backgroundColor:'#bfdaf7',position:'absolute'
+                                ,justifyContent:'center',alignItems:'center',borderRadius:5,top:'20%',right:'15%'}}
+                                
+                                onPress={()=>{
+
+
+                                    var StartData= userData[0].StartPlace;
+                                    var StartDataCode= userData[0].StartPlaceCode;
+                                    var EndData= userData[0].EndPlace;
+                                    var EndDataCode= userData[0].EndPlaceCode;
+
+                                    const myNextList = [...userData];
+                                    const DatesStep = myNextList;
+                                    DatesStep[0].EndPlace = StartData;
+                                    DatesStep[0].EndPlaceCode = StartDataCode;
+                                    DatesStep[0].StartPlace = EndData;
+                                    DatesStep[0].StartPlaceCode = EndDataCode;
+                                    setUserData(myNextList)
+                                    
+                                }}
+                                >
+
+                            <IconI name="arrow-switch" size={30} color={'white'} style={{justifyContent:'center',alignItems:'center'}} />
+                            </TouchableOpacity>
                             <Spacing />
                             <Spacing space={SH(20)} />
                             <Button title={t("Search_Buses")} onPress={() => {

@@ -19,7 +19,7 @@ const LikeUnlke = (props) => {
                     if (seatToUpdate.status == 0) {
                         seatToUpdate.status = 6;
 
-                        let PersonData = { name: '', family: '', date: '',mobile:'', code: '',gender:'1', status: '', chairNumber: seatToUpdate.chairNumber }
+                        let PersonData = { name: '', family: '', date: '1370-12-12',mobile:'', code: '',gender:'1', status: '', chairNumber: seatToUpdate.chairNumber }
 
                         setBusPerson([...BusPerson, PersonData]);
                     }

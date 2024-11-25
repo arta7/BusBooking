@@ -43,9 +43,9 @@ const schema = yup.object().shape({
                 .required('شماره موبایل را وارد کنید')
 
             ,
-            birthDate: yup
-                .string()
-                .required('تاریخ تولد را انتخاب کنید'),
+            // date: yup
+            //     .string()
+            //     .required('تاریخ تولد را انتخاب کنید'),
             code: yup
                 .string().min(10, 'کد ملی باید 10 کاراکتر باشد')
                 .required('کد ملی را وارد کنید')
@@ -102,6 +102,7 @@ const BusSeatScreen = (props) => {
 
     const { control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
+
         initialValues: {
             // Initial values for the array
             items: BusPerson
@@ -109,12 +110,12 @@ const BusSeatScreen = (props) => {
             // ... other initial items
 
         },
-        
+
     });
 
-    const onPressSend = (formdata) => {
-         console.log('formdata',formdata)
-    
+    const onPressSend = () => {
+
+        {
             var passengers = []
             for (let i = 0; i < BusPerson.length; i++) {
                 passengers.push({
@@ -135,15 +136,15 @@ const BusSeatScreen = (props) => {
 
             busPreReserves(userData[0].RequestNumber, route.params?.data.sourceCode, route.params?.data.busCode, userData[0].Token,
                 passengers, route.params?.data.price * BusPerson.length, telephone,
-                contact, clientUserTelephone, clientUserEmail, setLoading,{
-                    headers:{
-                      'accept': 'text/plain',
-                        "Access-Control-Allow-Origin": "*",
-                         'Authorization' :  userData[0]?.Token
-                    }
-                },setReturnLinking, props)
+                contact, clientUserTelephone, clientUserEmail, setLoading, {
+                headers: {
+                    'accept': 'text/plain',
+                    "Access-Control-Allow-Origin": "*",
+                    'Authorization': userData[0]?.Token
+                }
+            }, setReturnLinking, props)
 
-        
+        }
 
     };
 
@@ -151,13 +152,22 @@ const BusSeatScreen = (props) => {
 
 
     let _handleOpenURL = (event) => {
-        console.log('event url => ', event.url);
+     
+            if (event.url.substring(event.url.search('Status')).split('=')[1] == "OK") {
+
+                alert('پرداخت با موفقیت انجام گردید.')
+            }
+            else  if (event.url.substring(event.url.search('Status')).split('=')[1] == "NOK") {
+                alert('پرداخت با شکست مواجه گردید.')
+            }
+        
+     
     }
     useEffect(() => {
         // console.log('navigation', userData[0])
         setReturnData(false)
         BusDetails(userData[0].RequestNumber, route.params?.data.sourceCode, route.params?.data.busCode,
-             userData[0].Token, setLoading, setData, props, setReturnData)
+            userData[0].Token, setLoading, setData, props, setReturnData)
 
 
         // console.log('ReturnLinking = > ',ReturnLinking)
@@ -171,7 +181,11 @@ const BusSeatScreen = (props) => {
         }).catch(err => {
             console.warn('An error occurred', err);
         });
-        Linking.addEventListener('url', _handleOpenURL);
+         var  urlListener =  Linking.addEventListener('url', _handleOpenURL);
+
+        return () => {
+            urlListener.remove();
+          };
 
 
     }, [])
@@ -365,7 +379,10 @@ const BusSeatScreen = (props) => {
                                 onPress={() => { setDatePickerVisibility({ status: true, id: item.chairNumber }) }}>
                                 <TextInput
                                     style={{ width: '97%', height: 50, color: 'black', borderRadius: 10, textAlign: 'center', fontFamily: Fonts.Poppins_Medium }}
-                                    onChangeText={onChange}
+                                    onChangeText={(text) => {
+
+                                        onChange(text)
+                                    }}
                                     value={item.date}
                                     editable={false}
                                     label={'تاریخ تولد'}
@@ -374,12 +391,12 @@ const BusSeatScreen = (props) => {
                                 />
                             </TouchableOpacity>
                         )}
-                   
-                        name={`items.${index}.birthDate`}
+
+                        name={`items.${index}.date`}
                     />
                     {
-                        itemErrors?.birthDate && (
-                            <Text style={{ color: 'red', textAlign: 'right' }}>* {itemErrors.birthDate.message}</Text>
+                        itemErrors?.date && (
+                            <Text style={{ color: 'red', textAlign: 'right' }}>* {itemErrors.date.message}</Text>
                         )
                     }
                 </>
@@ -389,7 +406,7 @@ const BusSeatScreen = (props) => {
 
                 <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 5, alignItems: 'center' }}>
 
-                    <View style={{width: '65%', height: 70,marginRight: '2%',}}>
+                    <View style={{ width: '65%', height: 70, marginRight: '2%', }}>
                         <Controller
                             control={control}
                             rules={{
@@ -398,15 +415,13 @@ const BusSeatScreen = (props) => {
 
                             render={({ field: { onChange, value } }) => (
                                 <TextInput
-                                    style={{  height: 50, color: 'black', borderRadius: 10,  textAlign: 'right', fontFamily: Fonts.Poppins_Medium }}
+                                    style={{ height: 50, color: 'black', borderRadius: 10, textAlign: 'right', fontFamily: Fonts.Poppins_Medium }}
                                     onChangeText={(text) => {
                                         const myNextList = [...BusPerson];
                                         const DatesStep = myNextList;
-                                        console.log('DatesStep', DatesStep)
                                         const seatToUpdate = DatesStep.filter(a => a.chairNumber == item.chairNumber)
                                         seatToUpdate[0].code = text;
                                         setBusPerson(myNextList)
-                                        console.log('BusPerson', BusPerson)
                                         onChange(text)
                                     }}
                                     value={item.code}
@@ -414,10 +429,10 @@ const BusSeatScreen = (props) => {
                                     label={'کد ملی'}
                                     placeholderTextColor={'black'}
                                     keyboardType="numeric"
-                                    maxLength={11}
+                                    maxLength={10}
                                 />
                             )}
-                          
+
                             name={`items.${index}.code`}
                         />
 
@@ -603,23 +618,9 @@ const BusSeatScreen = (props) => {
                     </View> */}
                                 <View style={BusSeatScreenStyles.Widththree}>
                                     <Button title={t('Proceed')} ButtonStyle={[BusSeatScreenStyles.ButtonStyle, {}]}
-                                        // onPress={() => {
-                                           
 
-
-                                        // }}
-
-                                        onPress={()=>{
-                                            if (BusPerson.length == 0) {
-                                                Toast.showWithGravity('لطفا حداقل یک صندلی را انتخاب کنید', Toast.LONG, Toast.CENTER);
-                                            }
-                                            else {
-                                            
-                                            handleSubmit(onPressSend)
-                                        
-                                            }}
-                                        }
-
+                                        onPress={handleSubmit(onPressSend, console.log('error'))}
+                                        disable={BusPerson.length == 0 ? true : false}
                                     />
                                 </View>
                             </View>
