@@ -80,8 +80,7 @@ export function LoginAPI(_phone,self,userData,setUserData,setLoading)
              
            Toast.showWithGravity(response.data.message, Toast.LONG, Toast.CENTER);
           
-           self.navigate(RouteName.OTP_VERYFY_SCREEN)
-            }
+           self.navigate(RouteName.OTP_VERYFY_SCREEN)}
             setLoading(false)
         
   })
@@ -114,8 +113,9 @@ export function VerifyAPI(_phone,_code,self,setLoading)
           console.log('response verify Data',response.data.status) 
           if(response.data.status == 1)
             {
+              AsyncStorage.setItem('Token',response.data.data.token)
            Toast.showWithGravity(response.data.message, Toast.LONG, Toast.CENTER);
-           AsyncStorage.setItem('Token',response.data.data.token)
+              
         
              self.replace(RouteName.HOME_SCREEN)
             }
@@ -179,6 +179,26 @@ export function GetCities(setData,Data,self,setLoading,axisConfigToken)
     setLoading(false)
   })
 }
+
+
+export function GetProfile(setData,Data,self,setLoading,axisConfigToken)
+{
+  axios.get(Address.URL + Address.Login.GetProfile,axisConfigToken)
+  .then( (response)=> {
+
+
+      console.log('response',response.data.data)
+      setData(response.data.data)
+      setLoading(false)
+        
+  })
+  .catch( (error)=> {
+    console.log('errors',error)  
+    setLoading(false)
+  })
+}
+
+
 
 export function BusSearch(_originCity,_destinationCity,_date,HeaderValue,setLoading,SetData,setUserData,userData,self)
 {

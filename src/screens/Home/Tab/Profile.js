@@ -10,7 +10,9 @@ import images from "../../../index";
 import RouteName from "../../../routes/RouteName";
 import { useTranslation } from "react-i18next";
 import { useTheme } from '@react-navigation/native';
-
+import { GetCities } from "../../../Api/ApiMaster";
+import UserContext from './../../../../UserContext';
+const { userData, setUserData } = React.useContext(UserContext);
 const ProfileTab = (props) => {
   const { navigation } = props;
   const { Colors } = useTheme();
@@ -38,6 +40,14 @@ const ProfileTab = (props) => {
     if (text === 'Confirmpassword') setPasswordVisibilityconfirm(!passwordVisibilityconfirm);
   };
 
+
+useEffect(()=>{
+
+
+},[])
+
+
+
   useEffect(() => {
     navigation.addListener('focus', () => {
       setModalVisible(false);
@@ -63,19 +73,20 @@ const ProfileTab = (props) => {
               <View style={ProfileTabStyle.BgWhiteShadow}>
                 <View>
                   <Text style={ProfileTabStyle.PhoneNumberText}>{t("Phone_Number")}</Text>
-                  <Text style={ProfileTabStyle.DigitNumberText}>96034 56878</Text>
+                  <Text style={ProfileTabStyle.DigitNumberText}>{userData[0].Mobile.toString()}</Text>
                 </View>
                 <View>
                   <TouchableOpacity
-                    onPress={() => { setModalVisible(true); setmodalcontent(1) }}
+                  disabled={true}
+                  //  onPress={() => { setModalVisible(true); setmodalcontent(1) }}
                   >
-                    <View>
+                    {/* <View>
                       <Icon
                         size={SF(30)}
                         name="pencil"
                         color={Colors.gray_text_color}
                       />
-                    </View>
+                    </View> */}
                   </TouchableOpacity>
                 </View>
               </View>
@@ -106,9 +117,10 @@ const ProfileTab = (props) => {
                                 style={ProfileTabStyle.input}
                                 onChangeText={(text) => setState({ ...state, number: text })}
                                 value={state.number}
-                                placeholder="9603456878"
+                                placeholder="9391111111"
                                 placeholderTextColor={Colors.gray_text_color}
                                 keyboardType="numeric"
+                                
                               />
                             </View>
                           </View>
@@ -120,7 +132,7 @@ const ProfileTab = (props) => {
                                 <TextInput
                                   style={ProfileTabStyle.BgWhiteShadowInputModal}
                                   onChangeText={(text) => setState({ ...state, email: text })}
-                                  value={state.email}
+                                  value={userData[0].email}
                                   placeholder={t("Exam_Email_Text")}
                                   placeholderTextColor={Colors.gray_text_color}
                                 />
@@ -259,7 +271,7 @@ const ProfileTab = (props) => {
                 </View>
               </View>
             </View>
-            <View style={ProfileTabStyle.PhoneNumberAndIcon}>
+            {/* <View style={ProfileTabStyle.PhoneNumberAndIcon}>
               <View style={ProfileTabStyle.BgWhiteShadow}>
                 <View>
                   <Text style={ProfileTabStyle.PhoneNumberText}>{t("Password_Text")}</Text>
@@ -277,7 +289,7 @@ const ProfileTab = (props) => {
                   </TouchableOpacity>
                 </View>
               </View>
-            </View>
+            </View> */}
             <Spacing space={SH(20)} />
             <TouchableOpacity onPress={() => { setModalVisible(true); setmodalcontent(4) }} >
               <View style={ProfileTabStyle.IconAndTextFlex}>
@@ -294,7 +306,7 @@ const ProfileTab = (props) => {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate(RouteName.SETTING_SCREEN)} >
+            {/* <TouchableOpacity onPress={() => navigation.navigate(RouteName.SETTING_SCREEN)} >
               <View style={ProfileTabStyle.IconAndTextFlex}>
                 <View>
                   <Text style={ProfileTabStyle.LogOutView}>{t("Setting_Text")}</Text>
@@ -307,7 +319,7 @@ const ProfileTab = (props) => {
                   />
                 </View>
               </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </View>
       </View>

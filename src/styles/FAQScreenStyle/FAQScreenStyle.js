@@ -28,9 +28,9 @@ export default FAQScreenStyle = (Colors) => StyleSheet.create({
     width: '88%',
   },
   CreditCardText: {
-    fontSize: SF(18),
-    fontFamily: Fonts.Poppins_Medium,
-    fontWeight: '600',
+    fontSize: SF(16),
+    fontFamily: Fonts.Poppins_Italic,
+    fontWeight: '400',
     color: Colors.black_text_color,
   },
   ParegraPhViewStyle: {
@@ -40,7 +40,7 @@ export default FAQScreenStyle = (Colors) => StyleSheet.create({
   },
   ParegraphTextHelp: {
     fontSize: SF(17),
-    fontFamily: Fonts.Poppins_Medium,
+    fontFamily: Fonts.Poppins_Italic,
   },
   MinViewScreen: {
     flexDirection: 'row',
@@ -90,7 +90,7 @@ export default FAQScreenStyle = (Colors) => StyleSheet.create({
     justifyContent: 'space-between',
     color: Colors.gray_text_color,
     fontSize: SF(17),
-    fontFamily: Fonts.Poppins_Medium,
+    fontFamily: Fonts.Poppins_Italic,
     borderRadius: 200,
     backgroundColor: Colors.white_text_color,
     shadowColor: Colors.black_text_color,

@@ -4,6 +4,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 import { Colors, SF, SH, SW, Fonts } from '../../utils';
 import { useTheme } from '@react-navigation/native';
 import PlaceIcon from "react-native-vector-icons/MaterialIcons";
+// import { fontConfig } from 'react-native-paper/lib/typescript/styles/fonts';
 
 
 function DropdownComponent({
@@ -38,10 +39,11 @@ function DropdownComponent({
                     // borderWidth: SH(1),
                     borderColor: Colors.input_border,
                     borderRadius: SH(8),
-                    fontSize: SF(14),
+                    fontSize: SF(12),
                     lineHeight: SF(17),
                     color: Colors.black,
                     fontWeight: '400',
+                    fontFamily:Fonts.Poppins_Italic,
                     padding: SH(5),
                     minHeight: SH(60),
                     width: '90%',
@@ -56,16 +58,19 @@ function DropdownComponent({
                     paddingHorizontal: 8,
                     fontSize: SF(20),
                     color: Colors.Gray_Colour,
+                    fontFamily:Fonts.Poppins_Italic,
                     ...labelStyle
                 },
                 placeholderStyle: {
-                    fontSize: SF(18),
+                    fontSize: SF(15),
                     lineHeight: SF(21),
                     color: Colors.Gray_Colour,
+                    fontFamily:Fonts.Poppins_Italic,
                     ...placeholderStyle
                 },
                 selectedTextStyle: {
-                    fontSize: SF(18),
+                    fontSize: SF(15),
+                    fontFamily:Fonts.Poppins_Italic,
                     ...selectedTextStyle
                 },
                 iconStyle: {
@@ -73,7 +78,9 @@ function DropdownComponent({
                     height: SH(20),
                 },
                 inputSearchStyle: {
-                    color: Colors.Shadow_Color
+                    color: Colors.Shadow_Color,
+                    fontFamily:Fonts.Poppins_Italic,
+                    fontSize:SF(15)
                 }
             }),
         [dropdownStyle, labelStyle, placeholder, selectedTextStyle]
@@ -103,7 +110,8 @@ function DropdownComponent({
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                itemTextStyle={{ color: Colors.Shadow_Color }}
+                itemTextStyle={{ color: Colors.Shadow_Color,fontFamily:Fonts.Poppins_Italic,fontSize:SF(14) }}
+                
             />
 
             {/* <DropDownPicker

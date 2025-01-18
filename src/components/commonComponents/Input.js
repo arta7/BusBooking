@@ -41,7 +41,7 @@ function Input({
           paddingBottom: 7,
           height: SH(47),
           color: Colors.gray_text_color,
-          fontSize: SF(17),
+          fontSize: SF(14),
           fontFamily: Fonts.Poppins_Medium,
           borderRadius: 7,
           backgroundColor: Colors.White_Colour,

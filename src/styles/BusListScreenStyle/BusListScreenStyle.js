@@ -28,21 +28,21 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
     CityText: {
         color: Colors.black_text_color,
         fontSize: SF(14),
-        fontFamily:Fonts.Poppins_Medium
+        fontFamily:Fonts.Poppins_Italic
     },
     RchSubheadTextStyle: {
         color: Colors.Blue,
         fontSize: SF(10),
         lineHeight: 16,
         paddingTop: SH(5),
-        fontFamily:Fonts.Poppins_Medium
+        fontFamily:Fonts.Poppins_Italic
     },
     HeadText: {
         color: Colors.BorderBox,
         fontSize: SF(16),
         paddingVertical: SH(20),
         paddingHorizontal: SH(15),
-        fontFamily:Fonts.Poppins_Medium
+        fontFamily:Fonts.Poppins_Italic
     },
     BusBoxWraper: {
         backgroundColor: Colors.white_text_color,
@@ -62,12 +62,12 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
     TravelCompanyText: {
         color: Colors.black_text_color,
         fontSize: SF(16),
-        fontFamily:Fonts.Poppins_Medium
+        fontFamily:Fonts.Poppins_Italic
     },
     AcNonAcText: {
         color: Colors.black_text_color,
         fontSize: SF(11),
-        fontFamily:Fonts.Poppins_Medium
+        fontFamily:Fonts.Poppins_Italic
         // paddingTop: SH(7)
     },
     TextrightSet: {
@@ -77,7 +77,7 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
     MainPriceText: {
         color: Colors.Blue,
         fontSize: SF(15),
-        fontFamily:Fonts.Poppins_Medium
+        fontFamily:Fonts.Poppins_Italic
     },
     DiscountAmountText: {
         color: Colors.LightBlackText,
@@ -94,7 +94,8 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
     FromTmeText: {
         color: Colors.TextBlackColor,
         fontSize: SF(16),
-        paddingTop: SH(3)
+        paddingTop: SH(3),
+        fontFamily:Fonts.Poppins_Italic
     },
     BusdataTopBox: {
          flexDirection: 'row',
@@ -104,7 +105,7 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
         color: Colors.LightBlackText,
         fontSize: SF(12),
         paddingTop: SH(8),
-        fontFamily:Fonts.Poppins_Medium
+        fontFamily:Fonts.Poppins_Italic
     },
     LinkBox: {
         flexDirection: 'row',
@@ -121,12 +122,13 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
     },
     RatingText: {
         color: Colors.TextWhiteColor,
-        fontSize: SF(14),
+        fontSize: SF(14), fontFamily:Fonts.Poppins_Italic
     },
     LinkBoxtext: {
         fontSize: SF(11),
         paddingHorizontal: SH(10),
-        color: Colors.theme_background
+        color: Colors.theme_background,
+        fontFamily:Fonts.Poppins_Italic
     },
     ContentContainerStyle: {
         padding: SH(10)

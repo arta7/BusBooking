@@ -13,6 +13,7 @@ import { ColorPicker, CustomSidebarMenu } from '../components';
 import RouteName from '../routes/RouteName';
 import { Colors, SH, SF, Fonts } from '../utils';
 import { useTranslation } from "react-i18next";
+import { height, width } from 'react-native-bottom-tab/src/AnimatedTabBar/utils';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -72,9 +73,10 @@ function HomeTabScreenStack({ navigation }) {
             fontFamily:Fonts.Poppins_Medium
           },
           headerStyle: {
-            backgroundColor: Colors.white_text_color,
+            // backgroundColor: Colors.white_text_color,
             elevation: 0, // remove shadow on Android
             shadowOpacity: 0, // remove shadow on iOS
+            
           },
           headerLeft: () => (
             <View style={Style.flexrowsetaddresh}>
@@ -192,20 +194,27 @@ export function HomeScsreenTabAll() {
   const { t } = useTranslation();
   return (
     <Tab.Navigator initialRouteName="Homes"
-      screenOptions={{ headerShown: false }}
+      screenOptions={{ headerShown: false, tabBarStyle: { height: 65 }, }}
       tabBarOptions={{
         activeTintColor: Colors.theme_background,
         inactiveTintColor: Colors.gray_text_color,
         activeBackgroundColor: Colors.white_text_color,
         labeled: true,
         labelStyle: {
+          fontSize:SF(12), fontFamily:Fonts.Poppins_Medium
         },
         tabStyle: {
-          height: SH(36),
+          // height: SH(36),
           backgroundColor: Colors.white_text_color,
           paddingTop: 0,
-        },
+          // marginTop:30
+       
+                },
+              
       }}
+     
+      
+      
     >
       <Tab.Screen
         name={RouteName.HOME_TAB}
@@ -229,12 +238,12 @@ export function HomeScsreenTabAll() {
           tabBarLabel: t("My_Booking"),
           tabBarIcon: ({ focused }) => (
             <View>
-              <IconG name="book-online" style={{ color: focused ? Colors.theme_background : Colors.gray_text_color }} size={SF(17)} />
+              <IconG name="book-online" style={{ color: focused ? Colors.theme_background : Colors.gray_text_color }} size={SF(20)} />
             </View>
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name={RouteName.PAYMENT_HISTORY}
         component={PaymentHistoryTabStack}
         options={{
@@ -247,7 +256,7 @@ export function HomeScsreenTabAll() {
       />
       ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name={RouteName.PROFILE_TAB}
         component={ProfileScreenStack}
@@ -255,7 +264,7 @@ export function HomeScsreenTabAll() {
           tabBarLabel: t("Profile_Text"),
           tabBarIcon: ({ focused }) => (
             <IconF
-              size={SF(12)}
+              size={SF(18)}
               name="user-circle"
               style={{ color: focused ? Colors.theme_background : Colors.gray_text_color }}
             />

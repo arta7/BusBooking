@@ -35,7 +35,7 @@ function DatePicker(props) {
             <View>
                 <View >
                     <Text style={[DatePickerStyle.datetextstyles,{color:DateValue[0].CurrentDate == '' ? 'gray': 'black'
-                    ,fontFamily:Fonts.Poppins_Medium,fontSize:SH(15)}]} >{DateValue[0].CurrentDate == '' ? 'تاریخ' : 
+                    ,fontFamily:Fonts.Poppins_Medium,fontSize:SH(14)}]} >{DateValue[0].CurrentDate == '' ? 'تاریخ' : 
                    moment(new Date(DateValue[0].CurrentDate.toString())).format('jYYYY/jMM/jDD')
                 }
                     </Text>

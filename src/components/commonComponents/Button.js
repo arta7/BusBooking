@@ -28,7 +28,7 @@ function Button(props) {
         },
         buttonTextStyle: {
           color: 'black',
-          fontFamily: Fonts.Poppins_Medium,
+          fontFamily: Fonts.Poppins_Italic,
           fontSize: SF(14),
           fontWeight: '600',
           lineHeight: SH(24)

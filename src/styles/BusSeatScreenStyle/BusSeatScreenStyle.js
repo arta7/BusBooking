@@ -22,7 +22,7 @@ export default BusSeatScreenStyle = (Colors) => StyleSheet.create({
     Selectedtext: {
         color: Colors.Gray_Colour,
         fontSize: SF(16),
-        fontFamily:Fonts.Poppins_Medium
+     fontFamily: Fonts.Poppins_Italic 
     },
     Widthtwo: {
         width: '20%'
@@ -108,9 +108,9 @@ export default BusSeatScreenStyle = (Colors) => StyleSheet.create({
     },
     SeatAvChildBoxText: {
         color: Colors.black_text_color,
-        fontSize: SF(13),
+        fontSize: SF(11),
         textAlign: 'center',
-        fontFamily:Fonts.Poppins_Medium
+        fontFamily:Fonts.Poppins_Italic
     },
     SeatAvChildBox: {
         width: SW(60),

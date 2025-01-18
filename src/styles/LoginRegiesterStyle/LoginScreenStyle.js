@@ -70,7 +70,7 @@ export default Login = (Colors) => StyleSheet.create({
     height: SH(180),
   },
   LoginText: {
-    fontSize: SF(27),
+    fontSize: SF(18),
     color: Colors.theme_background,
     textAlign: 'center',
     fontFamily: Fonts.Poppins_Medium,

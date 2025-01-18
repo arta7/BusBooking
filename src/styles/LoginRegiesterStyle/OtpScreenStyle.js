@@ -28,7 +28,7 @@ export default Otpstyle = (Colors) => StyleSheet.create({
     marginTop: '5%',
   },
   EnterSixDigitText: {
-    fontSize: SF(30),
+    fontSize: SF(22),
     textAlign: 'center',
     paddingBottom: SH(15),
     color: Colors.black_text_color,
@@ -37,7 +37,7 @@ export default Otpstyle = (Colors) => StyleSheet.create({
   Paregraph: {
     color: Colors.gray_text_color,
     fontFamily: Fonts.Poppins_Medium,
-    fontSize: SF(15),
+    fontSize: SF(12),
   },
   OtpViewStyles: {
     width: '100%',
@@ -60,7 +60,7 @@ export default Otpstyle = (Colors) => StyleSheet.create({
   ParegraPhotpBottom: {
     color: Colors.gray_text_color,
     fontFamily: Fonts.Poppins_Medium,
-    fontSize: SF(13),
+    fontSize: SF(12),
     marginBottom: '8%',
     paddingRight: SH(10),
   },

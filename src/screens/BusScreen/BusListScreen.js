@@ -186,18 +186,18 @@ const BusListScreen = (props) => {
 
       </ScrollView >
       {/* <View style={[BusSeatScreenStyles.TabBoxTwWidththreeoMin, { height: 60 }]}> */}
-      <View style={[BusSeatScreenStyles.TabBoxTwo, { height: 50, borderTopColor: 'gray', borderTopWidth: 0.5, marginHorizontal: 5 }]}>
+      <View style={[BusSeatScreenStyles.TabBoxTwo, { height: 60, borderTopColor: 'gray', borderTopWidth: 0.5, marginHorizontal: 5 }]}>
         <TouchableOpacity style={{
           width: '25%', height: '100%', justifyContent: 'center', alignItems: 'center'
           , borderRightWidth: 1, paddingTop: 5, borderRightColor: 'gray', flexDirection: 'row'
         }}>
           <IconA name="right" size={SW(10)} color='black' style={{ marginRight: 5 }} />
-          <Text style={{ textAlign: 'center', color: 'black', fontSize: SW(10), fontFamily:Fonts.Poppins_Medium }}
+          <Text style={{ textAlign: 'center', color: 'black', fontSize: SF(14), fontFamily:Fonts.Poppins_Italic }}
             onPress={() => {
               var today = new Date(userData[0].CurrentDate);
               var tomorrow = new Date(today);
               tomorrow.setDate(today.getDate() - 1);
-              console.log('new Date(DatesStep[0].CurrentDate)', tomorrow)
+              // console.log('new Date(DatesStep[0].CurrentDate)', tomorrow)
               const myNextList = [...userData];
               const DatesStep = myNextList;
               DatesStep[0].CurrentDate = tomorrow;
@@ -216,11 +216,10 @@ const BusListScreen = (props) => {
 
 
         <View style={{ width: '50%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={{ textAlign: 'center', color: 'black', fontSize: SW(10),  fontFamily:Fonts.Poppins_Medium }}>
+          <Text style={{ textAlign: 'center', color: 'black', fontSize: SF(14),  fontFamily:Fonts.Poppins_Medium }}>
             {moment(new Date(userData[0].CurrentDate.toString())).format('jYYYY/jMM/jDD')}
           </Text>
         </View>
-
 
         <TouchableOpacity style={{
           width: '25%', height: '100%', justifyContent: 'center', alignItems: 'center'
@@ -230,7 +229,7 @@ const BusListScreen = (props) => {
             var today = new Date(userData[0].CurrentDate);
             var tomorrow = new Date(today);
             tomorrow.setDate(today.getDate() + 1);
-            console.log('new Date(DatesStep[0].CurrentDate)', tomorrow)
+            // console.log('new Date(DatesStep[0].CurrentDate)', tomorrow)
             const myNextList = [...userData];
             const DatesStep = myNextList;
             DatesStep[0].CurrentDate = tomorrow;
@@ -241,8 +240,7 @@ const BusListScreen = (props) => {
 
           }}
         >
-
-          <Text style={{ textAlign: 'center', color: 'black', fontSize: SW(10), fontFamily:Fonts.Poppins_Medium }}>
+<Text style={{ textAlign: 'center', color: 'black', fontSize: SF(14), fontFamily:Fonts.Poppins_Italic }}>
             روز بعد
           </Text>
 

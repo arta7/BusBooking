@@ -142,7 +142,7 @@ export default ProfileTabStyles = (Colors) => StyleSheet.create({
   ModalText: {
     textAlign: 'center',
     color: Colors.black_text_color,
-    fontSize: SF(22),
+    fontSize: SF(18),
     fontFamily: Fonts.Poppins_Medium,
   },
   MarginRightView: {
@@ -154,7 +154,7 @@ export default ProfileTabStyles = (Colors) => StyleSheet.create({
   input: {
     fontFamily: Fonts.Poppins_Medium,
     width: '100%',
-    fontSize: SF(17),
+    fontSize: SF(14),
   },
   ButtonsetModleTwoButton: {
     flexDirection: 'row',

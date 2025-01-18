@@ -61,7 +61,7 @@ const HomeTab = (props) => {
     const Offerfunction = (item) => {
         return (
             <View>
-                <TouchableOpacity style={HomeTabStyless.MainViewOffers} onPress={() => OnBusTicket()}>
+                <TouchableOpacity style={HomeTabStyless.MainViewOffers} >
                     <Image resizeMode="cover" style={HomeTabStyless.OffersImg} source={item.image} />
                 </TouchableOpacity>
             </View>
@@ -71,7 +71,7 @@ const HomeTab = (props) => {
     const Exclusivefunction = (item, index) => {
         return (
             <View>
-                <TouchableOpacity style={HomeTabStyless.ExclusiveImgWrap} onPress={() => OnBusTicket()}>
+                <TouchableOpacity style={HomeTabStyless.ExclusiveImgWrap} >
                     <Image resizeMode="cover" style={HomeTabStyless.ExclusiveImg} source={item.image} />
                     <View style={HomeTabStyless.OffreView}>
                         <Text style={[HomeTabStyless.KnowMoreText, {}]}>{t("Know_More")}</Text>
@@ -248,49 +248,49 @@ const HomeTab = (props) => {
                             }} />
                         </View>
                         <Spacing space={SH(30)} />
-                        <Text style={HomeTabStyless.OffersText}>{t("OFFERS")}</Text>
+                        {/* <Text style={HomeTabStyless.OffersText}>{t("OFFERS")}</Text> */}
                         <Spacing space={SH(12)} />
-                        <FlatList
+                        {/* <FlatList
                             data={Offersdata}
                             renderItem={({ item, index }) => Offerfunction(item, index)}
                             keyExtractor={item => item.id}
                             showsHorizontalScrollIndicator={false}
                             horizontal
-                        />
+                        /> */}
                         <Spacing space={SH(30)} />
-                        <View style={HomeTabStyless.BorderView}>
-                        </View>
+                        {/* <View style={HomeTabStyless.BorderView}>
+                        </View> */}
                         <Spacing space={SH(20)} />
-                        <View>
+                        {/* <View>
                             <Text style={HomeTabStyless.OffersText}>{t("WHATS_NEW")}</Text>
                             <Text>{t("Discover_new")}</Text>
-                        </View>
+                        </View> */}
                         <Spacing space={SH(12)} />
-                        <FlatList
+                        {/* <FlatList
                             data={ExclusiveData}
                             renderItem={({ item, index }) => Exclusivefunction(item, index)}
                             keyExtractor={item => item.id}
                             showsHorizontalScrollIndicator={false}
                             horizontal
-                        />
+                        /> */}
                         <Spacing space={SH(30)} />
                         <View style={HomeTabStyless.BorderView}>
                         </View>
                         <Spacing space={SH(20)} />
-                        <View>
+                        {/* <View>
                             <Text style={HomeTabStyless.MainText}>{t("PREFER_TO_TRAVEL")}</Text>
                             <Spacing space={SH(6)} />
                             <Text style={HomeTabStyless.SmallText}>{t("Book_your_bus_on")}</Text>
-                        </View>
+                        </View> */}
                         <Spacing space={SH(8)} />
-                        <FlatList
+                        {/* <FlatList
                             data={Lastlistdata}
                             renderItem={({ item, index }) => Lastlist(item, index)}
                             keyExtractor={item => item.id}
                             horizontal
                             showsHorizontalScrollIndicator={false}
                             style={HomeTabStyless.SetFlex}
-                        />
+                        /> */}
                     </View>
             }
         </ScrollView>

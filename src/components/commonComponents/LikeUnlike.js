@@ -34,7 +34,7 @@ const LikeUnlke = (props) => {
                 }
             }
         }} style={[{ backgroundColor: liked.includes(chairNumber) ? LikeColour : UnlikeColour }, DefaultStyle]} disabled={index == 1 || index == 2  || index == 3 ? true : false}>
-            <Text style={{fontSize:12, fontFamily:Fonts.Poppins_Medium}}>{text}</Text>
+            <Text style={{fontSize:12, fontFamily:Fonts.Poppins_Italic}}>{text}</Text>
             <View style={ViewStyle}>
             </View>
         </TouchableOpacity>

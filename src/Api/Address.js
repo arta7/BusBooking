@@ -5,6 +5,7 @@ Login:{
      Login:'/account/authenticate',
      verify:'/account/verify',
      Profile:'/UpdateUsers',  
+     GetProfile:'/profile'
 },
 Bus:{
      Cities : '/bus/cities',
