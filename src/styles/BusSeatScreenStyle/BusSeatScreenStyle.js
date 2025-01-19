@@ -15,13 +15,13 @@ export default BusSeatScreenStyle = (Colors) => StyleSheet.create({
     },
     SelectedSeattext: {
         color: Colors.black_text_color,
-        fontSize: SF(16),
+        fontSize: SF(12),
         textAlign: 'left',
         fontFamily:Fonts.Poppins_Medium
     },
     Selectedtext: {
         color: Colors.Gray_Colour,
-        fontSize: SF(16),
+        fontSize: SF(12),
      fontFamily: Fonts.Poppins_Italic 
     },
     Widthtwo: {
@@ -71,7 +71,7 @@ export default BusSeatScreenStyle = (Colors) => StyleSheet.create({
         color: Colors.White_Colour,
         textTransform: 'capitalize',
         fontFamily: Fonts.Poppins_Medium,
-        fontSize: SF(16),
+        fontSize: SF(12),
         textAlign: 'center',
         paddingVertical: SH(3),
         paddingHorizontal: SH(10),
@@ -94,7 +94,7 @@ export default BusSeatScreenStyle = (Colors) => StyleSheet.create({
     TabsettextTwo: {
         color: Colors.black_text_color,
         textTransform: 'capitalize',
-        fontSize: SF(16),
+        fontSize: SF(12),
         textAlign: 'center',
         paddingVertical: SH(3),
         paddingHorizontal: SH(10),
@@ -108,7 +108,7 @@ export default BusSeatScreenStyle = (Colors) => StyleSheet.create({
     },
     SeatAvChildBoxText: {
         color: Colors.black_text_color,
-        fontSize: SF(11),
+        fontSize: SF(12),
         textAlign: 'center',
         fontFamily:Fonts.Poppins_Italic
     },
@@ -185,13 +185,13 @@ export default BusSeatScreenStyle = (Colors) => StyleSheet.create({
     },
     RchSubheadTextStyle: {
         color: Colors.black_text_color,
-        fontSize: SF(15),
+        fontSize: SF(12),
         lineHeight: 16,
         paddingTop: SH(5)
     },
     CityText: {
         color: Colors.black_text_color,
-        fontSize: SF(20),
+        fontSize: SF(14),
     },
     CityMainBox: {
         width: '80%',

@@ -104,7 +104,7 @@ const BusListScreen = (props) => {
             <View style={{ marginBottom: 25 }}>
               {/* <IconA name="arrowright" size={SF(15)} color={Colors.black_text_color} /> */}
             </View>
-            <Text style={[BusListScreenStyles.AcNonAcText, { fontSize: SF(15) }]}>{item.timeMove}</Text>
+            <Text style={[BusListScreenStyles.AcNonAcText, { fontSize: SF(12) }]}>{item.timeMove}</Text>
           </View>
         </View>
         <View style={[BusListScreenStyles.BusdataTopBox, { height: '30%', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }]}>
@@ -192,7 +192,7 @@ const BusListScreen = (props) => {
           , borderRightWidth: 1, paddingTop: 5, borderRightColor: 'gray', flexDirection: 'row'
         }}>
           <IconA name="right" size={SW(10)} color='black' style={{ marginRight: 5 }} />
-          <Text style={{ textAlign: 'center', color: 'black', fontSize: SF(14), fontFamily:Fonts.Poppins_Italic }}
+          <Text style={{ textAlign: 'center', color: 'black', fontSize: SF(12), fontFamily:Fonts.Poppins_Italic }}
             onPress={() => {
               var today = new Date(userData[0].CurrentDate);
               var tomorrow = new Date(today);
@@ -216,7 +216,7 @@ const BusListScreen = (props) => {
 
 
         <View style={{ width: '50%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={{ textAlign: 'center', color: 'black', fontSize: SF(14),  fontFamily:Fonts.Poppins_Medium }}>
+          <Text style={{ textAlign: 'center', color: 'black', fontSize: SF(12),  fontFamily:Fonts.Poppins_Medium }}>
             {moment(new Date(userData[0].CurrentDate.toString())).format('jYYYY/jMM/jDD')}
           </Text>
         </View>
@@ -240,7 +240,7 @@ const BusListScreen = (props) => {
 
           }}
         >
-<Text style={{ textAlign: 'center', color: 'black', fontSize: SF(14), fontFamily:Fonts.Poppins_Italic }}>
+<Text style={{ textAlign: 'center', color: 'black', fontSize: SF(12), fontFamily:Fonts.Poppins_Italic }}>
             روز بعد
           </Text>
 

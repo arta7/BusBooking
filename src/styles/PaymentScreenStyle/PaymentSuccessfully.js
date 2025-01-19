@@ -28,13 +28,13 @@ export default Payment = (Colors) => StyleSheet.create({
   },
   TextCenterPayment: {
     textAlign: 'center',
-    fontSize: SF(25),
+    fontSize: SF(12),
     lineHeight: 30,
     fontWeight: '700',
   },
   TextCenterPaymentTwo: {
     textAlign: 'center',
-    fontSize: SF(16),
+    fontSize: SF(12),
     paddingHorizontal: SH(5),
     lineHeight: 20,
     color: Colors.TextGreyColor,

@@ -68,9 +68,9 @@ function HomeTabScreenStack({ navigation }) {
           title: t("Home_Text"), headerShown: true,
           headerTitleStyle: {
             // fontWeight: "700",
-            fontSize: SF(20),
+            fontSize: SF(14),
             color: 'black',
-            fontFamily:Fonts.Poppins_Medium
+            fontFamily:Fonts.Poppins_Italic
           },
           headerStyle: {
             // backgroundColor: Colors.white_text_color,
@@ -106,9 +106,9 @@ function BookingTabScreenStack({ navigation }) {
           headerShadowVisible: false,
           headerTitleStyle: {
             // fontWeight: "700",
-            fontSize: SF(20),
+            fontSize: SF(12),
             color: 'black',
-            fontFamily:Fonts.Poppins_Medium
+            fontFamily:Fonts.Poppins_Italic
           },
           headerStyle: {
             backgroundColor: Colors.white_text_color,
@@ -171,9 +171,9 @@ function ProfileScreenStack({ navigation }) {
           title: t("Profile_Text"), headerShown: true,
           headerTitleStyle: {
             fontWeight: "700",
-            fontSize: SF(20),
+            fontSize: SF(12),
             color: 'black',
-            fontFamily:Fonts.Poppins_Medium
+            fontFamily:Fonts.Poppins_Italic
           },
           headerStyle: {
             backgroundColor: Colors.white_text_color,
@@ -201,7 +201,7 @@ export function HomeScsreenTabAll() {
         activeBackgroundColor: Colors.white_text_color,
         labeled: true,
         labelStyle: {
-          fontSize:SF(12), fontFamily:Fonts.Poppins_Medium
+          fontSize:SF(12), fontFamily:Fonts.Poppins_Italic
         },
         tabStyle: {
           // height: SH(36),

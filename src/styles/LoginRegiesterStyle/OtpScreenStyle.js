@@ -28,15 +28,15 @@ export default Otpstyle = (Colors) => StyleSheet.create({
     marginTop: '5%',
   },
   EnterSixDigitText: {
-    fontSize: SF(22),
+    fontSize: SF(12),
     textAlign: 'center',
     paddingBottom: SH(15),
     color: Colors.black_text_color,
-    fontFamily: Fonts.Poppins_Medium,
+    fontFamily: Fonts.Poppins_Italic,
   },
   Paregraph: {
     color: Colors.gray_text_color,
-    fontFamily: Fonts.Poppins_Medium,
+    fontFamily: Fonts.Poppins_Italic,
     fontSize: SF(12),
   },
   OtpViewStyles: {
@@ -48,8 +48,7 @@ export default Otpstyle = (Colors) => StyleSheet.create({
     height: SH(51),
     padding: SH(0),
     borderWidth: SW(2.5),
-    fontSize: SF(28),
-    fontWeight: '700',
+    fontSize: SF(12),
     borderRadius: SF(7),
     color: Colors.black_text_color,
     borderColor: Colors.theme_background
@@ -59,14 +58,14 @@ export default Otpstyle = (Colors) => StyleSheet.create({
   },
   ParegraPhotpBottom: {
     color: Colors.gray_text_color,
-    fontFamily: Fonts.Poppins_Medium,
+    fontFamily: Fonts.Poppins_Italic,
     fontSize: SF(12),
     marginBottom: '8%',
     paddingRight: SH(10),
   },
   ResendTextBold: {
-    fontFamily: Fonts.Poppins_Medium,
-    fontWeight: '700',
+    fontFamily: Fonts.Poppins_Italic,
+    fontSize: SF(12),
     color: Colors.theme_background,
   },
   Buttonotp: {

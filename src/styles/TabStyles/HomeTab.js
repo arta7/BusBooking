@@ -7,7 +7,7 @@ export default HomeTabStyles = (Colors) => StyleSheet.create({
     },
     FromText: {
         color: Colors.Gray_Colour,
-        fontSize: SF(18),
+        fontSize: SF(12),
         paddingBottom: SH(10)
     },
     DropDownStyleTwo: {
@@ -20,7 +20,7 @@ export default HomeTabStyles = (Colors) => StyleSheet.create({
     },
     DepartureText: {
         color: Colors.Gray_Colour,
-        fontSize: SF(16),
+        fontSize: SF(12),
         paddingTop: SH(15)
     },
     InputUnderLine: {
@@ -45,7 +45,7 @@ export default HomeTabStyles = (Colors) => StyleSheet.create({
     },
     DepartureText: {
         color: Colors.Gray_Colour,
-        fontSize: SF(16),
+        fontSize: SF(12),
         paddingTop: SH(15)
     },
     textRight: {
@@ -99,12 +99,12 @@ export default HomeTabStyles = (Colors) => StyleSheet.create({
     Adultstext: {
         color: Colors.black_text_color,
         textAlign: 'center',
-        fontSize: SF(16)
+        fontSize: SF(12),
     },
     AdultstextYears: {
         color: Colors.gray_text_color,
         textAlign: 'center',
-        fontSize: SF(14)
+        fontSize: SF(12),
     },
     FlexRow: {
         flexDirection: 'row',
@@ -112,14 +112,14 @@ export default HomeTabStyles = (Colors) => StyleSheet.create({
         paddingTop: SH(10)
     },
     IconCommon: {
-        fontSize: SF(25),
+        fontSize: SF(12),
     },
     MinusColor: {
         color: Colors.Red
     },
     TotalStyle: {
         color: Colors.black_text_color,
-        fontSize: SF(18),
+        fontSize: SF(12),
         paddingHorizontal: SH(10),
     },
     MainVieBackground: {
@@ -151,28 +151,28 @@ export default HomeTabStyles = (Colors) => StyleSheet.create({
         width: '90%'
     },
     TextSetFood: {
-        fontSize: SF(17),
+        fontSize: SF(12),
         fontWeight: '700',
         textAlign: 'center',
         paddingTop: 4,
         color: Colors.theme_background
     },
     textsetfoodtwwo: {
-        fontSize: SF(14),
+        fontSize: SF(12),
         textAlign: 'center',
         paddingTop: 2,
     },
     TextSetFoodtwwo: {
-        fontSize: SF(14),
+        fontSize: SF(12),
         textAlign: 'center',
         paddingTop: 2,
     },
     MainText: {
-        fontSize: SF(20),
+        fontSize: SF(14),
         color: Colors.black_text_color,
     },
     SmallText: {
-        fontSize: SF(17)
+        fontSize: SF(12),
     },
     SetFlex: {
         overflow: 'hidden',
@@ -194,7 +194,7 @@ export default HomeTabStyles = (Colors) => StyleSheet.create({
         borderRadius: 7
     },
     OffersText: {
-        fontSize: SF(18),
+        fontSize: SF(12),
         fontWeight: '600',
         textAlign: 'left',
         color: Colors.black_text_color
@@ -213,7 +213,7 @@ export default HomeTabStyles = (Colors) => StyleSheet.create({
     },
     KnowMoreIcon: {
         color: Colors.theme_background,
-        fontSize: SF(15),
+        fontSize: SF(12),
         paddingLeft: SW(6)
     },
     BorderView: {
@@ -227,7 +227,7 @@ export default HomeTabStyles = (Colors) => StyleSheet.create({
         width: SW(95),
     },
     KnowMoreText: {
-        fontSize: SF(18),
+        fontSize: SF(12),
         color: Colors.theme_background
     },
     SearchBusView: {

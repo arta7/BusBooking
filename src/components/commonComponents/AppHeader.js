@@ -28,9 +28,8 @@ function AppHeader({ headerStyle, LeftIconStyle, rightView, LeftIconLeftStyle, h
                     resizeMode: 'contain'
                 },
                 headerTitle: {
-                    fontSize: SF(23),
-                    fontWeight: '700',
-                    fontFamily: Fonts.Poppins_Medium,
+                    fontSize: SF(12),
+                    fontFamily: Fonts.Poppins_Italic,
                     color: Colors.theme_background,
                     ...titleStyle
                 },
@@ -47,7 +46,7 @@ function AppHeader({ headerStyle, LeftIconStyle, rightView, LeftIconLeftStyle, h
                     resizeMode: 'contain',
                 },
                 LeftIconStyle: {
-                    fontSize: SF(30),
+                    fontSize: SF(12),
                     color: Colors.theme_background,
                     paddingLeft:SH(15),
                     paddingRight:SH(30),

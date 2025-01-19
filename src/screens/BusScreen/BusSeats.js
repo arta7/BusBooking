@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     //, marginHorizontal: '2%'
   },
   seatText: {
-    fontSize: 16,
+    fontSize: SF(12),
     fontWeight: 'bold',
     fontFamily:Fonts.Poppins_Medium
   },

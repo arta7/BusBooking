@@ -17,7 +17,7 @@ export default LanguageStyles = (Colors) => StyleSheet.create({
     paddingHorizontal: SW(50)
   },
   SelectText: {
-    fontSize: SF(25),
+    fontSize: SF(12),
     paddingBottom: SH(15),
     color: Colors.black_text_color,
     fontWeight: '500',
@@ -54,7 +54,7 @@ export default LanguageStyles = (Colors) => StyleSheet.create({
     borderRadius: 200
   },
   Settingtext: {
-    fontSize: SF(18),
+    fontSize: SF(12),
     paddingBottom: SH(10),
     color: Colors.black_text_color,
     fontWeight: '500',

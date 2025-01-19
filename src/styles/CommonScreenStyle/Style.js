@@ -65,10 +65,10 @@ export default Style = (Colors) => StyleSheet.create({
   InputPassword: {
     width: '80%',
     color: Colors.gray_text_color,
-    fontSize: SF(17),
+    fontSize: SF(12),
     padding: SH(0),
     paddingTop: SH(5),
-    fontFamily: Fonts.Poppins_Medium,
+    fontFamily: Fonts.Poppins_Italic,
   },
   CenteredView: {
     flex: 1,
@@ -128,10 +128,10 @@ export default Style = (Colors) => StyleSheet.create({
   },
   SetText: {
     color: Colors.black_text_color,
-    fontSize: SF(20),
+    fontSize: SF(12),
     paddingHorizontal: SH(20),
     textAlign: 'center',
-    fontFamily: Fonts.Poppins_Medium,
+    fontFamily: Fonts.Poppins_Italic,
   },
   SetOkButton: {
     width: '47%'

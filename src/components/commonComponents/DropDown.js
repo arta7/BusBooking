@@ -42,7 +42,6 @@ function DropdownComponent({
                     fontSize: SF(12),
                     lineHeight: SF(17),
                     color: Colors.black,
-                    fontWeight: '400',
                     fontFamily:Fonts.Poppins_Italic,
                     padding: SH(5),
                     minHeight: SH(60),
@@ -56,20 +55,20 @@ function DropdownComponent({
                     position: 'absolute',
                     backgroundColor: Colors.White_Colour,
                     paddingHorizontal: 8,
-                    fontSize: SF(20),
+                    fontSize: SF(12),
                     color: Colors.Gray_Colour,
                     fontFamily:Fonts.Poppins_Italic,
                     ...labelStyle
                 },
                 placeholderStyle: {
-                    fontSize: SF(15),
+                    fontSize: SF(12),
                     lineHeight: SF(21),
                     color: Colors.Gray_Colour,
                     fontFamily:Fonts.Poppins_Italic,
                     ...placeholderStyle
                 },
                 selectedTextStyle: {
-                    fontSize: SF(15),
+                    fontSize: SF(12),
                     fontFamily:Fonts.Poppins_Italic,
                     ...selectedTextStyle
                 },
@@ -80,7 +79,7 @@ function DropdownComponent({
                 inputSearchStyle: {
                     color: Colors.Shadow_Color,
                     fontFamily:Fonts.Poppins_Italic,
-                    fontSize:SF(15)
+                    fontSize: SF(12),
                 }
             }),
         [dropdownStyle, labelStyle, placeholder, selectedTextStyle]
@@ -110,7 +109,7 @@ function DropdownComponent({
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                itemTextStyle={{ color: Colors.Shadow_Color,fontFamily:Fonts.Poppins_Italic,fontSize:SF(14) }}
+                itemTextStyle={{ color: Colors.Shadow_Color,fontFamily:Fonts.Poppins_Italic,fontSize:SF(12) }}
                 
             />
 

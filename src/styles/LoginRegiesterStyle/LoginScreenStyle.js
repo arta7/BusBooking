@@ -32,7 +32,7 @@ export default Login = (Colors) => StyleSheet.create({
     paddingRight: SH(6),
   },
   InputTextStyle: {
-    fontSize: SF(16),
+    fontSize: SF(12),
     fontFamily: Fonts.Poppins_Medium,
     width: '100%',
     backgroundColor: 'transparent',
@@ -45,7 +45,7 @@ export default Login = (Colors) => StyleSheet.create({
     elevation: Platform.OS === 'ios' ? 0 : 0,
   },
   SeTextStyleForget: {
-    fontSize: SF(15),
+    fontSize: SF(12),
     fontFamily: Fonts.Poppins_Medium,
     color: Colors.black_text_color,
   },
@@ -70,7 +70,7 @@ export default Login = (Colors) => StyleSheet.create({
     height: SH(180),
   },
   LoginText: {
-    fontSize: SF(18),
+    fontSize: SF(14),
     color: Colors.theme_background,
     textAlign: 'center',
     fontFamily: Fonts.Poppins_Medium,
@@ -85,11 +85,11 @@ export default Login = (Colors) => StyleSheet.create({
   },
   TextStyle: {
     color: Colors.black_text_color,
-    fontSize: SF(17),
+    fontSize: SF(12),
     fontFamily: Fonts.Poppins_Medium,
   },
   registerTextStyle: {
-    fontSize: SF(17),
+    fontSize: SF(12),
     fontFamily: Fonts.Poppins_Bold,
     color: Colors.theme_background,
   },
@@ -99,7 +99,7 @@ export default Login = (Colors) => StyleSheet.create({
   ForgetPasswordStyles: {
     fontFamily: Fonts.Poppins_Medium,
     color: Colors.black_text_color,
-    fontSize: SF(18),
+    fontSize: SF(12),
     fontWeight: '600'
   },
   MinViewBgColor: {
@@ -122,7 +122,7 @@ export default Login = (Colors) => StyleSheet.create({
   RegisterText: {
     fontFamily: Fonts.Poppins_Bold,
     fontWeight: '700',
-    fontSize: SF(25),
+    fontSize: SF(12),
     color: Colors.theme_background,
   },
   TopSpaceRegisterTwo: {
@@ -132,7 +132,7 @@ export default Login = (Colors) => StyleSheet.create({
   },
   FirstNameTextStyle: {
     color: Colors.black_text_color,
-    fontSize: SF(18),
+    fontSize: SF(12),
     opacity: 0.7,
     fontFamily: Fonts.Poppins_Medium,
   },
@@ -143,7 +143,7 @@ export default Login = (Colors) => StyleSheet.create({
     width: '100%',
     height: SH(47),
     color: Colors.gray_text_color,
-    fontSize: SF(17),
+    fontSize: SF(12),
     fontFamily: Fonts.Poppins_Medium,
     borderRadius: 7,
     backgroundColor: Colors.white_text_color,
@@ -180,7 +180,7 @@ export default Login = (Colors) => StyleSheet.create({
     width: '100%',
   },
   SimpleTextStyle: {
-    fontSize: SF(11),
+    fontSize: SF(12),
     paddingLeft: SH(15),
     paddingTop: SH(2),
     fontFamily: Fonts.Poppins_Medium,
@@ -197,7 +197,7 @@ export default Login = (Colors) => StyleSheet.create({
     justifyContent: 'center'
   },
   MemberTextStyle: {
-    fontSize: SF(15),
+    fontSize: SF(12),
     fontFamily: Fonts.Poppins_Medium,
     textAlign: 'center',
     color: Colors.black_text_color,
@@ -205,7 +205,7 @@ export default Login = (Colors) => StyleSheet.create({
   LoginScreenText: {
     paddingLeft: SH(10),
     fontFamily: Fonts.Poppins_Bold,
-    fontSize: SF(16),
+    fontSize: SF(12),
     color: Colors.theme_background,
   },
   MinViewScreen: {
@@ -241,6 +241,6 @@ export default Login = (Colors) => StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     position: 'relative',
-    fontSize: SF(10),
+    fontSize: SF(12),
   },
 });

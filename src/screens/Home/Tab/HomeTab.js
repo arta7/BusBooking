@@ -154,10 +154,6 @@ const HomeTab = (props) => {
                                                 DatesStep[0].StartPlaceCode = From.code.toString();
                                                 setUserData(myNextList)
                                             }
-                                            // setValue({ ...value, From: From.label });
-                                            // setIsFocus(true);
-
-
                                         }}
                                         maxHeight={250}
                                         customeStyle={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }}

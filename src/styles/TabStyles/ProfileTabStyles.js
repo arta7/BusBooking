@@ -24,7 +24,7 @@ export default ProfileTabStyles = (Colors) => StyleSheet.create({
     color: Colors.black_text_color,
     fontFamily: Fonts.Poppins_Italic,
     textAlign: 'center',
-    fontSize: SF(15),
+    fontSize: SF(12),
     
   },
   ProfileDetailesMinview: {
@@ -63,8 +63,8 @@ export default ProfileTabStyles = (Colors) => StyleSheet.create({
     height: SH(50),
     borderRadius: 7,
     paddingLeft: SH(10),
-    fontSize: SF(17),
-    fontFamily: Fonts.Poppins_Medium,
+    fontSize: SF(12),
+    fontFamily: Fonts.Poppins_Italic,
     paddingRight: SH(10),
     justifyContent: 'center',
     flexDirection: 'row',
@@ -88,24 +88,24 @@ export default ProfileTabStyles = (Colors) => StyleSheet.create({
     marginTop: '8%',
     fontFamily: Fonts.Poppins_Italic,
     color: Colors.black_text_color,
-    fontSize: SF(15),
+    fontSize: SF(12),
     paddingBottom: SH(13),
   },
   PhoneNumberText: {
     color: Colors.black_text_color,
-    fontSize: SF(15),
+    fontSize: SF(12),
     fontFamily: Fonts.Poppins_Italic,
   },
   DigitNumberText: {
     color: Colors.gray_text_color,
-    fontSize: SF(17),
+    fontSize: SF(12),
     fontFamily: Fonts.Poppins_Italic,
   },
   LogOutView: {
     textAlign: 'center',
     color: Colors.black_text_color,
     borderBottomColor: Colors.red_color,
-    fontSize: SF(20),
+    fontSize: SF(12),
     fontFamily: Fonts.Poppins_Italic,
     paddingBottom: SH(15),
   },
@@ -143,7 +143,7 @@ export default ProfileTabStyles = (Colors) => StyleSheet.create({
   ModalText: {
     textAlign: 'center',
     color: Colors.black_text_color,
-    fontSize: SF(18),
+    fontSize: SF(12),
     fontFamily: Fonts.Poppins_Italic,
   },
   MarginRightView: {
@@ -155,7 +155,7 @@ export default ProfileTabStyles = (Colors) => StyleSheet.create({
   input: {
     fontFamily: Fonts.Poppins_Italic,
     width: '100%',
-    fontSize: SF(14),
+    fontSize: SF(12),
   },
   ButtonsetModleTwoButton: {
     flexDirection: 'row',
@@ -199,7 +199,7 @@ export default ProfileTabStyles = (Colors) => StyleSheet.create({
     color: Colors.black_text_color,
     fontFamily: Fonts.Poppins_Italic,
     width: '100%',
-    fontSize: SF(16),
+    fontSize: SF(12),
   },
   SingleButtonStyles: {
     borderColor: Colors.theme_background_brink_pink,

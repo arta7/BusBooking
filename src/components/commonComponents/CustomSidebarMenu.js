@@ -53,18 +53,18 @@ const CustomSidebarMenu = (props) => {
           <IconU size={SF(18)} name="user-circle" style={Sidemenu.logoimage} color={Colors.theme_background} />
           <Text style={Sidemenu.hometextstyle}>{t("Profile_Text")}</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={Sidemenu.flexrowset} onPress={
+        {/* <TouchableOpacity style={Sidemenu.flexrowset} onPress={
           () => Onpressfunction(RouteName.HELP_SCREEN)
         }>
           <IconF size={SF(18)} name="hands-helping" style={Sidemenu.logoimage} color={Colors.theme_background} />
           <Text style={Sidemenu.hometextstyle}>{t("Help_Text")}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={Sidemenu.flexrowset} onPress={
+        </TouchableOpacity> */}
+        {/* <TouchableOpacity style={Sidemenu.flexrowset} onPress={
           () => Onpressfunction(RouteName.SETTING_SCREEN)
         }>
           <IconP size={18} name="setting" style={Sidemenu.logoimage} color={Colors.theme_background} />
           <Text style={Sidemenu.hometextstyle}>{t("Setting_Text")}</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity style={Sidemenu.flexrowset} onPress={
           () => Onpressfunction(RouteName.FAQ_SCREEN)
         }>
@@ -77,12 +77,12 @@ const CustomSidebarMenu = (props) => {
           <IconL size={SF(18)} name="star" style={Sidemenu.logoimage} color={Colors.theme_background} />
           <Text style={Sidemenu.hometextstyle}>{t("Reviews_Screen")}</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={Sidemenu.flexrowset} onPress={
+        {/* <TouchableOpacity style={Sidemenu.flexrowset} onPress={
           () => Onpressfunction(RouteName.NOTIFICTION_SCREEN)
         }>
           <IconG size={SF(18)} name="notifications" style={Sidemenu.logoimage} color={Colors.theme_background} />
           <Text style={Sidemenu.hometextstyle}>{t("Notification_Text")}</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <View style={Sidemenu.settingandlogout}>
           <TouchableOpacity style={Sidemenu.flexrowset} onPress={() => {
             setAlertVisible(true);

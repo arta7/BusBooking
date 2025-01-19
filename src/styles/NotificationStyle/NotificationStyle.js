@@ -34,13 +34,13 @@ export default NotificationStyle = (Colors) => StyleSheet.create({
     width: '68%'
   },
   TextParegraph: {
-    fontSize: SF(13),
+    fontSize: SF(12),
     color: Colors.gray_text_color,
     fontFamily: Fonts.Poppins_Medium,
     lineHeight: 19,
   },
   TwoNavemBerScreen: {
-    fontSize: SF(13),
+    fontSize: SF(12),
     color: Colors.theme_background,
     fontFamily: Fonts.Poppins_Medium,
   },

@@ -27,13 +27,13 @@ export default PaymentStyle = (Colors) => StyleSheet.create({
     width: '75%'
   },
   CreditCardText: {
-    fontSize: SF(15),
+    fontSize: SF(12),
     fontWeight: '600',
     marginLeft: SH(20),
     color: Colors.black_text_color
   },
   YouNeedsText: {
-    fontSize: SF(13),
+    fontSize: SF(12),
     fontWeight: '600',
     marginLeft: SH(20),
     paddingTop: SH(5),
@@ -46,7 +46,7 @@ export default PaymentStyle = (Colors) => StyleSheet.create({
     paddingBottom: SH(20),
   },
   ParegraphTextStyleset: {
-    fontSize: SF(15),
+    fontSize: SF(12),
     fontWeight: '600',
     paddingTop: SH(5),
     lineHeight: 22,
@@ -76,7 +76,7 @@ export default PaymentStyle = (Colors) => StyleSheet.create({
     paddingBottom: 30,
   },
   CardTextStyle: {
-    fontSize: SF(20),
+    fontSize: SF(12),
     fontWeight: '600',
     borderTopColor: Colors.light_gray_text_color,
     borderTopWidth: 0.5,
@@ -110,7 +110,7 @@ export default PaymentStyle = (Colors) => StyleSheet.create({
     paddingBottom: SH(20)
   },
   CardTextStyleThree: {
-    fontSize: SF(20),
+    fontSize: SF(12),
     fontWeight: '600',
     paddingTop: SH(30),
     borderTopColor: Colors.light_gray_text_color,
@@ -119,7 +119,7 @@ export default PaymentStyle = (Colors) => StyleSheet.create({
     marginTop: SH(30),
   },
   CardTextStyleTwo: {
-    fontSize: SF(20),
+    fontSize: SF(12),
     fontWeight: '600',
     paddingTop: SH(30),
     paddingBottom: SH(15),

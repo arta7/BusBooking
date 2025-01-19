@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RouteName from './RouteName';
 import { CustomSidebarMenu, AppHeader } from '../components';
-import { Colors } from '../utils';
+import { Colors, Fonts,SF } from '../utils';
 import { DefaultTheme } from '@react-navigation/native';
 import { createDrawerNavigator } from "@react-navigation/drawer";
 const Drawer = createDrawerNavigator();
@@ -13,6 +13,7 @@ import { TabNavigator } from '../routes';
 import {
   SettingsScreen, HelpScreen, FAQScreen, ReviewsScreen, NotificationScreen
 } from '../screens';
+
 
 const SideNavigator = (props) => {
   const { t } = useTranslation();
@@ -54,8 +55,8 @@ const SideNavigator = (props) => {
           headerShadowVisible: false,
           headerTitleStyle: {
             color: Colors.white_text_color,
-            fontSize: 20,
-            fontWeight: '700'
+            fontSize: SF(12),
+            fontFamily:Fonts.Poppins_Italic
           },
           headerStyle: {
             backgroundColor: Colors.white_text_color,
@@ -71,8 +72,8 @@ const SideNavigator = (props) => {
           headerShadowVisible: false,
           headerTitleStyle: {
             color: Colors.white_text_color,
-            fontSize: 20,
-            fontWeight: '700'
+            fontSize: SF(12),
+            fontFamily:Fonts.Poppins_Italic
           },
           headerStyle: {
             backgroundColor: Colors.white_text_color,
@@ -88,8 +89,8 @@ const SideNavigator = (props) => {
           headerShadowVisible: false,
           headerTitleStyle: {
             color: Colors.white_text_color,
-            fontSize: 20,
-            fontWeight: '700'
+            fontSize: SF(12),
+            fontFamily:Fonts.Poppins_Italic
           },
           headerStyle: {
             backgroundColor: Colors.white_text_color,
@@ -105,8 +106,8 @@ const SideNavigator = (props) => {
           headerShadowVisible: false,
           headerTitleStyle: {
             color: Colors.white_text_color,
-            fontSize: 20,
-            fontWeight: '700'
+            fontSize: SF(12),
+            fontFamily:Fonts.Poppins_Italic
           },
           headerStyle: {
             backgroundColor: Colors.white_text_color,
@@ -122,8 +123,8 @@ const SideNavigator = (props) => {
           headerShadowVisible: false,
           headerTitleStyle: {
             color: Colors.white_text_color,
-            fontSize: 20,
-            fontWeight: '700'
+            fontSize: SF(12),
+            fontFamily:Fonts.Poppins_Italic
           },
           headerStyle: {
             backgroundColor: Colors.white_text_color,

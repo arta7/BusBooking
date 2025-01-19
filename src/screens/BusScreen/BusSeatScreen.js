@@ -238,7 +238,7 @@ const BusSeatScreen = (props) => {
             <View key={index} style={{ width: '100%', height: 'auto', padding: 10, backgroundColor: 'white', borderRadius: 10, borderWidth: 0.5, marginBottom: '3%' }}
             >
                 <View>
-                    <Text style={{ color: 'black', fontSize: SH(12), fontFamily: Fonts.Poppins_Italic }}>مسافر صندلی  {item.chairNumber} :  </Text>
+                    <Text style={{ color: 'black',  fontSize: SF(12), fontFamily: Fonts.Poppins_Italic }}>مسافر صندلی  {item.chairNumber} :  </Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 5, alignItems: 'center' }}>
                     <View style={{
@@ -506,8 +506,8 @@ const BusSeatScreen = (props) => {
 
                                             </View>
                                             <View style={{ width: '90%', marginLeft: '10%', height: '40%', alignItems: 'flex-start' }}>
-                                                <Text style={{ textAlign: 'center', color: 'black', fontFamily: Fonts.Poppins_Italic , fontWeight: 'bold', fontSize: SH(17) }}>{route.params?.data.baseCompany}</Text>
-                                                <Text style={{ textAlign: 'center', color: 'gray', fontFamily: Fonts.Poppins_Italic, fontSize: SH(12)  }}>{route.params?.data.carType}</Text>
+                                                <Text style={{ textAlign: 'center', color: 'black', fontFamily: Fonts.Poppins_Italic , fontWeight: 'bold',  fontSize: SF(12), }}>{route.params?.data.baseCompany}</Text>
+                                                <Text style={{ textAlign: 'center', color: 'gray', fontFamily: Fonts.Poppins_Italic,  fontSize: SF(12),  }}>{route.params?.data.carType}</Text>
                                             </View>
 
                                         </View>
@@ -519,24 +519,24 @@ const BusSeatScreen = (props) => {
                                         <View style={{ width: '38%', alignItems: 'flex-start' }}>
                                             <View style={{ flexDirection: 'row', alignItems: 'center', height: '25%' }}>
                                                 <PlaceIcon name={'directions-bus'} color={'gray'} size={SH(22)} />
-                                                <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily: Fonts.Poppins_Italic, fontSize: SH(14) }}>{route.params?.data.origin?.terminal != '' ?
+                                                <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily: Fonts.Poppins_Italic,  fontSize: SF(12), }}>{route.params?.data.origin?.terminal != '' ?
                                                     route.params?.data.origin?.terminal : route.params?.data.origin?.cityName}</Text>
                                             </View>
 
 
                                             <View style={{ height: '25%' }}>
-                                                <Text style={{ textAlign: 'center', color: 'gray', fontFamily: Fonts.Poppins_Italic, fontSize: SH(13) }}>ساعت حرکت</Text>
-                                                <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily: Fonts.Poppins_Italic, fontSize: SH(12) }}>{route.params?.data.timeMove}</Text>
+                                                <Text style={{ textAlign: 'center', color: 'gray', fontFamily: Fonts.Poppins_Italic,  fontSize: SF(12), }}>ساعت حرکت</Text>
+                                                <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily: Fonts.Poppins_Italic,  fontSize: SF(12), }}>{route.params?.data.timeMove}</Text>
                                             </View>
 
                                             <View style={{ height: '25%' }}>
-                                                <Text style={{ textAlign: 'center', color: 'gray', fontFamily: Fonts.Poppins_Italic, fontSize: SH(13) }}>تاریخ حرکت</Text>
-                                                <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily: Fonts.Poppins_Italic, fontSize: SH(12) }}>{route.params?.data.dateMove}</Text>
+                                                <Text style={{ textAlign: 'center', color: 'gray', fontFamily: Fonts.Poppins_Italic,  fontSize: SF(12), }}>تاریخ حرکت</Text>
+                                                <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily: Fonts.Poppins_Italic,  fontSize: SF(12), }}>{route.params?.data.dateMove}</Text>
                                             </View>
 
                                             <View style={{ flexDirection: 'row', alignItems: 'center', height: '25%' }}>
                                                 <PlaceIcon name={'place'} color={'gray'} size={SH(22)} />
-                                                <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily: Fonts.Poppins_Italic, fontSize: SH(13) }}>{route.params?.data.destination?.terminal != ''
+                                                <Text style={{ textAlign: 'center', color: 'black', fontWeight: 'bold', fontFamily: Fonts.Poppins_Italic,  fontSize: SF(12), }}>{route.params?.data.destination?.terminal != ''
                                                     ? route.params?.data.destination?.terminal : route.params?.data.destination?.cityName}</Text>
                                             </View>
                                         </View>
@@ -558,7 +558,7 @@ const BusSeatScreen = (props) => {
                                         </View>
                                         <View style={{ borderRadius: 10, marginTop: 5, borderRadius: 10, width: '90%', marginHorizontal: '5%' }}>
                                             <View style={{ width: '100%', height: 50, justifyContent: 'center', alignItems: 'center' }}>
-                                                <Text style={{ color: 'black', fontWeight: 'bold', fontSize: SH(15), fontFamily: Fonts.Poppins_Italic }} >
+                                                <Text style={{ color: 'black', fontWeight: 'bold',  fontSize: SF(12), fontFamily: Fonts.Poppins_Italic }} >
                                                     جلوی اتوبوس
                                                 </Text>
                                                 <View style={{ width: '40%', height: 1, backgroundColor: 'black', marginVertical: 5, fontFamily: Fonts.Poppins_Medium }}>
@@ -596,7 +596,7 @@ const BusSeatScreen = (props) => {
                                 </>
                                 :
                                 <View style={{ justifyContent: 'center', alignItems: 'center', marginHorizontal: '10%', width: '80%', marginTop: '50%' }}>
-                                    <Text style={{ textAlign: 'center', fontSize: 20, color: 'black', fontFamily: Fonts.Poppins_Italic }}>دریافت اطلاعات از سمت سرور مرکزی برای این اتوبوس دچار مشکل شده است.</Text>
+                                    <Text style={{ textAlign: 'center', fontSize: SF(12), color: 'black', fontFamily: Fonts.Poppins_Italic }}>دریافت اطلاعات از سمت سرور مرکزی برای این اتوبوس دچار مشکل شده است.</Text>
                                 </View>
 
                             }
@@ -654,7 +654,7 @@ const styles = StyleSheet.create({
         //   width:80
     },
     seatText: {
-        fontSize: 16,
+        fontSize: SF(12),
     },
     row: {
         flexDirection: 'row', justifyContent: 'space-between'

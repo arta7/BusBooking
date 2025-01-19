@@ -8,8 +8,8 @@ export default StyleSheet.create({
   },
   hometextstyle: {
     color: Colors.black_text_color,
-    fontSize: SF(18),
-    fontFamily: Fonts.Poppins_Medium,
+    fontSize: SF(12),
+    fontFamily: Fonts.Poppins_Italic,
     paddingLeft: SH(20),
     opacity: 0.7,
   },

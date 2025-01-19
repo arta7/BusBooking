@@ -51,7 +51,7 @@ export default ChatStyles = (Colors) => StyleSheet.create({
   DataSandTimeColor: {
     color: Colors.gray_text_color,
     fontFamily: Fonts.Poppins_Medium,
-    fontSize: SF(14),
+    fontSize: SF(12),
     textAlign: 'center',
     paddingTop: SH(5),
     paddingLeft: SH(80),
@@ -80,7 +80,7 @@ export default ChatStyles = (Colors) => StyleSheet.create({
   TextColorMessage: {
     color: Colors.white_text_color,
     fontFamily: Fonts.Poppins_Medium,
-    fontSize: SF(16),
+    fontSize: SF(12),
   },
   FlexCheckSet: {
     flexDirection: 'row',
@@ -131,7 +131,7 @@ export default ChatStyles = (Colors) => StyleSheet.create({
   TextInputBorderBottom: {
     padding: 0,
     width: SW(200),
-    fontSize: SF(16),
+    fontSize: SF(12),
   },
   FlexrowImagiNations: {
     flexDirection: 'row',

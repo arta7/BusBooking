@@ -33,7 +33,7 @@ export default HelpScreenStyles = (Colors) => StyleSheet.create({
   TextInputeText: {
     fontFamily: Fonts.Poppins_Medium,
     color: Colors.gray_text_color,
-    fontSize: SF(18),
+    fontSize: SF(14),
     paddingTop: SH(20),
   },
   ButtonStyle: {
