@@ -17,18 +17,44 @@ const SplashScreen = ({ navigation }) => {
     const { Colors } = useTheme();
     const Styles = useMemo(() => Style(Colors), [Colors]);
 
+
+
+        
+    let GetToken=async()=>{
+        var Token = await AsyncStorage.getItem('Token');
+        console.log('Token',Token)
+        if(Token == null || Token == '')
+         {
+          console.log('Token work')
+             return false;
+         }
+         console.log('Token work2')
+         return true;
+     }
+
     useEffect(() => {
-        setTimeout(() => {
-            AsyncStorage.getItem('user_id').then((value) =>
-                navigation.replace(RouteName.SWIPER_SCREEN)
-            );
-        }, 2000);
-        {
-            colorrdata ?
-                dispatch(color_picker_set_action(colorrdata))
-                :
-                dispatch(color_picker_set_action(Colors.theme_background))
+         (async function() {
+        try {
+         setTimeout(() => {
+            GetToken().then((value)=>{
+                if(value == false)
+                    navigation.replace(RouteName.SWIPER_SCREEN)
+                else
+                navigation.replace(RouteName.HOME_SCREEN)
+              })
+
+            
+                colorrdata ?
+                    dispatch(color_picker_set_action(colorrdata))
+                    :
+                    dispatch(color_picker_set_action(Colors.theme_background))
+         }, 2500);
+            
+        } catch (e) {
+            console.error(e);
         }
+    })();
+    
      
     }, []);
 

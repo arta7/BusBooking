@@ -612,7 +612,7 @@ const BusSeatScreen = (props) => {
                             <View style={BusSeatScreenStyles.BusFinalBoookedBox}>
                                 <View style={BusSeatScreenStyles.Widthone}>
                                     <Text style={[BusSeatScreenStyles.Selectedtext, { color: 'black' }]}>جمع کل قیمت</Text>
-                                    <Text style={[BusSeatScreenStyles.SelectedSeattext, { fontFamily: Fonts.Poppins_Italic  }]}>{route.params?.data.price * BusPerson.length} تومان</Text>
+                                    <Text style={[BusSeatScreenStyles.SelectedSeattext, { fontFamily: Fonts.Poppins_Italic  }]}>{route.params?.data.price * BusPerson.length} ریال</Text>
                                 </View>
                                 {/* <View style={BusSeatScreenStyles.Widthtwo}>
                         <Text style={BusSeatScreenStyles.Selectedtext}>{t("Book_for")}</Text>

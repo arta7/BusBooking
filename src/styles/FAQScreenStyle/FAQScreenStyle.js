@@ -28,7 +28,7 @@ export default FAQScreenStyle = (Colors) => StyleSheet.create({
     width: '88%',
   },
   CreditCardText: {
-    fontSize: SF(16),
+    fontSize: SF(12),
     fontFamily: Fonts.Poppins_Italic,
     fontWeight: '400',
     color: Colors.black_text_color,
@@ -39,7 +39,7 @@ export default FAQScreenStyle = (Colors) => StyleSheet.create({
     width: '88%',
   },
   ParegraphTextHelp: {
-    fontSize: SF(17),
+    fontSize: SF(12),
     fontFamily: Fonts.Poppins_Italic,
   },
   MinViewScreen: {
@@ -89,7 +89,7 @@ export default FAQScreenStyle = (Colors) => StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     color: Colors.gray_text_color,
-    fontSize: SF(17),
+    fontSize: SF(12),
     fontFamily: Fonts.Poppins_Italic,
     borderRadius: 200,
     backgroundColor: Colors.white_text_color,

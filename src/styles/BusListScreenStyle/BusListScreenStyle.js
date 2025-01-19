@@ -84,12 +84,14 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
         fontSize: SF(14),
         textDecorationLine: 'line-through',
         textDecorationStyle: 'solid',
-        paddingTop: SH(3)
+        paddingTop: SH(3),
+        fontFamily:Fonts.Poppins_Italic
     },
     PercentaText: {
         color: Colors.GreenColor,
         fontSize: SF(14),
-        paddingTop: SH(3)
+        paddingTop: SH(3),
+        fontFamily:Fonts.Poppins_Italic
     },
     FromTmeText: {
         color: Colors.TextBlackColor,
@@ -131,7 +133,7 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
         fontFamily:Fonts.Poppins_Italic
     },
     ContentContainerStyle: {
-        padding: SH(10)
+        padding: SH(20)
     },
     BuscusionStyle: {
         borderWidth: 1,
@@ -141,7 +143,8 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
         height: SH(10),
         position: 'absolute',
         bottom: 10,
-        backgroundColor: Colors.TextWhiteColor
+        backgroundColor: Colors.TextWhiteColor,
+        fontFamily:Fonts.Poppins_Italic
     },
     FlexRowSeatleft: {
         flexDirection: 'row',
@@ -153,29 +156,34 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: SH(5)
+        paddingVertical: SH(5),
+        fontFamily:Fonts.Poppins_Italic
     },
     SeatAvChildBox: {
         width: SW(60),
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: SH(5)
+        paddingHorizontal: SH(5),
+        fontFamily:Fonts.Poppins_Italic
     },
     SeatAvChildBoxText: {
         color: Colors.TextBlackColor,
         fontSize: SF(10),
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily:Fonts.Poppins_Italic
     },
     TabBoxTwoMin: {
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: SH(50),
+        fontFamily:Fonts.Poppins_Italic
     },
     TabBoxTwo: {
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-between',
         marginBottom: SH(10),
+        fontFamily:Fonts.Poppins_Italic
     },
     TabsettextActiveBoxTwo: {
         paddingVertical: SH(5),
@@ -186,6 +194,7 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
+        fontFamily:Fonts.Poppins_Italic
     },
     TabsettextBoxTwo: {
         paddingVertical: SH(5),
@@ -197,6 +206,7 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
+        fontFamily:Fonts.Poppins_Italic
     },
     TableftAciveBorder: {
         borderTopLeftRadius: 3,
@@ -213,6 +223,7 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
         textAlign: 'center',
         paddingVertical: SH(3),
         paddingHorizontal: SH(10),
+        fontFamily:Fonts.Poppins_Italic
     },
     BusSratflatlistbox: {
         justifyContent: 'center',
@@ -242,11 +253,13 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
     Selectedtext: {
         color: Colors.LightBlackText,
         fontSize: SF(16),
+        fontFamily:Fonts.Poppins_Italic
     },
     SelectedSeattext: {
         color: Colors.TextBlackColor,
         fontSize: SF(16),
-        textAlign: 'left'
+        textAlign: 'left',
+        fontFamily:Fonts.Poppins_Italic
     },
     Widthtwo: {
         width: '20%'
@@ -265,6 +278,7 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
     BusComonStyleBlue: {
         color: Colors.Purple,
         fontSize: SF(14),
-        paddingTop: SH(8)
+        paddingTop: SH(8),
+        fontFamily:Fonts.Poppins_Italic
     },
 });

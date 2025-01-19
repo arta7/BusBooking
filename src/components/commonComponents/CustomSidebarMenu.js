@@ -12,6 +12,7 @@ import IconP from 'react-native-vector-icons/AntDesign';
 import { ConfirmationAlert } from '../../components';
 import { SH, SF, SW, Colors } from '../../utils';
 import { useTranslation } from "react-i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const CustomSidebarMenu = (props) => {
   const { t } = useTranslation();
@@ -25,7 +26,8 @@ const CustomSidebarMenu = (props) => {
     'logout': t("Are_You_Sure_logout"),
   }
   const onoknutton = () => {
-    navigation.navigate(RouteName.LOGIN_SCREEN);
+    AsyncStorage.clear()
+    navigation.replace(RouteName.LOGIN_SCREEN)
     okbutton;
   }
   const Onpressfunction = (e) => {
@@ -86,6 +88,7 @@ const CustomSidebarMenu = (props) => {
             setAlertVisible(true);
             setAlertMessage(alertdata.logout);
             Setokbutton('');
+            
           }}>
             <IconL name="log-out" color={Colors.theme_background} size={SF(23)} />
             <Text style={Sidemenu.hometextstyle}>{t("Log_Out")}</Text>

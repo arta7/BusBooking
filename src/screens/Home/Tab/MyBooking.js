@@ -25,15 +25,16 @@ const BusListScreen = (props) => {
         <View style={BusListScreenStyles.BusdataTopBox}>
           <View>
             <Text style={BusListScreenStyles.TravelCompanyText}> <IconMI name="bus" size={SF(24)} color={Colors.Red} /> {t(item.TravelCompany)}</Text>
-            <Text style={BusListScreenStyles.FromTmeText}>{t("From")}</Text>
+         
+            <Text style={BusListScreenStyles.FromTmeText}>تهران</Text>
           </View>
           <View style={BusListScreenStyles.TextrightSet}>
-            <Text style={BusListScreenStyles.DateTextSmall}>{t(item.BusType)}</Text>
-            <Text style={BusListScreenStyles.FromTmeText}>{t("To_London")}</Text>
+            {/* <Text style={BusListScreenStyles.DateTextSmall}>{t(item.BusType)}</Text> */}
+            <Text style={BusListScreenStyles.FromTmeText}>یزد</Text>
           </View>
         </View>
         <View style={BusListScreenStyles.BusdataTopBox}>
-          <Text style={BusListScreenStyles.BusComonStyleBlue}>{t("Paid")} : {item.DiscountAmount} </Text>
+          <Text style={BusListScreenStyles.BusComonStyleBlue}>مبلغ : {item.DiscountAmount} </Text>
           <Text style={BusListScreenStyles.BusComonStyle}>{item.Date}</Text>
         </View>
       </TouchableOpacity>

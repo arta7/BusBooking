@@ -28,9 +28,9 @@ const TicketScreen = (props) => {
 
                 <View style={TicketScreenStyles.qrcodescanner}>
                   <View>
-                    <Text style={TicketScreenStyles.qrcosetitlestyles}>{t("Baroda_Surat")}</Text>
-                    <Image source={images.QR_image} resizeMode={'contain'} style={TicketScreenStyles.imagestyleset} />
-                    <Text style={TicketScreenStyles.ticketqrnumber}>( CBCE - 1068-51042 )</Text>
+                    <Text style={TicketScreenStyles.qrcosetitlestyles}>تهران - یزد</Text>
+                    {/* <Image source={images.QR_image} resizeMode={'contain'} style={TicketScreenStyles.imagestyleset} /> */}
+                    <Text style={TicketScreenStyles.ticketqrnumber}>( رزرو بلیط )</Text>
                   </View>
                 </View>
 
@@ -39,22 +39,22 @@ const TicketScreen = (props) => {
                   <View style={TicketScreenStyles.Flexviewnametitle}>
                     <View>
                       <Text style={TicketScreenStyles.nametextstyles}>{t("Name")}</Text>
-                      <Text style={TicketScreenStyles.nametextstylestwo}>{t("Graham_Gooch")}</Text>
+                      <Text style={TicketScreenStyles.nametextstylestwo}>بیژن شعبانی</Text>
                     </View>
                     <View>
                       <Text style={TicketScreenStyles.nametextstyles}>{t("Ticket_No")}</Text>
-                      <Text style={TicketScreenStyles.nametextstylestwo}># 82403</Text>
+                      <Text style={TicketScreenStyles.nametextstylestwo}> 82403</Text>
                     </View>
                   </View>
                   <Spacing space={SH(20)} />
                   <View style={TicketScreenStyles.Flexviewnametitle}>
                     <View>
                       <Text style={TicketScreenStyles.nametextstyles}>{t("Date")}</Text>
-                      <Text style={TicketScreenStyles.nametextstylestwo}>Jun 17, 2023</Text>
+                      <Text style={TicketScreenStyles.nametextstylestwo}>1403/08/09</Text>
                     </View>
                     <View>
                       <Text style={TicketScreenStyles.nametextstyles}>{t("Destination")}</Text>
-                      <Text style={TicketScreenStyles.nametextstylestwo}>{t("Telengana")}</Text>
+                      <Text style={TicketScreenStyles.nametextstylestwo}>یزد</Text>
                     </View>
                   </View>
                   <View>
@@ -74,11 +74,11 @@ const TicketScreen = (props) => {
                   <View style={TicketScreenStyles.Flexviewnametitle}>
                     <View>
                       <Text style={TicketScreenStyles.nametextstyles}>{t("Seat")}</Text>
-                      <Text style={TicketScreenStyles.nametextstylestwo}>18</Text>
+                      <Text style={TicketScreenStyles.nametextstylestwo}>18 , 19</Text>
                     </View>
                     <View>
                       <Text style={TicketScreenStyles.nametextstyles}>{t("Ticket_Price")}</Text>
-                      <Text style={TicketScreenStyles.nametextstylestwo}>₹ 370.00</Text>
+                      <Text style={TicketScreenStyles.nametextstylestwo}>6700000 ریال</Text>
                     </View>
                   </View>
                 </View>
@@ -86,9 +86,9 @@ const TicketScreen = (props) => {
             </View>
           </KeyboardAvoidingView>
         </ScrollView>
-        <View style={TicketScreenStyles.Buttonviewset}>
+        {/* <View style={TicketScreenStyles.Buttonviewset}>
           <Button onPress={() => navigation.navigate(RouteName.HOME_TAB)} title={t("Download_Ticket")} />
-        </View>
+        </View> */}
       </View>
     </View >
   );

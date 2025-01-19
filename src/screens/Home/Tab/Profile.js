@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from '@react-navigation/native';
 import { GetCities } from "../../../Api/ApiMaster";
 import UserContext from './../../../../UserContext';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const { userData, setUserData } = React.useContext(UserContext);
 const ProfileTab = (props) => {
   const { navigation } = props;
@@ -62,7 +63,7 @@ useEffect(()=>{
           <View style={ProfileTabStyle.ImagCenter}>
             <View>
               <Image style={ProfileTabStyle.ImageStyles} resizeMode='cover' source={images.User_image_one_profile} />
-              <Text style={ProfileTabStyle.UserName}>{t("Allison_Perry")}</Text>
+              <Text style={ProfileTabStyle.UserName}>{userData[0].Name.toString()}</Text>
             </View>
           </View>
           <View style={ProfileTabStyle.ProfileDetailesMinview}>
@@ -216,7 +217,10 @@ useEffect(()=>{
                                   <Text style={ProfileTabStyle.ModalText}>{t("Are_You_Sure")}</Text>
                                   <View style={ProfileTabStyle.ButtonsetModleTwoButton}>
                                     <View style={ProfileTabStyle.MarginRightView}>
-                                      <Button title={t("Log_Out")} onPress={() => navigation.replace(RouteName.LOGIN_SCREEN)} />
+                                      <Button title={t("Log_Out")} onPress={() => {
+                                        AsyncStorage.clear()
+                                        navigation.replace(RouteName.LOGIN_SCREEN)
+                                      }} />
                                     </View>
                                     <View style={ProfileTabStyle.MarginRightView}>
                                       <Button title={t("Cancel_Button")} onPress={() => setModalVisible(!modalVisible)} buttonStyle={ProfileTabStyle.SingleButtonStyles} buttonTextStyle={ProfileTabStyle.SingleButtonText}

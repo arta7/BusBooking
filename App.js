@@ -71,7 +71,8 @@ const App = () => {
       isLoading:true,
       Mobile:'',
       Token:'',
-      RequestNumber:''
+      RequestNumber:'',
+      Name : ''
     }]);
   return (
     <Provider store={store}>

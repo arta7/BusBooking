@@ -76,6 +76,7 @@ export function LoginAPI(_phone,self,userData,setUserData,setLoading)
               const myNextList = [...userData];
               const DatesStep = myNextList;
               DatesStep[0].Mobile = _phone;
+              
               setUserData(myNextList)
              
            Toast.showWithGravity(response.data.message, Toast.LONG, Toast.CENTER);
@@ -92,7 +93,7 @@ export function LoginAPI(_phone,self,userData,setUserData,setLoading)
 
 
 
-export function VerifyAPI(_phone,_code,self,setLoading)
+export function VerifyAPI(_phone,_code,self,setLoading,userData,setUserData)
 {
     var params ={
       "Phone":_phone,
@@ -114,6 +115,12 @@ export function VerifyAPI(_phone,_code,self,setLoading)
           if(response.data.status == 1)
             {
               AsyncStorage.setItem('Token',response.data.data.token)
+              AsyncStorage.setItem('Name',response.data.data.firstName + ' ' + response.data.data.lastName)
+              const myNextList = [...userData];
+              const DatesStep = myNextList;
+              DatesStep[0].Name  = response.data.data.firstName + ' ' + response.data.data.lastName ;
+              DatesStep[0].Token  = response.data.data.token ;
+              setUserData(myNextList)
            Toast.showWithGravity(response.data.message, Toast.LONG, Toast.CENTER);
               
         

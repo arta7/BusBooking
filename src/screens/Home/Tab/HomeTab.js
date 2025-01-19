@@ -6,7 +6,7 @@ import { SH, SF, SW, Colors, ExclusiveData, Offersdata, Lastlistdata } from '../
 import { DropDown, Button, Spacing, Lottie, DatePicker, AddRemove } from '../../../components';
 import IconI from "react-native-vector-icons/Octicons";
 import IconA from "react-native-vector-icons/AntDesign";
-import IconFA from "react-native-vector-icons/FontAwesome";
+import IconFA from "react-native-vector-icons/EvilIcons";
 import IconFA5 from "react-native-vector-icons/FontAwesome5";
 import { RouteName } from '../../../routes';
 import { useTheme } from '@react-navigation/native';
@@ -47,13 +47,29 @@ const HomeTab = (props) => {
         setUserData(myNextList)
 
         setLoading(true)
-        GetCities(setCityList, CityList, props,setLoading,{
-            headers:{
-              'accept': 'text/plain',
-                "Access-Control-Allow-Origin": "*",
-                 'Authorization' :  userData[0]?.Token
-            }
-        })
+        if (userData[0]?.Token == "" || userData[0]?.Token == null) {
+
+            setTimeout(() => {
+                GetCities(setCityList, CityList, props, setLoading, {
+                    headers: {
+                        'accept': 'text/plain',
+                        "Access-Control-Allow-Origin": "*",
+                        'Authorization': userData[0]?.Token
+                    }
+                })
+            }, 4000);
+           
+        }
+        else {
+            GetCities(setCityList, CityList, props, setLoading, {
+                headers: {
+                    'accept': 'text/plain',
+                    "Access-Control-Allow-Origin": "*",
+                    'Authorization': userData[0]?.Token
+                }
+            })
+           
+        }
 
     }, [])
 
@@ -186,7 +202,7 @@ const HomeTab = (props) => {
                                     />
                                 </View>
                             </View>
-                            
+
                             <Spacing />
                             <View style={[{
                                 width: '100%', borderWidth: 0.4, borderColor: 'grey'
@@ -198,8 +214,8 @@ const HomeTab = (props) => {
                                     <DateIcon name='date-range' color={'gray'} size={SH(25)} />
 
                                 </View>
-                                <TouchableOpacity style={{ width: '85%', justifyContent: 'center', alignItems: 'flex-start' }} 
-                                onPress={() => { setDatePickerVisibility(true) }}>
+                                <TouchableOpacity style={{ width: '85%', justifyContent: 'center', alignItems: 'flex-start' }}
+                                    onPress={() => { setDatePickerVisibility(true) }}>
                                     <DatePicker
                                         DatePlaceholder={t("Select_Date")}
                                         isDatePickerVisible={isDatePickerVisible}
@@ -211,16 +227,18 @@ const HomeTab = (props) => {
                                 </TouchableOpacity>
 
                             </View>
-                            <TouchableOpacity style={{width:50,height:50,backgroundColor:'#bfdaf7',position:'absolute'
-                                ,justifyContent:'center',alignItems:'center',borderRadius:5,top:'20%',right:'15%'}}
-                                
-                                onPress={()=>{
+                            <TouchableOpacity style={{
+                                width: 50, height: 50, backgroundColor: '#bfdaf7', position: 'absolute'
+                                , justifyContent: 'center', alignItems: 'center', borderRadius: 5, top: '20%', right: '15%'
+                            }}
+
+                                onPress={() => {
 
 
-                                    var StartData= userData[0].StartPlace;
-                                    var StartDataCode= userData[0].StartPlaceCode;
-                                    var EndData= userData[0].EndPlace;
-                                    var EndDataCode= userData[0].EndPlaceCode;
+                                    var StartData = userData[0].StartPlace;
+                                    var StartDataCode = userData[0].StartPlaceCode;
+                                    var EndData = userData[0].EndPlace;
+                                    var EndDataCode = userData[0].EndPlaceCode;
 
                                     const myNextList = [...userData];
                                     const DatesStep = myNextList;
@@ -229,22 +247,39 @@ const HomeTab = (props) => {
                                     DatesStep[0].StartPlace = EndData;
                                     DatesStep[0].StartPlaceCode = EndDataCode;
                                     setUserData(myNextList)
-                                    
+
+                                }}
+                            >
+
+                                <IconI name="arrow-switch" size={30} color={'white'} style={{ justifyContent: 'center', alignItems: 'center' }} />
+                            </TouchableOpacity>
+
+                            {/* <TouchableOpacity style={{width:50,height:50,backgroundColor:'#bfdaf7',position:'absolute'
+                                ,justifyContent:'center',alignItems:'center',borderRadius:5,top:'20%',right:'30%'}}
+                                
+                                onPress={()=>{
+                                    setLoading(true)
+                                    GetCities(setCityList, CityList, props,setLoading,{
+                                        headers:{
+                                          'accept': 'text/plain',
+                                            "Access-Control-Allow-Origin": "*",
+                                             'Authorization' :  userData[0]?.Token
+                                        }
+                                    })
                                 }}
                                 >
 
-                            <IconI name="arrow-switch" size={30} color={'white'} style={{justifyContent:'center',alignItems:'center'}} />
-                            </TouchableOpacity>
+                            <IconFA name="refresh" size={40} color={'white'} style={{justifyContent:'center',alignItems:'center'}} />
+                            </TouchableOpacity> */}
                             <Spacing />
                             <Spacing space={SH(20)} />
                             <Button title={t("Search_Buses")} onPress={() => {
-                                if(userData[0].StartPlace != "" && userData[0].EndPlace !="")
-                                OnBusTicket()
-                            else 
-                            {
-                                Toast.showWithGravity('لطفا کلیه گزینه ها را انتخاب کنید', Toast.LONG, Toast.CENTER);
-                            }
-                            
+                                if (userData[0].StartPlace != "" && userData[0].EndPlace != "")
+                                    OnBusTicket()
+                                else {
+                                    Toast.showWithGravity('لطفا کلیه گزینه ها را انتخاب کنید', Toast.LONG, Toast.CENTER);
+                                }
+
                             }} />
                         </View>
                         <Spacing space={SH(30)} />
@@ -257,15 +292,15 @@ const HomeTab = (props) => {
                             showsHorizontalScrollIndicator={false}
                             horizontal
                         /> */}
-                        <Spacing space={SH(30)} />
+                        {/* <Spacing space={SH(30)} /> */}
                         {/* <View style={HomeTabStyless.BorderView}>
                         </View> */}
-                        <Spacing space={SH(20)} />
+                        {/* <Spacing space={SH(20)} /> */}
                         {/* <View>
                             <Text style={HomeTabStyless.OffersText}>{t("WHATS_NEW")}</Text>
                             <Text>{t("Discover_new")}</Text>
                         </View> */}
-                        <Spacing space={SH(12)} />
+                        {/* <Spacing space={SH(12)} /> */}
                         {/* <FlatList
                             data={ExclusiveData}
                             renderItem={({ item, index }) => Exclusivefunction(item, index)}
@@ -273,10 +308,10 @@ const HomeTab = (props) => {
                             showsHorizontalScrollIndicator={false}
                             horizontal
                         /> */}
-                        <Spacing space={SH(30)} />
-                        <View style={HomeTabStyless.BorderView}>
-                        </View>
-                        <Spacing space={SH(20)} />
+                        {/* <Spacing space={SH(30)} /> */}
+                        {/* <View style={HomeTabStyless.BorderView}>
+                        </View> */}
+                        {/* <Spacing space={SH(20)} /> */}
                         {/* <View>
                             <Text style={HomeTabStyless.MainText}>{t("PREFER_TO_TRAVEL")}</Text>
                             <Spacing space={SH(6)} />

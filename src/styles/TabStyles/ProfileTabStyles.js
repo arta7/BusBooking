@@ -22,9 +22,10 @@ export default ProfileTabStyles = (Colors) => StyleSheet.create({
   },
   UserName: {
     color: Colors.black_text_color,
-    fontFamily: Fonts.Poppins_Medium,
+    fontFamily: Fonts.Poppins_Italic,
     textAlign: 'center',
-    fontSize: SF(18),
+    fontSize: SF(15),
+    
   },
   ProfileDetailesMinview: {
     width: '90%',
@@ -85,27 +86,27 @@ export default ProfileTabStyles = (Colors) => StyleSheet.create({
   },
   EditProFile: {
     marginTop: '8%',
-    fontFamily: Fonts.Poppins_Medium,
+    fontFamily: Fonts.Poppins_Italic,
     color: Colors.black_text_color,
-    fontSize: SF(19),
+    fontSize: SF(15),
     paddingBottom: SH(13),
   },
   PhoneNumberText: {
     color: Colors.black_text_color,
-    fontSize: SF(17),
-    fontFamily: Fonts.Poppins_Medium,
+    fontSize: SF(15),
+    fontFamily: Fonts.Poppins_Italic,
   },
   DigitNumberText: {
     color: Colors.gray_text_color,
     fontSize: SF(17),
-    fontFamily: Fonts.Poppins_Medium,
+    fontFamily: Fonts.Poppins_Italic,
   },
   LogOutView: {
     textAlign: 'center',
     color: Colors.black_text_color,
     borderBottomColor: Colors.red_color,
     fontSize: SF(20),
-    fontFamily: Fonts.Poppins_Medium,
+    fontFamily: Fonts.Poppins_Italic,
     paddingBottom: SH(15),
   },
   CenteredView: {
@@ -143,7 +144,7 @@ export default ProfileTabStyles = (Colors) => StyleSheet.create({
     textAlign: 'center',
     color: Colors.black_text_color,
     fontSize: SF(18),
-    fontFamily: Fonts.Poppins_Medium,
+    fontFamily: Fonts.Poppins_Italic,
   },
   MarginRightView: {
     width: '48%'
@@ -152,7 +153,7 @@ export default ProfileTabStyles = (Colors) => StyleSheet.create({
     width: '48%'
   },
   input: {
-    fontFamily: Fonts.Poppins_Medium,
+    fontFamily: Fonts.Poppins_Italic,
     width: '100%',
     fontSize: SF(14),
   },
@@ -171,7 +172,7 @@ export default ProfileTabStyles = (Colors) => StyleSheet.create({
     height: SH(50),
     borderRadius: 7,
     flexDirection: 'row',
-    fontFamily: Fonts.Poppins_Medium,
+    fontFamily: Fonts.Poppins_Italic,
     paddingLeft: SH(15),
     width: '100%',
     paddingRight: SH(45),
@@ -196,7 +197,7 @@ export default ProfileTabStyles = (Colors) => StyleSheet.create({
   },
   TextPasswored: {
     color: Colors.black_text_color,
-    fontFamily: Fonts.Poppins_Medium,
+    fontFamily: Fonts.Poppins_Italic,
     width: '100%',
     fontSize: SF(16),
   },

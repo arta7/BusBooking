@@ -29,11 +29,11 @@ const HistoryTab = (props) => {
                                     </View>
                                     <View style={PaymentHistoryTabStyles.payemnttimebox}>
                                         <Text style={PaymentHistoryTabStyles.PayemnttranferheadText}>{t("Paypal")}</Text>
-                                        <Text style={PaymentHistoryTabStyles.PaymentTimeText}>Dec, 9 2022 at 11:00 AM</Text>
+                                        <Text style={PaymentHistoryTabStyles.PaymentTimeText}>1403/10/01 11:00 صبح</Text>
                                     </View>
                                 </View>
                                 <View style={PaymentHistoryTabStyles.PaymentAounttextpadright}>
-                                    <Text style={PaymentHistoryTabStyles.PaymentAounttext}>  ₹ 390</Text>
+                                    <Text style={PaymentHistoryTabStyles.PaymentAounttext}>  3700000 vdhg</Text>
                                     <Text style={[PaymentHistoryTabStyles.PayemntStatus, PaymentHistoryTabStyles.PayementSuccess]}>  {t("Successful")}</Text>
                                 </View>
                             </TouchableOpacity>

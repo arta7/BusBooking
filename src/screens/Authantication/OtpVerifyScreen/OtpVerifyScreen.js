@@ -39,7 +39,7 @@ const OtpScreenset = (props) => {
     const verify = (_code) => {
         // console.log('userData[0].Mobile', userData[0].Mobile)
         setLoading(true)
-        VerifyAPI(userData[0].Mobile.toString(), _code, navigation,setLoading)
+        VerifyAPI(userData[0].Mobile.toString(), _code, navigation,setLoading,userData,setUserData)
     }
     return (
         <ImageBackground source={images.full_bg_img_hospital} resizeMode='cover'>
