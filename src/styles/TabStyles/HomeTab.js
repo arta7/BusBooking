@@ -189,8 +189,8 @@ export default HomeTabStyles = (Colors) => StyleSheet.create({
         borderRadius: 7
     },
     OffersImg: {
-        height: SH(150),
-        width: SW(220),
+        height: SH(50),
+        width: SW(100),
         borderRadius: 7
     },
     OffersText: {

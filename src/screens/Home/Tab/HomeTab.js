@@ -17,7 +17,7 @@ import { useEffect } from 'react';
 import { GetCities } from '../../../Api/ApiMaster';
 import Loadings from '../../../Loadings'
 import Toast from 'react-native-simple-toast';
-
+import images from "../../../index";
 
 const HomeTab = (props) => {
     const { navigation } = props;
@@ -322,6 +322,7 @@ const HomeTab = (props) => {
                             showsHorizontalScrollIndicator={false}
                             style={HomeTabStyless.SetFlex}
                         /> */}
+                         <Image source={images.Mapimage} style={{width:'100%',height: SH(300),}} resizeMode='contain' />
                     </View>
             }
         </ScrollView>

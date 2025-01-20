@@ -561,7 +561,7 @@ const BusSeatScreen = (props) => {
                                                 <Text style={{ color: 'black', fontWeight: 'bold',  fontSize: SF(12), fontFamily: Fonts.Poppins_Italic }} >
                                                     جلوی اتوبوس
                                                 </Text>
-                                                <View style={{ width: '40%', height: 1, backgroundColor: 'black', marginVertical: 5, fontFamily: Fonts.Poppins_Medium }}>
+                                                <View style={{ width: '40%', height: 2, backgroundColor: 'black', marginVertical: 5, fontFamily: Fonts.Poppins_Italic }}>
 
                                                 </View>
 

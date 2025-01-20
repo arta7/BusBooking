@@ -32,7 +32,7 @@ const BusSeat = ({ chairNumber, status, index, RowSeats, data, setData, BusPerso
   };
   return (
 
-    <View style={[styles.seat, index == datarow ? { marginLeft: '20%' } : { marginHorizontal: '2%' }]}>
+    <View style={[styles.seat, index == datarow ? { marginLeft: '10%' } : { marginHorizontal: '1%' }]}>
       <LikeUnlike
         text={status == 2 ? 'آقا' : status == 3 ? 'خانم' : chairNumber}
         LikeColour={getStatusColor()}
@@ -40,7 +40,7 @@ const BusSeat = ({ chairNumber, status, index, RowSeats, data, setData, BusPerso
         index={status}
         data={data}
         DefaultStyle={[BusSeatScreenStyles.BusSeatBox, { height: SH(50),  width: SW(35), }]}
-        ViewStyle={[BusSeatScreenStyles.BuscusionStyle, { height: SH(3) }]}
+        ViewStyle={[BusSeatScreenStyles.BuscusionStyle, { height: SH(3)}]}
         onPress={onPress}
         setData={setData}
         BusPerson={BusPerson}
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    marginBottom: 10, width: '80%',marginHorizontal:'1%'
+    marginBottom: 10, width: '87%',marginHorizontal:'1%'
   },
   seat: {
     padding: 10,
@@ -117,8 +117,7 @@ const styles = StyleSheet.create({
   },
   seatText: {
     fontSize: SF(12),
-    fontWeight: 'bold',
-    fontFamily:Fonts.Poppins_Medium
+    fontFamily:Fonts.Poppins_Italic
   },
   seatTwoColumns: {
     flex: 0.5,
