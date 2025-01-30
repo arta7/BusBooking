@@ -134,6 +134,7 @@ const HomeTab = (props) => {
                                         placeholder={t("مبدا")}
                                         search={true}
                                         searchPlaceholder={'مبدا'}
+                                        placeholderStyle={{color:'#cb42f5'}}
                                         value={userData[0]?.StartPlace.toString()}
                                         onChange={(From) => {
                                             console.log('from', From.name_fa)
@@ -171,6 +172,7 @@ const HomeTab = (props) => {
                                         labelField="name_fa"
                                         valueField="name_fa"
                                         placeholder={t("مقصد")}
+                                        placeholderStyle={{color:'#f59e42'}}
                                         search={true}
                                         searchPlaceholder={'مقصد'}
                                         value={userData[0]?.EndPlace.toString()}
@@ -322,7 +324,7 @@ const HomeTab = (props) => {
                             showsHorizontalScrollIndicator={false}
                             style={HomeTabStyless.SetFlex}
                         /> */}
-                         <Image source={images.Mapimage} style={{width:'100%',height: SH(300),}} resizeMode='contain' />
+                         {/* <Image source={images.Mapimage} style={{width:'100%',height: SH(300),}} resizeMode='contain' /> */}
                     </View>
             }
         </ScrollView>

@@ -19,10 +19,11 @@ export default SwiperStyle = (Colors) => StyleSheet.create({
     fontSize: SF(13),
     fontFamily: Fonts.Poppins_Italic,
     textAlign: 'center',
-    paddingHorizontal: SH(15),
+    paddingHorizontal: SH(30),
     position: 'absolute',
     top: SH(100),
     width: '100%',
+    lineHeight:40
   },
   Textstyle: {
     paddingHorizontal: SH(10),
@@ -32,7 +33,8 @@ export default SwiperStyle = (Colors) => StyleSheet.create({
     fontSize: SF(12),
     position: 'absolute',
     bottom: SH(120),
-    width: '100%'
+    width: '100%',
+    lineHeight:40
   },
   ButtonCircle: {
     width: '100%',

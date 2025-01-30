@@ -5,7 +5,7 @@ import images from './index';
 const   Loadings = () => {
         return (
             <View style={styles.container}>
-                   <Lottie source={images.Three_Swiper} />
+                   <Lottie source={images.Animation} />
                 
             </View>
         )
@@ -16,7 +16,7 @@ const styles=StyleSheet.create({
         display:'flex',
         flex:1,
         justifyContent:'center',
-        alignItems:'center',alignSelf:'center'
+        alignItems:'center',alignSelf:'center',
     }
 });
 export default Loadings;

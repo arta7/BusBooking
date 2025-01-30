@@ -2,6 +2,7 @@ const images = {
    First_Swiper: require('./LottieAnimation/FirstSwiper.json'),
    Two_Swiper: require('./LottieAnimation/TwoSwiper.json'),
    Three_Swiper: require('./LottieAnimation/ThreeSwiper.json'),
+   Animation:require('./LottieAnimation/animation.json'),
    Splash_Swiper: require('./LottieAnimation/SplashScreen.json'),
    Account_created: require('./LottieAnimation/Accountcreated.json'),
    Reviewsimage_screen: require('./LottieAnimation/Reviewsimage.json'),

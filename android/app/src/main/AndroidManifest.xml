@@ -29,9 +29,9 @@
    </intent-filter>
     <intent-filter>
   <data android:scheme="https" android:host="kalanholding.com" /> 
+   <data android:scheme="http" android:host="kalanholding.com" /> 
+     <data android:scheme="kalanholding" android:host="https" /> 
         </intent-filter>
-
-    
       </activity>
     </application>
 </manifest>

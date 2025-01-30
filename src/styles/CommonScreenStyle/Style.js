@@ -18,7 +18,7 @@ export default Style = (Colors) => StyleSheet.create({
   },
   SplashMinView: {
     height: '100%',
-    backgroundColor: Colors.white_text_color,
+    backgroundColor: '#e6f2ff',
   },
   MinViewStyleSplash: {
     width: '100%',

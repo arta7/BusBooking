@@ -157,7 +157,9 @@ const BusSeatScreen = (props) => {
 
                 alert('پرداخت با موفقیت انجام گردید.')
             }
-            else  if (event.url.substring(event.url.search('Status')).split('=')[1] == "NOK") {
+            else  
+            //if (event.url.substring(event.url.search('Status')).split('=')[1] == "NOK") 
+                {
                 alert('پرداخت با شکست مواجه گردید.')
             }
         

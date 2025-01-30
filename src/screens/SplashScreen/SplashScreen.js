@@ -63,7 +63,7 @@ const SplashScreen = ({ navigation }) => {
     return (
         <View style={Styles.SplashMinView}>
             <View style={Styles.MinViewStyleSplash}>
-                <Lottie source={images.Splash_Swiper} />
+                <Lottie source={images.Animation} />
             </View>
         </View>
     );
