@@ -24,7 +24,8 @@ function DropdownComponent({
     dropdownStyle,
     customeStyle,
     ShowIcon,
-    IconName
+    IconName,
+    dropdownStyle2
 }) {
     const { Colors } = useTheme();
     const styles = useMemo(
@@ -33,12 +34,12 @@ function DropdownComponent({
                 container: {
                     width: width, borderWidth: 0.4, borderColor: 'grey'
                     , borderRadius: SH(8)
-                    , flexDirection: 'row', justifyContent: 'space-between', height: 70
+                    , flexDirection: 'row', justifyContent: 'space-between', height: 70, overflow: "hidden",
                 },
                 dropdownStyle: {
                     // borderWidth: SH(1),
                     borderColor: Colors.input_border,
-                    borderRadius: SH(8),
+                    // borderRadius: SH(8),
                     fontSize: SF(12),
                     lineHeight: SF(17),
                     color: Colors.black,
@@ -46,6 +47,7 @@ function DropdownComponent({
                     padding: SH(5),
                     minHeight: SH(60),
                     width: '90%',
+                    overflow: "hidden",
                     ...dropdownStyle
                 },
                 icon: {
@@ -87,7 +89,7 @@ function DropdownComponent({
 
     return (
         <View style={[styles.container, customeStyle]}>
-            <View style={{ width: '10%', justifyContent: 'center', alignItems: 'center' }}>
+            <View style={[dropdownStyle2, {width: '10%', justifyContent: 'center', alignItems: 'center', overflow: "hidden",} ]}>
                 {ShowIcon &&
                      <PlaceIcon name={IconName} color={'gray'} size={SH(25)}/>  
                 }

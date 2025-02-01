@@ -116,9 +116,12 @@ const HomeTab = (props) => {
     }
 
     return (
+        <>
+        {
+        Loading ? <Loadings  />   :
         <ScrollView style={HomeTabStyless.ScrollviewHight}>
-            {
-                Loading ? <Loadings /> :
+            
+             
 
                     <View style={HomeTabStyless.MainVieBackground}>
                         <Spacing />
@@ -134,7 +137,7 @@ const HomeTab = (props) => {
                                         placeholder={t("مبدا")}
                                         search={true}
                                         searchPlaceholder={'مبدا'}
-                                        placeholderStyle={{color:'#cb42f5'}}
+                                        // placeholderStyle={{color:'#cb42f5'}}
                                         value={userData[0]?.StartPlace.toString()}
                                         onChange={(From) => {
                                             console.log('from', From.name_fa)
@@ -157,9 +160,11 @@ const HomeTab = (props) => {
                                             }
                                         }}
                                         maxHeight={250}
-                                        customeStyle={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }}
+                                        customeStyle={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0, overflow: "hidden", }}
                                         ShowIcon={true}
                                         IconName='place'
+                                        dropdownStyle={{ backgroundColor:'rgba(190,250,206,0.5)'}}
+                                        dropdownStyle2 ={{backgroundColor:'rgba(190,250,206,0.5)'}}
                                     />
                                 </View>
 
@@ -172,7 +177,7 @@ const HomeTab = (props) => {
                                         labelField="name_fa"
                                         valueField="name_fa"
                                         placeholder={t("مقصد")}
-                                        placeholderStyle={{color:'#f59e42'}}
+                                        // placeholderStyle={{color:'#f59e42'}}
                                         search={true}
                                         searchPlaceholder={'مقصد'}
                                         value={userData[0]?.EndPlace.toString()}
@@ -194,9 +199,12 @@ const HomeTab = (props) => {
                                             //setIsFocus(true);
                                         }}
                                         maxHeight={250}
-                                        customeStyle={{ borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
+                                        customeStyle={{ borderTopLeftRadius: 0, borderTopRightRadius: 0, overflow: "hidden", }}
                                         ShowIcon={true}
                                         IconName='place'
+                                        dropdownStyle={{ backgroundColor:'rgba(190,240,250,0.5)'}}
+                                        dropdownStyle2 ={{backgroundColor:'rgba(190,240,250,0.5)'}}
+                                        // dropdownStyle={{ backgroundColor:'#bef0fa',}}
                                     />
                                 </View>
                             </View>
@@ -326,8 +334,10 @@ const HomeTab = (props) => {
                         /> */}
                          {/* <Image source={images.Mapimage} style={{width:'100%',height: SH(300),}} resizeMode='contain' /> */}
                     </View>
-            }
+           
         </ScrollView>
+    }
+    </>
     );
 };
 export default HomeTab;

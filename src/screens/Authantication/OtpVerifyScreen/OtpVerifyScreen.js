@@ -11,7 +11,7 @@ import Toast from 'react-native-simple-toast';
 import { VerifyAPI } from "../../../Api/ApiMaster";
 import UserContext from './../../../../UserContext';
 import Loadings from '../../../Loadings'
-
+import LoadingDots from "react-native-loading-dots";
 const OtpScreenset = (props) => {
     const { navigation } = props;
     const { t } = useTranslation();
@@ -39,7 +39,7 @@ const OtpScreenset = (props) => {
     const verify = (_code) => {
         // console.log('userData[0].Mobile', userData[0].Mobile)
         setLoading(true)
-        VerifyAPI(userData[0].Mobile.toString(), _code, navigation,setLoading,userData,setUserData)
+         VerifyAPI(userData[0].Mobile.toString(), _code, navigation,setLoading,userData,setUserData)
     }
     return (
         <ImageBackground source={images.full_bg_img_hospital} resizeMode='cover'>
@@ -49,6 +49,7 @@ const OtpScreenset = (props) => {
                     ContentContainerStyle={Style.MainViewOtp}>
                     <KeyboardAvoidingView enabled>
                         <View style={Style.MinFlexView}>
+                        {Loading ? <Loadings /> :
                             <View style={Style.MinViewSecond}>
                                 <Text style={Style.EnterSixDigitText}>{t("Enter_Six_Digit_OTP")}</Text>
                                 <Text style={Style.Paregraph}>{t("Enter_The_Otp_Title")}</Text>
@@ -74,14 +75,15 @@ const OtpScreenset = (props) => {
                                         <Text style={Style.ResendTextBold}>{t("Resend")}</Text>
                                     </TouchableOpacity>
                                 </View>
-                                {Loading ? <Loadings /> :
+                           
                                     <View>
                                         <Button onPress={() => {
                                             verify(Code)
                                         }} title={t("Verify_Text")} />
                                     </View>
-                                }
+                                
                             </View>
+                            }
                         </View>
                     </KeyboardAvoidingView>
                 </ScrollView>

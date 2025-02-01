@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 import { LoginAPI } from '../../../Api/ApiMaster';
 import UserContext from './../../../../UserContext';
 import Loadings from '../../../Loadings'
-
+import LoadingDots from "react-native-loading-dots";
 const LoginScreen = (props) => {
     const { navigation } = props;
     const { t } = useTranslation();
@@ -86,7 +86,7 @@ const LoginScreen = (props) => {
                                 <Text style={Logins.TextStyle}>{t("Dont_Have_Account")} <Text style={Logins.registerTextStyle} onPress={() => OnRegisterPress()}> {t("Register_Text")}</Text></Text>
                             </View> */}
                             <Spacing space={SH(20)} />
-                            {Loading ? <Loadings /> :
+                            {Loading ? <LoadingDots /> :
                                 <View style={Logins.LoginButton}>
 
                                     <Button

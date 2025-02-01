@@ -111,7 +111,7 @@ export function VerifyAPI(_phone,_code,self,setLoading,userData,setUserData)
   })
   .then( (response)=> {
          
-          console.log('response verify Data',response.data.status) 
+          console.log('response verify Data',response) 
           if(response.data.status == 1)
             {
               AsyncStorage.setItem('Token',response.data.data.token)
@@ -126,11 +126,16 @@ export function VerifyAPI(_phone,_code,self,setLoading,userData,setUserData)
         
              self.replace(RouteName.HOME_SCREEN)
             }
+            else
+            {
+               Toast.showWithGravity(response.data.errors.VerificationCode, Toast.LONG, Toast.CENTER);
+            }
             setLoading(false)
         
   })
   .catch( (error)=> {
     setLoading(false)
+    Toast.showWithGravity('کد تایید نامعتبر است', Toast.LONG, Toast.CENTER);
     console.log('errors',error)  
   })
 }
