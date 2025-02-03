@@ -153,12 +153,16 @@ const BusSeatScreen = (props) => {
 
     let _handleOpenURL = (event) => {
      
+        console.log('event.url',event.url.substring(event.url.search('Status')).split('=')[1])
             if (event.url.substring(event.url.search('Status')).split('=')[1] == "OK") {
 
+                navigation.replace(RouteName.BOOKING_TAB)
                 alert('پرداخت با موفقیت انجام گردید.')
+                
+                
             }
             else  
-            //if (event.url.substring(event.url.search('Status')).split('=')[1] == "NOK") 
+            if (event.url.substring(event.url.search('Status')).split('=')[1] == "NOK") 
                 {
                 alert('پرداخت با شکست مواجه گردید.')
             }

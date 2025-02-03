@@ -69,7 +69,7 @@ export function LoginAPI(_phone,self,userData,setUserData,setLoading)
   })
   .then( (response)=> {
          
-          // console.log('response login Data',response.data.status) 
+           console.log('response login Data',response.data.status) 
           if(response.data.status == 1)
             {
               AsyncStorage.setItem('Mobile',_phone)
@@ -81,13 +81,15 @@ export function LoginAPI(_phone,self,userData,setUserData,setLoading)
              
            Toast.showWithGravity(response.data.message, Toast.LONG, Toast.CENTER);
           
-           self.navigate(RouteName.OTP_VERYFY_SCREEN)}
+           self.navigate(RouteName.OTP_VERYFY_SCREEN)
+          }
             setLoading(false)
         
   })
   .catch( (error)=> {
-    console.log('errors',error)  
     setLoading(false)
+    console.log('errors',error)  
+   
   })
 }
 

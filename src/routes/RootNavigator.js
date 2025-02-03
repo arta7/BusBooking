@@ -11,7 +11,7 @@ import { RouteName, SideNavigator } from '../routes';
 import {
   LoginScreen, RegisterScreen, OtpVeryfiveScreen, SplashScreen, RegistrationSuccessful,
   Swiperscreen, TranslationScreen, ForgotPassword, BusListScreen, BusSeatScreen, PaymentScreen,
-  PaymentSuccessFully, CreditCardScreen, TicketScreen
+  PaymentSuccessFully, CreditCardScreen, TicketScreen,MyBooking
 } from '../screens';
 
 const RootNavigator = props => {
@@ -51,6 +51,7 @@ const RootNavigator = props => {
         <Stack.Screen name={RouteName.CREDIT_CARD_SCREEN} component={CreditCardScreen} />
         <Stack.Screen name={RouteName.TICKET_SCREEN} component={TicketScreen} />
         <Stack.Screen name={RouteName.PAYMENT_SCREEN} component={PaymentScreen} />
+        <Stack.Screen name={RouteName.BOOKING_TAB} component={MyBooking} />
       </Stack.Navigator>
     </NavigationContainer>
   );
