@@ -241,7 +241,7 @@ const BusSeatScreen = (props) => {
         const itemErrors = errors.items?.[index];
         // const { errors } = control;
         return (
-            <View key={index} style={{ width: '100%', height: 'auto', padding: 10, backgroundColor: 'white', borderRadius: 10, borderWidth: 0.5, marginBottom: '3%' }}
+            <View key={index} style={{ width: '100%', height: 'auto', padding: 10, backgroundColor: 'rgba(190,240,250,0.5)', borderRadius: 10, borderWidth: 0.5, marginBottom: '3%' }}
             >
                 <View>
                     <Text style={{ color: 'black',  fontSize: SF(12), fontFamily: Fonts.Poppins_Italic }}>مسافر صندلی  {item.chairNumber} :  </Text>

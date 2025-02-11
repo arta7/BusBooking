@@ -5,7 +5,7 @@ export default Style = (Colors) => StyleSheet.create({
   MinStyleViewPhotograpgyTwo: {
     height: '100%',
     width: '100%',
-    backgroundColor: Colors.White_Colour,
+    // backgroundColor: Colors.theme_background,
   },
   ContentContainerStyle: {
     width: '100%',

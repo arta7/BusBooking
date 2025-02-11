@@ -45,7 +45,7 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
         fontFamily:Fonts.Poppins_Italic
     },
     BusBoxWraper: {
-        backgroundColor: Colors.white_text_color,
+        backgroundColor: 'rgba(190,240,250,0.5)',
         // shadowColor: Colors.gray_text_color,
         // shadowOffset: {
         //     width: 0,
