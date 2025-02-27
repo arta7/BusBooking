@@ -163,7 +163,7 @@ export default TicketScreenStyle = (Colors) => StyleSheet.create({
     borderStyle: 'dashed',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center',backgroundColor:'rgba(190,240,250,0.5)'
   },
   imagestyleset: {
     height: SH(200),

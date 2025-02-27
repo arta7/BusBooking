@@ -14,10 +14,12 @@ const   Loadings = () => {
 
 const styles=StyleSheet.create({
     container:{
-        display:'flex',
+        // display:'flex',
         flex:1,
         justifyContent:'center',
-        alignItems:'center',alignSelf:'center',
+        alignItems:'center'
+        // ,alignSelf:'center'
+        ,backgroundColor:'rgba(190,240,250,0.5)'
     }
 });
 export default Loadings;

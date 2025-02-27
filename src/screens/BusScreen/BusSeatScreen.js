@@ -503,7 +503,7 @@ const BusSeatScreen = (props) => {
                                 <>
                                     <View style={{
                                         width: '100%', borderWidth: 1, height: 200, borderRadius: 10, borderColor: 'gray',
-                                        marginBottom: 10, flexDirection: 'row', justifyContent: 'space-between'
+                                        marginBottom: 10, flexDirection: 'row', justifyContent: 'space-between',backgroundColor:'rgba(190,240,250,0.5)'
                                     }}>
 
 
@@ -551,7 +551,7 @@ const BusSeatScreen = (props) => {
 
 
 
-                                    <View style={[{ marginBottom: '3%', borderWidth: 1, paddingBottom: '5%', paddingTop: '5%', borderRadius: 10, borderColor: 'gray' }]}>
+                                    <View style={[{ marginBottom: '3%', borderWidth: 1, paddingBottom: '5%', paddingTop: '5%', borderRadius: 10, borderColor: 'gray',backgroundColor:'rgba(190,240,250,0.5)' }]}>
                                         <View style={[BusSeatScreenStyles.BusSratflatlistbox, {
                                             borderRadius: 10, width: '90%', marginHorizontal: '5%', borderWidth: 0.5, borderColor: 'gray'
                                         }]}>
@@ -562,7 +562,7 @@ const BusSeatScreen = (props) => {
                                                 horizontal
                                             />
                                         </View>
-                                        <View style={{ borderRadius: 10, marginTop: 5, borderRadius: 10, width: '90%', marginHorizontal: '5%' }}>
+                                        <View style={{ borderRadius: 10, marginTop: 5, borderRadius: 10, width: '90%', marginHorizontal: '5%'}}>
                                             <View style={{ width: '100%', height: 50, justifyContent: 'center', alignItems: 'center' }}>
                                                 <Text style={{ color: 'black', fontWeight: 'bold',  fontSize: SF(12), fontFamily: Fonts.Poppins_Italic }} >
                                                     جلوی اتوبوس

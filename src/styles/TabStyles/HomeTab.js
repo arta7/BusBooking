@@ -125,7 +125,8 @@ export default HomeTabStyles = (Colors) => StyleSheet.create({
     MainVieBackground: {
         paddingHorizontal: SH(15),
         height: '100%',
-        backgroundColor: Colors.BGScreen
+        backgroundColor:'rgba(190,240,250,0.3)'
+        // backgroundColor: Colors.BGScreen
     },
     FlexCenterViewTWO: {
         flexDirection: 'row',
@@ -240,5 +241,6 @@ export default HomeTabStyles = (Colors) => StyleSheet.create({
     },
     ScrollviewHight: {
         height: '100%'
+        //,backgroundColor:'rgba(190,240,250,0.5)'
     },
 });

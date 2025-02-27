@@ -54,7 +54,7 @@ export default BusListScreenStyle = (Colors) => StyleSheet.create({
         // },
         // shadowOpacity: 1,
         // shadowRadius: Platform.OS === 'ios' ? 2 : 50,
-        elevation: Platform.OS === 'ios' ? 1 : 2,
+        // elevation: Platform.OS === 'ios' ? 1 : 2,
         borderRadius: 7,
         padding: SH(5),
         marginBottom: (10),borderColor:'#b3b5b4',borderWidth:1

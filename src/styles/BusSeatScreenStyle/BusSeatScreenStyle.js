@@ -104,7 +104,8 @@ export default BusSeatScreenStyle = (Colors) => StyleSheet.create({
     },
     MinFlexView: {
         width: '100%',
-        height: '100%',backgroundColor:'rgba(190,240,250,0.5)'
+        height: '100%'
+        // ,backgroundColor:'rgba(190,240,250,0.5)'
     },
     SeatAvChildBoxText: {
         color: Colors.black_text_color,
