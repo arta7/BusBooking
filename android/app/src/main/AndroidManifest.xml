@@ -30,8 +30,8 @@
   <category android:name="android.intent.category.DEFAULT" />
   <category android:name="android.intent.category.BROWSABLE" />
 
-       <data android:host="api.kalanholding.com" android:scheme="https"/>
-        <data android:host="api.kalanholding.com" android:scheme="http"/>
+       <data android:host="Kalanholding" android:scheme="app"/>
+        <data android:host="Kalanholding" android:scheme="app"/>
         </intent-filter>
       </activity>
     </application>

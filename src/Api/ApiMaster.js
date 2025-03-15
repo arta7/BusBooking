@@ -367,7 +367,7 @@ export function BillingFactor(_factorId,setLoading,axisConfigToken,_setReturnVal
          // SetData(response.data.data)
          _setReturnValue(response.data.data)
           setLoading(false)
-          console.log('response bus BillingFactor : ',response.data.data) 
+          console.log('response bus BillingFactor : ',response.data) 
           Linking.openURL(response.data.data)
         
   })

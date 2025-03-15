@@ -11,8 +11,9 @@ import { RouteName, SideNavigator } from '../routes';
 import {
   LoginScreen, RegisterScreen, OtpVeryfiveScreen, SplashScreen, RegistrationSuccessful,
   Swiperscreen, TranslationScreen, ForgotPassword, BusListScreen, BusSeatScreen, PaymentScreen,
-  PaymentSuccessFully, CreditCardScreen, TicketScreen,MyBooking
+  PaymentSuccessFully, CreditCardScreen, TicketScreen,MyBooking,Selector,ComingSoon
 } from '../screens';
+
 
 const RootNavigator = props => {
 
@@ -37,6 +38,8 @@ const RootNavigator = props => {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
      
         <Stack.Screen name={RouteName.SPLSH_SCREEN} component={SplashScreen} />
+        <Stack.Screen name={RouteName.Selector} component={Selector} />
+        <Stack.Screen name={RouteName.ComingSoon} component={ComingSoon} />
         <Stack.Screen name={RouteName.LOGIN_SCREEN} component={LoginScreen} />
         <Stack.Screen name={RouteName.REGISTER_SCREEN} component={RegisterScreen} />
         <Stack.Screen name={RouteName.HOME_SCREEN} component={SideNavigator} />

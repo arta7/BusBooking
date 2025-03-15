@@ -1,6 +1,8 @@
 const RouteName = {
     SPLSH_SCREEN: "SplashScreen",
     SWIPER_SCREEN: "Swiperscreen",
+    Selector:"Selector",
+    ComingSoon:'ComingSoon',
     LOGIN_SCREEN: "LoginScreen",
     REGISTER_SCREEN: "Register",
     OTP_VERYFY_SCREEN: 'OtpVeryfiveScreen',

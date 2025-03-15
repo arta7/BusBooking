@@ -64,7 +64,7 @@ const App = ({ navigation }) => {
                   if(value == false)
                   navigation.replace(RouteName.LOGIN_SCREEN)
                   else
-                  navigation.replace(RouteName.HOME_SCREEN)
+                  navigation.replace(RouteName.Selector)
                 })
               }
             }
@@ -90,7 +90,7 @@ const App = ({ navigation }) => {
             if(value == false)
             navigation.replace(RouteName.LOGIN_SCREEN)
             else
-            navigation.replace(RouteName.HOME_SCREEN)
+            navigation.replace(RouteName.Selector)
           })
             
 

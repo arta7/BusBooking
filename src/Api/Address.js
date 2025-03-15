@@ -15,6 +15,6 @@ Bus:{
 },
 ChargeAccount:{
      Charge:'/billing/charge?amount=',
-     BillingFactor:'/billing/payfactor/'
+     BillingFactor:'/billing/payfactor/saman/'
 }
 }
