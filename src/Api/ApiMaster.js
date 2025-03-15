@@ -126,7 +126,7 @@ export function VerifyAPI(_phone,_code,self,setLoading,userData,setUserData)
            Toast.showWithGravity(response.data.message, Toast.LONG, Toast.CENTER);
               
         
-             self.replace(RouteName.HOME_SCREEN)
+             self.replace(RouteName.Selector)
             }
             else
             {
