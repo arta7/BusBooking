@@ -126,7 +126,7 @@ export function VerifyAPI(_phone,_code,self,setLoading,userData,setUserData)
            Toast.showWithGravity(response.data.message, Toast.LONG, Toast.CENTER);
               
         
-             self.replace(RouteName.Selector)
+             self.replace(RouteName.HOME_SCREEN)
             }
             else
             {
@@ -183,7 +183,7 @@ export function GetCities(setData,Data,self,setLoading,axisConfigToken)
   .then( (response)=> {
 
 
-      console.log('response',response.data.data)
+      // console.log('response',response.data.data)
       setData(response.data.data)
       setLoading(false)
         

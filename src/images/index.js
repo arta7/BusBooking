@@ -38,6 +38,10 @@ const images = {
    paytem: require('./paytem.png'),
    Pymentsuceeful_img: require('./One_fifty.png'),
    creditcard_img: require('./Hundred.png'),
-   Mapimage : require('./HILmr.png')
+   Mapimage : require('./HILmr.png'),
+   Bus:require('./bus.png'),
+   Taxi:require('./taxi.png'),
+   Van:require('./van.png')
+
 }
 export default images;

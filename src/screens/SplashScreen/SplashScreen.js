@@ -40,7 +40,7 @@ const SplashScreen = ({ navigation }) => {
                 if(value == false)
                     navigation.replace(RouteName.SWIPER_SCREEN)
                 else
-                navigation.replace(RouteName.Selector)
+                navigation.replace(RouteName.HOME_SCREEN)
               })
 
             
